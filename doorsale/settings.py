@@ -4,7 +4,7 @@ Note: This is not a conventional Django settings.py file, settings
 """
 
 APPS = (
-    'doorsale',
+    'doorsale.common',
     'doorsale.catalog',
     'doorsale.sales',
     'doorsale.finance',
