@@ -1,4 +1,4 @@
 doorsale
 ========
 
-e-Commerce solution for Django
+The powerful e-commerce solution for Django
