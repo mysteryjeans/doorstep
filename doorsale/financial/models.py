@@ -32,4 +32,11 @@ class TaxCategory(models.Model):
         verbose_name_plural = 'Tax Categories'
     
     def __unicode__(self):
-        return '%s: %s' % (self.category, self.tax_rate)
+        return u'%s: %s' % (self.category, self.tax_rate)
+    
+    @classmethod
+    def get_taxes(cls):
+        """
+        Return all taxes defined by categories
+        """
+        return list(cls.objects.all())
