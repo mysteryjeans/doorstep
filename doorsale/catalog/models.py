@@ -85,8 +85,8 @@ class ProductSpec(models.Model):
     Represents product specification attribute
     """
     name = models.CharField(max_length=100)
-    product = models.ForeignKey(Product, related_name='specs')
     value = models.CharField(max_length=100)
+    product = models.ForeignKey(Product, related_name='specs')
     display_order = models.IntegerField(default=0)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
@@ -96,6 +96,9 @@ class ProductSpec(models.Model):
         ordering = ('display_order', 'id',)
         unique_together = ('name', 'product',)
         verbose_name_plural = 'Product Specs'
+    
+    def __unicode__(self):
+        return u'%s: %s' % (self.name, self.value)
 
 
 class ProductPic(models.Model):
