@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 from doorsale.catalog.models import Product
-from doorsale.finance.models import TaxCategory 
+from doorsale.financial.models import TaxCategory 
 
 
 class Cart(models.Model):
@@ -70,7 +70,7 @@ class Order(models.Model):
     Represents customer's order
     """
     customer = models.ForeignKey(settings.AUTH_USER_MODEL) # Referencing custom defined model in settings file
-    currency = models.ForeignKey('finance.Currency')
+    currency = models.ForeignKey('financial.Currency')
     sub_total = models.DecimalField(max_digits=9, decimal_places=2)
     taxes = models.DecimalField(max_digits=9, decimal_places=2)
     total = models.DecimalField(max_digits=9, decimal_places=2)

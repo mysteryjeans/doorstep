@@ -7,7 +7,7 @@ APPS = (
     'doorsale.common',
     'doorsale.catalog',
     'doorsale.sales',
-    'doorsale.finance',
+    'doorsale.financial',
 )
 
 PIPELINE_CSS =  {

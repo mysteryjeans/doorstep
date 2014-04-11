@@ -28,7 +28,7 @@ class TaxCategory(models.Model):
     created_by = models.CharField(max_length=100)
     
     class Meta:
-        db_table = 'finance_tax_category'
+        db_table = 'financial_tax_category'
         verbose_name_plural = 'Tax Categories'
     
     def __unicode__(self):
