@@ -14,13 +14,13 @@ class Cart(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)  
     
-    def sub_total(self):
+    def get_sub_total(self):
         """
-        Sub total of cart items
+        Sub total of cart items (without taxes)
         """
         sub_total = 0.0
         for item in self.items:
-            sub_total += item.sub_total()
+            sub_total += item.get_sub_total()
         
         return sub_total
     
@@ -30,16 +30,13 @@ class Cart(models.Model):
         """
         taxes = 0.0
         for item in self.items:
-            tax_categories = TaxCategory.get_taxes()
-            for tax_category in tax_categories:
-                if item.product.category_id == tax_category.category_id:
-                    taxes += item.sub_total() * tax_category.tax_rate
+            taxes += item.get_taxes()
         
         return taxes
     
     def get_total(self):
         """
-        Total price of cart items
+        Total price of cart items with taxes
         """
         return self.sub_total() + self.get_taxes()
 
@@ -51,6 +48,7 @@ class CartItem(models.Model):
     cart = models.ForeignKey(Cart, related_name='items')
     product = models.ForeignKey('catalog.Product')
     quantity = models.IntegerField(default=1)
+    tax_rate = models.FloatField(default=0.0)
     updated_on = models.DateTimeField(auto_now=True)
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -61,19 +59,77 @@ class CartItem(models.Model):
         ordering = ('id',)
         verbose_name_plural = 'Cart Items'
     
-    def sub_total(self, currency):
+    def get_sub_total(self):
+        """
+        Sub total of cart item (without taxes)
+        """
         return self.product.price * self.quantity
+    
+    def get_taxes(self):
+        """
+        Total taxes applied on cart item
+        """
+        return self.product.price * self.quantity * self.tax_rate
+    
+    def get_total(self):
+        """
+        Total price of cart item with taxes
+        """
+        return self.get_sub_total() + self.get_taxes()
     
 
 class Order(models.Model):
     """
     Represents customer's order
     """
-    customer = models.ForeignKey(settings.AUTH_USER_MODEL) # Referencing custom defined model in settings file
+    # Order statuses
+    ORDER_PENDING = 'PE'
+    ORDER_PROCESSING = 'PR'
+    ORDER_COMPLETE = 'CO'
+    ORDER_CANCELLED = 'CA'
+    ORDER_STATUSES = ((ORDER_PENDING, 'Pending'),
+                      (ORDER_PROCESSING, 'Processing'),
+                      (ORDER_COMPLETE, 'Complete'),
+                      (ORDER_CANCELLED, 'Cancelled'))
+    
+    # Payment statuses
+    PAYMENT_PENDING = 'PE'
+    PAYMENT_AUTHORIZED = 'AU'
+    PAYMENT_PAID = 'PA'
+    PAYMENT_PARTIALLY_REFUNDED = 'PR'
+    PAYMENT_REFUNDED = 'RE'
+    PAYMENT_VOID = 'VO'
+    PAYMENT_STATUSES = ((PAYMENT_PENDING, 'Pending'),
+                        (PAYMENT_AUTHORIZED, 'Authorized'),
+                        (PAYMENT_PAID, 'Paid'),
+                        (PAYMENT_PARTIALLY_REFUNDED, 'Partially Refunded'),
+                        (PAYMENT_REFUNDED, 'Refunded'),
+                        (PAYMENT_VOID, 'Void'))
+    
+    # Shipping statuses
+    SHIPPING_NOT_REQUIRED = 'NR'
+    SHIPPING_PENDING = 'PE'
+    SHIPPING_PARTIALLY_SHIPPED = 'PS'
+    SHIPPING_SHIPPED = 'SH'
+    SHIPPING_DELIVERED = 'DE'
+    SHIPPING_STATUSES = ((SHIPPING_NOT_REQUIRED, 'Not Required'),
+                         (SHIPPING_PENDING, 'Pending'),
+                         (SHIPPING_PARTIALLY_SHIPPED, 'Partially Shipped'),
+                         (SHIPPING_SHIPPED, 'Shipped'),
+                         (SHIPPING_DELIVERED, 'Delivered'))
+    
+    customer = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True) # Referencing custom defined model in settings file
     currency = models.ForeignKey('financial.Currency')
     sub_total = models.DecimalField(max_digits=9, decimal_places=2)
     taxes = models.DecimalField(max_digits=9, decimal_places=2)
     total = models.DecimalField(max_digits=9, decimal_places=2)
+    refunded_amount = models.DecimalField(max_digits=9, decimal_places=2)
+    currency_rate = models.FloatField(default=1)
+    order_status = models.CharField(max_length=2, choices=ORDER_STATUSES)
+    payment_status = models.CharField(max_length=2, choices=PAYMENT_STATUSES)
+    shipping_status = models.CharField(max_length=2, chocies=SHIPPING_STATUSES)
+    billing_address = models.ForeignKey('common.Address', related_name='billing')
+    shipping_address = models.ForeignKey('common.Address', related_name='shipping', null=True, blank=True)
     updated_on = models.DateTimeField(auto_now=True)
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -89,6 +145,9 @@ class OrderItem(models.Model):
     price = models.DecimalField(max_digits=9, decimal_places=2, help_text='Unit price of the product')
     quantity = models.IntegerField()
     tax_rate = models.FloatField(default=0.0)
+    taxes = models.DecimalField(max_digits=9, decimal_places=2)
+    sub_total = models.DecimalField(max_digits=9, decimal_places=2)
+    total = models.DecimalField(max_digits=9, decimal_places=2)
     updated_on = models.DateTimeField(auto_now=True)
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -96,4 +155,8 @@ class OrderItem(models.Model):
     
     class Meta:
         db_table = 'sales_order_item'
+
+
+
+
         verbose_name_plural = 'Order Items'
