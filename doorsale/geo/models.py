@@ -20,6 +20,7 @@ class Country(models.Model):
     created_by = models.CharField(max_length=100)
     
     class Meta:
+        ordering = ('display_order', 'name',)
         verbose_name_plural = 'Countries'
     
     def __unicode__(self):
@@ -39,6 +40,9 @@ class State(models.Model):
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
+    
+    class Meta:
+        ordering = ('display_order', 'name',)
     
     def __unicode__(self):
         return self.name

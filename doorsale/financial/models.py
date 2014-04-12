@@ -30,7 +30,7 @@ class TaxRate(models.Model):
                    (TAX_FIXED, 'Fixed'))
     
     name = models.CharField(max_length=100, unique=True)
-    method = models.CharField(max_length=2, choices=TAX_METHODS, help_text='Tax deduction method; fixed tax or percentage of price per product/quantity')
+    method = models.CharField(max_length=2, choices=TAX_METHODS, help_text='Tax deduction method: fixed tax per product or percentage of price per product')
     rate = models.FloatField(default=0.0)
     updated_by = models.CharField(max_length=100)
     updated_on = models.DateTimeField(auto_now=True)
