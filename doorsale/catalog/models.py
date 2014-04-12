@@ -1,5 +1,6 @@
 from django.db import models
 
+from doorsale.financial.models import TaxRate
 
 class Manufacturer(models.Model):
     """
@@ -53,21 +54,28 @@ class Product(models.Model):
     """
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
-    brand = models.ForeignKey(Manufacturer)
+    brand = models.ForeignKey(Manufacturer, help_text='Manufacturer')
+    part_number = models.CharField(max_length=50, null=True, blank=True, help_text='Manufacturer part number')
     sku = models.CharField(max_length=50, null=True, blank=True)
-    gist = models.CharField(max_length=500, null=True, blank=True, help_text='Short description of the Product')
-    description = models.TextField(null=True, blank=True)
-    price = models.DecimalField(max_digits=9, decimal_places=2)
+    gtin = models.CharField(max_length=50, null=True, blank=True, 
+                            help_text='Global Trade Item Number (GTIN)')
+    categories = models.ManyToManyField(Category)
+    gist = models.CharField(max_length=500, null=True, blank=True, help_text='Short description of the product')
+    description = models.TextField(null=True, blank=True, help_text='Full description displayed on the product page')
+    price = models.DecimalField(max_digits=9, decimal_places=2, help_text='Per unit price')
+    cost = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True, help_text='Per unit cost')
     old_price = models.DecimalField(max_digits=9, decimal_places=2, blank=True, default=0.00)
-    is_active = models.BooleanField(default=True)
-    is_bestseller = models.BooleanField(default=False)
-    is_featured = models.BooleanField(default=False)
-    quantity = models.IntegerField()
-    rating  = models.FloatField(default=0.0)
-    up_votes = models.IntegerField(default=0)
-    down_votes = models.IntegerField(default=0)
-    category = models.ForeignKey(Category)
+    quantity = models.IntegerField(help_text='Stock quantity')
+    is_active = models.BooleanField(default=True, help_text='Product is available for listing and sale')
+    is_bestseller = models.BooleanField(default=False, help_text='It has been best seller')
+    is_featured = models.BooleanField(default=False, help_text='Promote this product on main pages')
+    is_free_shipping = models.BooleanField(default=False, help_text='No shipping charges')
+    tax_rate = models.ForeignKey(TaxRate, null=True, blank=True, help_text='Tax applied on this product, if tax exempt select none')
     tags = models.CharField(max_length=250, null=True, blank=True, help_text='Comma-delimited set of SEO keywords for meta tag')
+    weight = models.FloatField(default=0)
+    length = models.FloatField(default=0)
+    width = models.FloatField(default=0)
+    height = models.FloatField(default=0)
     updated_by = models.CharField(max_length=100)
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -108,11 +116,13 @@ class ProductPic(models.Model):
     name = models.CharField(max_length=100)
     product = models.ForeignKey(Product, related_name='pics')
     url = models.ImageField(upload_to="images/catalog/products")
+    display_order = models.IntegerField(default=0)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
 
     class Meta:
         db_table = 'catalog_product_pic'
+        ordering = ('display_order', 'id')
         unique_together = ('name', 'id',)
         verbose_name_plural = 'Product Pics'
 
