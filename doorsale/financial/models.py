@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class Currency(models.Model):
     """
     Represents a currency
@@ -16,27 +17,54 @@ class Currency(models.Model):
     created_by = models.CharField(max_length=100)
     
 
-class TaxCategory(models.Model):
+class TaxRate(models.Model):
     """
     Represents a Tax Category
     """
-    category = models.ForeignKey('catalog.Category')
-    tax_rate = models.FloatField(default=0.0)
+    TAX_PERCENTAGE = 'PE'
+    TAX_FIXED = 'FI'
+    TAX_METHODS = ((TAX_PERCENTAGE, 'Percentage'),
+                   (TAX_FIXED, 'Fixed'))
+    
+    name = models.CharField(max_length=100, unique=True)
+    rate = models.FloatField(default=0.0)
+    method = models.CharField(max_length=2, choices=TAX_METHODS, help_text='Tax deduction method; fixed tax or percentage of price per product/quantity')
     updated_by = models.CharField(max_length=100)
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
     
     class Meta:
-        db_table = 'financial_tax_category'
-        verbose_name_plural = 'Tax Categories'
+        db_table = 'financial_tax_rate'
+        verbose_name_plural = 'Tax Rates'
     
     def __unicode__(self):
-        return u'%s: %s' % (self.category, self.tax_rate)
+        return u'%s [%s]: %s' % (self.name, self.method, self.rate)
+    
+    def calculate(self, price, quantity):
+        """
+        Calculate tax on price & quantity based on tax method
+        """
+        self._calculate(price, quantity, self.method, self.rate, self.name) 
     
     @classmethod
     def get_taxes(cls):
         """
-        Return all taxes defined by categories
+        Return all taxes defined in system
         """
         return list(cls.objects.all())
+    
+    @classmethod
+    def _calculate(cls, price, quantity, method, rate, name=None):
+        """
+        Calculate tax on price & quantity based on tax method
+        """
+        if method == cls.TAX_FIXED:
+            return rate * quantity
+        elif method == cls.TAX_PERCENTAGE:
+            return rate * quantity * price
+        
+        if name:
+            raise Exception(u'Unknown tax method "%s" defined for tax rate: "%s"' % (method, name))
+        
+        raise Exception(u'Unknown tax method "%s"' % method)  
