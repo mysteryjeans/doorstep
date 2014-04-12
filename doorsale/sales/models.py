@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 
 from doorsale.catalog.models import Product
-from doorsale.financial.models import TaxCategory 
+from doorsale.financial.models import TaxRate 
 
 
 class Cart(models.Model):
@@ -48,7 +48,6 @@ class CartItem(models.Model):
     cart = models.ForeignKey(Cart, related_name='items')
     product = models.ForeignKey('catalog.Product')
     quantity = models.IntegerField(default=1)
-    tax_rate = models.FloatField(default=0.0)
     updated_on = models.DateTimeField(auto_now=True)
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -69,7 +68,11 @@ class CartItem(models.Model):
         """
         Total taxes applied on cart item
         """
-        return self.product.price * self.quantity * self.tax_rate
+        product = self.product
+        if product.tax_rate:
+            return product.tax_rate.calculate(product.price, self.quantity)
+        
+        return 0.0 
     
     def get_total(self):
         """
@@ -145,6 +148,7 @@ class OrderItem(models.Model):
     price = models.DecimalField(max_digits=9, decimal_places=2, help_text='Unit price of the product')
     quantity = models.IntegerField()
     tax_rate = models.FloatField(default=0.0)
+    tax_method = models.CharField(max_length=2, choices=TaxRate.TAX_METHODS)
     taxes = models.DecimalField(max_digits=9, decimal_places=2)
     sub_total = models.DecimalField(max_digits=9, decimal_places=2)
     total = models.DecimalField(max_digits=9, decimal_places=2)
@@ -155,8 +159,5 @@ class OrderItem(models.Model):
     
     class Meta:
         db_table = 'sales_order_item'
-
-
-
-
         verbose_name_plural = 'Order Items'
+        
