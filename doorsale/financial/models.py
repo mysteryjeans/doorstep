@@ -7,16 +7,18 @@ class Currency(models.Model):
     """
     name = models.CharField(max_length=100, unique=True)
     code = models.CharField(max_length=3, unique=True, help_text="ISO Currency Code")
-    is_active = models.BooleanField(default=False)
-    is_primary = models.BooleanField(default=False, help_text='Primary currency of site, you should updated exchange rate and product prices when you choose change primary currency')
     exchange_rate = models.FloatField(default=1.0)
-    price_format = models.CharField(max_length=100, help_text='Price format: "${price}"')
+    locale = models.CharField(max_length=10)
+    price_format = models.CharField(max_length=50, help_text='Price format: "$%.2f" (python format string)')
+    is_primary = models.BooleanField(default=False, help_text='Primary currency of site, you should updated exchange rate and product prices when you choose change primary currency')
+    is_active = models.BooleanField(default=False)
     updated_by = models.CharField(max_length=100)
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
     
     class Meta:
+        ordering = ('id',)
         verbose_name_plural = 'Currencies'
     
 

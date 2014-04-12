@@ -4,8 +4,8 @@ from . import models
 from ..admin import ModelAdmin
 
 class CurrencyAdmin(ModelAdmin):
-    list_display = ('name', 'code', 'exchange_rate',)
-    list_filter = ('created_on',)
+    list_display = ('name', 'code', 'exchange_rate', 'is_primary', 'is_active',)
+    list_filter = ('is_primary', 'is_active', 'created_on',)
     search_fields = ('name', 'code',)
     date_hierarchy = 'created_on'
 
