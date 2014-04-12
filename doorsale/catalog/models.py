@@ -15,7 +15,10 @@ class Manufacturer(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
-
+    
+    class Meta:
+        ordering = ('id',)
+    
     def __unicode__(self):
         return self.name
 

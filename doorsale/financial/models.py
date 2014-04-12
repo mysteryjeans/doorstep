@@ -16,6 +16,9 @@ class Currency(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
     
+    class Meta:
+        verbose_name_plural = 'Currencies'
+    
 
 class TaxRate(models.Model):
     """
@@ -27,8 +30,8 @@ class TaxRate(models.Model):
                    (TAX_FIXED, 'Fixed'))
     
     name = models.CharField(max_length=100, unique=True)
-    rate = models.FloatField(default=0.0)
     method = models.CharField(max_length=2, choices=TAX_METHODS, help_text='Tax deduction method; fixed tax or percentage of price per product/quantity')
+    rate = models.FloatField(default=0.0)
     updated_by = models.CharField(max_length=100)
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)

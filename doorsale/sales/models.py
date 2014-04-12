@@ -1,8 +1,9 @@
 from django.db import models
 from django.conf import settings
 
-from doorsale.catalog.models import Product
-from doorsale.financial.models import TaxRate 
+from ..common.models import Address
+from ..catalog.models import Product
+from ..financial.models import TaxRate 
 
 
 class Cart(models.Model):
@@ -46,7 +47,7 @@ class CartItem(models.Model):
     Represents customer's product in basket
     """
     cart = models.ForeignKey(Cart, related_name='items')
-    product = models.ForeignKey('catalog.Product')
+    product = models.ForeignKey(Product)
     quantity = models.IntegerField(default=1)
     updated_on = models.DateTimeField(auto_now=True)
     updated_by = models.CharField(max_length=100)
@@ -130,13 +131,16 @@ class Order(models.Model):
     currency_rate = models.FloatField(default=1)
     order_status = models.CharField(max_length=2, choices=ORDER_STATUSES)
     payment_status = models.CharField(max_length=2, choices=PAYMENT_STATUSES)
-    shipping_status = models.CharField(max_length=2, chocies=SHIPPING_STATUSES)
-    billing_address = models.ForeignKey('common.Address', related_name='billing')
-    shipping_address = models.ForeignKey('common.Address', related_name='shipping', null=True, blank=True)
+    shipping_status = models.CharField(max_length=2, choices=SHIPPING_STATUSES)
+    billing_address = models.ForeignKey(Address, related_name='billing_orders')
+    shipping_address = models.ForeignKey(Address, related_name='shipping_orders', null=True, blank=True)
     updated_on = models.DateTimeField(auto_now=True)
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
+    
+    def __unicode__(self):
+        return self.id
     
 
 class OrderItem(models.Model):
@@ -147,11 +151,11 @@ class OrderItem(models.Model):
     product = models.ForeignKey('catalog.Product')
     price = models.DecimalField(max_digits=9, decimal_places=2, help_text='Unit price of the product')
     quantity = models.IntegerField()
-    tax_rate = models.FloatField(default=0.0)
-    tax_method = models.CharField(max_length=2, choices=TaxRate.TAX_METHODS)
     taxes = models.DecimalField(max_digits=9, decimal_places=2)
     sub_total = models.DecimalField(max_digits=9, decimal_places=2)
     total = models.DecimalField(max_digits=9, decimal_places=2)
+    tax_rate = models.FloatField(default=0.0)
+    tax_method = models.CharField(max_length=2, choices=TaxRate.TAX_METHODS)
     updated_on = models.DateTimeField(auto_now=True)
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
