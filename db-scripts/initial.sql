@@ -258,6 +258,8 @@ INSERT INTO geo_country (name, allow_billing, allow_shipping, iso_code2, iso_cod
 
 
 -- States - doorsale.geo
+
+-- America States
 INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='USA'), 'AA (Armed Forces Americas)', 'AA', true, 0, now(), 'system', now(), 'system');
 INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='USA'), 'AE (Armed Forces Europe)', 'AE', true, 0, now(), 'system', now(), 'system');
 INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='USA'), 'Alabama', 'AL', true, 0, now(), 'system', now(), 'system');
@@ -320,6 +322,8 @@ INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated
 INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='USA'), 'West Virginia', 'WV', true, 0, now(), 'system', now(), 'system');
 INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='USA'), 'Wisconsin', 'WI', true, 0, now(), 'system', now(), 'system');
 INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='USA'), 'Wyoming', 'WY', true, 0, now(), 'system', now(), 'system');
+
+-- Canada States
 INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='CAN'), 'Alberta', 'AB', true, 0, now(), 'system', now(), 'system');
 INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='CAN'), 'British Columbia', 'BC', true, 0, now(), 'system', now(), 'system');
 INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='CAN'), 'Manitoba', 'MB', true, 0, now(), 'system', now(), 'system');
@@ -333,4 +337,11 @@ INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated
 INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='CAN'), 'Quebec', 'QC', true, 0, now(), 'system', now(), 'system');
 INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='CAN'), 'Saskatchewan', 'SK', true, 0, now(), 'system', now(), 'system');
 INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='CAN'), 'Yukon Territory', 'YU', true, 0, now(), 'system', now(), 'system');
+
+-- Pakistan Provinces
+INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='PAK'), 'Sindh', 'SI', true, 0, now(), 'system', now(), 'system');
+INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='PAK'), 'Punjab', 'PU', true, 0, now(), 'system', now(), 'system');
+INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='PAK'), 'Balochistan', 'BA', true, 0, now(), 'system', now(), 'system');
+INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='PAK'), 'Khyber Pakhtunkhwa', 'KP', true, 0, now(), 'system', now(), 'system');
+INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='PAK'), 'FATA', 'FA', true, 0, now(), 'system', now(), 'system');
 
