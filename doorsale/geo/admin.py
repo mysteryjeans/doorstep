@@ -13,7 +13,7 @@ class CountryAdmin(ModelAdmin):
 class StateAdmin(ModelAdmin):
     list_display = ('name', 'code', 'country', 'display_order', 'is_active',)
     list_filter = ('is_active', 'display_order', 'created_on',)
-    search_fields = ('name', 'code', 'country',)
+    search_fields = ('name', 'code', 'country__name',)
     date_hierarchy = 'created_on'
 
 

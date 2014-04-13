@@ -14,21 +14,21 @@ class CartAdmin(ModelAdmin):
 class CartItemAdmin(ModelAdmin):
     list_display = ('product', 'cart', 'quantity',)
     list_filter = ('product', 'created_on',)
-    search_fields = ('product', 'cart',)
+    search_fields = ('product__name', 'cart__id',)
     date_hierarchy = 'created_on'
 
 
 class OrderAdmin(ModelAdmin):
     list_display = ('id', 'customer', 'currency', 'sub_total', 'taxes', 'total', 'refunded_amount', 'payment_status', 'order_status', 'shipping_status', )
     list_filter = ('payment_status', 'order_status', 'shipping_status', 'currency', 'created_on',)
-    search_fields = ('id', 'customer', 'currency',)
+    search_fields = ('id', 'customer__username', 'customer__first_name', 'customer__last_name', 'customer__email', 'currency__name',)
     date_hierarchy = 'created_on'
 
 
 class OrderItemAdmin(ModelAdmin):
     list_display = ('order', 'product', 'price', 'quantity', 'sub_total', 'taxes', 'total', 'tax_rate', 'tax_method', )
     list_filter = ('tax_rate', 'tax_method', 'created_on',)
-    search_fields = ('order', 'product',)
+    search_fields = ('order__id', 'product__name', 'tax_method',)
     date_hierarchy = 'created_on'
 
 

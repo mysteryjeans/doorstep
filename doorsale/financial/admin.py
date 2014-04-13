@@ -12,7 +12,7 @@ class CurrencyAdmin(ModelAdmin):
 
 class TaxRateAdmin(ModelAdmin):
     list_display = ('name', 'method', 'rate',)
-    list_filter = ('created_on',)
+    list_filter = ('method', 'created_on',)
     search_fields = ('name',)
     date_hierarchy = 'created_on'
 

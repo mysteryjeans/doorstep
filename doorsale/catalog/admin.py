@@ -23,7 +23,7 @@ class CategoryAdmin(ModelAdmin):
 class ProductAdmin(ModelAdmin):
     list_display = ('name', 'gist', 'brand', 'price', 'quantity', 'is_active', 'is_bestseller', 'is_featured',)
     list_filter = ('brand', 'is_active', 'is_bestseller', 'is_featured', 'is_free_shipping', 'created_on',)
-    search_fields = ('name', 'gist', 'brand', 'sku', 'gtin', 'part_number',)
+    search_fields = ('name', 'gist', 'brand__name', 'sku', 'gtin', 'part_number',)
     date_hierarchy = 'created_on'
 
 
@@ -37,7 +37,7 @@ class ProductSpecAdmin(ModelAdmin):
 class ProductPicAdmin(ModelAdmin):
     list_display = ('name', 'product',)
     list_filter = ('created_on',)
-    search_fields = ('name',)
+    search_fields = ('name', 'product__name',)
     date_hierarchy = 'created_on'
 
 
