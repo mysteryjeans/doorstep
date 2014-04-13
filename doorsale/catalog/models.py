@@ -30,7 +30,7 @@ class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField(null=True, blank=True)
-    pic = models.ImageField(upload_to='images/catalog/categories')
+    pic = models.ImageField(upload_to='images/catalog/categories', null=True, blank=True)
     parent = models.ForeignKey('self', null=True, blank=True)
     tags = models.CharField(max_length=100, null=True, blank=True, help_text='Comma-delimited set of SEO keywords for meta tag')
     display_order = models.IntegerField(default=0)

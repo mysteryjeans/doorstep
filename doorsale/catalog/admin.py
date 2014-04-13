@@ -13,9 +13,9 @@ class ManufacturerAdmin(ModelAdmin):
 
 
 class CategoryAdmin(ModelAdmin):
-    list_display = ('name', 'description', 'parent', 'tags', 'display_order', 'is_active',)
+    list_display = ('name', 'parent', 'tags', 'display_order', 'is_active',)
     prepopulated_fields = {'slug': ('name',)}
-    list_filter = ('display_order', 'created_on',)
+    list_filter = ('parent', 'created_on',)
     search_fields = ('name', 'description', 'tags',)
     date_hierarchy = 'created_on'
 
