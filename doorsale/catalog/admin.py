@@ -21,23 +21,24 @@ class CategoryAdmin(ModelAdmin):
 
 
 class ProductAdmin(ModelAdmin):
-    list_display = ('name', 'gist', 'brand', 'price', 'quantity', 'is_active', 'is_bestseller', 'is_featured',)
+    list_display = ('name', 'brand', 'price', 'quantity', 'is_active', 'is_bestseller', 'is_featured',)
     list_filter = ('brand', 'is_active', 'is_bestseller', 'is_featured', 'is_free_shipping', 'created_on',)
     search_fields = ('name', 'gist', 'brand__name', 'sku', 'gtin', 'part_number',)
+    prepopulated_fields = {'slug': ('name',)}
     date_hierarchy = 'created_on'
 
 
 class ProductSpecAdmin(ModelAdmin):
-    list_display = ('name', 'value', 'product',)
+    list_display = ('product', 'name', 'value', 'display_order',)
     list_filter = ('name', 'created_on',)
-    search_fields = ('name', 'value',)
+    search_fields = ('name', 'value', 'product__name',)
     date_hierarchy = 'created_on'
 
 
 class ProductPicAdmin(ModelAdmin):
-    list_display = ('name', 'product',)
+    list_display = ('id', 'product', 'url', 'display_order',)
     list_filter = ('created_on',)
-    search_fields = ('name', 'product__name',)
+    search_fields = ('id', 'product__name', 'url',)
     date_hierarchy = 'created_on'
 
 
