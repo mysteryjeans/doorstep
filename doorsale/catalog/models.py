@@ -66,8 +66,9 @@ class Product(models.Model):
     gist = models.CharField(max_length=500, null=True, blank=True, help_text='Short description of the product')
     description = models.TextField(null=True, blank=True, help_text='Full description displayed on the product page')
     price = models.DecimalField(max_digits=9, decimal_places=2, help_text='Per unit price')
-    cost = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True, help_text='Per unit cost')
-    old_price = models.DecimalField(max_digits=9, decimal_places=2, blank=True, default=0.00)
+    old_price = models.DecimalField(max_digits=9, decimal_places=2, default=0.0)
+    cost = models.DecimalField(max_digits=9, decimal_places=2, default=0.0, help_text='Per unit cost')
+    shipping_cost = models.DecimalField(max_digits=9, decimal_places=2, default=0.0, help_text='Shipping cost per unit')
     quantity = models.IntegerField(help_text='Stock quantity')
     is_active = models.BooleanField(default=True, help_text='Product is available for listing and sale')
     is_bestseller = models.BooleanField(default=False, help_text='It has been best seller')
@@ -116,7 +117,6 @@ class ProductPic(models.Model):
     """
     Represents product picture
     """
-    name = models.CharField(max_length=100)
     product = models.ForeignKey(Product, related_name='pics')
     url = models.ImageField(upload_to="images/catalog/products")
     display_order = models.IntegerField(default=0)
@@ -126,12 +126,10 @@ class ProductPic(models.Model):
     class Meta:
         db_table = 'catalog_product_pic'
         ordering = ('display_order', 'id')
-        unique_together = ('name', 'id',)
         verbose_name_plural = 'Product Pics'
 
     def __unicode__(self):
-        return self.name
-
+        return u'%s [Pic #id %s]' % (self.product, self.id)
 
 
         
