@@ -9,7 +9,6 @@ class Manufacturer(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField(null=True, blank=True)
-    pic = models.ImageField(upload_to='images/catalog/manufacturers', null=True, blank=True)
     is_active = models.BooleanField(default=True)
     updated_by = models.CharField(max_length=100)
     updated_on = models.DateTimeField(auto_now=True)
