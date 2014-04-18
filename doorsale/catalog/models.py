@@ -9,7 +9,7 @@ class Manufacturer(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField(null=True, blank=True)
-    pic = models.ImageField(upload_to='images/catalog/manufacturers')
+    pic = models.ImageField(upload_to='images/catalog/manufacturers', null=True, blank=True)
     is_active = models.BooleanField(default=True)
     updated_by = models.CharField(max_length=100)
     updated_on = models.DateTimeField(auto_now=True)
@@ -96,9 +96,9 @@ class ProductSpec(models.Model):
     """
     Represents product specification attribute
     """
-    name = models.CharField(max_length=100)
-    value = models.CharField(max_length=100)
     product = models.ForeignKey(Product, related_name='specs')
+    name = models.CharField(max_length=100)
+    value = models.CharField(max_length=250)
     display_order = models.IntegerField(default=0)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
@@ -106,7 +106,7 @@ class ProductSpec(models.Model):
     class Meta:
         db_table = 'catalog_product_spec'
         ordering = ('display_order', 'id',)
-        unique_together = ('name', 'product',)
+        unique_together = ('product', 'name',)
         verbose_name_plural = 'Product Specs'
     
     def __unicode__(self):
