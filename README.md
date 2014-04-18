@@ -9,6 +9,7 @@ The powerful e-commerce solution for Django. This project is in its early stages
 4. doorsale.sales: Order processing and shopping cart
 5. doorsale.common: User and Addresses
 
+**Django models and admin models have been defined in detail, I need your help & contributions to make this project full fledged e-commerce solution.**
 
 ### Demo
-To get a sneak peek on Models and Admin Models, see [doorsale-demo](https://github.com/mysteryjeans/doorsale-demo) project and follow the Readme.
+Get head start in Doorsale development, clone both repos ([doorsale](https://github.com/mysteryjeans/doorsale) & [doorsale-demo](https://github.com/mysteryjeans/doorsale-demo)) and restore demo database. Demo repository is following master branch on Doorsale, so you should pull changes frequently to keep things synchronized and running smoothly, see demo readme for more details.
