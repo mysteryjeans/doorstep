@@ -1,5 +1,6 @@
 Doorsale
 ========
+[![Build Status](https://travis-ci.org/mysteryjeans/doorsale.svg?branch=master)](https://travis-ci.org/mysteryjeans/doorsale)
 
 The powerful e-commerce solution for Django. This project is in its early stages and lots of work needs to be done. Doorsale project has been defined into following distinct apps.
 
