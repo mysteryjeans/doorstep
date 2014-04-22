@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from django.db import models
 
 
@@ -44,7 +46,7 @@ class TaxRate(models.Model):
         verbose_name_plural = 'Tax Rates'
     
     def __unicode__(self):
-        return u'%s [%s]: %s' % (self.name, self.method, self.rate)
+        return '%s [%s]: %s' % (self.name, self.method, self.rate)
     
     def calculate(self, price, quantity):
         """
@@ -70,6 +72,6 @@ class TaxRate(models.Model):
             return rate * quantity * price
         
         if name:
-            raise Exception(u'Unknown tax method "%s" defined for tax rate: "%s"' % (method, name))
+            raise Exception('Unknown tax method "%s" defined for tax rate: "%s"' % (method, name))
         
-        raise Exception(u'Unknown tax method "%s"' % method)  
+        raise Exception('Unknown tax method "%s"' % method)  

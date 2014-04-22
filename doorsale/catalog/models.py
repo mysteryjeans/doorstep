@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from django.db import models
 
 from doorsale.financial.models import TaxRate
@@ -109,7 +111,7 @@ class ProductSpec(models.Model):
         verbose_name_plural = 'Product Specs'
     
     def __unicode__(self):
-        return u'%s: %s' % (self.name, self.value)
+        return '%s: %s' % (self.name, self.value)
 
 
 class ProductPic(models.Model):
@@ -128,7 +130,7 @@ class ProductPic(models.Model):
         verbose_name_plural = 'Product Pics'
 
     def __unicode__(self):
-        return u'%s [Pic #id %s]' % (self.product, self.id)
+        return '%s [Pic #id %s]' % (self.product, self.id)
 
 
         

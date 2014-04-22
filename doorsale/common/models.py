@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
@@ -31,7 +33,7 @@ class Address(models.Model):
         verbose_name_plural = 'Addresses'
     
     def __unicode__(self):
-        address = u'%s %s %s' % (self.first_name, self.last_name, self.address1)
+        address = '%s %s %s' % (self.first_name, self.last_name, self.address1)
         
         if self.address2:
             address += ' ' + self.address2
