@@ -4,6 +4,6 @@ python:
 # command to install dependencies
 install:
   - pip install -r requirements.txt
+  - pip install .
 script:
-  - export PYTHONPATH=.:$PYTHONPATH
   - tests/runtests.py -s test_sqlite3
