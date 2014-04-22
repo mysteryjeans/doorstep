@@ -1,0 +1,6 @@
+include README.md
+include LICENSE
+include MANIFEST.in
+recursive-exclude * .DS_Store
+recursive-exclude * *.py[co]
+recursive-include doorsale/db-scripts *
