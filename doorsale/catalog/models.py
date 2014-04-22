@@ -47,7 +47,7 @@ class Category(models.Model):
 
     def __unicode__(self):
         if self.parent:
-            return u"%s > %s" % (self.parent, self.name)
+            return '%s > %s' % (self.parent, self.name)
 
         return self.name
 
