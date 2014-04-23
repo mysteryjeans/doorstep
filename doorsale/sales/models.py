@@ -6,6 +6,7 @@ from ..catalog.models import Product
 from ..financial.models import TaxRate 
 
 
+
 class Cart(models.Model):
     """
     Represents customer's shopping basket
@@ -40,6 +41,7 @@ class Cart(models.Model):
         Total price of cart items with taxes
         """
         return self.sub_total() + self.get_taxes()
+
 
 
 class CartItem(models.Model):
@@ -80,7 +82,8 @@ class CartItem(models.Model):
         Total price of cart item with taxes
         """
         return self.get_sub_total() + self.get_taxes()
-    
+ 
+
 
 class Order(models.Model):
     """
@@ -141,7 +144,8 @@ class Order(models.Model):
     
     def __unicode__(self):
         return self.id
-    
+
+   
 
 class OrderItem(models.Model):
     """

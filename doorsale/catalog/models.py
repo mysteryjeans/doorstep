@@ -4,6 +4,8 @@ from django.db import models
 
 from doorsale.financial.models import TaxRate
 
+
+
 class Manufacturer(models.Model):
     """
     Represents a Manufacturer
@@ -22,6 +24,7 @@ class Manufacturer(models.Model):
     
     def __unicode__(self):
         return self.name
+
 
 
 class Category(models.Model):
@@ -50,6 +53,7 @@ class Category(models.Model):
             return '%s > %s' % (self.parent, self.name)
 
         return self.name
+
 
 
 class Product(models.Model):
@@ -93,6 +97,7 @@ class Product(models.Model):
         return self.name
 
 
+
 class ProductSpec(models.Model):
     """
     Represents product specification attribute
@@ -112,6 +117,7 @@ class ProductSpec(models.Model):
     
     def __unicode__(self):
         return '%s: %s' % (self.name, self.value)
+
 
 
 class ProductPic(models.Model):

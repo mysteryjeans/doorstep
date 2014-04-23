@@ -7,6 +7,7 @@ from django.contrib.auth.models import AbstractUser
 from ..geo.models import Country, State
 
 
+
 class Address(models.Model):
     """
     Represents a address for billing and shipping
@@ -49,6 +50,7 @@ class Address(models.Model):
         return address
 
 
+
 class BaseUser(AbstractUser):
     """
     An abstract class extending Django auth user model for doorsale.
@@ -73,6 +75,7 @@ class BaseUser(AbstractUser):
     
     class Meta:
         abstract = True
+
 
 
 class User(BaseUser):

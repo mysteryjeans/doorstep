@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 
+
 class Currency(models.Model):
     """
     Represents a currency
@@ -22,7 +23,8 @@ class Currency(models.Model):
     class Meta:
         ordering = ('id',)
         verbose_name_plural = 'Currencies'
-    
+
+
 
 class TaxRate(models.Model):
     """

@@ -4,12 +4,14 @@ from . import models
 from ..admin import ModelAdmin 
 
 
+
 class ManufacturerAdmin(ModelAdmin):
     list_display = ('name', 'description', 'is_active',)
     prepopulated_fields = {'slug': ('name',)}
     list_filter = ('is_active', 'created_on',)
     search_fields = ('id', 'name', 'description',)
     date_hierarchy = 'created_on'
+
 
 
 class CategoryAdmin(ModelAdmin):
@@ -20,12 +22,14 @@ class CategoryAdmin(ModelAdmin):
     date_hierarchy = 'created_on'
 
 
+
 class ProductAdmin(ModelAdmin):
     list_display = ('name', 'brand', 'price', 'quantity', 'is_active', 'is_bestseller', 'is_featured',)
     list_filter = ('brand', 'is_active', 'is_bestseller', 'is_featured', 'is_free_shipping', 'created_on',)
     search_fields = ('name', 'gist', 'brand__name', 'sku', 'gtin', 'part_number',)
     prepopulated_fields = {'slug': ('name',)}
     date_hierarchy = 'created_on'
+
 
 
 class ProductSpecAdmin(ModelAdmin):
@@ -35,11 +39,13 @@ class ProductSpecAdmin(ModelAdmin):
     date_hierarchy = 'created_on'
 
 
+
 class ProductPicAdmin(ModelAdmin):
     list_display = ('id', 'product', 'url', 'display_order',)
     list_filter = ('created_on',)
     search_fields = ('id', 'product__name', 'url',)
     date_hierarchy = 'created_on'
+
 
 
 admin.site.register(models.Manufacturer, ManufacturerAdmin)
