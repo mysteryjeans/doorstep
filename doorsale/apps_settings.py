@@ -13,6 +13,13 @@ DOORSALE_APPS = (
     'doorsale.financial',
 )
 
-PIPELINE_CSS =  { }
+PIPELINE_CSS =  { 
+    'style': {
+        'source_filenames': (
+            'css/style.less',
+        ),
+        'output_filename': 'css/style.css'
+    }
+}
 
 PIPELINE_JS =  { }

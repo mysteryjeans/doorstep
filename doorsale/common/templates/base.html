@@ -1,0 +1,44 @@
+{% load staticfiles %}
+{% load compressed %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="application-name" content="{{ SITE_NAME }}"/>
+        <meta name="copyright" content="{{ COPYRIGHT }}"/>
+        <meta name="description" content="{% block description %}{{ SITE_DESCRIPTION }}{% endblock %}"/>
+        {% block robots_meta %}
+        <meta name="robots" content="noodp,noydir" />
+        {% endblock %}
+        {% block og_meta %}
+        <meta property="og:site_name" content="{{ SITE_NAME }}"/>
+        <meta property="og:title" content="{{ SITE_TITLE }}"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:image" content="{% static 'img/icon.png' %}"/>
+        <meta property="og:description" content="{% block og_description %}{{ SITE_DESCRIPTION }}{% endblock %}"/>    
+        <meta name="author" content="{{ SITE_NAME }}, {{ CONTACT_EMAIL }}"/>
+        {% endblock %}
+        <title>{% block title %}{{ SITE_TITLE }}{% endblock %}</title>
+        <link rel="icon shortcut" href="{% static 'img/icon.png' %}" type="image/png"/>
+        {% block head %}
+        {% endblock %}
+        {% block styles %}
+        {% compressed_css 'style' %}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+        <header>
+            <h1>{{ SITE_NAME }}</h1>
+        </header>
+        <div id="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <footer>
+        </footer>
+        {% endblock %}   
+        {% block scripts %}
+        {% endblock %}
+    </body>
+</html>
