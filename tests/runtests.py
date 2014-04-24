@@ -3,7 +3,7 @@ import os
 import sys
 
 from optparse import OptionParser
-from doorsale import apps_settings
+from doorsale import settings
 
 
 if __name__ == '__main__':
@@ -21,4 +21,4 @@ if __name__ == '__main__':
 
     from django.core.management import call_command
 
-    call_command('test', *apps_settings.DOORSALE_APPS)
+    call_command('test', *settings.DOORSALE_APPS)
