@@ -1,0 +1,54 @@
+{% load staticfiles %}
+{% load compressed %}
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="application-name" content="{{ SITE_NAME }}"/>
+		<meta name="copyright" content="{{ COPYRIGHT }}"/>
+		<meta name="description" content="{% block description %}{{ SITE_DESCRIPTION }}{% endblock %}"/>
+		{% block robots_meta %}
+		<meta name="robots" content="noodp,noydir" />
+		{% endblock %}
+		{% block og_meta %}
+		<meta property="og:site_name" content="{{ SITE_NAME }}"/>
+		<meta property="og:title" content="{{ SITE_TITLE }}"/>
+		<meta property="og:type" content="website"/>
+		<meta property="og:image" content="{% static 'img/icon.png' %}"/>
+		<meta property="og:description" content="{% block og_description %}{{ SITE_DESCRIPTION }}{% endblock %}"/>
+		<meta name="author" content="{{ SITE_NAME }}, {{ CONTACT_EMAIL }}"/>
+		{% endblock %}
+		<title>{% block title %}{{ SITE_TITLE }}{% endblock %}</title>
+		<link rel="icon shortcut" href="{% static 'img/icon.png' %}" type="image/png"/>
+		{% block head %}
+		{% endblock %}
+		{% block styles %}
+		{% compressed_css 'base' %}
+		{% endblock %}
+	</head>
+	<body>
+		{% block body %}
+		<header>
+			{% block header %}
+			<h1>{{ SITE_NAME }}</h1>
+			<ul id="menu">
+				<li><a href="#">Login</a></li>
+				<li><a href="#">Sign Up</a></li>
+				<li><a href="#">Contact Us</a></li>
+				<li><a href="#">Policies</a></li>
+			</ul>
+			{% endblock %}
+		</header>
+		<div id="content">
+			{% block content %}
+			{% endblock %}
+		</div>
+		<footer>
+			{% block footer %}
+			{% endblock %}
+		</footer>
+		{% endblock %}
+		{% block scripts %}
+		{% endblock %}
+	</body>
+</html>

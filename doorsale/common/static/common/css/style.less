@@ -1,0 +1,105 @@
+@first-color: #F42929;
+@second-color: #40AF98;
+@text-color: #000;
+@a-color: #0091AB;
+@a-color-hover: @first-color;
+@font-family: verdana,arial,helvetica,sans-serif;
+@font-size: 12px;
+@border-color: #eee;
+@border-dark-color: #777;
+@h-color: #000;
+@h-font-size: 1em;
+@button-color: @first-color;
+@button-text-color: white;
+
+.rounded-corners (@radius) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.border-box {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+.border {
+  border: 1px solid @border-color;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  outline: none;
+}
+
+body, input[type="text"], input[type="password"], textarea, label {
+  color: @text-color;
+}
+
+body {
+  line-height: 1.3; 
+  height: 100%;
+  font-family: @font-family;
+  font-size: @font-size;
+}
+
+input[type="text"], input[type="password"], textarea {
+  .border;
+  overflow: hidden;
+}
+
+input[type="radio"] {
+  margin: 3px 0.5ex;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  color: @a-color;
+  text-decoration: none;
+  font-weight: inherit;
+}
+
+a:hover {
+  color: @a-color-hover;
+  text-decoration: underline;
+}
+
+h1, h2, h3, h4 {
+  color: @h-color;
+  font-weight: normal;
+  overflow: hidden; 
+}
+
+h4 { font-size: @h-font-size; }
+h3 { font-size: (@h-font-size + 0.1); }
+h2 { font-size: (@h-font-size + 0.2); }
+h1 { font-size: (@h-font-size + 0.3); }
+
+input[type="text"], input[type="password"], textarea {
+  .border-box;
+}
+
+.button {
+  border: 0px;
+  display: inline-block;
+  padding: 5px 10px;
+  cursor: pointer;  
+  color: @button-text-color;
+  background: @button-color;
+}
+
+input[type="submit"], input[type="button"], button {
+  .button;
+}
+
+a.button, a:hover.button {
+  color: @button-text-color;
+}
+
