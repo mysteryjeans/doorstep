@@ -63,16 +63,32 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # doorsale settings
-from doorsale import apps_settings
 
 AUTH_USER_MODEL = 'common.User'
 
+import doorsale.settings
+
 # Including doorsale apps
-INSTALLED_APPS += apps_settings.DOORSALE_APPS
+INSTALLED_APPS += doorsale.settings.DOORSALE_APPS 
 
-# Including PIPELINE_CSS
-PIPELINE_CSS = apps_settings.PIPELINE_CSS
+PIPELINE_CSS =  doorsale.settings.PIPELINE_CSS
 
-# Including PIPELINE_JSS
-PIPELINE_JS = apps_settings.PIPELINE_JS
+PIPELINE_JS =  doorsale.settings.PIPELINE_JS
 
+PIPELINE_COMPILERS = doorsale.settings.PIPELINE_COMPILERS
+
+STATICFILES_STORAGE = doorsale.settings.STATICFILES_STORAGE
+
+PIPELINE_DISABLE_WRAPPER = doorsale.settings.PIPELINE_DISABLE_WRAPPER
+
+SITE_NAME = 'Doorsale Demo'
+SITE_TITLE = 'The powerful e-commerce solution for Django | Doorsale Demo'
+SITE_DESCRIPTION = 'The e-commerce solution demo site build using Doorsale'
+COPYRIGHT = 'Doorsale (c) 2014'
+CONTACT_EMAIL = 'demo@doorsaledemo.com'
+
+from django.conf import settings
+TEMPLATE_CONTEXT_PROCESSORS = settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    'django.core.context_processors.request', 
+    'doorsale.common.context_processors.bootstrip',
+)
