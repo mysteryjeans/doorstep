@@ -1,9 +1,64 @@
 @import url('../../../../common/static/common/css/base.less');
 
-@cat-bar-color: whitesmoke;
+@catalog-bar-color: whitesmoke;
 
-#cat-bar {
+#catalog-bar {
   .border;
-  background: @cat-bar-color;
+  background: @catalog-bar-color;
   height: 40px;
+}
+
+#categories-sidebar {
+  border-right: 1px solid @border-color;
+  float: left;
+  width: 20%;
+  position: relative;
+  
+  a {
+    color: @text-color;
+  }
+  
+  a:hover {
+    color: @first-color;
+  }
+  
+  ul {
+    margin-top: 5px;
+    
+    li {
+      a {
+        display: block;
+        padding: 5px 15px;
+       
+      }
+      
+      .sub-categories {
+        clear: both;
+        display: none;
+        
+        li {
+          padding-left: 15px;
+        }
+      }
+      
+      .parent-category {
+     
+      }
+
+      .parent-category:after {
+        content: attr(arrow);
+        float: right;
+        color: @border-dark-color;
+      }
+      
+      .parent-category:hover:after {
+        color: @text-color;
+      }
+    }
+  }
+}
+
+#catalog-content {
+  overflow: hidden;
+  background-color: blue;
 }

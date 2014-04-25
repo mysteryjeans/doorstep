@@ -7,7 +7,33 @@
 {% endblock %}
 
 {% block content %}
-<div id="cat-bar">
-	
+<div id="catalog-bar"></div>
+<div id="categories-sidebar">
+	<ul id="categories">
+		{% for category in categories %}
+		{% if category.sub_categories_list %}
+		<li class="parent-category-container">
+			<a id="category-id-{{ category.id }}" href="#" class="parent-category" arrow="&#x21E2;">{{ category }}</a>
+			<ul class="sub-categories" parent-category="#category-id-{{ category.id }}">
+				{% with template_name="catalog/parts/sub_category.html" %}
+				{% for sub_category in category.sub_categories_list %}
+				{% include template_name %}
+				{% endfor %}
+				{% endwith %}
+			</ul>
+		</li>
+		{% else %}
+		<li>
+			<a href="#">{{ category }}</a>
+		</li>
+		{% endif %}
+		{% endfor %}
+	</ul>
 </div>
+<div id="catalog-content"></div>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+{% compressed_js 'catalog_base' %}
 {% endblock %}

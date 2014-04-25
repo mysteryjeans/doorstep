@@ -35,7 +35,7 @@ class Category(models.Model):
     slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField(null=True, blank=True)
     pic = models.ImageField(upload_to='images/catalog/categories', null=True, blank=True)
-    parent = models.ForeignKey('self', null=True, blank=True)
+    parent = models.ForeignKey('self', related_name='sub_categories', null=True, blank=True)
     tags = models.CharField(max_length=100, null=True, blank=True, help_text='Comma-delimited set of SEO keywords for meta tag')
     display_order = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
@@ -47,12 +47,62 @@ class Category(models.Model):
     class Meta:
         ordering = ('display_order', 'id',)
         verbose_name_plural = 'Categories'
+    
+    def __init__(self, *args, **kwargs):
+        super(Category,self).__init__(*args, **kwargs)
+        self.sub_categories_list = None
 
     def __unicode__(self):
         if self.parent:
             return '%s > %s' % (self.parent, self.name)
 
         return self.name
+    
+    def get_all_sub_categories(self):
+        """
+        Returns all sub categories from children
+        """
+        for sub_category in self.sub_categories_list:
+            yield sub_category
+            # Returns children of sub categories
+            for sub_category2 in sub_category.get_all_sub_categories():
+                yield sub_category2
+    
+    def get_sub_categories(self, categories):
+        for sub_category in categories:
+            if sub_category.parent_id == self.id:
+                sub_category.parent = self
+                yield sub_category
+    
+    @classmethod
+    def get_category(cls, slug):
+        """
+        Returns category with sub categories
+        """
+        # Loads all categories along with sub categories list
+        categories = list(cls.get_categories())
+        
+        for category in categories:
+            if category.slug == slug:
+                return category
+    
+    @classmethod
+    def get_categories(cls):
+        """
+        Returns all categories active
+        """
+        categories = cls.objects.filter(is_active=True).order_by('display_order')
+        
+        for category in categories:
+            category.sub_categories_list = list(category.get_sub_categories(categories))
+            yield category 
+    
+    @classmethod
+    def get_nested_categories(cls):
+        """
+        Returns categories in nested structure
+        """
+        return (category for category in cls.get_categories() if category.parent is None)
 
 
 

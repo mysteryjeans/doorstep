@@ -8,3 +8,12 @@ PIPELINE_CSS = {
         'output_filename': 'catalog/css/catalog.css'
     }
 }
+
+PIPLELINE_JS = {
+    'catalog_base': {
+        'source_filenames': (
+          'catalog/scripts/catalog_base.js',
+        ),
+        'output_filename': 'catalog/scripts/catalog_base.js',
+    },
+}

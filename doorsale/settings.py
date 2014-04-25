@@ -21,6 +21,8 @@ PIPELINE_CSS.update(common_settings.PIPELINE_CSS)
 PIPELINE_CSS.update(catalog_settings.PIPELINE_CSS)
 
 PIPELINE_JS =  { }
+PIPELINE_JS.update(common_settings.PIPLELINE_JS)
+PIPELINE_JS.update(catalog_settings.PIPLELINE_JS)
 
 PIPELINE_COMPILERS = (
   'pipeline.compilers.less.LessCompiler',
