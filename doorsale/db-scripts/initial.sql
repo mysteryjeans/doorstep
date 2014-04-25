@@ -1,20 +1,20 @@
--- Author: Faraz Masood Khan (mk.faraz@gmail.com)
+﻿-- Author: Faraz Masood Khan (mk.faraz@gmail.com)
 -- This postgresql script Populates lookup tables for doorsale
 
 
 -- Currencies - doorsale.financial
-INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('US Dollar', 'USD', 1.0000 , 'en-US', '$.2f', true, true, now(), 'system', now(), 'system');
-INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Pakistani Rupee', 'PKR', 0.010 , 'ur-PK', 'Rs.2f', false, true, now(), 'system', now(), 'system');
-INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Australian Dollar', 'AUD', 0.9400 , 'en-AU', '', false, false, now(), 'system', now(), 'system');
-INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('British Pound', 'GBP', 0.6100 , 'en-GB', '', false, false, now(), 'system', now(), 'system');
-INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Canadian Dollar', 'CAD', 0.9800 , 'en-CA', '', false, false, now(), 'system', now(), 'system');
-INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Chinese Yuan Renminbi', 'CNY', 6.4800 , 'zh-CN', '', false, false, now(), 'system', now(), 'system');
+INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('US Dollar', 'USD', 1.0000 , 'en-US', '$%.2f', true, true, now(), 'system', now(), 'system');
+INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Pakistani Rupee', 'PKR', 0.010 , 'ur-PK', 'Rs.%.2f', false, true, now(), 'system', now(), 'system');
+INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Australian Dollar', 'AUD', 0.9400 , 'en-AU', 'A$%.2f', false, false, now(), 'system', now(), 'system');
+INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('British Pound', 'GBP', 0.6100 , 'en-GB', '€%.2f', false, false, now(), 'system', now(), 'system');
+INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Canadian Dollar', 'CAD', 0.9800 , 'en-CA', 'C$%.2f', false, false, now(), 'system', now(), 'system');
+INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Chinese Yuan Renminbi', 'CNY', 6.4800 , 'zh-CN', '￥%.2f', false, false, now(), 'system', now(), 'system');
 INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Euro', 'EUR', 0.7900 , '', '€.2f', false, true, now(), 'system', now(), 'system');
-INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Hong Kong Dollar', 'HKD', 7.7500 , 'zh-HK', '', false, false, now(), 'system', now(), 'system');
-INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Japanese Yen', 'JPY', 80.0700 , 'ja-JP', '', false, false, now(), 'system', now(), 'system');
-INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Russian Rouble', 'RUB', 27.7000 , 'ru-RU', '', false, false, now(), 'system', now(), 'system');
-INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Swedish Krona', 'SEK', 6.1900 , 'sv-SE', '', false, false, now(), 'system', now(), 'system');
-INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Romanian Leu', 'RON', 2.8500 , 'ro-RO', '', false, false, now(), 'system', now(), 'system');
+INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Hong Kong Dollar', 'HKD', 7.7500 , 'zh-HK', 'HK$%.2f', false, false, now(), 'system', now(), 'system');
+INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Japanese Yen', 'JPY', 80.0700 , 'ja-JP', '￥%.2f', false, false, now(), 'system', now(), 'system');
+INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Russian Rouble', 'RUB', 27.7000 , 'ru-RU', 'RUB%.2f', false, false, now(), 'system', now(), 'system');
+INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Swedish Krona', 'SEK', 6.1900 , 'sv-SE', 'kr%.2f', false, false, now(), 'system', now(), 'system');
+INSERT INTO financial_currency (name, code, exchange_rate, locale, price_format, is_primary, is_active, updated_on, updated_by, created_on, created_by) VALUES ('Romanian Leu', 'RON', 2.8500 , 'ro-RO', '%.2f lei', false, false, now(), 'system', now(), 'system');
 
 
 -- Countries - doorsale.geo
