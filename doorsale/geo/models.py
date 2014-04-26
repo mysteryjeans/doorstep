@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 class Country(models.Model):
     """
     Represents a country 
@@ -26,7 +25,6 @@ class Country(models.Model):
     
     def __unicode__(self):
         return self.name
-
 
 
 class State(models.Model):

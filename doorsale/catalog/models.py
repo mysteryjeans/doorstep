@@ -3,7 +3,6 @@ from django.db import models
 from doorsale.financial.models import TaxRate
 
 
-
 class Manufacturer(models.Model):
     """
     Represents a Manufacturer
@@ -22,7 +21,6 @@ class Manufacturer(models.Model):
     
     def __unicode__(self):
         return self.name
-
 
 
 class Category(models.Model):
@@ -100,7 +98,6 @@ class Category(models.Model):
             yield category 
 
 
-
 class Product(models.Model):
     """
     Represents a Product
@@ -163,7 +160,6 @@ class Product(models.Model):
         sub_categories_ids = [sub_category.id for sub_category in category.get_all_sub_categories()]
         sub_categories_ids.append(category.id)
         return cls.objects.filter(is_active=True, categories__id__in=sub_categories_ids)
-    
 
 
 class ProductSpec(models.Model):
@@ -185,7 +181,6 @@ class ProductSpec(models.Model):
     
     def __unicode__(self):
         return '%s: %s' % (self.name, self.value)
-
 
 
 class ProductPic(models.Model):

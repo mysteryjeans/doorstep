@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 from django.db import models
 
 
-
 class Currency(models.Model):
     """
     Represents a currency
@@ -26,7 +25,6 @@ class Currency(models.Model):
     
     def __unicode__(self):
         return self.name
-
 
 
 class TaxRate(models.Model):
