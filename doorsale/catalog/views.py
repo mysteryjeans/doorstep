@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.http import Http404
+from django.core.urlresolvers import reverse
 
 from doorsale.common.views import BaseView
 from doorsale.catalog.models import Category, Product
@@ -15,13 +16,34 @@ class CatalogBaseView(BaseView):
     def __init__(self, *args, **kwargs):
         super(CatalogBaseView, self).__init__(*args, **kwargs)
         # Loading categories
-        self.catagories = list(Category.get_categories())
+        self.categories = list(Category.get_categories())
+    
+    def get_category(self, **kwargs):
+        """
+        Returns category from loaded categories
+        """
+        for category in self.categories:
+            is_found = True
+            for name, value in kwargs.items():
+                if getattr(category, name) != value:
+                    is_found = False
+                    break
+                
+            if is_found:
+                return category
+        
+        return None
     
     def get_context_data(self, **kwargs):
         context = super(CatalogBaseView, self).get_context_data(**kwargs)
         
-        # Setting data context for catalog base template 
-        context['categories'] = (category for category in self.catagories if category.parent is None)
+        # Setting data context for catalog base template
+        breadcrumbs = ({ 'name': 'Home', 'url': reverse('catalog_index')},)
+        if 'breadcrumbs' in context:
+            breadcrumbs += context['breadcrumbs']
+            
+        context['breadcrumbs'] = breadcrumbs    
+        context['categories'] = (category for category in self.categories if category.parent is None)
         return context
 
 
@@ -35,8 +57,9 @@ class IndexView(CatalogBaseView):
         featured_products = Product.get_featured()
         recent_products = Product.get_recent(MAX_RECENT_ARRIVALS)
         
-        return self.render(request, self.template_name, {'featured_products': featured_products,
-                                                         'recent_products': recent_products })
+        return super(IndexView, self).get(request,
+                                          featured_products=featured_products,
+                                          recent_products=recent_products)
 
 
 class ProductListView(CatalogBaseView):
@@ -45,14 +68,33 @@ class ProductListView(CatalogBaseView):
     """
     template_name = 'catalog/category_products.html'
     
-    def get(self, request, slug):    
-        categories = [category for category in self.catagories if category.slug==slug]
-        if not len(categories):
+    def get(self, request, slug):
+        category = self.get_category(slug=slug)
+        
+        if category is None:
             raise Http404()
         
-        category = categories[0]
         products = Product.get_by_category(category)
         
-        return self.render(request, self.template_name, {'category': category, 'products': products})
+        return super(ProductListView, self).get(request,
+                                                category=category,
+                                                products=products,
+                                                breadcrumbs=category.get_breadcrumbs())
 
+
+class ProductDetailView(CatalogBaseView):
+    """
+    Displays product details
+    """
+    template_name = 'catalog/product.html'
+    
+    def get(self, request, product_id, slug):
+        try:
+            product = Product.get_detail(int(product_id))
+        except Product.DoesNotExist:
+            raise Http404()
+        
+        return super(ProductDetailView, self).get(request,
+                                                  product=product,
+                                                  breadcrumbs=product.get_breadcrumbs(self.categories))
 

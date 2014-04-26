@@ -1,9 +1,9 @@
 from django.conf import settings
 from django.shortcuts import render
-from django.views.generic.base import View, ContextMixin
+from django.views.generic.base import TemplateView
 
 
-class BaseView(ContextMixin, View):
+class BaseView(TemplateView):
     """
     Base view for all Doorsale views
     """
@@ -17,9 +17,4 @@ class BaseView(ContextMixin, View):
         context['COPYRIGHT'] = settings.COPYRIGHT
         context['CONTACT_EMAIL'] = settings.CONTACT_EMAIL
         
-        return context
-    
-    def render(self, request, template_name, context):
-        context = self.get_context_data(**context)
-        return render(request, template_name, context)
-        
+        return context        

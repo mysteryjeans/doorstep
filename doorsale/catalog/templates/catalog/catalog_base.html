@@ -18,6 +18,19 @@
 	</ul>
 </div>
 <div id="catalog-content">
+	<ul class="breadcrumbs">
+		{% for crumb in breadcrumbs %}
+		{% if not forloop.last %}
+		<li>
+			<a href="{{ crumb.url }}">{{ crumb.name }}</a>
+		</li>
+		{% else %}
+		<li>
+		{{ crumb.name }}
+		</li>
+		{% endif %}
+		{% endfor %}
+	</ul>
 	{% block catalog-content %}
 	{% endblock %}
 </div>

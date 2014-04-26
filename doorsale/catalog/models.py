@@ -58,6 +58,17 @@ class Category(models.Model):
     def get_absolute_url(self):
         return ('catalog_category_products', (self.slug,))
     
+    def get_breadcrumbs(self):
+        """
+        Returns bread crumbs urls
+        """
+        breadcrumbs = ({'name': self.name, 'url': self.get_absolute_url()},)
+        
+        if self.parent:
+            return self.parent.get_breadcrumbs() + breadcrumbs
+        
+        return breadcrumbs 
+    
     def get_all_sub_categories(self):
         """
         Returns all sub categories from children
@@ -109,7 +120,7 @@ class Product(models.Model):
     sku = models.CharField(max_length=50, null=True, blank=True)
     gtin = models.CharField(max_length=50, null=True, blank=True, 
                             help_text='Global Trade Item Number (GTIN)')
-    categories = models.ManyToManyField(Category)
+    category = models.ForeignKey(Category)
     gist = models.CharField(max_length=500, null=True, blank=True, help_text='Short description of the product')
     description = models.TextField(null=True, blank=True, help_text='Full description displayed on the product page')
     price = models.DecimalField(max_digits=9, decimal_places=2, help_text='Per unit price')
@@ -138,6 +149,29 @@ class Product(models.Model):
     def __unicode__(self):
         return self.name
     
+    @models.permalink
+    def get_absolute_url(self):
+        return ('catalog_product', (self.id, self.slug,),)
+    
+    def get_breadcrumbs(self, categories):
+        """
+        Return list of breadcrumbs
+        """
+        breadcrumbs = ({'name': self.name, 'url': self.get_absolute_url()},)
+    
+        if self.category_id:
+            self.category = [category for category in categories if category.id == self.category_id][0]
+            return self.category.get_breadcrumbs() + breadcrumbs
+        
+        return breadcrumbs
+    
+    @classmethod
+    def get_detail(cls, product_id):
+        """
+        Returns product with details including pics and specs
+        """
+        return cls.objects.prefetch_related('pics', 'specs').get(id=product_id)
+    
     @classmethod
     def get_featured(cls):
         """
@@ -159,7 +193,7 @@ class Product(models.Model):
         """
         sub_categories_ids = [sub_category.id for sub_category in category.get_all_sub_categories()]
         sub_categories_ids.append(category.id)
-        return cls.objects.filter(is_active=True, categories__id__in=sub_categories_ids)
+        return cls.objects.filter(is_active=True, category_id__in=sub_categories_ids)
 
 
 class ProductSpec(models.Model):
