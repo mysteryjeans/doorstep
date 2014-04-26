@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from . import models
-from ..admin import ModelAdmin
+from doorsale.sales import models
+from doorsale.admin import ModelAdmin
 
 
 class CartAdmin(ModelAdmin):

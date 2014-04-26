@@ -1,9 +1,9 @@
 from django.db import models
 from django.conf import settings
 
-from ..common.models import Address
-from ..catalog.models import Product
-from ..financial.models import TaxRate 
+from doorsale.common.models import Address
+from doorsale.catalog.models import Product
+from doorsale.financial.models import TaxRate 
 
 
 class Cart(models.Model):

@@ -1,8 +1,7 @@
 from django.contrib import admin
 
-from . import models
-from ..admin import ModelAdmin 
-
+from doorsale.admin import ModelAdmin 
+from doorsale.catalog import models
 
 class ManufacturerAdmin(ModelAdmin):
     list_display = ('name', 'description', 'is_active',)

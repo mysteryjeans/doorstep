@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 
-from doorsale.catalog.views import IndexView, ProductListView
+from .views import IndexView, ProductListView
 
 urlpatterns = patterns('',
                        url(r'^$', IndexView.as_view(), name='catalog_index'),
