@@ -1,3 +1,5 @@
+
+
 $('[parent-category]').each(function() {
 	var $sub_categories = $(this);
 	$($sub_categories.attr('parent-category')).click(function() {

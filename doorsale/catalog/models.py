@@ -1,5 +1,3 @@
-
-
 from django.db import models
 
 from doorsale.financial.models import TaxRate
@@ -57,6 +55,10 @@ class Category(models.Model):
             return '%s > %s' % (self.parent, self.name)
 
         return self.name
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return ('catalog_category_products', (self.slug,))
     
     def get_all_sub_categories(self):
         """
@@ -145,7 +147,30 @@ class Product(models.Model):
 
     def __unicode__(self):
         return self.name
-
+    
+    @classmethod
+    def get_featured(cls):
+        """
+        Returns featured products
+        """
+        return cls.objects.prefetch_related('pics').filter(is_active=True,is_featured=True)
+    
+    @classmethod
+    def get_recent(cls, max_products):
+        """
+        Returns recent products arrivals
+        """
+        return cls.objects.prefetch_related('pics').filter(is_active=True).order_by('-id')[:max_products]
+    
+    @classmethod
+    def get_by_category(cls, category):
+        """
+        Returns products of category, including sub categories
+        """
+        sub_categories_ids = [sub_category.id for sub_category in category.get_all_sub_categories()]
+        sub_categories_ids.append(category.id)
+        return cls.objects.filter(is_active=True, categories__id__in=sub_categories_ids)
+    
 
 
 class ProductSpec(models.Model):

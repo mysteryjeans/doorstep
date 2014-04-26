@@ -10,27 +10,17 @@
 <div id="catalog-bar"></div>
 <div id="categories-sidebar">
 	<ul id="categories">
+		{% with template_name="catalog/parts/category_list.html" %}
 		{% for category in categories %}
-		{% if category.sub_categories_list %}
-		<li class="parent-category-container">
-			<a id="category-id-{{ category.id }}" href="#" class="parent-category" arrow="&#x21E2;">{{ category }}</a>
-			<ul class="sub-categories" parent-category="#category-id-{{ category.id }}">
-				{% with template_name="catalog/parts/sub_category.html" %}
-				{% for sub_category in category.sub_categories_list %}
-				{% include template_name %}
-				{% endfor %}
-				{% endwith %}
-			</ul>
-		</li>
-		{% else %}
-		<li>
-			<a href="#">{{ category }}</a>
-		</li>
-		{% endif %}
+		{% include template_name %}
 		{% endfor %}
+		{% endwith %}
 	</ul>
 </div>
-<div id="catalog-content"></div>
+<div id="catalog-content">
+	{% block catalog-content %}
+	{% endblock %}
+</div>
 {% endblock %}
 
 {% block scripts %}

@@ -1,0 +1,15 @@
+{% extends "catalog/catalog_base.html" %}
+
+
+{% block catalog-content %}
+{% with products_title=category.name %}
+{% include "catalog/parts/products_list.html" %}
+{% endwith %}
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script type="text/javascript">
+	$('#category-id-{{ category.id }}').parents('.sub-categories').show();
+</script>
+{% endblock %}

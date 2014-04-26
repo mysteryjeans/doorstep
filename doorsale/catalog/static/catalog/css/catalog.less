@@ -1,5 +1,6 @@
 @import url('../../../../common/static/common/css/base.less');
 
+@price-color: #b50b0b;
 @catalog-bar-color: whitesmoke;
 
 #catalog-bar {
@@ -11,8 +12,8 @@
 #categories-sidebar {
   border-right: 1px solid @border-color;
   float: left;
-  width: 20%;
-  position: relative;
+  width: 18%;
+  min-height: 400px;
   
   a {
     color: @text-color;
@@ -60,5 +61,56 @@
 
 #catalog-content {
   overflow: hidden;
-  background-color: blue;
+  padding: 10px;
+  
+  h3 {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid @border-color;
+  }
+  
+  .products-list {
+    clear: both;
+    
+    .product {
+      float: left;
+      width: 200px;
+      height: 220px;
+      padding: 5px;
+      text-align: center;
+      margin-bottom: 20px;
+      
+      .title {
+        max-height: 28px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      
+      .pic-container {
+        height: 128px;
+        width: 128px;
+        margin: auto;
+        
+        img {
+          max-height: 128px;
+          max-width: 128px;
+        }
+      }
+      
+      div {
+        padding: 5px 10px;
+      }
+      
+      .price {
+        color: @price-color;
+        font-size: 1.1em;
+        
+        .old-price {
+          color: @text-color;
+          font-size: 0.8em;
+          text-decoration: line-through;
+        }
+      }
+    }
+  }
 }

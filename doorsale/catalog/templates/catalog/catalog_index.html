@@ -1,1 +1,11 @@
 {% extends "catalog/catalog_base.html" %}
+
+
+{% block catalog-content %}
+{% with products_title='Featured' products=featured_products %}
+{% include "catalog/parts/products_list.html" %}
+{% endwith %}
+{% with products_title='New Arrivals' products=recent_products %}
+{% include "catalog/parts/products_list.html" %}
+{% endwith %}
+{% endblock %}
