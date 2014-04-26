@@ -98,13 +98,6 @@ class Category(models.Model):
         for category in categories:
             category.sub_categories_list = list(category.get_sub_categories(categories))
             yield category 
-    
-    @classmethod
-    def get_nested_categories(cls):
-        """
-        Returns categories in nested structure
-        """
-        return (category for category in cls.get_categories() if category.parent is None)
 
 
 

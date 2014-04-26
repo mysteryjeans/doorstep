@@ -1,6 +1,8 @@
-from django.conf.urls import patterns, include, url
+from django.conf.urls import patterns, url
 
-urlpatterns = patterns('doorsale.catalog.views',
-                       url(r'^$', 'index', name='catalog_index'),
-                       url(r'^categories/(?P<slug>[\w-]+)/$', 'category_products', name='catalog_category_products'),
+from doorsale.catalog.views import IndexView, ProductListView
+
+urlpatterns = patterns('',
+                       url(r'^$', IndexView.as_view(), name='catalog_index'),
+                       url(r'^categories/(?P<slug>[\w-]+)/$', ProductListView.as_view(), name='catalog_category_products'),
 )

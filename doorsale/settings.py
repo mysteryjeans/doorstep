@@ -32,8 +32,3 @@ STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
 PIPELINE_DISABLE_WRAPPER = True
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'doorsale.common.context_processors.bootstrip',
-    'doorsale.catalog.context_processors.bootstrip',
-)
-
