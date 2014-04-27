@@ -1,0 +1,8 @@
+{% extends "catalog/catalog_base.html" %}
+
+
+{% block catalog-content %}
+{% with products_title=manufacturer.name %}
+{% include "catalog/parts/products_list.html" %}
+{% endwith %}
+{% endblock %}

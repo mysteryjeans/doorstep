@@ -5,7 +5,7 @@ jQuery.easing.easeOutQuart = function(x, t, b, c, d) {
 $('#pics-slideshow').serialScroll({
 	items : 'li',
 	prev : '#product-show a.prev',
-	next : '#product-slideshow a.next',
+	next : '#product-show a.next',
 	offset : -30, //when scrolling to photo, stop 230 before reaching it (from the left)
 	start : 1, //as we are centering it, start at the 2nd
 	duration : 1200,

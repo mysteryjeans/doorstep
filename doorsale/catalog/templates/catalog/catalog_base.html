@@ -11,12 +11,21 @@
 <div id="catalog-bar"></div>
 <div id="categories-sidebar">
 	<ul id="categories">
+		<li><h5>Categories</h5></li>
 		{% with template_name="catalog/parts/category_list.html" %}
 		{% for category in categories %}
 		{% include template_name %}
 		{% endfor %}
 		{% endwith %}
 	</ul>
+	{% if manufacturers %}
+	<ul id="manufacturers">
+		<li><h5>Manufacturers</h5></li>
+		{% for manufacturer in manufacturers %}
+		<li><a href="{{ manufacturer.get_absolute_url }}">{{ manufacturer.name }}</a></li>
+		{% endfor %}
+	</ul>
+	{% endif %}
 </div>
 <div id="catalog-content">
 	<ul class="breadcrumbs">

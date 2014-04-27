@@ -21,6 +21,23 @@ class Manufacturer(models.Model):
     
     def __unicode__(self):
         return self.name
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return ('catalog_manufacturer_products', (self.slug,))
+    
+    def get_breadcrumbs(self):
+        """
+        Returns name and url dictionary tuple
+        """
+        return ({'name': self.name, 'url': self.get_absolute_url()},)
+    
+    @classmethod
+    def get_manufacturers(cls):
+        """
+        Returns list of active manufacturers
+        """
+        return list(cls.objects.filter(is_active=True))
 
 
 class Category(models.Model):
@@ -60,7 +77,7 @@ class Category(models.Model):
     
     def get_breadcrumbs(self):
         """
-        Returns bread crumbs urls
+        Returns name and url dictionary tuple
         """
         breadcrumbs = ({'name': self.name, 'url': self.get_absolute_url()},)
         
@@ -80,10 +97,13 @@ class Category(models.Model):
                 yield sub_category2
     
     def get_sub_categories(self, categories):
+        sub_categories = []
         for sub_category in categories:
             if sub_category.parent_id == self.id:
                 sub_category.parent = self
-                yield sub_category
+                sub_categories.append(sub_category)
+        
+        return sub_categories
     
     @classmethod
     def get_category(cls, slug):
@@ -102,11 +122,12 @@ class Category(models.Model):
         """
         Returns all categories active
         """
-        categories = cls.objects.filter(is_active=True).order_by('display_order')
+        categories = list(cls.objects.filter(is_active=True).order_by('display_order'))
         
         for category in categories:
-            category.sub_categories_list = list(category.get_sub_categories(categories))
-            yield category 
+            category.sub_categories_list = category.get_sub_categories(categories)
+        
+        return categories
 
 
 class Product(models.Model):
@@ -155,7 +176,7 @@ class Product(models.Model):
     
     def get_breadcrumbs(self, categories):
         """
-        Return list of breadcrumbs
+        Returns name and url dictionary tuple
         """
         breadcrumbs = ({'name': self.name, 'url': self.get_absolute_url()},)
     
@@ -173,27 +194,41 @@ class Product(models.Model):
         return cls.objects.prefetch_related('pics', 'specs').get(id=product_id)
     
     @classmethod
+    def get_active(cls):
+        """
+        Returns active products
+        """
+        return cls.objects.prefetch_related('pics').filter(is_active=True)
+    
+    @classmethod
     def get_featured(cls):
         """
         Returns featured products
         """
-        return cls.objects.prefetch_related('pics').filter(is_active=True,is_featured=True)
+        return cls.get_active().filter(is_featured=True)
     
     @classmethod
     def get_recent(cls, max_products):
         """
         Returns recent products arrivals
         """
-        return cls.objects.prefetch_related('pics').filter(is_active=True).order_by('-id')[:max_products]
+        return cls.get_active().filter(is_active=True).order_by('-id')[:max_products]
     
     @classmethod
     def get_by_category(cls, category):
         """
-        Returns products of category, including sub categories
+        Returns products belonging to specified category and from its sub categories
         """
         sub_categories_ids = [sub_category.id for sub_category in category.get_all_sub_categories()]
         sub_categories_ids.append(category.id)
-        return cls.objects.filter(is_active=True, category_id__in=sub_categories_ids)
+        return cls.get_active().filter(category_id__in=sub_categories_ids)
+    
+    @classmethod
+    def get_by_manufacturer(cls, manufacturer):
+        """
+        Returns products of manufacturer
+        """
+        return cls.get_active().filter(brand=manufacturer)
 
 
 class ProductSpec(models.Model):

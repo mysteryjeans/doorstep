@@ -27,6 +27,13 @@
   width: 18%;
   min-height: 400px;
   
+  h5 {
+    padding: 5px 15px;
+    text-transform: uppercase; 
+    font-weight: bold;
+    color: @text-color; 
+  }
+  
   a {
     color: @text-color;
   }
@@ -39,10 +46,11 @@
     margin-top: 5px;
     
     li {
+      border-bottom: 1px dotted @border-color;
+      
       a {
         display: block;
         padding: 5px 15px;
-       
       }
       
       .sub-categories {
@@ -52,10 +60,14 @@
         li {
           padding-left: 15px;
         }
+        
+        li:last-child {
+          border-bottom: none;
+        }
       }
       
       .parent-category {
-     
+        cursor: pointer;
       }
 
       .parent-category:after {
@@ -156,6 +168,10 @@
       margin-bottom: 10px;
     }
     
+    label {
+      font-weight: bold;
+    }
+    
     .in-stock, .out-of-stock {
       font-weight: bold;
     }
@@ -185,7 +201,7 @@
     margin-left: 40px;
     position: relative;
     overflow: hidden;
-    width: 280px;
+    width: 250px;
     
     #preview-container {
       img {
@@ -194,13 +210,14 @@
     }
     
     #slides-container {
-      margin-top: 10px;
+      margin-top: 5px;
+      overflow: hidden;
+      border: 1px solid @border-dark-color;
     }
     
     .prev, .next {
       float: left;
       background: @border-color;
-      border: 1px solid @border-dark-color;
       color: #000;
       font-size: 12px;
       padding: 17px 5px;
@@ -217,7 +234,7 @@
     #pics-slideshow {
       overflow: hidden;
       float: left;
-      width: 238px;
+      width: 208px;
       
       ul {
         padding-left: 30px;

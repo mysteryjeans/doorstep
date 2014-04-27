@@ -3,7 +3,7 @@ from django.http import Http404
 from django.core.urlresolvers import reverse
 
 from doorsale.common.views import BaseView
-from doorsale.catalog.models import Category, Product
+from doorsale.catalog.models import Manufacturer, Category, Product
 
 
 MAX_RECENT_ARRIVALS = getattr(settings, 'MAX_RECENT_ARRIVALS', 10)
@@ -16,7 +16,8 @@ class CatalogBaseView(BaseView):
     def __init__(self, *args, **kwargs):
         super(CatalogBaseView, self).__init__(*args, **kwargs)
         # Loading categories
-        self.categories = list(Category.get_categories())
+        self.categories = Category.get_categories()
+        self.manufacturers = Manufacturer.get_manufacturers()
     
     def get_category(self, **kwargs):
         """
@@ -44,6 +45,7 @@ class CatalogBaseView(BaseView):
             
         context['breadcrumbs'] = breadcrumbs    
         context['categories'] = (category for category in self.categories if category.parent is None)
+        context['manufacturers'] = self.manufacturers
         return context
 
 
@@ -62,9 +64,9 @@ class IndexView(CatalogBaseView):
                                           recent_products=recent_products)
 
 
-class ProductListView(CatalogBaseView):
+class CategoryProductsView(CatalogBaseView):
     """
-    Displays list of featured and recently added products
+    Displays list products from the Category
     """
     template_name = 'catalog/category_products.html'
     
@@ -74,12 +76,35 @@ class ProductListView(CatalogBaseView):
         if category is None:
             raise Http404()
         
+        breadcrumbs = category.get_breadcrumbs()
         products = Product.get_by_category(category)
         
-        return super(ProductListView, self).get(request,
-                                                category=category,
-                                                products=products,
-                                                breadcrumbs=category.get_breadcrumbs())
+        return super(CategoryProductsView, self).get(request,
+                                                     category=category,
+                                                     products=products,
+                                                     breadcrumbs=breadcrumbs)
+
+
+class ManufacturerProductsView(CatalogBaseView):
+    """
+    Displays list of products from the Manufacturer
+    """
+    template_name = 'catalog/manufacturer_products.html'
+    
+    def get(self, request, slug):
+        manufacturer = next((manufacturer for manufacturer in self.manufacturers if manufacturer.slug == slug), None)
+        
+        if manufacturer is None:
+            raise Http404()
+        
+        breadcrumbs = manufacturer.get_breadcrumbs()
+        products = Product.get_by_manufacturer(manufacturer)
+        
+        return super(ManufacturerProductsView, self).get(request,
+                                                         manufacturer=manufacturer,
+                                                         products=products,
+                                                         breadcrumbs=breadcrumbs)
+        
 
 
 class ProductDetailView(CatalogBaseView):

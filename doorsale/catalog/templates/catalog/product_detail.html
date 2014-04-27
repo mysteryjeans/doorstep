@@ -18,6 +18,13 @@
 				<span class="out-of-stock">Out of Stock</span>
 				{% endif %}
 			</li>
+			<li>
+				{% if product.is_free_shipping %}
+				<div class="free-shipping">Free Shipping</div>
+				{% else %}
+				<label>Shpping cost:</label> {{ product.shipping_cost|currency:"USD" }}/Unit
+				{% endif %}
+			</li>
 			<li class="price">
 				{{ product.price|currency:'USD' }}
 				{% if product.old_price %}
@@ -63,4 +70,7 @@
 {% block scripts %}
 {{ block.super }}
 {% compressed_js 'product_detail' %}
+<script type="text/javascript">
+	$('#category-id-{{ product.category_id }}').parents('.sub-categories').show();
+</script>
 {% endblock %}
