@@ -1,0 +1,66 @@
+{% extends "catalog/catalog_base.html" %}
+
+{% load compressed %}
+{% load catalog_filters %}
+
+{% block catalog-content %}
+<div class="product-summary">
+	<h2>{{ product.name }}</h2>
+	<div class="product-description">
+		{{ product.gist }}
+	</div>
+	<div class="cart-summary">
+		<ul>
+			<li>
+				{% if product.quantity %}
+				<span class="in-stock">In Stock</span>
+				{% else %}
+				<span class="out-of-stock">Out of Stock</span>
+				{% endif %}
+			</li>
+			<li class="price">
+				{{ product.price|currency:'USD' }}
+				{% if product.old_price %}
+				<span class="old-price"> {{ product.old_price|currency:'USD' }} </span>
+				{% endif %}
+			</li>
+			<li class="add-to-cart-summary">
+				<form>
+					<label>Qty:</label>
+					<input name="quantity" type="text" value="1"/>
+					<button class="add-to-cart">
+						<i class="icon-shopping-cart"></i>Add to Cart
+					</button>
+				</form>
+			</li>
+		</ul>
+	</div>
+</div>
+<div id="product-show">
+	<div id="preview-container">
+		<img id="preview-zoom" src="{{ MEDIA_URL }}{{ product.pics.all.0.url }}"/>
+	</div>
+	{% with pics=product.pics.all %}
+	{% if pics|length > 1 %}
+	<div id="slides-container">
+		<a class="prev" href="#"><i class="icon-chevron-left"></i></a>
+		<a class="next" href="#"><i class="icon-chevron-right"></i></a>
+		<div id="pics-slideshow">
+			<ul>
+				{% for pic in pics %}
+				<li>
+					<img src="{{ MEDIA_URL }}{{ pic.url }}">
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	{% endif %}
+	{% endwith %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+{% compressed_js 'product_detail' %}
+{% endblock %}

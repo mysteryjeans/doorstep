@@ -1,18 +1,18 @@
 @first-color: #d40808;
-@second-color: #40AF98;
+@second-color: #3A87AD;
 @text-color: #000;
 @a-color: #0055AA;
 @a-color-hover: @first-color;
 @font-family: verdana,arial,helvetica,sans-serif;
 @font-size: 12px;
 @border-color: #eee;
-@border-dark-color: #777;
+@border-dark-color: #ddd;
 @h-color: @second-color;
 @h-font-size: 1em;
 @button-color: @second-color;
 @button-text-color: white;
 
-.rounded-corners (@radius) {
+.border-radius (@radius) {
   -webkit-border-radius: @radius;
   -moz-border-radius: @radius;
   -ms-border-radius: @radius;
@@ -93,6 +93,7 @@ input[type="text"], input[type="password"], textarea {
   cursor: pointer;  
   color: @button-text-color;
   background: @button-color;
+  .border-radius(2px);
 }
 
 input[type="submit"], input[type="button"], button {

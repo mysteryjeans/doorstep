@@ -1,12 +1,24 @@
 @import url('../../../../common/static/common/css/base.less');
 
 @price-color: #b50b0b;
+@in-stock-color: green;
+@out-of-stock-color: maroon;
+@add-to-cart-color: @first-color;
 @catalog-bar-color: whitesmoke;
 
 #catalog-bar {
   .border;
   background: @catalog-bar-color;
   height: 40px;
+}
+
+.add-to-cart {
+  background: @add-to-cart-color !important;
+}
+
+.icon-shopping-cart:before {
+  margin-right: 5px;
+  padding-right: 5px;
 }
 
 #categories-sidebar {
@@ -62,6 +74,7 @@
 #catalog-content {
   overflow: hidden;
   padding: 10px;
+  padding-right: 20px;
   
   h3 {
     padding-bottom: 10px;
@@ -86,6 +99,17 @@
     
     li:last-child:after {
       content: '';
+    }
+  }
+  
+  .price {
+    color: @price-color;
+    font-size: 1.1em;
+    
+    .old-price {
+      color: @text-color;
+      font-size: 0.8em;
+      text-decoration: line-through;
     }
   }
   
@@ -120,17 +144,102 @@
       div {
         padding: 5px 10px;
       }
+    }
+  }
+  
+  .product-summary {
+    float: right;
+    width: 40%;
+    
+    h2 {
+      font-size: 1.4em;
+      margin-bottom: 10px;
+    }
+    
+    .in-stock, .out-of-stock {
+      font-weight: bold;
+    }
+    
+    .in-stock {
+      color: @in-stock-color;
+    }
+    
+    .out-of-stock {
+      color: @out-of-stock-color;
+    }
+    
+    .add-to-cart-summary {  
+      input[type="text"] {
+        height: 26px;
+        padding: 2px;
+        width: 25px;
+      }
+    }
+    
+    li {
+      padding: 10px 0px;
+    }
+  }
+  
+  #product-show {
+    margin-left: 40px;
+    position: relative;
+    overflow: hidden;
+    width: 280px;
+    
+    #preview-container {
+      img {
+        max-width: 100%;
+      }
+    }
+    
+    #slides-container {
+      margin-top: 10px;
+    }
+    
+    .prev, .next {
+      float: left;
+      background: @border-color;
+      border: 1px solid @border-dark-color;
+      color: #000;
+      font-size: 12px;
+      padding: 17px 5px;
+    }
+    
+    .prev:hover, .next:hover {
+      text-decoration: none;
+    }
+    
+     .next {
+       float: right;
+     }
+    
+    #pics-slideshow {
+      overflow: hidden;
+      float: left;
+      width: 238px;
       
-      .price {
-        color: @price-color;
-        font-size: 1.1em;
+      ul {
+        padding-left: 30px;
+        width: 3900px;
         
-        .old-price {
-          color: @text-color;
-          font-size: 0.8em;
-          text-decoration: line-through;
+        
+        li {
+          cursor: pointer;
+          float: left;
+          margin: 0 16px;
+          
+          img {
+            width: 44px;
+            height: 44px;
+          }
         }
       }
     }
   }
+}
+
+.zoomWindow {
+  border: 1px solid #999 !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }

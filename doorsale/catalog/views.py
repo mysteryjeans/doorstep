@@ -86,7 +86,7 @@ class ProductDetailView(CatalogBaseView):
     """
     Displays product details
     """
-    template_name = 'catalog/product.html'
+    template_name = 'catalog/product_detail.html'
     
     def get(self, request, product_id, slug):
         try:
