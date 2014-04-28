@@ -11,6 +11,7 @@
 @h-font-size: 1em;
 @button-color: @second-color;
 @button-text-color: white;
+@place-holder-color: #666;
 
 .border-radius (@radius) {
   -webkit-border-radius: @radius;
@@ -84,6 +85,8 @@ h1 { font-size: (@h-font-size + 0.3); }
 
 input[type="text"], input[type="password"], textarea {
   .border-box;
+  padding: 3px 5px;
+  .border-radius(2px);
 }
 
 .button {

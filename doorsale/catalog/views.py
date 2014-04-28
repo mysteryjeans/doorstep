@@ -1,5 +1,7 @@
+import urllib
+
 from django.conf import settings
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from doorsale.common.views import BaseView
@@ -56,8 +58,8 @@ class IndexView(CatalogBaseView):
     template_name = 'catalog/catalog_index.html'
     
     def get(self, request):
-        featured_products = Product.get_featured()
-        recent_products = Product.get_recent(MAX_RECENT_ARRIVALS)
+        featured_products = Product.featured_products()
+        recent_products = Product.recent_products(MAX_RECENT_ARRIVALS)
         
         return super(IndexView, self).get(request,
                                           featured_products=featured_products,
@@ -77,7 +79,7 @@ class CategoryProductsView(CatalogBaseView):
             raise Http404()
         
         breadcrumbs = category.get_breadcrumbs()
-        products = Product.get_by_category(category)
+        products = Product.category_products(category)
         
         return super(CategoryProductsView, self).get(request,
                                                      category=category,
@@ -98,13 +100,35 @@ class ManufacturerProductsView(CatalogBaseView):
             raise Http404()
         
         breadcrumbs = manufacturer.get_breadcrumbs()
-        products = Product.get_by_manufacturer(manufacturer)
+        products = Product.manufacturer_products(manufacturer)
         
         return super(ManufacturerProductsView, self).get(request,
                                                          manufacturer=manufacturer,
                                                          products=products,
-                                                         breadcrumbs=breadcrumbs)
+                                                         breadcrumbs=breadcrumbs)        
+
+
+class SearchProductsView(CatalogBaseView):
+    """
+    Displays list of products from the search query
+    """
+    template_name = 'catalog/search_products.html'
+    
+    def get(self, request):
+        q = request.REQUEST.get('q', None)
         
+        print q
+        if not q:
+            return HttpResponseRedirect(reverse('catalog_index'))
+        
+        params = { 'q': q.encode('utf-8')}
+        query = '?' + urllib.urlencode(params)
+        breadcrumbs = ({'name': 'Search: ' + q, 'url': reverse('catalog_search_products') + query },)
+        products = Product.search_products(q)
+        return super(SearchProductsView, self).get(request,
+                                                   q=q,
+                                                   breadcrumbs=breadcrumbs,
+                                                   products=products)        
 
 
 class ProductDetailView(CatalogBaseView):

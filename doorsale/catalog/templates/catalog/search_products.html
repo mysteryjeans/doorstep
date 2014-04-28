@@ -1,8 +1,6 @@
 {% extends "catalog/catalog_base.html" %}
 
-
 {% block catalog-content %}
-<h3>{{ manufacturer.name }}</h3>
+<h3>Search: {{ q }}</h3>
 {% include "catalog/parts/products_list.html" %}
-{% endwith %}
 {% endblock %}

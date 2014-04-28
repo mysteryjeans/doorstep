@@ -8,7 +8,9 @@
 {% endblock %}
 
 {% block content %}
-<div id="catalog-bar"></div>
+<div id="catalog-bar">
+	{% include "catalog/parts/search_box.html" %}
+</div>
 <div id="categories-sidebar">
 	<ul id="categories">
 		<li><h5>Categories</h5></li>

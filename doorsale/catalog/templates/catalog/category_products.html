@@ -2,9 +2,8 @@
 
 
 {% block catalog-content %}
-{% with products_title=category.name %}
+<h3>{{ category.name }}</h3>
 {% include "catalog/parts/products_list.html" %}
-{% endwith %}
 {% endblock %}
 
 {% block scripts %}

@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Q
 
 from doorsale.financial.models import TaxRate
 
@@ -201,34 +202,45 @@ class Product(models.Model):
         return cls.objects.prefetch_related('pics').filter(is_active=True)
     
     @classmethod
-    def get_featured(cls):
+    def featured_products(cls):
         """
         Returns featured products
         """
-        return cls.get_active().filter(is_featured=True)
+        return list(cls.get_active().filter(is_featured=True))
     
     @classmethod
-    def get_recent(cls, max_products):
+    def recent_products(cls, max_products):
         """
         Returns recent products arrivals
         """
-        return cls.get_active().filter(is_active=True).order_by('-id')[:max_products]
+        return list(cls.get_active().filter(is_active=True).order_by('-id')[:max_products])
     
     @classmethod
-    def get_by_category(cls, category):
+    def category_products(cls, category):
         """
         Returns products belonging to specified category and from its sub categories
         """
         sub_categories_ids = [sub_category.id for sub_category in category.get_all_sub_categories()]
         sub_categories_ids.append(category.id)
-        return cls.get_active().filter(category_id__in=sub_categories_ids)
+        return list(cls.get_active().filter(category_id__in=sub_categories_ids))
     
     @classmethod
-    def get_by_manufacturer(cls, manufacturer):
+    def manufacturer_products(cls, manufacturer):
         """
         Returns products of manufacturer
         """
-        return cls.get_active().filter(brand=manufacturer)
+        return list(cls.get_active().filter(brand=manufacturer))
+    
+    @classmethod
+    def search_products(cls, q):
+        """
+        Returns products for search query
+        """
+        return cls.get_active().filter(Q(name__icontains=q) |
+                                       Q(category__name__icontains=q) |
+                                       Q(brand__name__icontains=q) |
+                                       Q(gist__icontains=q) |
+                                       Q(tags__icontains=q))
 
 
 class ProductSpec(models.Model):
