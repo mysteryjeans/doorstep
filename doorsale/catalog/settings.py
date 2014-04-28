@@ -22,6 +22,12 @@ PIPLELINE_JS = {
         ),
         'output_filename': 'catalog/scripts/catalog_base.js',
     },
+    'search_products': {
+        'source_filenames': (
+          'catalog/scripts/jquery.search_products.js',
+        ),
+        'output_filename': 'catalog/scripts/search_products.js',
+    },
     'product_detail': {
         'source_filenames': (
           'catalog/scripts/jquery.scrollTo.js',
