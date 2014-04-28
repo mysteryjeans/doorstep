@@ -47,7 +47,7 @@
       margin-left: -6px;
       float: right;
       font-size: 1.1em;
-      padding: 5px 7px 5px 13px;
+      padding: 5px 8px 5px 14px;
       overflow: hidden;
       .border-box;
       .border-radius(0px 3px 3px 0px);
@@ -365,6 +365,49 @@
             width: 44px;
             height: 44px;
           }
+        }
+      }
+    }
+  }
+  
+  #product-details {
+    margin-top: 20px;
+    
+    #product-tabs {
+      clear: both;
+      overflow: hidden;
+      border-bottom: 1px solid @border-color;
+      
+      li {
+        float: left;
+        padding: 7px 10px;
+        margin-left: 10px;
+      }
+      
+      li.ui-tabs-active {
+        .border;
+        border-bottom-color: white;
+      }
+    }
+    
+    .ui-tabs-panel {
+      clear: both;
+      margin-top: 10px;
+      padding-left: 20px;
+      font-size: 0.9em;
+      
+      table {
+        border-spacing: 0;
+        font-size: 1em;
+        width: 100%;
+        
+        td {
+          padding: 5px;
+        }
+        
+        tr:nth-child(even) {
+          background: whitesmoke;
+         
         }
       }
     }

@@ -20,7 +20,9 @@
 			</li>
 			<li>
 				{% if product.is_free_shipping %}
-				<div class="free-shipping">Free Shipping</div>
+				<div class="free-shipping">
+					Free Shipping
+				</div>
 				{% else %}
 				<label>Shpping cost:</label> {{ product.shipping_cost|currency:"USD" }}/Unit
 				{% endif %}
@@ -65,12 +67,45 @@
 	{% endif %}
 	{% endwith %}
 </div>
+<div id="product-details">
+	{% with specs=product.specs.all %}
+	<ul id="product-tabs">
+		<li>
+			<a href="#product-overview-tab">Overview</a>
+		</li>
+		{% if specs %}
+		<li>
+			<a href="#product-specs-tab">Specifications</a>
+		</li>
+		{% endif %}
+	</ul>
+	<div id="product-overview-tab">
+		{{ product.description }}
+	</div>
+	{% if specs %}
+	<div id="product-specs-tab">
+		<table>
+			{% for spec in specs %}
+			<tr>
+				<td>{{ spec.name }}</td>
+				<td>{{ spec.value }}</td>
+			</tr>
+			{% endfor %}
+		</table>
+	</div>
+	{% endif %}
+	{% endwith %}
+</div>
 {% endblock %}
 
 {% block scripts %}
 {{ block.super }}
 {% compressed_js 'product_detail' %}
 <script type="text/javascript">
+	// Expanding to sub category been selected
 	$('#category-id-{{ product.category_id }}').parents('.sub-categories').show();
+
+	// Generating tabs
+	$('#product-details').tabs(); 
 </script>
 {% endblock %}
