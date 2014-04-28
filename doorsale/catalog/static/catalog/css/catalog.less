@@ -21,14 +21,20 @@
   padding: 5px 10px;
   
   .search-box {
+    display: inline-block;
+    width: 20%;
+    
+    div {
+      overflow: hidden;
+    }
     
     input[type="text"] {
       font-size: 1em;
       padding: 5px;
+      width: 100%;
       border-color: @border-dark-color;
       color: @place-holder-color;
       font-size: 0.9em;
-      width: 20%;
       .border-radius(3px 0px 0px 3px);
       .border-box;
     }
@@ -39,6 +45,10 @@
     
     button {
       margin-left: -6px;
+      float: right;
+      padding: 5px 10px 5px 15px;
+      overflow: hidden;
+      .border-box;
       .border-radius(0px 3px 3px 0px);
     }
     
@@ -151,7 +161,7 @@
     }
     
     li:last-child:after {
-      content: '';
+      content: none;
     }
   }
   
