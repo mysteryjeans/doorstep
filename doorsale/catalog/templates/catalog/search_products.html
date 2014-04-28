@@ -2,5 +2,37 @@
 
 {% block catalog-content %}
 <h3>Search: {{ q }}</h3>
+<form method="post" action="{% url 'catalog_search_advance' %}" class="advance-search">
+	{% csrf_token %}
+	<ul>
+		<li>
+			{{ form.keyword }}
+			<label>{{ form.keyword.label }}</label>
+			{{ form.keyword.errors }}
+		</li>
+		<li>
+			{{ form.category }}
+			<label>{{ form.category.label }}</label>
+			{{ form.category.errors }}
+		</li>
+		<li>
+			{{ form.manufacturer }}
+			<label>{{ form.manufacturer.label }}</label>
+			{{ form.manufacturer.errors }}
+		</li>
+		<li>
+			{{ form.price_to }}
+			{{ form.price_from }}
+			<label>Price range</label>
+			{{ form.price_from.errors }}
+			{{ form.price_to.errors }}
+		</li>
+		<li>
+			<input type="submit" value="Search"/>
+		</li>
+	</ul>
+</form>
+{% with no_products_message="No products found for your search criteria" %}
 {% include "catalog/parts/products_list.html" %}
+{% endwith %}
 {% endblock %}

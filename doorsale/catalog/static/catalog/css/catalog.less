@@ -6,6 +6,13 @@
 @add-to-cart-color: @first-color;
 @catalog-bar-color: whitesmoke;
 
+.info-message-box {
+  background: @info-message-color;
+  display: inline-block;
+  padding: 5px;
+  .border-radius(2px);
+}
+
 #catalog-bar {
   .border;
   .border-box;
@@ -156,6 +163,44 @@
       color: @text-color;
       font-size: 0.8em;
       text-decoration: line-through;
+    }
+  }
+  
+  .advance-search {
+    .action-form;
+    width: 400px;
+    font-size: 1em;
+    margin-bottom: 10px;
+    
+    label {
+      float: right;
+      margin-right: 10px;
+      margin-top: 2px;
+    }
+    
+    input[type="text"], select {
+      font-size: 1em;
+      width: 250px;
+      float: right;
+      height: 2em;
+    }
+    
+    select {
+      padding-top: 3px;
+    }
+    
+    input[name="price_from"], input[name="price_to"] {
+      width: 123px;   
+    }
+    
+    input[name="price_from"] {
+      margin-right: 5px;
+    }
+    
+    .errorlist {
+       clear: both;
+       float: right;
+       width: 250px;
     }
   }
   

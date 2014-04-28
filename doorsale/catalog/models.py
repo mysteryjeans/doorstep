@@ -25,7 +25,7 @@ class Manufacturer(models.Model):
     
     @models.permalink
     def get_absolute_url(self):
-        return ('catalog_manufacturer_products', (self.slug,))
+        return ('catalog_manufacturer', (self.slug,))
     
     def get_breadcrumbs(self):
         """
@@ -74,7 +74,7 @@ class Category(models.Model):
     
     @models.permalink
     def get_absolute_url(self):
-        return ('catalog_category_products', (self.slug,))
+        return ('catalog_category', (self.slug,))
     
     def get_breadcrumbs(self):
         """
@@ -202,6 +202,17 @@ class Product(models.Model):
         return cls.objects.prefetch_related('pics').filter(is_active=True)
     
     @classmethod
+    def get_search(cls, q):
+        """
+        Returns QuerySet of product search query
+        """
+        return cls.get_active().filter(Q(name__icontains=q) |
+                                       Q(category__name__icontains=q) |
+                                       Q(brand__name__icontains=q) |
+                                       Q(gist__icontains=q) |
+                                       Q(tags__icontains=q))
+    
+    @classmethod
     def featured_products(cls):
         """
         Returns featured products
@@ -236,11 +247,27 @@ class Product(models.Model):
         """
         Returns products for search query
         """
-        return cls.get_active().filter(Q(name__icontains=q) |
-                                       Q(category__name__icontains=q) |
-                                       Q(brand__name__icontains=q) |
-                                       Q(gist__icontains=q) |
-                                       Q(tags__icontains=q))
+        return list(cls.get_search(q))
+    
+    @classmethod
+    def search_advance_products(cls, keyword, category, manufacturer, price_from, price_to, categories):
+        """
+        Returns list of products against search params
+        """
+        query = cls.get_search(keyword)
+        
+        if category:
+            category = next(category2 for category2 in categories if category2.id == category.id)
+            sub_categories_ids = [category.id]
+            sub_categories_ids += (sub_category.id for sub_category in category.get_all_sub_categories())
+            
+            query = query.filter(category_id__in=sub_categories_ids)
+            
+        if manufacturer: query = query.filter(brand=manufacturer)
+        if price_from: query = query.filter(price__gte=price_from)
+        if price_to: query = query.filter(price__lte=price_to)
+        
+        return list(query)
 
 
 class ProductSpec(models.Model):

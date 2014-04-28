@@ -5,6 +5,7 @@ from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from doorsale.common.views import BaseView
+from doorsale.catalog.forms import AdvanceSearchForm
 from doorsale.catalog.models import Manufacturer, Category, Product
 
 
@@ -117,18 +118,40 @@ class SearchProductsView(CatalogBaseView):
     def get(self, request):
         q = request.REQUEST.get('q', None)
         
-        print q
         if not q:
             return HttpResponseRedirect(reverse('catalog_index'))
         
         params = { 'q': q.encode('utf-8')}
         query = '?' + urllib.urlencode(params)
-        breadcrumbs = ({'name': 'Search: ' + q, 'url': reverse('catalog_search_products') + query },)
+        breadcrumbs = ({'name': 'Search: ' + q, 'url': reverse('catalog_search') + query },)
+        form = AdvanceSearchForm(initial={'keyword': q})
         products = Product.search_products(q)
         return super(SearchProductsView, self).get(request,
                                                    q=q,
                                                    breadcrumbs=breadcrumbs,
-                                                   products=products)        
+                                                   form=form,
+                                                   products=products)
+    
+    def post(self, request):
+        form = AdvanceSearchForm(request.POST)
+        
+        is_valid = form.is_valid()
+        data = form.cleaned_data
+        q=data.get('keyword', '')
+        params = { 'q': q.encode('utf-8')}
+        query = '?' + urllib.urlencode(params)
+        breadcrumbs = ({'name': 'Search: ' + q, 'url': reverse('catalog_search') + query },)
+        
+        products = None
+        if is_valid:
+            products = Product.search_advance_products(data['keyword'], data['category'], data['manufacturer'], data['price_from'], data['price_to'], self.categories)
+        
+        return super(SearchProductsView, self).get(request,
+                                                   q=q,
+                                                   breadcrumbs=breadcrumbs,
+                                                   form=form,
+                                                   products=products)
+    
 
 
 class ProductDetailView(CatalogBaseView):

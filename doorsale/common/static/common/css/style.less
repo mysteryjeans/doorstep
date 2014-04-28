@@ -12,6 +12,9 @@
 @button-color: @second-color;
 @button-text-color: white;
 @place-holder-color: #666;
+@info-message-color: #ecf0f1;
+@error-message-color: maroon;
+@success-message-color: @first-color;
 
 .border-radius (@radius) {
   -webkit-border-radius: @radius;
@@ -107,3 +110,9 @@ a.button, a:hover.button {
   color: @button-text-color;
 }
 
+.success-message {
+  color: @success-message-color;
+}
+.error-message {
+  color: @error-message-color;
+}
