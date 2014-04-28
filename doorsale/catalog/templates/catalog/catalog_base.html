@@ -35,14 +35,14 @@
 		{% if forloop.last %}
 		<li>
 			{% if crumb.name == 'Home' %}
-			<i class="icon-home" style="font-size: 1.2em;"></i>
+			<i class="fa fa-home" style="font-size: 1.2em;"></i>
 			{% else %}
 			<span>{{ crumb.name }}</span>
 			{% endif %}
 		</li>
 		{% elif crumb.name == 'Home' %}
 		<li>
-			<a href="{{ crumb.url }}" title="Go to {{ crumb.name }}" ><i class="icon-home" style="font-size: 1.2em; text-decoration: none;"></i></a>
+			<a href="{{ crumb.url }}" title="Go to {{ crumb.name }}" ><i class="fa fa-home" style="font-size: 1.2em; text-decoration: none;"></i></a>
 		</li>
 		{% else %}
 		<li>

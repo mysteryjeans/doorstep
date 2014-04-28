@@ -4,28 +4,30 @@
 <h3>Search: {{ q }}</h3>
 <form method="post" action="{% url 'catalog_search_advance' %}" class="advance-search">
 	{% csrf_token %}
+	<i id="advance-search-filter" class="fa fa-search-plus" title="Advance search options..."></i>
 	<ul>
 		<li>
 			{{ form.keyword }}
 			<label>{{ form.keyword.label }}</label>
 			{{ form.keyword.errors }}
 		</li>
-		<li>
+		<li class="advance-search-option">
 			{{ form.category }}
 			<label>{{ form.category.label }}</label>
 			{{ form.category.errors }}
 		</li>
-		<li>
+		<li class="advance-search-option">
 			{{ form.manufacturer }}
 			<label>{{ form.manufacturer.label }}</label>
 			{{ form.manufacturer.errors }}
 		</li>
-		<li>
+		<li class="advance-search-option">
 			{{ form.price_to }}
 			{{ form.price_from }}
 			<label>Price range</label>
 			{{ form.price_from.errors }}
 			{{ form.price_to.errors }}
+		</li>
 		</li>
 		<li>
 			<input type="submit" value="Search"/>
@@ -35,4 +37,27 @@
 {% with no_products_message="No products found for your search criteria" %}
 {% include "catalog/parts/products_list.html" %}
 {% endwith %}
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script type="text/javascript">
+	$('#advance-search-filter').click(function() {
+		var $advanceSearchOptions = $('.advance-search-option');
+		if ($advanceSearchOptions.is(':visible')) {
+			$advanceSearchOptions.fadeOut(200);
+			$('input[type="text"]', $advanceSearchOptions).val('');
+			$('select', $advanceSearchOptions).val('');
+			$('.fa-search-minus').removeClass('fa-search-minus').addClass('fa-search-plus');
+		} else {
+			$advanceSearchOptions.fadeIn(200);
+			$('.fa-search-plus').removeClass('fa-search-plus').addClass('fa-search-minus');
+		}
+	});
+	
+	if ($('.advance-search-option input[type="text"]').val() != '' || 
+		$('.advance-search-option select').val() != '' ) {
+		$('.advance-search-option').show();
+	}
+</script>
 {% endblock %}

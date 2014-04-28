@@ -46,7 +46,8 @@
     button {
       margin-left: -6px;
       float: right;
-      padding: 5px 10px 5px 15px;
+      font-size: 1.1em;
+      padding: 5px 7px 5px 13px;
       overflow: hidden;
       .border-box;
       .border-radius(0px 3px 3px 0px);
@@ -62,7 +63,11 @@
   background: @add-to-cart-color !important;
 }
 
-.icon-shopping-cart:before {
+.fa-shopping-cart {
+  font-size: 1.2em;  
+}
+
+.fa-shopping-cart:before {
   margin-right: 5px;
   padding-right: 5px;
 }
@@ -180,7 +185,13 @@
     .action-form;
     width: 400px;
     font-size: 1em;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    padding-right: 60px;
+    position: relative;
+    
+    li {
+      overflow: hidden;
+    }
     
     label {
       float: right;
@@ -205,6 +216,18 @@
     
     input[name="price_from"] {
       margin-right: 5px;
+    }
+    
+    #advance-search-filter {
+      font-size: 18px;
+      position: absolute;
+      right: 30px;
+      top: 7px;
+      cursor: pointer;
+    }
+    
+    .advance-search-option {
+      display: none;
     }
     
     .errorlist {
