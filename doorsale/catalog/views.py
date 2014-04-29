@@ -22,22 +22,6 @@ class CatalogBaseView(BaseView):
         self.categories = Category.get_categories()
         self.manufacturers = Manufacturer.get_manufacturers()
     
-    def get_category(self, **kwargs):
-        """
-        Returns category from loaded categories
-        """
-        for category in self.categories:
-            is_found = True
-            for name, value in kwargs.items():
-                if getattr(category, name) != value:
-                    is_found = False
-                    break
-                
-            if is_found:
-                return category
-        
-        return None
-    
     def get_context_data(self, **kwargs):
         context = super(CatalogBaseView, self).get_context_data(**kwargs)
         
@@ -74,7 +58,7 @@ class CategoryProductsView(CatalogBaseView):
     template_name = 'catalog/category_products.html'
     
     def get(self, request, slug):
-        category = self.get_category(slug=slug)
+        category = next((category for category in self.categories if category.slug == slug), None)
         
         if category is None:
             raise Http404()
