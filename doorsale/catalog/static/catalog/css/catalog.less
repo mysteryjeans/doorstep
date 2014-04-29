@@ -122,9 +122,13 @@
       }
 
       .parent-category:after {
-        content: attr(arrow);
+        content: '\21E2';
         float: right;
         color: @border-dark-color;
+      }
+      
+      .parent-category.arrow-down:after {
+        content: '\21E3';
       }
       
       .parent-category:hover:after {
@@ -243,15 +247,23 @@
     .product {
       float: left;
       width: 200px;
-      height: 220px;
+      height: 20em;
       padding: 5px;
       text-align: center;
-      margin-bottom: 20px;
+      margin: 10px;
+      padding: 5px;
+      .border;
       
       .title {
-        max-height: 28px;
+        max-height: 2.4em;
         overflow: hidden;
         text-overflow: ellipsis;
+      }
+      
+      .description {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-height: 2.4em;
       }
       
       .pic-container {
@@ -305,7 +317,7 @@
     }
     
     li {
-      padding: 10px 0px;
+      padding: 5px 0px;
     }
   }
   
@@ -335,7 +347,10 @@
       background: @border-color;
       color: #000;
       font-size: 12px;
-      padding: 17px 5px;
+      height: 47px;
+      padding: 16px 6px;
+      width: 20px;
+      .border-box;
     }
     
     .prev:hover, .next:hover {

@@ -192,7 +192,7 @@ class Product(models.Model):
         """
         Returns product with details including pics and specs
         """
-        return cls.objects.prefetch_related('pics', 'specs').get(id=product_id)
+        return cls.objects.prefetch_related('pics', 'specs', 'brand').get(id=product_id)
     
     @classmethod
     def get_active(cls):

@@ -5,10 +5,19 @@ $('[parent-category]').each(function() {
 	$($sub_categories.attr('parent-category')).click(function() {
 		if ($sub_categories.is(':visible')) {
 			$sub_categories.hide(100);
-			$(this).attr('arrow', '\u21E2');
+			$(this).removeClass('arrow-down');
 		} else {
 			$sub_categories.show(100);
-			$(this).attr('arrow', '\u21E3');
+			$(this).addClass('arrow-down');
 		}
 	});
-}); 
+});
+
+
+function expandCategories(categoryID) {
+	var categoryID = '#category-id-' + categoryID;
+	$(categoryID).parents('.sub-categories').show();
+	$(categoryID).parents('.parent-category-container').each(function(){
+		$('.parent-category', this).first().addClass('arrow-down');
+	});
+}

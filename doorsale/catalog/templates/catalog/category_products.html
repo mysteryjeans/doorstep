@@ -9,6 +9,6 @@
 {% block scripts %}
 {{ block.super }}
 <script type="text/javascript">
-	$('#category-id-{{ category.id }}').parents('.sub-categories').show();
+	expandCategories('{{ category.id }}');
 </script>
 {% endblock %}

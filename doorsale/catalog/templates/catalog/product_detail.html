@@ -19,6 +19,9 @@
 				{% endif %}
 			</li>
 			<li>
+				 <label>Brand:</label> <a href="{{ product.brand.get_absolute_url }}">{{ product.brand.name }}</a> 
+			</li>
+			<li>
 				{% if product.is_free_shipping %}
 				<div class="free-shipping">
 					Free Shipping
@@ -52,8 +55,8 @@
 	{% with pics=product.pics.all %}
 	{% if pics|length > 1 %}
 	<div id="slides-container">
-		<a class="prev" href="#"><i class="icon-chevron-left"></i></a>
-		<a class="next" href="#"><i class="icon-chevron-right"></i></a>
+		<a class="prev" href="#"><i class="fa fa-chevron-left"></i></a>
+		<a class="next" href="#"><i class="fa fa-chevron-right"></i></a>
 		<div id="pics-slideshow">
 			<ul>
 				{% for pic in pics %}
@@ -103,7 +106,7 @@
 {% compressed_js 'product_detail' %}
 <script type="text/javascript">
 	// Expanding to sub category been selected
-	$('#category-id-{{ product.category_id }}').parents('.sub-categories').show();
+	expandCategories('{{ product.category_id }}');
 
 	// Generating tabs
 	$('#product-details').tabs(); 
