@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 
 
 # Dynamically calculate the version based on django.VERSION.
-version = __import__(   'doorsale').get_version()
+version = __import__('doorsale').get_version()
 
 
 

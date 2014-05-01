@@ -2,9 +2,10 @@ include README.md
 include LICENSE
 include MANIFEST.in
 recursive-include doorsale/db-scripts *
-recursive-include doorsale/common/static *
-recursive-include doorsale/common/templates *
+recursive-include doorsale/static *
+recursive-include doorsale/templates *
 recursive-include doorsale/catalog/static *
 recursive-include doorsale/catalog/templates *
+recursive-include doorsale/accounts/templates *
 recursive-exclude * .DS_Store
 recursive-exclude * *.py[co]
