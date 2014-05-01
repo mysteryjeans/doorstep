@@ -1,7 +1,7 @@
 from django.db import models
 from django.conf import settings
 
-from doorsale.common.models import Address
+from doorsale.geo.models import Address
 from doorsale.catalog.models import Product
 from doorsale.financial.models import TaxRate 
 

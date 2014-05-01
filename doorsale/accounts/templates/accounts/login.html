@@ -1,0 +1,30 @@
+{% extends "catalog/catalog_base.html" %}
+
+{% block catalog-content %}
+	<h3>Login</h3>
+	<div class="action-form">
+		<form method="post" action="{% url 'accounts_login' %}">
+			{% csrf_token %}
+			<input type="hidden" name="next" value="{{ next_url }}"/>
+			<ul>
+				{% if error %}
+				<li class="error-message">
+					{{ error|safe }}
+				</li>
+				{% endif %}
+				<li>
+					<input id="id_username" name="username" type="text" value="{{ username }}" placeholder="Username..."/>
+				</li>
+				<li>
+					<input id="id_password" name="password" type="password" placeholder="Password..."/>
+				</li>
+				<li>
+					<input type="submit" value="Login">
+				</li>
+				<li class="link">
+					<a href="{% url 'accounts_register' %}{% if next_url %}?next={{ next_url|urlencode }}{% endif %}">Register</a> | <a href="{% url 'accounts_forgot_password' %}">Forgot your password?</a>
+				</li>
+			</ul>
+		</form>
+</div>
+{% endblock %}

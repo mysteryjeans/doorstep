@@ -3,32 +3,61 @@ Provides predefine settings for including in your Django project settings
 Note: This is not a conventional Django settings.py file, settings 
 """
 
-from doorsale.common import settings as common_settings
+import os
+
+
 from doorsale.catalog import settings as catalog_settings
 
-AUTH_USER_MODEL = 'common.User'
 
+DOORSALE_DIR = os.path.dirname(__file__)
+
+
+# Use Doorsale accounts.User as auth user model
+AUTH_USER_MODEL = 'accounts.User'
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+
+# All doorsale apps
 DOORSALE_APPS = (
+    'doorsale',
     'doorsale.geo',
-    'doorsale.common',
+    'doorsale.accounts',
     'doorsale.catalog',
     'doorsale.sales',
     'doorsale.financial',
 )
 
-PIPELINE_CSS = {}
-PIPELINE_CSS.update(common_settings.PIPELINE_CSS)
+# CSS settings for django-pipeline app
+PIPELINE_CSS = {
+    'base': {
+        'source_filenames': (
+            'doorsale/css/base.less',
+        ),
+        'output_filename': 'doorsale/css/base.css'
+    }
+}
 PIPELINE_CSS.update(catalog_settings.PIPELINE_CSS)
 
-PIPELINE_JS =  { }
-PIPELINE_JS.update(common_settings.PIPLELINE_JS)
+# Javascript settings for django pipeline
+PIPELINE_JS = {
+    'base': {
+        'source_filenames': (
+          'doorsale/scripts/jquery-1.11.0.js',
+          'doorsale/scripts/jquery-ui-1.10.4.custom.js',
+        ),
+        'output_filename': 'doorsale/scripts/base.js',
+    },
+}
 PIPELINE_JS.update(catalog_settings.PIPLELINE_JS)
 
+# Doorsale settings to use Less compiler when collectstatic called
 PIPELINE_COMPILERS = (
   'pipeline.compilers.less.LessCompiler',
 )
 
+# Required to serve static files
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
+# Allow Javascript functions to global scope
 PIPELINE_DISABLE_WRAPPER = True
 

@@ -64,7 +64,7 @@ STATIC_URL = '/static/'
 
 # doorsale settings
 
-AUTH_USER_MODEL = 'common.User'
+AUTH_USER_MODEL = 'accounts.User'
 
 import doorsale.settings
 

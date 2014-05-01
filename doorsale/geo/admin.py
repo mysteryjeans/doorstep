@@ -18,6 +18,13 @@ class StateAdmin(ModelAdmin):
     date_hierarchy = 'created_on'
 
 
+class AddressAdmin(ModelAdmin):
+    list_display = ('first_name', 'last_name', 'email', 'address1', 'address2', 'city', 'state', 'country',)
+    list_filter = ('city', 'state', 'country', 'created_on',)
+    search_fields = ('first_name', 'last_name', 'email', 'address1', 'address2',)
+    date_hierarchy = 'created_on'
+
 
 admin.site.register(models.Country, CountryAdmin)
 admin.site.register(models.State, StateAdmin)
+admin.site.register(models.Address, AddressAdmin)

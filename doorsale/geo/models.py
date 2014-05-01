@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 
 class Country(models.Model):
@@ -46,4 +47,45 @@ class State(models.Model):
     
     def __unicode__(self):
         return self.name
+
+
+class Address(models.Model):
+    """
+    Represents a address for billing and shipping
+    """
+    customer = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    company = models.CharField(max_length=100)
+    country = models.ForeignKey(Country, null=True, blank=True)
+    state = models.ForeignKey(State, null=True, blank=True)
+    city = models.CharField(max_length=100)
+    address1 = models.CharField(max_length=250)
+    address2 = models.CharField(max_length=250, null=True, blank=True)
+    zip_or_postal_code = models.CharField(max_length=10)
+    phone_number = models.CharField(max_length=20)
+    fax_number = models.CharField(max_length=20, null=True, blank=True)
+    updated_on = models.DateTimeField(auto_now=True)
+    updated_by = models.CharField(max_length=100)
+    created_on = models.DateTimeField(auto_now_add=True)
+    created_by = models.CharField(max_length=100)
     
+    class Meta:
+        verbose_name_plural = 'Addresses'
+    
+    def __unicode__(self):
+        address = '%s %s %s' % (self.first_name, self.last_name, self.address1)
+        
+        if self.address2:
+            address += ' ' + self.address2
+        
+        address += ', ' + self.city
+        
+        if self.state:
+            address += ', ' + unicode(self.state)
+        
+        if self.country:
+            address += ', ' + unicode(self.country)
+        
+        return address

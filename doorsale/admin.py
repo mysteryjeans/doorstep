@@ -15,4 +15,4 @@ class ModelAdmin(admin.ModelAdmin):
         if hasattr(obj, 'created_by') and not obj.created_by:
             obj.created_by = unicode(request.user)
             
-        return obj     
+        return obj

@@ -6,19 +6,19 @@
 		<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 		<meta name="application-name" content="{{ SITE_NAME }}"/>
 		<meta name="copyright" content="{{ COPYRIGHT }}"/>
-		<meta name="description" content="{% block description %}{{ SITE_DESCRIPTION }}{% endblock %}"/>
+		<meta name="description" content="{{ page_description|default:SITE_DESCRIPTION }}"/>
 		{% block robots_meta %}
 		<meta name="robots" content="noodp,noydir" />
 		{% endblock %}
 		{% block og_meta %}
 		<meta property="og:site_name" content="{{ SITE_NAME }}"/>
-		<meta property="og:title" content="{{ SITE_TITLE }}"/>
+		<meta property="og:title" content="{{ page_title|default:SITE_TITLE }} | {{ SITE_NAME }}"/>
 		<meta property="og:type" content="website"/>
 		<meta property="og:image" content="{% static 'img/icon.png' %}"/>
-		<meta property="og:description" content="{% block og_description %}{{ SITE_DESCRIPTION }}{% endblock %}"/>
+		<meta property="og:description" content="{{ page_description|default:SITE_DESCRIPTION }}"/>
 		<meta name="author" content="{{ SITE_NAME }}, {{ CONTACT_EMAIL }}"/>
 		{% endblock %}
-		<title>{% block title %}{{ SITE_TITLE }}{% endblock %}</title>
+		<title>{{ page_title|default:SITE_TITLE }} | {{ SITE_NAME }}</title>
 		<link rel="icon shortcut" href="{% static 'img/icon.png' %}" type="image/png"/>
 		{% block head %}
 		{% endblock %}
@@ -32,10 +32,17 @@
 			{% block header %}
 			<a href="{% url 'catalog_index' %}" class="logo"><h1>{{ SITE_NAME }}</h1></a>
 			<ul id="menu">
-				<li><a href="#">Login</a></li>
-				<li><a href="#">Sign Up</a></li>
+				{% if app_user.is_authenticated %}
+				<li>Welcome! {{ app_user.get_username }}</li>
+				{% if app_user.is_staff %}
+				<li><a href="/admin/">Admin</a></li>
+				{% endif %}
+				<li><a href="{% url 'accounts_logout' %}">Logout</a></li>
+				{% else %}
+				<li><a href="{% url 'accounts_login' %}">Login</a></li>
+				<li><a href="{% url 'accounts_register' %}">Register</a></li>
+				{% endif %}
 				<li><a href="#">Contact Us</a></li>
-				<li><a href="#">Policies</a></li>
 			</ul>
 			{% endblock %}
 		</header>

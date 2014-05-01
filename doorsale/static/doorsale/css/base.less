@@ -1,0 +1,104 @@
+@import url('style.less');
+
+header {
+  padding: 10px;
+  
+  .logo:hover {
+    text-decoration: none !important;
+  }
+  
+  h1 {
+    float: left; 
+  }
+  
+  #menu {
+    float: right;
+    
+    li {
+      float: left;
+      padding: 5px;
+    }
+  }
+}
+
+h2 {
+  font-size: 1.4em;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid @border-color;
+}
+
+#content {
+  clear: both;
+  padding-top: 5px;
+}
+
+.box {
+  .border;
+}
+
+.center {
+  margin: auto;
+}
+
+.box-center {
+  .box;
+  .center;
+}
+
+.action-form {
+  
+  input[type="text"], input[type="password"], input[type="email"] {
+    font-size: 1.1em;
+    width: 100%;
+  }
+  
+  h3 {
+    border-bottom: 1px dotted @border-color;
+    padding-bottom: 5px;
+  }
+  
+  ul {
+    clear: both;
+    margin-left: 20px;
+    max-width: 400px;
+    margin-bottom: 10px;
+    
+    ul {
+      margin-left: 0px;
+    }
+  }
+  
+  li {
+    overflow: hidden;
+    padding: 10px 0px;
+  }
+  
+  input[type="submit"] {
+    float: right;
+  }
+  
+  .errorlist, .gender {
+    padding-top: 0px;
+    
+    li {
+      padding: 2px;
+    }
+  }
+  
+  .gender {
+    li {
+      float: left;
+    }
+  }
+}
+
+.action-form-center {
+  .center;
+  .action-form;
+  max-width: 400px;
+}
+
+.errorlist {
+  color: @error-message-color;
+}

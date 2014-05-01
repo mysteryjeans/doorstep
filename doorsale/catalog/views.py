@@ -4,7 +4,7 @@ from django.conf import settings
 from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-from doorsale.common.views import BaseView
+from doorsale.views import BaseView
 from doorsale.catalog.forms import AdvanceSearchForm
 from doorsale.catalog.models import Manufacturer, Category, Product
 
@@ -69,7 +69,8 @@ class CategoryProductsView(CatalogBaseView):
         return super(CategoryProductsView, self).get(request,
                                                      category=category,
                                                      products=products,
-                                                     breadcrumbs=breadcrumbs)
+                                                     breadcrumbs=breadcrumbs,
+                                                     page_title=category.name)
 
 
 class ManufacturerProductsView(CatalogBaseView):
@@ -90,7 +91,8 @@ class ManufacturerProductsView(CatalogBaseView):
         return super(ManufacturerProductsView, self).get(request,
                                                          manufacturer=manufacturer,
                                                          products=products,
-                                                         breadcrumbs=breadcrumbs)        
+                                                         breadcrumbs=breadcrumbs,
+                                                         page_title=manufacturer.name)        
 
 
 class SearchProductsView(CatalogBaseView):
@@ -105,16 +107,18 @@ class SearchProductsView(CatalogBaseView):
         if not q:
             return HttpResponseRedirect(reverse('catalog_index'))
         
+        page_title = 'Search: ' + q
         params = { 'q': q.encode('utf-8')}
         query = '?' + urllib.urlencode(params)
-        breadcrumbs = ({'name': 'Search: ' + q, 'url': reverse('catalog_search') + query },)
+        breadcrumbs = ({'name': page_title, 'url': reverse('catalog_search') + query },)
         form = AdvanceSearchForm(initial={'keyword': q})
         products = Product.search_products(q)
         return super(SearchProductsView, self).get(request,
                                                    q=q,
                                                    breadcrumbs=breadcrumbs,
                                                    form=form,
-                                                   products=products)
+                                                   products=products,
+                                                   page_title=page_title)
     
     def post(self, request):
         form = AdvanceSearchForm(request.POST)
@@ -152,5 +156,6 @@ class ProductDetailView(CatalogBaseView):
         
         return super(ProductDetailView, self).get(request,
                                                   product=product,
-                                                  breadcrumbs=product.get_breadcrumbs(self.categories))
+                                                  breadcrumbs=product.get_breadcrumbs(self.categories),
+                                                  page_title=product.name)
 

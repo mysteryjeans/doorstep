@@ -14,7 +14,7 @@
 @place-holder-color: #666;
 @info-message-color: #ecf0f1;
 @error-message-color: maroon;
-@success-message-color: @first-color;
+@success-message-color: green;
 
 .border-radius (@radius) {
   -webkit-border-radius: @radius;
@@ -40,7 +40,7 @@
   outline: none;
 }
 
-body, input[type="text"], input[type="password"], textarea, label {
+body, input[type="text"], input[type="password"], input[type="email"], textarea, label {
   color: @text-color;
 }
 
@@ -49,11 +49,6 @@ body {
   height: 100%;
   font-family: @font-family;
   font-size: @font-size;
-}
-
-input[type="text"], input[type="password"], textarea {
-  .border;
-  overflow: hidden;
 }
 
 input[type="radio"] {
@@ -86,10 +81,12 @@ h3 { font-size: (@h-font-size + 0.1); }
 h2 { font-size: (@h-font-size + 0.2); }
 h1 { font-size: (@h-font-size + 0.3); }
 
-input[type="text"], input[type="password"], textarea {
+input[type="text"], input[type="password"], input[type="email"], textarea {
+  .border;
   .border-box;
-  padding: 3px 5px;
   .border-radius(2px);
+  overflow: hidden;
+  padding: 5px;
 }
 
 .button {
