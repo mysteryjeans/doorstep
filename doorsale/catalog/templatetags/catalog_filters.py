@@ -1,19 +1,20 @@
-from django import template
-from django.shortcuts import get_object_or_404 
+import locale 
 
-from doorsale.financial.models import Currency
-
+from django import template 
+from django.core.exceptions import ImproperlyConfigured
 
 register = template.Library()
-
+locale.setlocale(locale.LC_ALL, 'en_US')
 
 @register.filter(name='currency')
-def currency(price, currency_code):
+def currency(price, currency):
     """
     Returns price in currency format
     """
-    currency = get_object_or_404(Currency,code=currency_code)
+    price = float(price) * currency.exchange_rate
     try:
-        return currency.display_format % price
-    except Exception:
-        raise Exception('Invalid currency format string: "%s" for currency "%s"' % (currency.currency_format, currency.name))
+        print currency.display_format
+        return currency.display_format.format(price)
+    except Exception as e:
+        raise ImproperlyConfigured('Invalid currency format string: "%s" for currency "%s". ' % (currency.display_format, currency.name)
+                                   + e.message )

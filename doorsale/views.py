@@ -19,6 +19,7 @@ class BaseView(TemplateView):
         context['COPYRIGHT'] = settings.COPYRIGHT
         context['CONTACT_EMAIL'] = settings.CONTACT_EMAIL
         context['app_user'] = self.request.user
+        context['request'] = self.request
         
         if hasattr(self, 'page_title'):
             context['page_title'] = self.page_title

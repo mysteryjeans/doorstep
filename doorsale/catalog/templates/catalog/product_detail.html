@@ -27,13 +27,13 @@
 					Free Shipping
 				</div>
 				{% else %}
-				<label>Shpping cost:</label> {{ product.shipping_cost|currency:"USD" }}/Unit
+				<label>Shpping cost:</label> {{ product.shipping_cost|currency:user_currency }}/Unit
 				{% endif %}
 			</li>
 			<li class="price">
-				{{ product.price|currency:'USD' }}
+				{{ product.price|currency:user_currency }}
 				{% if product.old_price %}
-				<span class="old-price"> {{ product.old_price|currency:'USD' }} </span>
+				<span class="old-price"> {{ product.old_price|currency:user_currency }} </span>
 				{% endif %}
 			</li>
 			<li class="add-to-cart-summary">

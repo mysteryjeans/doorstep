@@ -3,10 +3,13 @@ import urllib
 from django.conf import settings
 from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ImproperlyConfigured
+from django.views.generic import View
 
 from doorsale.views import BaseView
 from doorsale.catalog.forms import AdvanceSearchForm
 from doorsale.catalog.models import Manufacturer, Category, Product
+from doorsale.financial.models import Currency
 
 
 MAX_RECENT_ARRIVALS = getattr(settings, 'MAX_RECENT_ARRIVALS', 10)
@@ -21,7 +24,18 @@ class CatalogBaseView(BaseView):
         # Loading categories
         self.categories = Category.get_categories()
         self.manufacturers = Manufacturer.get_manufacturers()
-    
+        self.currencies = Currency.get_currencies()
+        self.primary_currency = next((currency for currency in self.currencies if currency.is_primary), None)
+        
+        if self.primary_currency is None:
+            raise ImproperlyConfigured('No primary currency is defined for Doorsale.'
+                                       ' You should defined primary currency for the system with exchange rate of 1.'
+                                       ' All prices & costs should be defined in primary currency value.')
+        
+        if self.primary_currency.exchange_rate != 1:
+            raise ImproperlyConfigured('Primary currency should have exchange rate of 1.'
+                                       ' All prices & costs should be defined in primary currency value.')            
+            
     def get_context_data(self, **kwargs):
         context = super(CatalogBaseView, self).get_context_data(**kwargs)
         
@@ -29,10 +43,20 @@ class CatalogBaseView(BaseView):
         breadcrumbs = ({ 'name': 'Home', 'url': reverse('catalog_index')},)
         if 'breadcrumbs' in context:
             breadcrumbs += context['breadcrumbs']
-            
+        
+        # Getting user selected currency from session, if not defined than selecting default currency
+        user_currency = self.request.session.get('user_currency', self.primary_currency.code)
+        
+        # If user currency is not active than choosing default currency
+        user_currency = next((currency for currency in self.currencies if currency.code == user_currency), self.primary_currency)
+        
         context['breadcrumbs'] = breadcrumbs    
         context['categories'] = (category for category in self.categories if category.parent is None)
         context['manufacturers'] = self.manufacturers
+        context['currencies'] = self.currencies
+        context['primary_currency'] = self.primary_currency
+        context['user_currency'] = user_currency
+        
         return context
 
 
@@ -159,3 +183,15 @@ class ProductDetailView(CatalogBaseView):
                                                   breadcrumbs=product.get_breadcrumbs(self.categories),
                                                   page_title=product.name)
 
+
+class ChangeCurrencyView(View):
+    """
+    Change user's default currency and redirect to current page
+    """
+    def post(self, request):
+        next_url = request.POST['next'] or reverse('catalog_index')
+        user_currency = request.POST['user_currency']
+        request.session['user_currency'] = user_currency
+        
+        return HttpResponseRedirect(next_url)
+        

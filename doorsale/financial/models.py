@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-
+from django.core.exceptions import ValidationError
 
 class Currency(models.Model):
     """
@@ -10,9 +10,10 @@ class Currency(models.Model):
     name = models.CharField(max_length=100, unique=True)
     code = models.CharField(max_length=3, unique=True, help_text="ISO Currency Code")
     exchange_rate = models.FloatField(default=1.0)
-    locale = models.CharField(max_length=10)
-    display_format = models.CharField(max_length=50, help_text='Display format: 1.2 => "$%.2f" => $1.20 (python format string)')
-    is_primary = models.BooleanField(default=False, help_text='Primary currency of site, you should updated exchange rate and product prices when you choose change primary currency')
+    locale = models.CharField(max_length=10, blank=True)
+    display_format = models.CharField(max_length=50, help_text='Display format: 1.2 => "${0:,.2f}".format(price) => $1.20 (python format string)')
+    is_primary = models.BooleanField(default=False,
+                                     help_text='Default currency of prices & costs. When you change primary currency, make sure to update exchange rates, prices & costs.')
     is_active = models.BooleanField(default=False)
     updated_by = models.CharField(max_length=100)
     updated_on = models.DateTimeField(auto_now=True)
@@ -25,6 +26,23 @@ class Currency(models.Model):
     
     def __unicode__(self):
         return self.name
+    
+    def clean(self):
+        if self.is_primary:
+            if self.exchange_rate != 1:
+                raise ValidationError('Primary should have exchange rate of 1. '
+                                      'All prices & cost should be defined in primary currency value.')
+        
+            try:
+                primary_currency = type(self).objects.get(is_primary=True)
+                if self.id != primary_currency.id:
+                    raise ValidationError('"%s" is already defined as primary currency.' % unicode(primary_currency))
+            except type(self).DoesNotExist:
+                pass
+    
+    @classmethod
+    def get_currencies(cls):
+        return list(cls.objects.filter(is_active=True))
 
 
 class TaxRate(models.Model):

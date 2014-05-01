@@ -21,7 +21,7 @@
   padding: 5px 10px;
   
   .search-box {
-    display: inline-block;
+    float: left;
     width: 20%;
     
     div {
@@ -56,6 +56,12 @@
     input[type="text"], button {
       height: 26px;
     }
+  }
+  
+  .cart-summary {
+    float: right;
+    margin-top: 3px;
+    margin-right: 3px;
   }
 }
 
@@ -176,7 +182,7 @@
   
   .price {
     color: @price-color;
-    font-size: 1.1em;
+    font-size: 1em;
     
     .old-price {
       color: @text-color;

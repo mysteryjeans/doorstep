@@ -1,7 +1,7 @@
 {% extends "catalog/catalog_base.html" %}
 
 {% block catalog-content %}
-	<h3>Login</h3>
+	<h3>Welcome, Please Login!</h3>
 	<div class="action-form">
 		<form method="post" action="{% url 'accounts_login' %}">
 			{% csrf_token %}
@@ -22,7 +22,7 @@
 					<input type="submit" value="Login">
 				</li>
 				<li class="link">
-					<a href="{% url 'accounts_register' %}{% if next_url %}?next={{ next_url|urlencode }}{% endif %}">Register</a> | <a href="{% url 'accounts_forgot_password' %}">Forgot your password?</a>
+					<a href="{% url 'accounts_register' %}{% if next_url %}?next={{ next_url|urlencode }}{% endif %}" title="Register to shop faster and better!">Register</a> | <a href="{% url 'accounts_forgot_password' %}">Forgot your password?</a>
 				</li>
 			</ul>
 		</form>
