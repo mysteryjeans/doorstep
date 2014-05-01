@@ -4,6 +4,7 @@ include MANIFEST.in
 recursive-include doorsale/db-scripts *
 recursive-include doorsale/static *
 recursive-include doorsale/templates *
+recursive-include doorsale/sales/templates *
 recursive-include doorsale/catalog/static *
 recursive-include doorsale/catalog/templates *
 recursive-include doorsale/accounts/templates *
