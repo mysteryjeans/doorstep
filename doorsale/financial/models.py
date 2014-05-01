@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, ImproperlyConfigured
 
 class Currency(models.Model):
     """
@@ -29,6 +29,10 @@ class Currency(models.Model):
     
     def clean(self):
         if self.is_primary:
+            
+            if not self.is_active:
+                raise ValidationError('Cannot inactive primary currency.')
+            
             if self.exchange_rate != 1:
                 raise ValidationError('Primary should have exchange rate of 1. '
                                       'All prices & cost should be defined in primary currency value.')
@@ -39,6 +43,16 @@ class Currency(models.Model):
                     raise ValidationError('"%s" is already defined as primary currency.' % unicode(primary_currency))
             except type(self).DoesNotExist:
                 pass
+    
+    @classmethod
+    def get_primary(cls):
+        """
+        Returns primary currency
+        """
+        try:
+            return cls.objects.get(is_active=True, is_primary=True)
+        except cls.DoesNotExist:
+            raise ImproperlyConfigured('Primary currency not defined in the system.')
     
     @classmethod
     def get_currencies(cls):

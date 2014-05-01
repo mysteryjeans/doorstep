@@ -1,0 +1,43 @@
+{% load catalog_filters %}
+
+{% with items=cart.items.all sub_total=cart.get_sub_total items_count=cart.get_items_count %}
+<div class="basket">
+	<div class="basket-cap">
+		<div class="cart-count">
+			{% if items_count %}
+			<span class="basket-items-count">{{ items_count  }}</span>
+			{% endif %}
+			<i class="fa fa-shopping-cart"></i>
+		</div>
+		<label>Sub-Total:</label><span class="price"> {{ sub_total|currency:default_currency }}</span>
+	</div>
+	<div class="basket-items" context-menu='#basket-container'>
+		<span class="arrow"></span>
+		{% if items %}
+		<ul>
+			{% for item in items %}
+			<li>
+				<img src="{{ MEDIA_URL }}{{ item.product.pics.all.0.url }}" />
+				<a href="{{ item.product.get_absolute_url }}">{{ item.product.name }}</a>
+				<p>
+					<span class="price">{{ item.product.price|currency:default_currency }}</span>
+					<br />
+					<span class="quantity">Qty: {{ item.quantity }}</span>
+				</p>
+			</li>
+			{% endfor %}
+		</ul>
+		<div class="sub-total">
+			<p>
+				<label>Sub-Total:</label> <span class="price">{{ sub_total|currency:default_currency }}</span>
+			</p>
+			<button>Checkout</button>
+		</div>
+		{% else %}
+		<div style="text-align: center;" >
+			You have no items in your shopping cart.
+		</div>
+		{% endif %}
+	</div>
+</div>
+{% endwith %}

@@ -45,17 +45,17 @@ class CatalogBaseView(BaseView):
             breadcrumbs += context['breadcrumbs']
         
         # Getting user selected currency from session, if not defined than selecting default currency
-        user_currency = self.request.session.get('user_currency', self.primary_currency.code)
+        default_currency = self.request.session.get('default_currency', self.primary_currency.code)
         
         # If user currency is not active than choosing default currency
-        user_currency = next((currency for currency in self.currencies if currency.code == user_currency), self.primary_currency)
+        default_currency = next((currency for currency in self.currencies if currency.code == default_currency), self.primary_currency)
         
         context['breadcrumbs'] = breadcrumbs    
         context['categories'] = (category for category in self.categories if category.parent is None)
         context['manufacturers'] = self.manufacturers
         context['currencies'] = self.currencies
         context['primary_currency'] = self.primary_currency
-        context['user_currency'] = user_currency
+        context['default_currency'] = default_currency
         
         return context
 
@@ -190,8 +190,8 @@ class ChangeCurrencyView(View):
     """
     def post(self, request):
         next_url = request.POST['next'] or reverse('catalog_index')
-        user_currency = request.POST['user_currency']
-        request.session['user_currency'] = user_currency
+        default_currency = request.POST['default_currency']
+        request.session['default_currency'] = default_currency
         
         return HttpResponseRedirect(next_url)
         

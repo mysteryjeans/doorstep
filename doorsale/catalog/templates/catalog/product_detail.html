@@ -27,20 +27,22 @@
 					Free Shipping
 				</div>
 				{% else %}
-				<label>Shpping cost:</label> {{ product.shipping_cost|currency:user_currency }}/Unit
+				<label>Shpping cost:</label> {{ product.shipping_cost|currency:default_currency }}/Unit
 				{% endif %}
 			</li>
 			<li class="price">
-				{{ product.price|currency:user_currency }}
+				{{ product.price|currency:default_currency }}
 				{% if product.old_price %}
-				<span class="old-price"> {{ product.old_price|currency:user_currency }} </span>
+				<span class="old-price"> {{ product.old_price|currency:default_currency }} </span>
 				{% endif %}
 			</li>
 			<li class="add-to-cart-summary">
-				<form>
+				<form method="post" action="{% url 'sales_add_to_cart' %}" data-ajax="true" data-ajax-update="#basket-container">
+					{% csrf_token %}
 					<label>Qty:</label>
+					<input name="product_id" type="hidden" value="{{ product.id }}"/>
 					<input name="quantity" type="text" value="1"/>
-					<button class="add-to-cart">
+					<button class="add-to-cart" onclick="javascript:$(this).closest('form').submit();">
 						<i class="fa fa-shopping-cart"></i>Add to Cart
 					</button>
 				</form>

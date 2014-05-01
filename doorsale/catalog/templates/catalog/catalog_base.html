@@ -1,5 +1,6 @@
 {% extends "doorsale/base.html" %}
 
+{% load cart %}
 {% load compressed %}
 
 {% block styles %}
@@ -11,12 +12,15 @@
 <div id="catalog-bar">
 	{% include "catalog/parts/search_box.html" %}
 	<div class="cart-summary">
-		<form method="post" action="{% url 'catalog_change_currency' %}">
+		<div id="basket-container" onclick="javascript:$('.basket-items', this).fadeIn('fast');">
+			{% cart_summary %}
+		</div>
+		<form method="post" action="{% url 'catalog_change_currency' %}" class="currencies">
 			{% csrf_token %}
 			<input type="hidden" name="next" value="{{ request.get_full_path }}" />
-			<select name="user_currency" class="currencies" onchange="javascript:$(this).closest('form').submit();">
+			<select name="default_currency" class="currencies" onchange="javascript:$(this).closest('form').submit();">
 				{% for currency in currencies %}
-				<option value="{{ currency.code }}" {% if user_currency.code == currency.code %}selected="selected"{% endif %}>{{ currency.code }}</option>
+				<option value="{{ currency.code }}" {% if default_currency.code == currency.code %}selected="selected"{% endif %}>{{ currency.code }}</option>
 				{% endfor %}
 			</select>
 		</form>

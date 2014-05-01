@@ -13,6 +13,17 @@
   .border-radius(2px);
 }
 
+.price {
+  color: @price-color;
+  font-size: 1em;
+  
+  .old-price {
+    color: @text-color;
+    font-size: 0.8em;
+    text-decoration: line-through;
+  }
+}
+
 #catalog-bar {
   .border;
   .border-box;
@@ -62,6 +73,121 @@
     float: right;
     margin-top: 3px;
     margin-right: 3px;
+    
+    .currencies {
+      display: inline-block;
+    }
+    
+    #basket-container {
+      display: inline-block;
+      
+      .basket {
+        position: relative;
+        margin-right: 7px;
+        padding: 3px 0;
+        
+        label {
+          cursor: inherit;
+          font-weight: bold;
+        }
+        
+        .basket-cap {
+          cursor: pointer;
+          
+          .cart-count {
+            width: 24px;
+            display: inline-block;
+            
+            .basket-items-count {
+              color: white;
+              text-shadow: 0 0 1px white;
+              background: @second-color;
+              padding: 0px 3px;
+              left: -7px;
+              padding: 1px 4px;
+              position: absolute;
+              z-index: 1;
+              top: -6px;
+              .border-radius(3px);
+            }
+            
+            i {
+              font-size: 24px;
+              top: -2px;
+              position: absolute;
+            }
+           
+          }
+        }
+        
+        .basket-items {
+          display: none;
+          background: white;
+          min-width: 300px;
+          max-width: 400px;
+          position: absolute;
+          right: 0px;
+          top: 0px;
+          margin-top: 36px;
+          box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
+          .border;
+          .border-radius(2px);
+          
+          .arrow {
+            background: url("../img/sprites.png") no-repeat scroll -266px -8px rgba(0, 0, 0, 0);
+            display: block;
+            height: 18px;
+            right: 0;
+            margin-right: 12px;
+            margin-top: -17px;
+            position: absolute;
+            top: 0;
+            width: 25px;
+          }
+          
+          .sub-total {
+            background: whitesmoke;
+            border-top: 1px solid @border-color;
+            padding: 5px 10px;
+            overflow: hidden;
+            
+            p {
+              float: left;
+              margin-top: 5px;
+            }
+            
+            button {
+              float: right;
+            }
+          }
+          
+          ul {
+            li {
+              padding: 10px;
+              overflow: hidden;
+              
+              img {
+                float: left;
+                margin-right: 5px;
+                max-height: 54px;
+                max-width: 54px;
+              }
+              
+              a {
+                display: inline-block;
+                margin-top: 5px;
+              }
+              
+              p {
+                margin-top: 2px;
+                text-align: right;
+                font-size: 0.8em;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 
@@ -177,17 +303,6 @@
     
     li:last-child:after {
       content: none;
-    }
-  }
-  
-  .price {
-    color: @price-color;
-    font-size: 1em;
-    
-    .old-price {
-      color: @text-color;
-      font-size: 0.8em;
-      text-decoration: line-through;
     }
   }
   

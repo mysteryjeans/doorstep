@@ -10,7 +10,8 @@ def currency(price, currency):
     """
     Returns price in currency format
     """
-    price = float(price) * float(currency.exchange_rate)
+    price = float(price)
+    price *= float(currency.exchange_rate)
     try:
         return currency.display_format.format(price)
     except Exception as e:

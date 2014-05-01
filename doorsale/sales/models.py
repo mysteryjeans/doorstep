@@ -13,14 +13,14 @@ class Cart(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
-    created_by = models.CharField(max_length=100)  
+    created_by = models.CharField(max_length=100)
     
     def get_sub_total(self):
         """
         Sub total of cart items (without taxes)
         """
         sub_total = 0.0
-        for item in self.items:
+        for item in self.items.all():
             sub_total += item.get_sub_total()
         
         return sub_total
@@ -30,7 +30,7 @@ class Cart(models.Model):
         Total taxes applied on cart items
         """
         taxes = 0.0
-        for item in self.items:
+        for item in self.items.all():
             taxes += item.get_taxes()
         
         return taxes
@@ -40,6 +40,48 @@ class Cart(models.Model):
         Total price of cart items with taxes
         """
         return self.sub_total() + self.get_taxes()
+    
+    def get_items_count(self):
+        """
+        Returns total number of items
+        """
+        items_count = 0
+        for item in self.items.all():
+            items_count += item.quantity
+        
+        return items_count
+    
+    def add_item(self, product_id, quantity, user):
+        """
+        Add or augment quantity of product
+        """
+        for item in self.items.all():
+            if item.product_id == product_id:
+                item.quantity += quantity
+                item.save()
+                return item
+        
+        item = CartItem.objects.create(cart=self,
+                                       product_id=product_id,
+                                       quantity=quantity,
+                                       updated_by=str(user),
+                                       created_by=str(user))
+        self.items.add(item)
+        self.save()
+        return item
+    
+    @classmethod
+    def get_cart(cls, cart_id=None):
+        """
+        Returns existing cart or creates new one
+        
+        Prefetch cart items, products and pics
+        """
+        if cart_id:
+            return cls.objects.prefetch_related('items', 'items__product', 'items__product__pics').get(id=cart_id)
+        
+        return cls.objects.create()
+        
 
 
 class CartItem(models.Model):
@@ -63,7 +105,7 @@ class CartItem(models.Model):
         """
         Sub total of cart item (without taxes)
         """
-        return self.product.price * self.quantity
+        return float(self.product.price * self.quantity)
     
     def get_taxes(self):
         """
