@@ -14,3 +14,5 @@ The powerful e-commerce solution for Django. This project is in its early stages
 
 ### Demo
 Get head start in Doorsale development, clone both repos ([doorsale](https://github.com/mysteryjeans/doorsale) & [doorsale-demo](https://github.com/mysteryjeans/doorsale-demo)) and restore demo database. Demo repository is following master branch on Doorsale, so you should pull changes frequently to keep things synchronized and running smoothly, see demo readme for more details.
+
+![Doorsale Demo Screenshot](https://raw.github.com/mysteryjeans/doorsale-demo/master/media/images/demo-screenshot.png)
