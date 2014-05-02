@@ -105,7 +105,7 @@ class CartItem(models.Model):
         """
         Sub total of cart item (without taxes)
         """
-        return float(self.product.price * self.quantity)
+        return float(self.product.price) * self.quantity
     
     def get_taxes(self):
         """
@@ -113,7 +113,7 @@ class CartItem(models.Model):
         """
         product = self.product
         if product.tax_rate:
-            return float(product.tax_rate.calculate(product.price, self.quantity))
+            return product.tax_rate.calculate(product.price, self.quantity)
         
         return 0.0 
     

@@ -101,6 +101,7 @@ class TaxRate(models.Model):
         """
         Calculate tax on price & quantity based on tax method
         """
+        price = float(price)
         if method == cls.TAX_FIXED:
             return rate * quantity
         elif method == cls.TAX_PERCENTAGE:
