@@ -23,7 +23,7 @@ class Cart(models.Model):
         for item in self.items.all():
             sub_total += item.get_sub_total()
         
-        return sub_total
+        return float(sub_total)
     
     def get_taxes(self):
         """
@@ -33,13 +33,13 @@ class Cart(models.Model):
         for item in self.items.all():
             taxes += item.get_taxes()
         
-        return taxes
+        return float(taxes)
     
     def get_total(self):
         """
         Total price of cart items with taxes
         """
-        return self.sub_total() + self.get_taxes()
+        return float(self.sub_total() + self.get_taxes())
     
     def get_items_count(self):
         """
@@ -113,7 +113,7 @@ class CartItem(models.Model):
         """
         product = self.product
         if product.tax_rate:
-            return product.tax_rate.calculate(product.price, self.quantity)
+            return float(product.tax_rate.calculate(product.price, self.quantity))
         
         return 0.0 
     
@@ -121,7 +121,7 @@ class CartItem(models.Model):
         """
         Total price of cart item with taxes
         """
-        return self.get_sub_total() + self.get_taxes()
+        return float(self.get_sub_total() + self.get_taxes())
  
 
 class Order(models.Model):
