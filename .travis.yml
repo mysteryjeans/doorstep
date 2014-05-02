@@ -8,4 +8,5 @@ python:
 install:
   - pip install -r requirements.txt
 script:
+  - export PYTHONPATH=.:$PYTHONPATH
   - tests/runtests.py -s test_sqlite3
