@@ -26,6 +26,8 @@ def add_to_cart(request):
             default_currency = Currency.objects.get(code=request.session['default_currency']) 
         except Currency.DoesNotExist:
             default_currency = Currency.get_primary()
+    else:
+        default_currency = Currency.get_primary()
     
     return render(request, 'sales/cart_summary.html', {'cart': cart, 'default_currency': default_currency})
         
