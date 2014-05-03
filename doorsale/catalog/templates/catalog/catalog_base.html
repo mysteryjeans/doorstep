@@ -11,9 +11,9 @@
 {% block content %}
 <div id="catalog-bar">
 	{% include "catalog/parts/search_box.html" %}
-	<div class="cart-summary">
+	<div class="cart-basket">
 		<div id="basket-container" onclick="javascript:$('.basket-items', this).fadeIn('fast');">
-			{% cart_summary %}
+			{% cart_basket %}
 		</div>
 		<form method="post" action="{% url 'catalog_change_currency' %}" class="currencies">
 			{% csrf_token %}

@@ -3,10 +3,12 @@ from django.conf import settings
 
 from doorsale.sales.models import Cart
 
+
 register = template.Library()
 
-@register.inclusion_tag('sales/cart_summary.html', takes_context=True)
-def cart_summary(context):
+
+@register.inclusion_tag('sales/cart_basket.html', takes_context=True)
+def cart_basket(context):
     """
     Returns cart summary
     """

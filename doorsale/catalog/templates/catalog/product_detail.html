@@ -37,7 +37,7 @@
 				{% endif %}
 			</li>
 			<li class="add-to-cart-summary">
-				<form method="post" action="{% url 'sales_add_to_cart' %}" data-ajax="true" data-ajax-update="#basket-container">
+				<form method="post" action="{% url 'sales_add_to_cart' %}" data-ajax="true" data-ajax-update="#basket-container" data-ajax-success="basketChanged();">
 					{% csrf_token %}
 					<label>Qty:</label>
 					<input name="product_id" type="hidden" value="{{ product.id }}"/>

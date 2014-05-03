@@ -9,15 +9,20 @@
 			{% endif %}
 			<i class="fa fa-shopping-cart"></i>
 		</div>
-		<label>Sub-Total:</label><span class="price"> {{ sub_total|currency:default_currency }}</span>
+		<span class="price">{{ sub_total|currency:default_currency }}</span>
 	</div>
 	<div class="basket-items" context-menu='#basket-container'>
 		<span class="arrow"></span>
 		{% if items %}
 		<ul>
 			{% for item in items %}
-			<li>
+			<li class="cart-item">
 				<img src="{{ MEDIA_URL }}{{ item.product.pics.all.0.url }}" />
+				<form method="post" class="cart-item-remove" data-ajax="true" data-ajax-url="{% url 'sales_remove_from_cart' %}" data-ajax-update="#basket-container" data-ajax-success="basketChanged();">
+					{% csrf_token %}
+					<input name="product_id" type="hidden" value="{{ item.product_id }}"/>
+					<a onclick="javascript:$(this).closest('form').submit();"><i class="fa fa-trash-o"></i></a>
+				</form>
 				<a href="{{ item.product.get_absolute_url }}">{{ item.product.name }}</a>
 				<p>
 					<span class="price">{{ item.product.price|currency:default_currency }}</span>

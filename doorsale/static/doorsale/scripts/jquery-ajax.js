@@ -7,10 +7,13 @@
 /*global window: false, jQuery: false */
 
 /* Modified: Replaced $.live event to $.on for JQuery 1.9 and above */
-(function ($) {
+/* Modified: Introduced scope to initialize new elements added to DOM */
+function bootstrapAjax($, scope) {
     var data_click = "unobtrusiveAjaxClick",
         data_validation = "unobtrusiveValidation";
 
+	scope = (scope == undefined || scope == null) ? '' : scope + ' ';
+	
     function getFunction(code, argNames) {
         var fn = window, parts = (code || "").split(".");
         while (fn && parts.length) {
@@ -117,7 +120,7 @@
         return !validationInfo || !validationInfo.validate || validationInfo.validate();
     }
 
-    $("a[data-ajax=true]").on("click", function (evt) {
+    $(scope + "a[data-ajax=true]").on("click", function (evt) {
         evt.preventDefault();
         asyncRequest(this, {
             url: this.href,
@@ -126,7 +129,7 @@
         });
     });
 
-    $("form[data-ajax=true] input[type=image]").on("click", function (evt) {
+    $(scope + "form[data-ajax=true] input[type=image]").on("click", function (evt) {
         var name = evt.target.name,
             $target = $(evt.target),
             form = $target.parents("form")[0],
@@ -142,7 +145,7 @@
         }, 0);
     });
 
-    $("form[data-ajax=true] :submit").on("click", function (evt) {
+    $(scope + "form[data-ajax=true] :submit").on("click", function (evt) {
         var name = evt.target.name,
             form = $(evt.target).parents("form")[0];
 
@@ -153,7 +156,7 @@
         }, 0);
     });
 
-    $("form[data-ajax=true]").on("submit", function (evt) {
+    $(scope + "form[data-ajax=true]").on("submit", function (evt) {
         var clickInfo = $(this).data(data_click) || [];
         evt.preventDefault();
         if (!validate(this)) {
@@ -165,4 +168,6 @@
             data: clickInfo.concat($(this).serializeArray())
         });
     });
-}(jQuery));
+}
+
+(bootstrapAjax(jQuery));

@@ -34,6 +34,17 @@
   border: 1px solid @border-color;
 }
 
+.transition(@transition) {
+  transition: @transition;
+  -webkit-transition: @transition;
+}
+
+.opacity(@opacity) {
+  @opacity-percentage: @opacity * 100;
+  opacity: @opacity;
+  filter: ~"alpha(opacity = (@{@opacity-percentage}))";
+}
+
 * {
   padding: 0px;
   margin: 0px;

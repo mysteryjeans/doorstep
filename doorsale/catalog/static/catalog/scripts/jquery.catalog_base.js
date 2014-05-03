@@ -21,3 +21,12 @@ function expandCategories(categoryID) {
 		$('.parent-category', this).first().addClass('arrow-down');
 	});
 }
+
+
+function basketChanged() {
+	$('#basket-container .price').hide();
+	$('#basket-container .price').fadeIn('fast');
+	
+	// Initializing new forms in basket-container
+	bootstrapAjax($, '#basket-container');
+}

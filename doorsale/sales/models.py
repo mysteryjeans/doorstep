@@ -68,6 +68,17 @@ class Cart(models.Model):
         
         return item
     
+    def remove_item(self, product_id):
+        """
+        Remove an item from cart
+        """
+        try:
+            cart_item = self.items.get(product_id=product_id)
+            cart_item.delete()
+        except CartItem.DoesNotExist:
+            pass
+        
+    
     def get_items(self):
         """
         Fetch cart items with products and pics
