@@ -17,7 +17,9 @@
 		<ul>
 			{% for item in items %}
 			<li class="cart-item">
-				<img src="{{ MEDIA_URL }}{{ item.product.pics.all.0.url }}" />
+				<div class="item-preview">
+					<img src="{{ MEDIA_URL }}{{ item.product.pics.all.0.url }}" />
+				</div>
 				<form method="post" class="cart-item-remove" data-ajax="true" data-ajax-url="{% url 'sales_remove_from_cart' %}" data-ajax-update="#basket-container" data-ajax-success="basketChanged();">
 					{% csrf_token %}
 					<input name="product_id" type="hidden" value="{{ item.product_id }}"/>
