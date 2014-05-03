@@ -1,6 +1,6 @@
 {% load catalog_filters %}
 
-{% with items=cart.items.all sub_total=cart.get_sub_total items_count=cart.get_items_count %}
+{% with items=cart.get_items sub_total=cart.get_sub_total items_count=cart.get_items_count %}
 <div class="basket">
 	<div class="basket-cap">
 		<div class="cart-count">
@@ -34,7 +34,7 @@
 			<button>Checkout</button>
 		</div>
 		{% else %}
-		<div style="text-align: center;" >
+		<div class="no-items" >
 			You have no items in your shopping cart.
 		</div>
 		{% endif %}

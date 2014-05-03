@@ -55,30 +55,32 @@ class Cart(models.Model):
         """
         Add or augment quantity of product
         """
-        for item in self.items.all():
-            if item.product_id == product_id:
-                item.quantity += quantity
-                item.save()
-                return item
+        if self.items.filter(product_id=product_id):
+            item = self.items.get(product_id=product_id)
+            item.quantity += quantity
+            item.save()
+            return item
         
-        item = CartItem.objects.create(cart=self,
-                                       product_id=product_id,
-                                       quantity=quantity,
-                                       updated_by=str(user),
-                                       created_by=str(user))
-        self.items.add(item)
-        self.save()
+        item = self.items.create(product_id=product_id,
+                                 quantity=quantity,
+                                 updated_by=str(user),
+                                 created_by=str(user))
+        
         return item
+    
+    def get_items(self):
+        """
+        Fetch cart items with products and pics
+        """
+        return self.items.prefetch_related('product', 'product__pics').all()
     
     @classmethod
     def get_cart(cls, cart_id=None):
         """
         Returns existing cart or creates new one
-        
-        Prefetch cart items, products and pics
         """
         if cart_id:
-            return cls.objects.prefetch_related('items', 'items__product', 'items__product__pics').get(id=cart_id)
+            return cls.objects.get(id=cart_id)
         
         return cls.objects.create()
         
@@ -100,6 +102,7 @@ class CartItem(models.Model):
         db_table = 'sales_cart_item'
         ordering = ('id',)
         verbose_name_plural = 'Cart Items'
+        unique_together = ('cart', 'product',)
     
     def get_sub_total(self):
         """

@@ -1,8 +1,11 @@
+from django.db import transaction
 from django.shortcuts import render
 
 from doorsale.sales.models import Cart
 from doorsale.financial.models import Currency        
 
+
+@transaction.commit_on_success
 def add_to_cart(request):   
     """
     Add product to cart
@@ -15,7 +18,7 @@ def add_to_cart(request):
     else:
         cart = Cart.get_cart()
         request.session['cart_id'] = cart.id
-        
+    
     cart.add_item(product_id, quantity, request.user)
     
     if 'default_currency' in request.session:
