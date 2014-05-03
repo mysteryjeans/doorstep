@@ -102,3 +102,28 @@ h2 {
 .errorlist {
   color: @error-message-color;
 }
+
+[context-menu] {
+  display: none;
+  background: white;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  margin-top: 36px;
+  box-shadow: 0 4px 3px rgba(0, 0, 0, 0.2);
+  .border;
+  .border-radius(2px);
+  
+  .arrow {
+    background: url("/static/doorsale/img/sprites.png");
+    background-position: -266px -8px;
+    display: block;
+    height: 18px;
+    right: 0;
+    margin-right: 12px;
+    margin-top: -17px;
+    position: absolute;
+    top: 0;
+    width: 25px;
+  }
+}
