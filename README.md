@@ -4,11 +4,12 @@ Doorsale
 
 The powerful e-commerce solution for Django. This project is in its early stages and lots of work needs to be done. Doorsale project has been defined into following distinct apps.
 
-1. doorsale.catalog: Product, Specs and Manufacturer related details
-2. doorsale.financial: Currency and Taxation
-3. doorsale.geo: Countries and States
-4. doorsale.sales: Order processing and shopping cart
-5. doorsale.common: User and Addresses
+1. doorsale: Generice views, templates and settings
+2. doorsale.catalog: Product catalog, Categories, Product Specs and Manufacturers
+3. doorsale.financial: Currency and Taxation
+4. doorsale.geo: Countries, States and Addresses
+5. doorsale.sales: Order processing and shopping cart
+6. doorsale.accounts: User accounts
 
 **Django models and admin models have been defined in detail, I need your help & contributions to make this project full fledged e-commerce solution.**
 
