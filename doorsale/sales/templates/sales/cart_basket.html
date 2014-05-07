@@ -16,22 +16,24 @@
 		{% if items %}
 		<ul>
 			{% for item in items %}
+			{% with product=item.product %}
 			<li class="cart-item">
 				<div class="item-preview">
-					<img src="{{ MEDIA_URL }}{{ item.product.pics.all.0.url }}" />
+					<img src="{{ MEDIA_URL }}{{ product.pics.all.0.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
 				</div>
 				<form method="post" class="cart-item-remove" data-ajax="true" data-ajax-url="{% url 'sales_remove_from_cart' %}" data-ajax-update="#basket-container" data-ajax-success="basketChanged();">
 					{% csrf_token %}
 					<input name="product_id" type="hidden" value="{{ item.product_id }}"/>
-					<a onclick="javascript:$(this).closest('form').submit();"><i class="fa fa-trash-o"></i></a>
+					<a onclick="javascript:$(this).closest('form').submit();" title="Remove this product."><i class="fa fa-trash-o"></i></a>
 				</form>
-				<a href="{{ item.product.get_absolute_url }}">{{ item.product.name }}</a>
+				<a href="{{ product.get_absolute_url }}" title="{{ product.gist }}">{{ product.name }}</a>
 				<p>
-					<span class="price">{{ item.product.price|currency:default_currency }}</span>
+					<span class="price" title="Per unit price">{{ product.price|currency:default_currency }}</span>
 					<br />
 					<span class="quantity">Qty: {{ item.quantity }}</span>
 				</p>
 			</li>
+			{% endwith %}
 			{% endfor %}
 		</ul>
 		<div class="sub-total">
