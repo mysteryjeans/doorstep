@@ -1,6 +1,7 @@
 @first-color: #d40808;
 @second-color: #3A87AD;
 @text-color: #000;
+@light-text-color: #888;
 @a-color: #0055AA;
 @a-color-hover: @first-color;
 @font-family: verdana,arial,helvetica,sans-serif;
@@ -58,8 +59,8 @@ body, input[type="text"], input[type="password"], input[type="email"], textarea,
 body {
   line-height: 1.3; 
   height: 100%;
-  font-family: @font-family;
-  font-size: @font-size;
+  font-family: @font-family !important;
+  font-size: @font-size !important;
 }
 
 input[type="radio"] {
@@ -107,6 +108,7 @@ input[type="text"], input[type="password"], input[type="email"], textarea {
   cursor: pointer;  
   color: @button-text-color;
   background: @button-color;
+  border: 0px;
   .border-radius(2px);
 }
 

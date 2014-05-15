@@ -7,6 +7,7 @@ import os
 
 
 from doorsale.catalog import settings as catalog_settings
+from doorsale.sales import settings as sales_settings
 
 
 DOORSALE_DIR = os.path.dirname(__file__)
@@ -37,6 +38,7 @@ PIPELINE_CSS = {
     }
 }
 PIPELINE_CSS.update(catalog_settings.PIPELINE_CSS)
+PIPELINE_CSS.update(sales_settings.PIPELINE_CSS)
 
 # Javascript settings for django pipeline
 PIPELINE_JS = {

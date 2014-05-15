@@ -87,7 +87,7 @@ class TaxRate(models.Model):
         """
         Calculate tax on price & quantity based on tax method
         """
-        self._calculate(price, quantity, self.method, self.rate, self.name) 
+        return self._calculate(price, quantity, self.method, self.rate, self.name) 
     
     @classmethod
     def get_taxes(cls):
@@ -101,11 +101,10 @@ class TaxRate(models.Model):
         """
         Calculate tax on price & quantity based on tax method
         """
-        price = float(price)
         if method == cls.TAX_FIXED:
-            return rate * quantity
+            return float(rate) * float(quantity)
         elif method == cls.TAX_PERCENTAGE:
-            return rate * quantity * price
+            return float(rate) * float(quantity) * float(price)
         
         if name:
             raise Exception('Unknown tax method "%s" defined for tax rate: "%s"' % (method, name))

@@ -40,7 +40,7 @@
 			<p>
 				<label>Sub-Total:</label> <span class="price">{{ sub_total|currency:default_currency }}</span>
 			</p>
-			<button>Checkout</button>
+			<a href="{% url 'sales_checkout_cart' %}" class="button">Checkout</a>
 		</div>
 		{% else %}
 		<div class="no-items" >

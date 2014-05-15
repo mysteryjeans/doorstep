@@ -37,13 +37,16 @@
 				{% endif %}
 			</li>
 			<li class="add-to-cart-summary">
-				<form method="post" action="{% url 'sales_add_to_cart' %}" data-ajax="true" data-ajax-update="#basket-container" data-ajax-success="basketChanged();">
+				<form id="add-to-cart-form" method="post" action="{% url 'sales_add_to_cart' %}" data-ajax="true" data-ajax-update="#basket-container" data-ajax-success="basketChanged();" data-ajax-complete="add_to_cart">
 					{% csrf_token %}
 					<label>Qty:</label>
 					<input name="product_id" type="hidden" value="{{ product.id }}"/>
 					<input name="quantity" type="text" value="1"/>
 					<button class="add-to-cart">
 						<i class="fa fa-shopping-cart"></i>Add to Cart
+					</button>
+					<button class="buy-now" onclick="javascript:$(this).closest('form').unbind('submit'); $(this).closest('form').submit();">
+						<i class="fa fa-money"></i>Buy Now
 					</button>
 				</form>
 			</li>
@@ -112,5 +115,17 @@
 
 	// Generating tabs
 	$('#product-details').tabs(); 
+
+	function add_to_cart(data) {
+		if(data.status == 200) {
+			// success message
+		} else {
+			alert(data.responseText);
+		}
+	}
+
+	$('#add-to-cart-form').on('submit', function(){
+		$(this).stopPropagation();
+	});
 </script>
 {% endblock %}

@@ -1,0 +1,44 @@
+{% extends "catalog/catalog_base.html" %}
+
+{% load compressed %}
+
+{% block styles %}
+{% compressed_css 'sales' %}
+{% compressed_css 'font-awesome' %}
+{% endblock %}
+
+{% block catalog-content %}
+<div class="checkout-steps">
+    <ul>
+        <li class="{% if 'cart' in steps_processed %}processed{% endif %} {% if step_active == 'cart' %}active{% endif %}">
+            <a {% if 'cart' in  steps_processed %}href="{% url 'sales_checkout_cart' %}"{% endif %}>
+                <i class="fa fa-shopping-cart"></i><span>Cart</span>
+            </a>
+        </li>
+        <li class="{% if 'billing' in steps_processed %}processed{% endif %} {% if step_active == 'billing' %}active{% endif %}">
+            <a {% if 'billing' in steps_processed %}href="{% url 'sales_checkout_billing' %}"{% endif %}>
+                <i class="fa fa-home"></i><span>Billing</span>
+            </a>
+        </li>
+        <li class="{% if 'shipping' in steps_processed %}processed{% endif %} {% if step_active == 'shipping' %}active{% endif %}">
+            <a {% if 'shipping' in steps_processed %}href="{% url 'sales_checkout_shipping' %}"{% endif %}>
+                <i class="fa fa-truck"></i><span>Shipping</span>
+            </a>
+        </li>
+        <li class="{% if 'payment' in steps_processed %}processed{% endif %} {% if step_active == 'payment' %}active{% endif %}">
+            <a {% if 'payment' in steps_processed %}href="{% url 'sales_checkout_payment' %}"{% endif %}>
+                <i class="fa fa-credit-card"></i><span>Payment</span>
+            </a>
+        </li>
+        <li class="{% if 'order' in steps_processed %}processed{% endif %} {% if step_active == 'order' %}active{% endif %}">
+            <a {% if 'order' in steps_processed %}href="{% url 'sales_checkout_order' %}"{% endif %}>
+                <i class="fa fa-list"></i><span>Order</span>
+            </a>
+        </li>
+        <li class="{% if step_active == 'receipt' %}active{% endif %}">
+            <i class="fa fa-print"></i><span>Receipt</span>
+        </li>
+    </ul>
+</div>
+{% block checkout-content %}{% endblock %}
+{% endblock %}
