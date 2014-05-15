@@ -6,6 +6,7 @@
 @add-to-cart-color: @first-color;
 @buy-now-color: orange;
 @catalog-bar-color: whitesmoke;
+@discount-color: #27ae60;
 
 .info-message-box {
   background: @info-message-color;
@@ -18,11 +19,14 @@
   color: @price-color;
   font-size: 1em;
   
-  .old-price {
-    color: @text-color;
+  .old-price, .discount {
     font-size: 0.8em;
-    text-decoration: line-through;
+    color: @light-text-color;
     font-weight: normal;
+  }
+
+  .old-price {
+    text-decoration: line-through;
   }
 }
 
@@ -428,11 +432,20 @@
   
   .product-summary {
     float: right;
-    width: 40%;
+    width: 60%;
     
     h2 {
       font-size: 1.4em;
       margin-bottom: 10px;
+
+      .discount {
+        font-size: 0.9em;
+        float: right;
+        background: @discount-color;
+        color: white;
+        padding: 0px 5px;
+        .border-radius(7px 0px);
+      }
     }
     
     label {
@@ -458,6 +471,14 @@
         width: 25px;
         text-align: center;
       }
+    }
+
+    .free-shipping {
+      color: @discount-color;
+      border: 1px solid @discount-color;
+      padding: 5px 5px;
+      .border-radius(7px 0px);
+      display: inline-block;
     }
     
     li {

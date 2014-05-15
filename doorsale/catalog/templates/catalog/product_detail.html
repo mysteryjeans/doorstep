@@ -5,7 +5,11 @@
 
 {% block catalog-content %}
 <div class="product-summary">
-	<h2>{{ product.name }}</h2>
+	<h2>{{ product.name }}
+		{% if product.old_price %}
+		<span class="discount"> {{ product.get_discount }}% OFF</span>
+		{% endif %}
+	</h2>
 	<div class="product-description">
 		{{ product.gist }}
 	</div>
@@ -33,7 +37,8 @@
 			<li class="price">
 				{{ product.price|currency:default_currency }}
 				{% if product.old_price %}
-				<span class="old-price"> {{ product.old_price|currency:default_currency }} </span>
+				<span class="old-price"> {{ product.old_price|currency:default_currency }}</span>
+				<span class="discount"> {{ product.get_discount }}% OFF</span>
 				{% endif %}
 			</li>
 			<li class="add-to-cart-summary">

@@ -170,6 +170,15 @@ class Product(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def get_discount(self):
+        """
+        Return discount on the product
+        """
+        if self.old_price:
+            return int(((self.old_price - self.price)/self.old_price) * 100)
+
+        return 0
     
     @models.permalink
     def get_absolute_url(self):
