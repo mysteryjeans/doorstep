@@ -94,7 +94,7 @@
                     <li>
                         <select id="id_state" name="state">
                             {% for state in form.get_states %}
-                            <option country="{{ state.country_id }}" value="{{ state.id }}">{{ state.name }}</option>
+                            <option country="{{ state.country_id }}" value="{{ state.id }}" {% if state_id == state.id %}selected="selected"{% endif %}>{{ state.name }}</option>
                             {% endfor %}
                             <option value="">Other</option>
                         </select>
@@ -122,12 +122,14 @@
         if (!$('select#id_state option').is(':visible'))
             $('select#id_state option[value=""]').show();
 
-        $('select#id_state').val($('select#id_state option:visible:first').val());
+        if(!$('select#id_state option:selected').is(':visible'))
+            $('select#id_state').val($('select#id_state option:visible:first').val());
     }
 
     $(function () {
         $('select#id_country').on('change', countryChanged);
         countryChanged();
+        $('select#id_state').val('{{ form.state.value|default_if_none:"" }}');
     });
 </script>
 {% endblock %}
