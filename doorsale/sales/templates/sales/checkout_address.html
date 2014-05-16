@@ -1,0 +1,133 @@
+{% extends "sales/checkout_base.html" %}
+
+{% block checkout-content %}
+<div class="action-form">
+    <form method="post" action="{% url current_step %}">
+        {% csrf_token %}
+         <input id="address_id" name="address_id" type="hidden" value=""/>
+        {% if addresses %}
+        <div class="addresses">
+            <h3>Existing address{{ addresses|pluralize:"es" }}</h3>
+            {% for address in addresses %}
+            <div>
+                <ul>
+                    <li class="name">
+                        {{ address.first_name }} {{address.last_name }}
+                    </li>
+                    <li>
+                        <label>Email: </label>
+                        {{ address.email }}
+                    </li>
+                    <li>
+                        <label>Phone: </label>
+                        {{ address.phone_number }}
+                    </li>
+                    <li>
+                        {{ address.address1 }}
+                    </li>
+                    <li>
+                        {{ address.city }}, {{ address.zip_or_postal_code }}
+                    </li>
+                    <li>
+                        {{ address.country }}
+                    </li>
+                    <li>
+                        <button onclick="javascript:$('#address_id').val('{{ address.id }}');">Next</button>
+                    </li>
+                </ul>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        <h3>Add new address</h3>
+        <div class="new-address">
+            <div>
+                <ul>
+                    <li>
+                        {{ form.first_name }}
+                        {{ form.first_name.errors }}
+                    </li>
+                    <li>
+                        {{ form.last_name }}
+                        {{ form.last_name.errors }}
+                    </li>
+                    <li>
+                        {{ form.email }}
+                        {{ form.email.errors }}
+                    </li>
+                    <li>
+                        {{ form.phone_number }}
+                        {{ form.phone_number.errors }}
+                    </li>
+                    <li>
+                        {{ form.fax_number }}
+                        {{ form.fax_number.errors }}
+                    </li>
+                    <li>
+                        {{ form.company }}
+                        {{ form.company.errors }}
+                    </li>
+                </ul>
+            </div>
+            <div style="float: left;">
+                <ul>
+                    <li>
+                        {{ form.address1 }}
+                        {{ form.address1.errors }}
+                    </li>
+                    <li>
+                        {{ form.address2 }}
+                        {{ form.address2.errors }}
+                    </li>
+                    <li>
+                        {{ form.zip_or_postal_code }}
+                        {{ form.zip_or_postal_code.errors }}
+                    </li>
+                    <li>
+                        {{ form.city }}
+                        {{ form.city.errors }}
+                    </li>
+                    <li>
+                        {{ form.country }}
+                        {{ form.country.errors }}
+                    </li>
+                    <li>
+                        <select id="id_state" name="state">
+                            {% for state in form.get_states %}
+                            <option country="{{ state.country_id }}" value="{{ state.id }}">{{ state.name }}</option>
+                            {% endfor %}
+                            <option value="">Other</option>
+                        </select>
+                        {{ form.state.errors }}
+                    </li>
+                    <li>
+                        <button>Next</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </form>    
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script type="text/javascript">
+    function countryChanged() {
+        var country_id = $('select#id_country').val();
+
+        $('select#id_state option').hide();
+        $('select#id_state option[country="' + country_id + '"]').show();
+
+        if (!$('select#id_state option').is(':visible'))
+            $('select#id_state option[value=""]').show();
+
+        $('select#id_state').val($('select#id_state option:visible:first').val());
+    }
+
+    $(function () {
+        $('select#id_country').on('change', countryChanged);
+        countryChanged();
+    });
+</script>
+{% endblock %}

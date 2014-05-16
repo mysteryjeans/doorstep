@@ -16,6 +16,7 @@
 <div class="cart">
     {% with items=cart.get_items %}
     {% if items %}
+    {% comment %}
     <ul class="cart-items">
         {% for item in items %}
         {% with product=item.product %}
@@ -32,14 +33,21 @@
                     
                 </div>
                 <a class="item-title" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-                <div class="item-description">{{ product.gist }}</div>
+                
                 <div class="prices-total">
                     <form method="post" action="{% url 'sales_checkout_cart' %}">
                         {% csrf_token %}
                         <input type="hidden" name="product_id" value="{{ product.id }}">
                         <div>
                             <label>Price:</label>
-                            <span class="price">{{ product.price|currency:default_currency }}</span>
+                            <span class="price">
+                                {{ product.price|currency:default_currency }}
+                                {% if product.old_price %}
+                                <span class="old-price">{{ product.price|currency:default_currency }}</span>
+                                <br/>
+                                <span class="discount">{{ product.get_discount }}% OFF</span>
+                                {% endif %}
+                            </span>
                         </div>
                         <div>
                             <label>Quantity:</label>
@@ -55,6 +63,59 @@
         {% endwith %}
         {% endfor %}
     </ul>
+    {% endcomment %}
+    <table class="cart-items">
+        <thead>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Sub-Total</th>
+        </thead>
+        <tbody>
+        {% for item in items %}
+        {% with product=item.product %}
+        <tr class="cart-item">
+            <td>
+                <div class="item-preview">
+                    <img src="{{ MEDIA_URL }}{{ product.pics.all.0.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
+                </div>
+                <a class="item-title" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+            </td>
+            <td>
+                 <span class="price">
+                     {{ product.price|currency:default_currency }}
+                     {% if product.old_price %}
+                     <br/>
+                     <span class="old-price">{{ product.price|currency:default_currency }}</span>
+                     <br/>
+                     <span class="discount">{{ product.get_discount }}% OFF</span>
+                     {% endif %}
+                 </span>
+            </td>
+            <td>
+                <form method="post" action="{% url 'sales_checkout_cart' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <input name="quantity" type="text" class="quantity" value="{{ item.quantity }}" onchange="javascript:$(this).closest('form').submit();"/>
+                    {% if product.quantity %}
+                    <br/>
+                    <span class="in-stock">In Stock</span>
+                    {% endif %}
+                </form>
+            </td>
+            <td>
+                  <form method="post" action="{% url 'sales_remove_from_cart' %}" class="cart-item-remove">
+                        {% csrf_token %}
+                        <input name="product_id" type="hidden" value="{{ item.product_id }}"/>
+                        <a onclick="javascript:$(this).closest('form').submit();" title="Remove this item from the cart"><i class="fa fa-trash-o"></i></a>
+                    </form>  
+                <span class="total price">{{ item.get_sub_total|currency:default_currency }}</span>
+            </td>
+        </tr>
+        {% endwith %}
+        {% endfor %}
+        </tbody>
+    </table>
     <div class="cart-summary">
         <div class="cart-total">
             <table>

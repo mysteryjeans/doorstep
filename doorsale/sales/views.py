@@ -1,9 +1,12 @@
 from django.db import transaction
+from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 
+from doorsale.geo.models import Address
 from doorsale.sales.models import Cart
+from doorsale.sales.forms import AddressForm
 from doorsale.catalog.views import CatalogBaseView
 from doorsale.financial.models import Currency        
 
@@ -142,30 +145,115 @@ class CheckoutCartView(CheckoutBaseView):
         return super(CheckoutCartView, self).get(request, cart=cart, error=error, message=message)
 
 
-class CheckoutBillingView(CheckoutBaseView):
+class CheckoutAddressView(CheckoutBaseView):
     """
-    Display user billing address
+    Base checkout view for billing and shipping address
+    """
+    template_name = 'sales/checkout_address.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CheckoutAddressView, self).get_context_data(**kwargs)
+        
+        addresses_filter = None
+        request = self.request
+
+        if request.user.is_authenticated():
+            addresses_filter = Q(email__iexact=request.user.email) | Q(customer=request.user)
+            
+        if 'addresses' in request.session:
+            addresses_ids = request.session['addresses']
+            addresses_filter = addresses_filter | Q(id__in=addresses_ids) if addresses_filter else Q(id__in=addresses_ids)
+        
+        if addresses_filter:
+            context['addresses'] = list(Address.objects.filter(addresses_filter))
+
+        context['current_step'] = self.current_step
+
+        return context
+
+    def get(self, request, **kwargs):
+        form = AddressForm()
+
+        if self.session_address_key in request.session:
+            del request.session[self.session_address_key]
+
+        return super(CheckoutAddressView, self).get(request, form=form, **kwargs)
+
+    def post(self, request):
+        form = AddressForm(request.POST)
+        address_id = request.POST['address_id']
+
+        if address_id:
+            address_id = int(address_id)
+            address = get_object_or_404(Address, id=address_id)
+
+            # Binding address permenantly to authenticated user
+            if address.customer is None and request.user.is_authenticated():
+                address.customer = request.user
+                address.save()
+
+            request.session[self.session_address_key] = address_id
+            return HttpResponseRedirect(reverse(self.next_step))
+
+        if form.is_valid():
+            data = form.cleaned_data
+            customer = request.user if request.user.is_authenticated() else None
+
+            address = Address.objects.create(
+                customer=customer,
+                first_name=data['first_name'],
+                last_name=data['last_name'],
+                email=data['email'],
+                address1=data['address1'],
+                address2=data['address2'],
+                phone_number=data['phone_number'],
+                fax_number=data['fax_number'],
+                zip_or_postal_code=data['zip_or_postal_code'],
+                city=data['city'],
+                country=data['country'],
+                state=data['state'],
+                company=data['company'],
+                created_by=str(request.user),
+                updated_by=str(request.user))
+
+            addresses = self.request.session.get('addresses', [])
+            addresses.append(address.id)
+            self.request.session['addresses'] = addresses
+            request.session[self.session_address_key] = address.id
+
+            return HttpResponseRedirect(reverse(self.next_step))
+
+        return super(CheckoutAddressView, self).get(request, form=form)
+
+
+class CheckoutBillingView(CheckoutAddressView):
+    """
+    User billing address for order
     """
     step_active = 'billing'
     steps_processed = ['cart']
-    template_name = 'sales/checkout_billing.html'
+    current_step = 'sales_checkout_billing'
+    next_step = 'sales_checkout_shipping'
+    session_address_key = 'billing_address'
 
     @classmethod
     def get_breadcrumbs(cls):
         return ({'name': 'Billing Address', 'url': reverse('sales_checkout_billing')},)
 
 
-class CheckoutShippingView(CheckoutBaseView):
+class CheckoutShippingView(CheckoutAddressView):
     """
     Display user shipping address
     """
     step_active = 'shipping'
-    steps_processed = ['cart', 'address']
-    template_name = 'sales/checkout_shipping.html'
+    steps_processed = ['cart', 'billing']
+    current_step = 'sales_checkout_shipping'
+    next_step = 'sales_checkout_payment'
+    session_address_key = 'shipping_address'
 
     @classmethod
     def get_breadcrumbs(cls):
-        return ({'name': 'Address', 'url': reverse('sales_checkout_shipping')},)
+        return ({'name': 'Shipping Address', 'url': reverse('sales_checkout_shipping')},)
 
 
 class CheckoutPaymentView(CheckoutBaseView):
@@ -173,7 +261,7 @@ class CheckoutPaymentView(CheckoutBaseView):
     Display payment method for checkout
     """
     step_active = 'payment'
-    steps_processed = ['cart', 'address', 'shipping']
+    steps_processed = ['cart', 'billing', 'shipping']
     template_name = 'sales/checkout_payment.html'
 
     @classmethod
@@ -186,7 +274,7 @@ class CheckoutOrderView(CheckoutBaseView):
     Display user order information
     """
     step_active = 'order'
-    steps_processed = ['cart', 'address', 'shipping', 'payment']
+    steps_processed = ['cart', 'billing', 'shipping', 'payment']
     template_name = 'sales/checkout_order.html'
 
     @classmethod

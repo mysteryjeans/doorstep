@@ -23,6 +23,8 @@
             float: left;
             padding: 5px 15px;
             margin: 5px;
+            .border;
+            border-color: white;
           
             i {
                 font-size: 28px;
@@ -52,9 +54,80 @@
 
 .cart {
     .cart-items {
-        li {
+        font-size: inherit;
+        width: 100%;
+        border-spacing: 0px;
+        cellpadding: 0px;
+        cellspacing: 0px;
+
+        thead {
+            color: @light-text-color;
+
+            th {
+                text-align: left;
+                font-weight: normal;
+                padding: 20px 0px;
+                border-bottom: 1px dotted @border-color;
+            }
+        }
+
+        td, th {
+            max-width: 50px;
+            width: auto;
+        }
+
+        td:first-child, th:first-child {
+            max-width: none;
+        }
+
+        .cart-item {
             padding: 10px;
             overflow: hidden;
+            width: auto;
+            margin-top: 5px;
+            line-height: 1.5em;
+            vertical-align: top;
+
+            div {
+                display: inline-block;
+                margin: 0px 5px;
+            }
+
+            label {
+                color: @light-text-color;
+                font-size: 0.9em;
+            }
+
+            td {
+                padding-top: 20px;
+                padding-bottom: 10px;
+                border-bottom: 1px dotted @border-color;
+            }
+
+            .quantity {
+                width: 30px;
+                padding: 2px 0px;
+                text-align: center;
+            }
+
+            .price {
+                color: @text-color;;
+            }
+
+            .total.price {
+                color: @price-color;
+            }
+
+            .discount {
+                background: @discount-color;
+                color: white;
+                padding: 0px 5px;
+                .border-radius(7px 0px);
+            }
+
+            .in-stock {
+                font-size: 0.9em;
+            }        
 
             .item-preview {
                 float: left;
@@ -79,57 +152,22 @@
                 max-width: 600px;
             }
 
-            .prices-total {
-                clear: both;
-                margin-top: 5px;
-                line-height: 1.5em;
+            .cart-item-remove {
+                font-size: 16px;
+                cursor: pointer;
                 text-align: right;
+                float: right;
 
-                div {
-                    display: inline-block;
-                    margin: 0px 5px;
-                }
-
-                label {
+                a {
                     color: @light-text-color;
-                    font-size: 0.9em;
-                }
-
-                .quantity {
-                    width: 30px;
-                    padding: 2px 0px;
-                    text-align: center;
-                }
-
-                .price {
-                    color: @text-color;;
-                }
-
-                .total.price {
-                    color: @price-color;
                 }
             }
-
-            .cart-item-right {
-                float:  right;
-
-                .cart-item-remove {                    
-                    margin-top: 10px;
-                    font-size: 16px;
-                    cursor: pointer;
-                    text-align: right;
-
-                    a {
-                        color: @light-text-color;
-                    }
-                }
-            }
+            
         }
     }
 
     .cart-summary {
         padding: 20px 0px;
-        border-top: 1px solid @border-color;
         line-height: 1.5em;
 
         .cart-total {
@@ -180,6 +218,46 @@
 
         .remove-all {
             float: left;
+        }
+    }
+}
+
+.action-form {
+    .addresses {
+        line-height: 1.5em;
+        overflow: hidden;
+        margin-bottom: 10px;
+
+        div {
+            float: left;
+        }
+
+        ul {
+            padding: 10px 20px;
+            margin-right: 10px;
+            min-width: 150px;
+            .border;
+
+            li {
+                padding: 0px;
+            }
+
+            label {
+                color: @light-text-color;
+            }
+
+            .name {
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    .new-address {
+        div {
+            float: left;
+            width: 350px;
+            margin-right: 30px;
         }
     }
 }
