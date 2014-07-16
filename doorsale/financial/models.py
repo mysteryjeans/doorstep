@@ -109,4 +109,6 @@ class TaxRate(models.Model):
         if name:
             raise Exception('Unknown tax method "%s" defined for tax rate: "%s"' % (method, name))
         
-        raise Exception('Unknown tax method "%s"' % method)  
+        raise Exception('Unknown tax method "%s"' % method)
+
+

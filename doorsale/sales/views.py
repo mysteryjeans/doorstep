@@ -5,10 +5,10 @@ from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 
 from doorsale.geo.models import Address
-from doorsale.sales.models import Cart
+from doorsale.sales.models import Cart, Order, PaymentMethod
 from doorsale.sales.forms import AddressForm
 from doorsale.catalog.views import CatalogBaseView
-from doorsale.financial.models import Currency        
+from doorsale.financial.models import Currency      
 
 
 @transaction.commit_on_success
@@ -17,7 +17,6 @@ def add_to_cart(request):
     Add product to cart
     """
     product_id = int(request.POST['product_id'])
-    
     
     # Checking if user already has cart in session
     # otherwise create a new cart for the user    
@@ -263,10 +262,46 @@ class CheckoutPaymentView(CheckoutBaseView):
     step_active = 'payment'
     steps_processed = ['cart', 'billing', 'shipping']
     template_name = 'sales/checkout_payment.html'
+    
+    def get_context_data(self, **kwargs):
+        payment_methods = PaymentMethod.ALL
+        return super(CheckoutPaymentView, self).get_context_data(payment_methods=payment_methods, **kwargs)
 
     @classmethod
     def get_breadcrumbs(cls):
         return ({'name': 'Payment', 'url': reverse('sales_checkout_payment')},)
+    
+    def get(self, request):
+        po_number = request.session.get('po_number', None)
+        payment_method = request.session.get('payment_method', None)
+        
+        return super(CheckoutPaymentView, self).get(request, payment_method=payment_method, po_number=po_number)
+    
+    def post(self, request):
+        error = None
+        payment_method = request.POST.get('payment_method', None)
+        payment_methods = dict(PaymentMethod.ALL)
+        if payment_method and payment_method in payment_methods:
+            
+            if payment_method == PaymentMethod.PURCHASE:
+                po_number = request.POST['po_number']
+                if po_number:
+                    request.session['po_number'] = po_number
+                    request.session['payment_method'] = payment_method
+                    return HttpResponseRedirect(reverse('sales_checkout_order'))
+                else:
+                    error = 'Please provide purchase order number.'
+            else:
+                if 'po_number' in request.session:
+                    del request.session['po_number']
+                    
+                request.session['payment_method'] = payment_method
+                return HttpResponseRedirect(reverse('sales_checkout_order'))
+        else:
+            error = 'Please select payment method'
+        
+        return super(CheckoutPaymentView, self).get(request, error=error, payment_method=payment_method)
+    
 
 
 class CheckoutOrderView(CheckoutBaseView):

@@ -3,7 +3,7 @@ from django.conf import settings
 
 from doorsale.geo.models import Address
 from doorsale.catalog.models import Product
-from doorsale.financial.models import TaxRate 
+from doorsale.financial.models import Currency, TaxRate
 
 
 class Cart(models.Model):
@@ -168,7 +168,34 @@ class CartItem(models.Model):
         Total price of cart item with taxes
         """
         return self.get_sub_total() + self.get_taxes() + self.get_shipping_cost()
- 
+
+
+class PaymentMethod(models.Model):
+    """
+    Represents payment methods for order
+    """
+    # Payment methods
+    COD = 'CO'
+    CHECK = 'CH'
+    CREDIT = 'CC'
+    PURCHASE = 'PO'
+    ALL = ((COD, 'Cash On Delivery'),
+           (CHECK, 'Check / Money Order'),
+           (CREDIT, 'Credit Card'),
+           (PURCHASE, 'Purchase Order'))
+    
+    code = models.CharField(primary_key=True, max_length=2, choices=ALL)
+    name = models.CharField(max_length=100)
+    is_active = models.BooleanField(default=True)
+    updated_by = models.CharField(max_length=100)
+    updated_on = models.DateTimeField(auto_now=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    created_by = models.CharField(max_length=100)
+    
+    class Meta:
+        db_table = 'sales_payment_method'
+        verbose_name_plural = 'Payment Methods'
+
 
 class Order(models.Model):
     """
@@ -211,14 +238,17 @@ class Order(models.Model):
                          (SHIPPING_DELIVERED, 'Delivered'))
     
     customer = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True) # Referencing custom defined model in settings file
-    currency = models.ForeignKey('financial.Currency')
+    currency = models.ForeignKey(Currency)
     sub_total = models.DecimalField(max_digits=9, decimal_places=2)
     taxes = models.DecimalField(max_digits=9, decimal_places=2)
     total = models.DecimalField(max_digits=9, decimal_places=2)
     refunded_amount = models.DecimalField(max_digits=9, decimal_places=2)
     currency_rate = models.FloatField(default=1)
     order_status = models.CharField(max_length=2, choices=ORDER_STATUSES)
+    payment_method = models.ForeignKey(PaymentMethod, db_column='payment_method_code')
     payment_status = models.CharField(max_length=2, choices=PAYMENT_STATUSES)
+    po_number = models.CharField(max_length=100, null=True, blank=True,
+                                 help_text='Purchase Order number')
     shipping_status = models.CharField(max_length=2, choices=SHIPPING_STATUSES)
     billing_address = models.ForeignKey(Address, related_name='billing_orders')
     shipping_address = models.ForeignKey(Address, related_name='shipping_orders', null=True, blank=True)

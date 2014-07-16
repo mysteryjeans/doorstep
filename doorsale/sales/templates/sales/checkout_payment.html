@@ -1,1 +1,45 @@
 {% extends "sales/checkout_base.html" %}
+
+{% block checkout-content %}
+<form method="post" action="{% url 'sales_checkout_payment' %}" class="action-form">
+	<h3>Payment Method</h3>
+	{% csrf_token %}
+	<ul>
+		{% if error %}
+		<li class="error-message">
+			{{ error }}
+		</li>
+		{% endif %}
+		{% for method in payment_methods %}
+		<li>
+			<label>
+			<input name="payment_method" type="radio" value="{{ method.0 }}" {% if payment_method == method.0 %}checked="checked"{% endif %} />
+			{{ method.1 }}
+			</label>
+		</li>
+		{% endfor %}
+		<li id="id_po_number" style="display: none;">
+			<h3>PO Number</h3>
+			<input type="text" name="po_number" value="{{ po_number|default:'' }}" placeholder="Purchase order number..."/>
+		</li>
+		<li>
+			<button>Next</button>
+		</li>
+	</ul>
+</form>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+<script type="text/javascript">
+	$('input[name="payment_method"]').change(function(){
+		if($(this).val() == 'PO')
+			$('#id_po_number').fadeIn();
+		else
+			$('#id_po_number').fadeOut();
+	});
+	
+	if($('input[name="payment_method"][value="PO"]').is(':checked'))
+		$('#id_po_number').show();
+</script>
+{% endblock %}
