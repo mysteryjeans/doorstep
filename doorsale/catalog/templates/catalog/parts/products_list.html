@@ -1,0 +1,38 @@
+{% load catalog_filters %}
+
+<div class="products-list">
+	<ul>
+		{% for product in products %}
+		<li class="product">
+			{% with pic=product.pics.all.0 %}
+			<a href="{{ product.get_absolute_url }}">
+				<div class="pic-container">
+					<img src="{{ MEDIA_URL }}{{ pic.url }}" alt="{{ product.name }}"/>
+				</div>
+				<div class="title">
+					{{ product.name }}
+				</div>
+			</a>
+			{% endwith %}
+			{% if product.gist %}
+			<div class="description">
+				{{ product.gist }}
+			</div>
+			{% endif %}
+			<div class="price">
+				{{ product.price|currency:default_currency }}
+				{% if product.old_price %}
+				<span class="old-price"> {{ product.old_price|currency:default_currency }}</span>
+				<span class="discount"> {{ product.get_discount }}% OFF</span>
+				{% endif %}
+			</div>
+		</li>
+		{% empty %}
+		<li>
+			<p class="info-message-box">
+				{{ no_products_message|default:"There are no products to show you right now." }}
+			</p>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
