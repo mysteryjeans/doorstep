@@ -44,9 +44,9 @@ PIPELINE_CSS.update(sales_settings.PIPELINE_CSS)
 PIPELINE_JS = {
     'base': {
         'source_filenames': (
-          'doorsale/scripts/jquery-1.11.0.js',
+          #'doorsale/scripts/jquery-1.11.0.js',
           'doorsale/scripts/jquery-ajax.js',
-          'doorsale/scripts/jquery-ui-1.10.4.custom.js',
+          #'doorsale/scripts/jquery-ui-1.10.4.custom.js',
           'doorsale/scripts/jquery-utils.js',
         ),
         'output_filename': 'doorsale/scripts/base.js',
