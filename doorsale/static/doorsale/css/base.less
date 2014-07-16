@@ -18,6 +18,15 @@ header {
       float: left;
       padding: 5px;
     }
+    
+    li:after {
+      margin-left: 10px;
+      content: "\00B7";
+    }
+    
+    li:last-child:after {
+      content: none;
+    }
   }
 }
 
