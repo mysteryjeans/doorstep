@@ -14,6 +14,8 @@ The powerful e-commerce solution for Django. This project is in its early stages
 **Django models and admin models have been defined in detail, I need your help & contributions to make this project full fledged e-commerce solution.**
 
 ### Demo
-Get head start in Doorsale development, clone both repos ([doorsale](https://github.com/mysteryjeans/doorsale) & [doorsale-demo](https://github.com/mysteryjeans/doorsale-demo)) and restore demo database. Demo repository is following master branch on Doorsale, so you should pull changes frequently to keep things synchronized and running smoothly, see demo readme for more details.
+Visit Doorsale [demo](http://doorsale-demo.fanaticlab.com/) site for the list of active features developed so far. To get start with e-commerce development of your own site using doorsale, just clone both repos ([doorsale](https://github.com/mysteryjeans/doorsale) & [doorsale-demo](https://github.com/mysteryjeans/doorsale-demo)) and restore demo database.
+
+Demo repository is following master branch on Doorsale, so you should pull changes frequently to keep things synchronized and running smoothly, see [demo project](https://github.com/mysteryjeans/doorsale-demo) readme for more details.
 
 ![Doorsale Demo Screenshot](https://raw.github.com/mysteryjeans/doorsale-demo/master/media/images/demo-screenshot.png)
