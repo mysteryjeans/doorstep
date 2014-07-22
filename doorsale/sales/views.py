@@ -318,7 +318,8 @@ class CheckoutOrderView(CheckoutBaseView):
     step_active = 'order'
     steps_processed = ['cart', 'billing', 'shipping', 'payment']
     template_name = 'sales/checkout_order.html'
-
+    decorators = [transaction.commit_on_success]
+    
     @classmethod
     def get_breadcrumbs(cls):
         return ({'name': 'Order', 'url': reverse('sales_checkout_order')},)
