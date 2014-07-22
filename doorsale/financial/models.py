@@ -59,7 +59,7 @@ class Currency(models.Model):
         return list(cls.objects.filter(is_active=True))
 
 
-class TaxRate(models.Model):
+class Tax(models.Model):
     """
     Represents a Tax Category
     """
@@ -77,8 +77,8 @@ class TaxRate(models.Model):
     created_by = models.CharField(max_length=100)
     
     class Meta:
-        db_table = 'financial_tax_rate'
-        verbose_name_plural = 'Tax Rates'
+        db_table = 'financial_tax'
+        verbose_name_plural = 'Taxes'
     
     def __unicode__(self):
         return '%s [%s]: %s' % (self.name, self.method, self.rate)

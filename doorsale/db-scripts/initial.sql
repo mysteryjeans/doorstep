@@ -345,3 +345,9 @@ INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated
 INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='PAK'), 'Khyber Pakhtunkhwa', 'KP', true, 0, now(), 'system', now(), 'system');
 INSERT INTO geo_state (country_id, name, code, is_active, display_order, updated_on, updated_by, created_on, created_by) VALUES ((SELECT id FROM geo_country WHERE iso_code3='PAK'), 'FATA', 'FA', true, 0, now(), 'system', now(), 'system');
 
+
+-- Payment Methods
+INSERT INTO sales_payment_method(code, name, is_active, updated_on, updated_by, created_on, created_by) VALUES ('CO', 'Cash On Delivery', true, now(), 'system', now(), 'system');
+INSERT INTO sales_payment_method(code, name, is_active, updated_on, updated_by, created_on, created_by) VALUES ('CH', 'Check / Money Order', true, now(), 'system', now(), 'system');
+INSERT INTO sales_payment_method(code, name, is_active, updated_on, updated_by, created_on, created_by) VALUES ('CC', 'Credit Card', true, now(), 'system', now(), 'system');
+INSERT INTO sales_payment_method(code, name, is_active, updated_on, updated_by, created_on, created_by) VALUES ('PO', 'Purchase Order', true, now(), 'system', now(), 'system');

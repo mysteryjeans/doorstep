@@ -11,7 +11,7 @@ class CurrencyAdmin(ModelAdmin):
     date_hierarchy = 'created_on'
 
 
-class TaxRateAdmin(ModelAdmin):
+class TaxAdmin(ModelAdmin):
     list_display = ('name', 'method', 'rate',)
     list_filter = ('method', 'created_on',)
     search_fields = ('name',)
@@ -20,4 +20,4 @@ class TaxRateAdmin(ModelAdmin):
 
 
 admin.site.register(models.Currency, CurrencyAdmin)
-admin.site.register(models.TaxRate, TaxRateAdmin)
+admin.site.register(models.Tax, TaxAdmin)

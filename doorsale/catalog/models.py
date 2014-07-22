@@ -1,7 +1,7 @@
 from django.db import models
 from django.db.models import Q
 
-from doorsale.financial.models import TaxRate
+from doorsale.financial.models import Tax
 
 
 class Manufacturer(models.Model):
@@ -154,7 +154,7 @@ class Product(models.Model):
     is_bestseller = models.BooleanField(default=False, help_text='It has been best seller')
     is_featured = models.BooleanField(default=False, help_text='Promote this product on main pages')
     is_free_shipping = models.BooleanField(default=False, help_text='No shipping charges')
-    tax_rate = models.ForeignKey(TaxRate, null=True, blank=True, help_text='Tax applied on this product, if tax exempt select none')
+    tax = models.ForeignKey(Tax, null=True, blank=True,  help_text='Tax applied on this product, if tax exempt select none')
     tags = models.CharField(max_length=250, null=True, blank=True, help_text='Comma-delimited set of SEO keywords for meta tag')
     weight = models.FloatField(default=0)
     length = models.FloatField(default=0)

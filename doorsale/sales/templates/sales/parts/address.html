@@ -1,0 +1,30 @@
+<div class="address">
+	<h3>{{ address_name }}</h3>
+	<ul>
+		<li class="name">
+			{{ address.first_name }} {{address.last_name }}
+		</li>
+		<li>
+			<label>Email: </label>
+			{{ address.email }}
+		</li>
+		<li>
+			<label>Phone: </label>
+			{{ address.phone_number }}
+		</li>
+		<li>
+			{{ address.address1 }}
+		</li>
+		{% if address.address2 %}
+		<li>
+			{{ address.address2 }}
+		</li>
+		{% endif %}
+		<li>
+			{{ address.city }}, {{ address.zip_or_postal_code }}
+		</li>
+		<li>
+			{{ address.country }}
+		</li>
+	</ul>
+</div>

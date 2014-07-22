@@ -3,7 +3,7 @@ from django.conf import settings
 
 from doorsale.geo.models import Address
 from doorsale.catalog.models import Product
-from doorsale.financial.models import Currency, TaxRate
+from doorsale.financial.models import Currency, Tax
 
 
 class Cart(models.Model):
@@ -107,6 +107,12 @@ class Cart(models.Model):
         """
         return self.items.prefetch_related('product', 'product__pics').all()
     
+    def get_items_with_taxes(self):
+        """
+        Fetch cart items with products and taxes
+        """
+        return self.items.prefetch_related('product', 'product__tax').all()
+    
     @classmethod
     def get_cart(cls, cart_id=None):
         """
@@ -148,8 +154,8 @@ class CartItem(models.Model):
         Total taxes applied on cart item
         """
         product = self.product
-        if product.tax_rate:
-            return product.tax_rate.calculate(product.price, self.quantity)
+        if product.tax:
+            return product.tax.calculate(product.price, self.quantity)
         
         return 0.0
 
@@ -177,15 +183,15 @@ class PaymentMethod(models.Model):
     # Payment methods
     COD = 'CO'
     CHECK = 'CH'
-    CREDIT = 'CC'
-    PURCHASE = 'PO'
+    CREDIT_CARD = 'CC'
+    PURCHASE_ORDER = 'PO'
     ALL = ((COD, 'Cash On Delivery'),
            (CHECK, 'Check / Money Order'),
-           (CREDIT, 'Credit Card'),
-           (PURCHASE, 'Purchase Order'))
+           (CREDIT_CARD, 'Credit Card'),
+           (PURCHASE_ORDER, 'Purchase Order'))
+    ALL_METHODS = dict(ALL)
     
     code = models.CharField(primary_key=True, max_length=2, choices=ALL)
-    name = models.CharField(max_length=100)
     is_active = models.BooleanField(default=True)
     updated_by = models.CharField(max_length=100)
     updated_on = models.DateTimeField(auto_now=True)
@@ -196,6 +202,52 @@ class PaymentMethod(models.Model):
         db_table = 'sales_payment_method'
         verbose_name_plural = 'Payment Methods'
 
+
+class OrderManager(models.Manager):
+    
+    def place(self, cart_id, billing_address_id, shipping_address_id, payment_method, po_number, currency_code, user, username):
+        cart = Cart.get_cart(cart_id)
+        billing_address = Address.objects.get(id=billing_address_id)
+        shipping_address = Address.objects.get(id=shipping_address_id)
+        payment_method = PaymentMethod.objects.get(code=payment_method)
+        currency = Currency.objects.get(code=currency_code)
+        exchange_value = float(cart.get_total())
+        exchange_value *= float(currency.exchange_rate)
+        
+        order = self.create(customer=user,
+                            currency=currency,
+                            sub_total=cart.get_sub_total(),
+                            taxes=cart.get_taxes(),
+                            total=cart.get_total(),
+                            refunded_amount=0.0,
+                            exchange_rate=currency.exchange_rate,
+                            exchange_value=exchange_value,
+                            order_status=self.model.ORDER_PENDING,
+                            payment_method=payment_method,
+                            payment_status=self.model.PAYMENT_PENDING,
+                            po_number=po_number,
+                            shipping_status=self.model.SHIPPING_PENDING,
+                            billing_address=billing_address,
+                            shipping_address=shipping_address,
+                            updated_by=username,
+                            created_by=username)
+        
+        for item in cart.get_items_with_taxes():
+            product = item.product
+            OrderItem.objects.create(order=order,
+                                     product=product,
+                                     price=product.price,
+                                     quantity=item.quantity,
+                                     taxes=item.get_taxes(),
+                                     sub_total=item.get_sub_total(),
+                                     total=item.get_total(),
+                                     tax_rate=product.tax.rate,
+                                     tax_method=product.tax.method,
+                                     updated_by=username,
+                                     created_by=username)
+        
+        return order
+    
 
 class Order(models.Model):
     """
@@ -243,7 +295,8 @@ class Order(models.Model):
     taxes = models.DecimalField(max_digits=9, decimal_places=2)
     total = models.DecimalField(max_digits=9, decimal_places=2)
     refunded_amount = models.DecimalField(max_digits=9, decimal_places=2)
-    currency_rate = models.FloatField(default=1)
+    exchange_rate = models.FloatField(default=1)
+    exchange_value = models.DecimalField(max_digits=9, decimal_places=2, help_text='Order total in user prefered currency.')
     order_status = models.CharField(max_length=2, choices=ORDER_STATUSES)
     payment_method = models.ForeignKey(PaymentMethod, db_column='payment_method_code')
     payment_status = models.CharField(max_length=2, choices=PAYMENT_STATUSES)
@@ -256,6 +309,8 @@ class Order(models.Model):
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
+    
+    objects = OrderManager()
     
     def __unicode__(self):
         return self.id
@@ -273,7 +328,7 @@ class OrderItem(models.Model):
     sub_total = models.DecimalField(max_digits=9, decimal_places=2)
     total = models.DecimalField(max_digits=9, decimal_places=2)
     tax_rate = models.FloatField(default=0.0)
-    tax_method = models.CharField(max_length=2, choices=TaxRate.TAX_METHODS)
+    tax_method = models.CharField(max_length=2, choices=Tax.TAX_METHODS)
     updated_on = models.DateTimeField(auto_now=True)
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)

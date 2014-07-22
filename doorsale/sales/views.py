@@ -7,8 +7,10 @@ from django.core.urlresolvers import reverse
 from doorsale.geo.models import Address
 from doorsale.sales.models import Cart, Order, PaymentMethod
 from doorsale.sales.forms import AddressForm
+from doorsale.accounts.models import User
 from doorsale.catalog.views import CatalogBaseView
-from doorsale.financial.models import Currency      
+from doorsale.financial.models import Currency
+from doorsale.exceptions import DoorsaleError
 
 
 @transaction.commit_on_success
@@ -283,7 +285,7 @@ class CheckoutPaymentView(CheckoutBaseView):
         payment_methods = dict(PaymentMethod.ALL)
         if payment_method and payment_method in payment_methods:
             
-            if payment_method == PaymentMethod.PURCHASE:
+            if payment_method == PaymentMethod.PURCHASE_ORDER:
                 po_number = request.POST['po_number']
                 if po_number:
                     request.session['po_number'] = po_number
@@ -315,7 +317,56 @@ class CheckoutOrderView(CheckoutBaseView):
     @classmethod
     def get_breadcrumbs(cls):
         return ({'name': 'Order', 'url': reverse('sales_checkout_order')},)
-
+    
+    def get(self, request, **kwargs):
+        if ('cart_id' in request.session
+            and 'payment_method' in request.session
+            and CheckoutBillingView.session_address_key in request.session
+            and CheckoutShippingView.session_address_key in request.session):
+            
+            cart = Cart.get_cart(int(request.session['cart_id']))
+            payment_method = PaymentMethod.ALL_METHODS[request.session['payment_method']]
+            billing_address = get_object_or_404(Address, id=int(request.session[CheckoutBillingView.session_address_key]))
+            shipping_address = get_object_or_404(Address, id=int(request.session[CheckoutShippingView.session_address_key]))
+            
+            return super(CheckoutOrderView, self).get(request, cart=cart, payment_method=payment_method, billing_address=billing_address, shipping_address=shipping_address, **kwargs)
+        
+        return HttpResponseRedirect(reverse('sales_checkout_cart'))
+    
+    def post(self, request):
+        error = None
+        try:
+            cart_id = request.session['cart_id']
+            payment_method = request.session['payment_method']
+            po_number = request.session.get('po_number', None)
+            billing_address_id = request.session[CheckoutBillingView.session_address_key]
+            shipping_address_id = request.session[CheckoutShippingView.session_address_key]
+            
+            if payment_method == PaymentMethod.CREDIT_CARD:
+                raise DoorsaleError('Payment method not supported: %s' % PaymentMethod.ALL_METHODS[payment_method])
+            
+            if request.user.is_authenticated():
+                user = request.user
+                username = str(user)
+            else:
+                user = None
+                username = str(request.user)
+                
+            currency_code = self.request.session.get('default_currency', self.primary_currency.code)
+            order = Order.objects.place(cart_id, billing_address_id, shipping_address_id, payment_method, po_number, currency_code, user, username)
+            
+            request.session['order_id'] = order.id
+            del request.session['cart_id']
+            del request.session['payment_method']
+            del request.session['billing_address']
+            del request.session['shipping_address']
+            
+            return HttpResponseRedirect(reverse('sales_checkout_receipt'))
+            
+        except DoorsaleError as e:
+            error = e.message
+        
+        return self.get(request, error=error)
 
 class CheckoutReceiptView(CheckoutBaseView):
     """
