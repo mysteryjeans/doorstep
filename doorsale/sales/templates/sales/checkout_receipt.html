@@ -1,1 +1,8 @@
 {% extends "sales/checkout_base.html" %}
+
+{% block checkout-content %}
+<div class="checkout-receipt">
+	<h3>Order Receipt <a class="print-link button" target="_blank" href="{% url 'sales_print_receipt' order.id order.receipt_code %}">Print</a></h3>
+	{% include "sales/parts/receipt.html" %}
+</div>
+{% endblock %}

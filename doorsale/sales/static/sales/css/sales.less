@@ -169,6 +169,7 @@
     .cart-summary {
         padding: 20px 0px;
         line-height: 1.5em;
+        overflow: hidden;
 
         .cart-total {
             float: right;
@@ -262,7 +263,6 @@
     }
 }
 
-.order {
   .addresses {
     margin-top: 20px;
     overflow: hidden;
@@ -286,6 +286,8 @@
       }
     }
   }
+
+.order {
   
   .payment-method {
     margin-top: 20px;
@@ -296,4 +298,49 @@
       display: inline;
     }
   }
+}
+
+.receipt {
+  .border;
+  border-style: dotted;
+  padding: 5px;
+  
+  label {
+    font-weight: bold;
+  }
+  
+  ul {
+    li {
+      padding: 5px 0px;
+    }
+  }
+  
+  .price, .name, a, a:hover, h3 {
+    color: @text-color !important;
+  }
+  
+  .cart {
+
+    table {
+      border-spacing: 0;
+      border-top: 1px dotted @border-color;
+      border-left:  1px dotted @border-color;
+    }
+    
+    th, td {
+      padding: 10px !important;
+      border-bottom: 1px dotted @border-color;
+      border-right:  1px dotted @border-color;
+    }
+  }
+}
+
+.checkout-receipt {
+  .print-link {
+    float: right;
+  }
+}
+
+.print-receipt {
+  padding: 10px;
 }

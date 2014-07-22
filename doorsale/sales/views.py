@@ -1,16 +1,19 @@
 from django.db import transaction
 from django.db.models import Q
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
+from django.http.response import Http404
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
+from django.views.generic import TemplateView
 
 from doorsale.geo.models import Address
 from doorsale.sales.models import Cart, Order, PaymentMethod
 from doorsale.sales.forms import AddressForm
-from doorsale.accounts.models import User
 from doorsale.catalog.views import CatalogBaseView
 from doorsale.financial.models import Currency
 from doorsale.exceptions import DoorsaleError
+from doorsale.views import BaseView
+
 
 
 @transaction.commit_on_success
@@ -355,13 +358,12 @@ class CheckoutOrderView(CheckoutBaseView):
             currency_code = self.request.session.get('default_currency', self.primary_currency.code)
             order = Order.objects.place(cart_id, billing_address_id, shipping_address_id, payment_method, po_number, currency_code, user, username)
             
-            request.session['order_id'] = order.id
             del request.session['cart_id']
             del request.session['payment_method']
             del request.session['billing_address']
             del request.session['shipping_address']
             
-            return HttpResponseRedirect(reverse('sales_checkout_receipt'))
+            return HttpResponseRedirect(reverse('sales_checkout_receipt', args=[order.id, order.receipt_code]))
             
         except DoorsaleError as e:
             error = e.message
@@ -376,10 +378,36 @@ class CheckoutReceiptView(CheckoutBaseView):
     steps_processed = []
     template_name = 'sales/checkout_receipt.html'
 
-    @classmethod
-    def get_breadcrumbs(cls):
-        return ({'name': 'Order Receipt', 'url': reverse('sales_checkout_receipt')},)
+    def get_breadcrumbs(self):
+        return ({'name': 'Order Receipt', 'url': reverse('sales_checkout_receipt', args=[self.order_id, self.receipt_code])},)
+    
+    def get(self, request, order_id, receipt_code):
+        order_id = int(order_id)
+        try:
+            order = Order.objects.prefetch_related('billing_address', 'shipping_address', 'payment_method', 'currency', 'items').get(id=order_id, receipt_code=receipt_code)
+        except Order.DoesNotExist:
+            raise Http404()
+        
+        self.order_id = order_id
+        self.receipt_code = receipt_code
+        
+        return super(CheckoutReceiptView, self).get(request, order=order)
 
+
+class PrintReceiptView(BaseView):
+    """
+    Print user order receipt
+    """
+    template_name = 'sales/print_receipt.html'
+
+    def get(self, request, order_id, receipt_code):
+        order_id = int(order_id)
+        try:
+            order = Order.objects.prefetch_related('billing_address', 'shipping_address', 'payment_method', 'currency', 'items').get(id=order_id, receipt_code=receipt_code)
+        except Order.DoesNotExist:
+                raise Http404()
+    
+        return super(PrintReceiptView, self).get(request, order=order)
 
 def get_default_currency(request):
     if 'default_currency' in request.session:

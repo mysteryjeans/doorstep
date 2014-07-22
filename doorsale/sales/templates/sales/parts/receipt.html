@@ -1,0 +1,86 @@
+{% load catalog_filters %}
+<div class="receipt">
+	<ul>
+		<li>
+			<label>Order #{{ order.id }}</label>
+		</li>
+		<li>
+			Date: {{ order.created_on|date:"l, M j, Y" }}
+		</li>
+		<li>
+			Status: {{ order.get_order_status }}
+		</li>
+		<li class="addresses">
+			{% with address=order.billing_address address_name="Billing Address" %}
+			{% include "sales/parts/address.html" %}
+			{% endwith %}
+			{% if order.shipping_address %}
+			{% with address=order.shipping_address address_name="Shipping Address" %}
+			{% include "sales/parts/address.html" %}
+			{% endwith %}
+			{% endif %}
+		</li>
+		<li class="payment-method">
+			<h3>Payment Method: <b>{{ order.payment_method.name }}</b></h3>
+		</li>
+		<li>
+			<div class="cart">
+				{% with items=order.items.all %}
+				{% if items %}
+				<table class="cart-items">
+					<thead>
+						<th>Product{{ items|pluralize }}</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Sub-Total</th>
+					</thead>
+					<tbody>
+						{% for item in items %}
+						{% with product=item.product %}
+						<tr class="cart-item">
+							<td><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></td>
+							<td><span class="price"> {{ product.price|currency:order.currency }}
+								{% if product.old_price %}
+								<br/>
+								<span class="old-price">{{ product.price|currency:order.currency }}</span>
+								<br/>
+								<span class="discount">{{ product.get_discount }}% OFF</span> {% endif %} </span></td>
+							<td><span>{{ item.quantity }}</span></td>
+							<td><span class="total price">{{ item.sub_total|currency:order.currency }}</span></td>
+						</tr>
+						{% endwith %}
+						{% endfor %}
+					</tbody>
+				</table>
+				<div class="cart-summary">
+					<div class="cart-total">
+						<table>
+							<tr>
+								<td><label>Sub-Total:</label></td>
+								<td><span class="price">{{ order.sub_total|currency:order.currency }}</span></td>
+							</tr>
+							<tr>
+								<td><label>Shipping:</label></td>
+								<td><span class="price">{{ order.shipping_cost|currency:order.currency }}</span></td>
+							</tr>
+							<tr>
+								<td><label>Tax:</label></td>
+								<td><span class="price">{{ order.taxes|currency:order.currency }}</span></td>
+							</tr>
+							<tr>
+								<td><label>Total:</label></td>
+								<td><span class="price total">{{ order.total|currency:order.currency }}</span></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				{% else %}
+				<div class="no-items" >
+					You have no items in your shopping cart.
+				</div>
+				{% endif %}
+				{% endwith %}
+			</div>
+		</li>
+	</ul>
+</div>

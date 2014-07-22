@@ -1,0 +1,22 @@
+{% load staticfiles %}
+{% load compressed %}
+
+<html>
+	<head>
+		<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+		<meta name="application-name" content="{{ SITE_NAME }}"/>
+		<meta name="copyright" content="{{ COPYRIGHT }}"/>
+		<meta name="description" content="{{ page_description|default:SITE_DESCRIPTION }}"/>
+
+		<title>Order #{{ order.id }} | {{ SITE_NAME }}</title>
+		<link rel="icon shortcut" href="{% static 'img/icon.png' %}" type="image/png"/>
+		{% compressed_css 'sales' %}
+	</head>
+	<body class="print-receipt">
+		{% include "sales/parts/receipt.html" %}
+		<script type="text/javascript">
+			window.print();
+		</script>
+	</body>
+</html>
+

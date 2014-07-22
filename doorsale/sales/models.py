@@ -1,5 +1,8 @@
+from __future__ import unicode_literals
+
 from django.db import models
 from django.conf import settings
+from django.utils.crypto import get_random_string
 
 from doorsale.geo.models import Address
 from doorsale.catalog.models import Product
@@ -192,6 +195,7 @@ class PaymentMethod(models.Model):
     ALL_METHODS = dict(ALL)
     
     code = models.CharField(primary_key=True, max_length=2, choices=ALL)
+    name = models.CharField(max_length=100, unique=True)
     is_active = models.BooleanField(default=True)
     updated_by = models.CharField(max_length=100)
     updated_on = models.DateTimeField(auto_now=True)
@@ -201,6 +205,9 @@ class PaymentMethod(models.Model):
     class Meta:
         db_table = 'sales_payment_method'
         verbose_name_plural = 'Payment Methods'
+        
+    def __unicode__(self):
+        return '%s: %s' % (self.code, self.name)
 
 
 class OrderManager(models.Manager):
@@ -213,10 +220,12 @@ class OrderManager(models.Manager):
         currency = Currency.objects.get(code=currency_code)
         exchange_value = float(cart.get_total())
         exchange_value *= float(currency.exchange_rate)
+        receipt_code = get_random_string(20) # allows secure access to order receipt
         
         order = self.create(customer=user,
                             currency=currency,
                             sub_total=cart.get_sub_total(),
+                            shipping_cost=cart.get_shipping_cost(),
                             taxes=cart.get_taxes(),
                             total=cart.get_total(),
                             refunded_amount=0.0,
@@ -229,6 +238,7 @@ class OrderManager(models.Manager):
                             shipping_status=self.model.SHIPPING_PENDING,
                             billing_address=billing_address,
                             shipping_address=shipping_address,
+                            receipt_code=receipt_code,
                             updated_by=username,
                             created_by=username)
         
@@ -292,6 +302,7 @@ class Order(models.Model):
     customer = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True) # Referencing custom defined model in settings file
     currency = models.ForeignKey(Currency)
     sub_total = models.DecimalField(max_digits=9, decimal_places=2)
+    shipping_cost = models.DecimalField(max_digits=9, decimal_places=2)
     taxes = models.DecimalField(max_digits=9, decimal_places=2)
     total = models.DecimalField(max_digits=9, decimal_places=2)
     refunded_amount = models.DecimalField(max_digits=9, decimal_places=2)
@@ -305,6 +316,7 @@ class Order(models.Model):
     shipping_status = models.CharField(max_length=2, choices=SHIPPING_STATUSES)
     billing_address = models.ForeignKey(Address, related_name='billing_orders')
     shipping_address = models.ForeignKey(Address, related_name='shipping_orders', null=True, blank=True)
+    receipt_code = models.CharField(max_length=100, help_text="Random code generate for each order for secure access.")
     updated_on = models.DateTimeField(auto_now=True)
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -313,14 +325,23 @@ class Order(models.Model):
     objects = OrderManager()
     
     def __unicode__(self):
-        return self.id
+        return unicode(self.id)
+    
+    def get_order_status(self):
+        return next((status[1] for status in self.ORDER_STATUSES if status[0] == self.order_status), None)
+    
+    def get_payment_status(self):
+        return next((status[1] for status in self.PAYMENT_STATUSES if status[0] == self.payment_status), None)
+    
+    def get_shipping_status(self):
+        return next((status[1] for status in self.SHIPPING_STATUSES if status[0] == self.shipping_status), None)
 
 
 class OrderItem(models.Model):
     """
     Represents a purchase product
     """
-    order = models.ForeignKey(Order)
+    order = models.ForeignKey(Order, related_name='items')
     product = models.ForeignKey('catalog.Product')
     price = models.DecimalField(max_digits=9, decimal_places=2, help_text='Unit price of the product')
     quantity = models.IntegerField()
