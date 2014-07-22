@@ -1,10 +1,12 @@
 from django.db import transaction
 from django.db.models import Q
+from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.http.response import Http404
-from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
-from django.views.generic import TemplateView
+from django.template import Context
+from django.template.loader import get_template
+from django.shortcuts import render, get_object_or_404
 
 from doorsale.geo.models import Address
 from doorsale.sales.models import Cart, Order, PaymentMethod
@@ -13,6 +15,7 @@ from doorsale.catalog.views import CatalogBaseView
 from doorsale.financial.models import Currency
 from doorsale.exceptions import DoorsaleError
 from doorsale.views import BaseView
+from doorsale.utils.helpers import send_mail
 
 
 
@@ -306,7 +309,6 @@ class CheckoutPaymentView(CheckoutBaseView):
             error = 'Please select payment method'
         
         return super(CheckoutPaymentView, self).get(request, error=error, payment_method=payment_method)
-    
 
 
 class CheckoutOrderView(CheckoutBaseView):
@@ -362,6 +364,13 @@ class CheckoutOrderView(CheckoutBaseView):
             del request.session['payment_method']
             del request.session['billing_address']
             del request.session['shipping_address']
+            request.session['order_confirmed'] = True
+            
+            # Sending order confirmation email to user's billing email address
+            msg_subject = get_template("sales/email/order_confirmation_subject.txt").render(Context({'order': order, 'user': request.user, 'SITE_NAME': settings.SITE_NAME, 'DOMAIN': settings.DOMAIN }))
+            msg_text = get_template("sales/email/order_confirmation.html").render(Context({'order': order, 'user': request.user, 'SITE_NAME': settings.SITE_NAME, 'DOMAIN': settings.DOMAIN  }))
+            to_email = '%s <%s>' % (order.billing_address.get_name(), order.billing_address.email)
+            send_mail(msg_subject, msg_text, [to_email], True)
             
             return HttpResponseRedirect(reverse('sales_checkout_receipt', args=[order.id, order.receipt_code]))
             
@@ -369,6 +378,7 @@ class CheckoutOrderView(CheckoutBaseView):
             error = e.message
         
         return self.get(request, error=error)
+
 
 class CheckoutReceiptView(CheckoutBaseView):
     """
@@ -383,6 +393,8 @@ class CheckoutReceiptView(CheckoutBaseView):
     
     def get(self, request, order_id, receipt_code):
         order_id = int(order_id)
+        order_confirmed = request.session.pop('order_confirmed', None)
+            
         try:
             order = Order.objects.prefetch_related('billing_address', 'shipping_address', 'payment_method', 'currency', 'items').get(id=order_id, receipt_code=receipt_code)
         except Order.DoesNotExist:
@@ -391,7 +403,7 @@ class CheckoutReceiptView(CheckoutBaseView):
         self.order_id = order_id
         self.receipt_code = receipt_code
         
-        return super(CheckoutReceiptView, self).get(request, order=order)
+        return super(CheckoutReceiptView, self).get(request, order=order, order_confirmed=order_confirmed)
 
 
 class PrintReceiptView(BaseView):
@@ -408,6 +420,7 @@ class PrintReceiptView(BaseView):
                 raise Http404()
     
         return super(PrintReceiptView, self).get(request, order=order)
+
 
 def get_default_currency(request):
     if 'default_currency' in request.session:

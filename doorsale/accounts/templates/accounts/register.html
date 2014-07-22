@@ -6,7 +6,7 @@
 		{% csrf_token %}
 		<input type="hidden" name="next" value="{{ next_url }}"/>
 		{% if success %}
-		<div class="success-message">
+		<div class="success-message-box">
 			{{ success|safe }}
 		</div>
 		{% else %}

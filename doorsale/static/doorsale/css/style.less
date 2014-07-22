@@ -13,7 +13,7 @@
 @button-color: @second-color;
 @button-text-color: white;
 @place-holder-color: #666;
-@info-message-color: #ecf0f1;
+@info-message-color: @text-color;
 @error-message-color: maroon;
 @success-message-color: green;
 
@@ -122,6 +122,10 @@ input[type="submit"], input[type="button"], button {
 
 a.button, a:hover.button {
   color: @button-text-color;
+}
+
+.info-message {
+  color: @info-message-color;
 }
 
 .success-message {

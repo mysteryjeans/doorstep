@@ -3,6 +3,11 @@
 {% block checkout-content %}
 <div class="checkout-receipt">
 	<h3>Order Receipt <a class="print-link button" target="_blank" href="{% url 'sales_print_receipt' order.id order.receipt_code %}">Print</a></h3>
+	{% if order_confirmed %}
+	<p class="success-message-box">
+		Your order has been placed successfully, thank you for placing your order.
+	</p>
+	{% endif %}
 	{% include "sales/parts/receipt.html" %}
 </div>
 {% endblock %}

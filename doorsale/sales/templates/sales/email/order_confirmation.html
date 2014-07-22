@@ -1,0 +1,9 @@
+<h3>Dear {{ order.billing_address.get_name }}</h3>
+<p>Thank you for placing your order with {{ SITE_NAME }}!</p>
+<p>This email is to confirm your recent order <a href="http://{{ DOMAIN }}{% url 'sales_checkout_receipt' order.id order.receipt_code %}">#{{ order.id }}</a></p>
+<p>Date {{ order.created_on|date:"l, M j, Y" }}</p>
+<p>
+	Sincerely,
+	<br />
+	<a href="http://{{ DOMAIN }}">{{ SITE_NAME }}</a>
+</p>

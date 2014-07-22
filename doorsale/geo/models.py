@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from django.db import models
 from django.conf import settings
 
@@ -89,3 +91,6 @@ class Address(models.Model):
             address += ', ' + unicode(self.country)
         
         return address
+    
+    def get_name(self):
+        return '%s %s' % (self.first_name, self.last_name)

@@ -6,13 +6,32 @@
 @add-to-cart-color: @first-color;
 @buy-now-color: orange;
 @catalog-bar-color: whitesmoke;
+@message-box-color: whitesmoke;
 @discount-color: #f1c40f;
 
-.info-message-box {
-  background: @info-message-color;
+.message-box {
+  background: @message-box-color;
   display: inline-block;
-  padding: 5px;
+  padding: 5px !important;
   .border-radius(2px);
+}
+
+.info-message-box {
+  .message-box;
+  .info-message;
+  border-left: 2px solid @info-message-color;
+}
+
+.success-message-box {
+   .message-box;
+   .success-message;
+   border-left: 2px solid @success-message-color;
+}
+
+.error-message-box {
+   .message-box;
+   .error-message;
+   border-left: 2px solid @error-message-color;
 }
 
 .price {

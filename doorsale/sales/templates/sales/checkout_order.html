@@ -5,7 +5,7 @@
 {% block checkout-content %}
 <div class="order">
 	{% if error %}
-	<div class="error-message">
+	<div class="error-message-box">
 		{{ error }}
 	</div>
 	{% endif %}
@@ -77,7 +77,6 @@
 			</div>
 		</div>
 		<div class="cart-options">
-			<a class="button" href="{% url 'catalog_index' %}" title="Go back to browse catalog">Continue Shopping</a>
 			<form method="post" action="{% url 'sales_checkout_order' %}">
 				{% csrf_token %}
 				<a title="Placed order" class="button checkout" onclick="javascript:$(this).closest('form').submit();">
