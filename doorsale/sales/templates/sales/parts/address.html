@@ -5,14 +5,6 @@
 			{{ address.first_name }} {{address.last_name }}
 		</li>
 		<li>
-			<label>Email: </label>
-			{{ address.email }}
-		</li>
-		<li>
-			<label>Phone: </label>
-			{{ address.phone_number }}
-		</li>
-		<li>
 			{{ address.address1 }}
 		</li>
 		{% if address.address2 %}
@@ -21,10 +13,13 @@
 		</li>
 		{% endif %}
 		<li>
-			{{ address.city }}, {{ address.zip_or_postal_code }}
+			{{ address.zip_or_postal_code }}, {{ address.city }}, {{ address.country }}
 		</li>
 		<li>
-			{{ address.country }}
+			<label>{{ address.phone_number }}</label>
+		</li>
+		<li>
+			<label>{{ address.email }}</label>
 		</li>
 	</ul>
 </div>
