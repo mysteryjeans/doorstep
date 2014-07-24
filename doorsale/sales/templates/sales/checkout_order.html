@@ -10,10 +10,10 @@
 	</div>
 	{% endif %}
 	<div class="addresses">
-		{% with address=billing_address address_name="Billing Address" %}
+		{% with address=billing_address address_name="Billing Address" address_icon="fa-home" %}
 		{% include "sales/parts/address.html" %}
 		{% endwith %}
-		{% with address=shipping_address address_name="Shipping Address" %}
+		{% with address=shipping_address address_name="Shipping Address" address_icon="fa-truck" %}
 		{% include "sales/parts/address.html" %}
 		{% endwith %}	
 	</div>
