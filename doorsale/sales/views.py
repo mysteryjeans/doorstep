@@ -272,7 +272,7 @@ class CheckoutPaymentView(CheckoutBaseView):
     template_name = 'sales/checkout_payment.html'
     
     def get_context_data(self, **kwargs):
-        payment_methods = PaymentMethod.ALL
+        payment_methods = PaymentMethod.get_all()
         return super(CheckoutPaymentView, self).get_context_data(payment_methods=payment_methods, **kwargs)
 
     @classmethod

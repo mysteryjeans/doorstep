@@ -208,6 +208,13 @@ class PaymentMethod(models.Model):
         
     def __unicode__(self):
         return '%s: %s' % (self.code, self.name)
+    
+    @classmethod
+    def get_all(cls):
+        """
+        Returns list of active/supported payments method
+        """
+        return list(cls.objects.filter(is_active=True))
 
 
 class OrderManager(models.Manager):

@@ -13,8 +13,8 @@
 		{% for method in payment_methods %}
 		<li>
 			<label>
-			<input name="payment_method" type="radio" value="{{ method.0 }}" {% if payment_method == method.0 %}checked="checked"{% endif %} />
-			{{ method.1 }}
+			<input name="payment_method" type="radio" value="{{ method.code }}" {% if payment_method == method.code %}checked="checked"{% endif %} />
+			{{ method.name }}
 			</label>
 		</li>
 		{% endfor %}
