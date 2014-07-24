@@ -9,7 +9,7 @@
         <div class="addresses">
             <h3>Existing address{{ addresses|pluralize:"es" }}</h3>
             {% for address in addresses %}
-            <div>
+            <div class="address">
                 <ul>
                     <li class="name">
                         {{ address.first_name }} {{address.last_name }}

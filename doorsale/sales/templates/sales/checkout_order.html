@@ -45,9 +45,7 @@
 						<span class="old-price">{{ product.price|currency:default_currency }}</span>
 						<br/>
 						<span class="discount">{{ product.get_discount }}% OFF</span> {% endif %} </span></td>
-					<td><span>{{ item.quantity }}</span> {% if product.quantity %}
-					<br/>
-					<span class="in-stock">In Stock</span> {% endif %} </td>
+					<td><span>{{ item.quantity }}</span>
 					<td><span class="total price">{{ item.get_sub_total|currency:default_currency }}</span></td>
 				</tr>
 				{% endwith %}
@@ -80,7 +78,7 @@
 			<form method="post" action="{% url 'sales_checkout_order' %}">
 				{% csrf_token %}
 				<a title="Placed order" class="button checkout" onclick="javascript:$(this).closest('form').submit();">
-					<i class="fa fa-shopping-cart"></i>Confirm
+					<i class="fa fa-legal"></i>Place Order
 				</a>
 			</form>
 		</div>
