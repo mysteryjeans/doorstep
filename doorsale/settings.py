@@ -26,6 +26,7 @@ DOORSALE_APPS = (
     'doorsale.catalog',
     'doorsale.sales',
     'doorsale.financial',
+    'doorsale.payments'
 )
 
 # CSS settings for django-pipeline app
