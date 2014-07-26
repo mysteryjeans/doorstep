@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from doorsale.admin import ModelAdmin
-from doorsale.payments.models import Gateway, GatewayParam, Transaction
+from doorsale.payments.models import Gateway, GatewayParam, Transaction, TransactionParam
 
 
 class GatewayAdmin(ModelAdmin):
@@ -25,6 +25,14 @@ class TransactionAdmin(ModelAdmin):
     date_hierarchy = 'created_on'
 
 
+class TransactionParamAdmin(ModelAdmin):
+    list_display = ('transaction', 'name', 'value')
+    list_filter = ('name',)
+    search_fields = ('transaction', 'name', 'value',)
+    date_hierarchy = 'created_on'
+
+
 admin.site.register(Gateway, GatewayAdmin)
 admin.site.register(GatewayParam, GatewayParamAdmin)
 admin.site.register(Transaction, TransactionAdmin)
+admin.site.register(TransactionParam, TransactionParamAdmin)

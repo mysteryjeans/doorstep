@@ -66,6 +66,9 @@ class Transaction(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_by = models.CharField(max_length=100)
     created_by = models.CharField(max_length=100)
+    
+    def __unicode__(self):
+        return unicode(self.id)
 
 
 class TransactionParam(models.Model):
@@ -77,6 +80,14 @@ class TransactionParam(models.Model):
     value = models.CharField(max_length=250, help_text='Transaction parameter value.')
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
-
+    
+    class Meta:
+        db_table = 'payments_transaction_param'
+        verbose_name_plural = 'Transaction Params'
+        unique_together = ('transaction', 'name',)
+    
+    
+    def __unicode__(self):
+        return self.name
     
     
