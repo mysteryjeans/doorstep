@@ -1,6 +1,7 @@
 {% extends "sales/checkout_base.html" %}
 
 {% load catalog_filters %}
+{% load compressed %}
 
 {% block checkout-content %}
 <div class="order">
@@ -75,7 +76,7 @@
 			</div>
 		</div>
 		<div class="cart-options">
-			<form method="post" action="{% url 'sales_checkout_order' %}">
+			<form method="post" {% if payment_method == 'Credit Card' %}data-ajax="true"{% endif %} action="{% url 'sales_checkout_order' %}" data-ajax-update="#payment-options-container" data-ajax-success="showPaymentOptions();">
 				{% csrf_token %}
 				<a title="Placed order" class="button checkout" onclick="javascript:$(this).closest('form').submit();">
 					<i class="fa fa-legal"></i>Place Order
@@ -90,4 +91,16 @@
 		{% endwith %}
 	</div>
 </div>
+<div id="payment-options-container" style="display:none;">
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ block.super }}
+{% compressed_js 'sales_checkout_order' %}
+<script type="text/javascript">
+	function showPaymentOptions() {
+		$("#payment-options-container").dialog({ width: 442 });
+	}
+</script>
 {% endblock %}

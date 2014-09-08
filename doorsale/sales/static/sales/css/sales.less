@@ -279,6 +279,12 @@
       display: inline;
     }
   }
+
+  .credit-card {
+    select {
+        width: auto;
+    }
+  }
 }
 
 .receipt {
@@ -329,4 +335,51 @@
 
 .print-receipt {
   padding: 10px;
+}
+
+#payment-options.ui-tabs {
+    .border;
+    padding: 20px;
+    display: inline-block;
+
+    .ui-tabs-nav {
+        .border;
+        overflow: hidden;
+        display: inline-block;
+        .border-radius(2px);
+
+        li {
+            border-left: 1px solid @border-dark-color;
+            float: left;
+
+            a {
+                display: block;
+                padding: 5px 20px;
+            }
+        }
+
+        li:first-child {
+            border-left: none;
+        }
+
+        .ui-tabs-active {
+            background-color: @border-color;
+        }
+    }
+
+    .ui-tabs-panel {
+        padding: 10px 0px;
+        min-height: 220px;
+        min-width: 400px;
+    }
+
+    .action-form ul {
+        margin-left: 0px;
+    }
+
+    .pay-button {
+        font-size: 1.2em;
+        width: 100%;
+        margin: auto;
+    }
 }

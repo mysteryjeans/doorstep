@@ -52,6 +52,7 @@ PIPELINE_JS = {
     },
 }
 PIPELINE_JS.update(catalog_settings.PIPLELINE_JS)
+PIPELINE_JS.update(sales_settings.PIPLELINE_JS)
 
 # Doorsale settings to use Less compiler when collectstatic called
 PIPELINE_COMPILERS = (

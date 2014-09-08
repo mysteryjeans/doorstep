@@ -11,7 +11,7 @@ from django.shortcuts import render, get_object_or_404
 from doorsale.geo.models import Address
 from doorsale.sales.models import Cart, Order, PaymentMethod
 from doorsale.sales.forms import AddressForm
-from doorsale.catalog.views import CatalogBaseView
+from doorsale.catalog.views import CatalogBaseView, get_default_currency
 from doorsale.financial.models import Currency
 from doorsale.exceptions import DoorsaleError
 from doorsale.views import BaseView
@@ -348,9 +348,6 @@ class CheckoutOrderView(CheckoutBaseView):
             billing_address_id = request.session[CheckoutBillingView.session_address_key]
             shipping_address_id = request.session[CheckoutShippingView.session_address_key]
             
-            if payment_method == PaymentMethod.CREDIT_CARD:
-                raise DoorsaleError('Payment method not supported: %s' % PaymentMethod.ALL_METHODS[payment_method])
-            
             if request.user.is_authenticated():
                 user = request.user
                 username = str(user)
@@ -361,18 +358,15 @@ class CheckoutOrderView(CheckoutBaseView):
             currency_code = self.request.session.get('default_currency', self.primary_currency.code)
             order = Order.objects.place(cart_id, billing_address_id, shipping_address_id, payment_method, po_number, currency_code, user, username)
             
-            del request.session['cart_id']
-            del request.session['payment_method']
-            del request.session['billing_address']
-            del request.session['shipping_address']
+            #del request.session['cart_id']
+            #del request.session['payment_method']
+            #del request.session['billing_address']
+            #del request.session['shipping_address']
             request.session['order_confirmed'] = True
             
-            # Sending order confirmation email to user's billing email address
-            msg_subject = get_template("sales/email/order_confirmation_subject.txt").render(Context({'order': order, 'user': request.user, 'SITE_NAME': settings.SITE_NAME, 'DOMAIN': settings.DOMAIN }))
-            msg_text = get_template("sales/email/order_confirmation.html").render(Context({'order': order, 'user': request.user, 'SITE_NAME': settings.SITE_NAME, 'DOMAIN': settings.DOMAIN  }))
-            to_email = '%s <%s>' % (order.billing_address.get_name(), order.billing_address.email)
-            send_mail(msg_subject, msg_text, [to_email], True)
-            
+            if payment_method == PaymentMethod.CREDIT_CARD:
+                return HttpResponseRedirect(reverse('payments_online_payment', args=[order.id, order.receipt_code]))
+
             return HttpResponseRedirect(reverse('sales_checkout_receipt', args=[order.id, order.receipt_code]))
             
         except DoorsaleError as e:
@@ -395,11 +389,18 @@ class CheckoutReceiptView(CheckoutBaseView):
     def get(self, request, order_id, receipt_code):
         order_id = int(order_id)
         order_confirmed = request.session.pop('order_confirmed', None)
-            
+        
         try:
             order = Order.objects.prefetch_related('billing_address', 'shipping_address', 'payment_method', 'currency', 'items').get(id=order_id, receipt_code=receipt_code)
         except Order.DoesNotExist:
             raise Http404()
+
+        if order_confirmed:
+            # Sending order confirmation email to user's billing email address
+            msg_subject = get_template("sales/email/order_confirmation_subject.txt").render(Context({'order': order, 'user': request.user, 'SITE_NAME': settings.SITE_NAME, 'DOMAIN': settings.DOMAIN }))
+            msg_text = get_template("sales/email/order_confirmation.html").render(Context({'order': order, 'user': request.user, 'SITE_NAME': settings.SITE_NAME, 'DOMAIN': settings.DOMAIN  }))
+            to_email = '%s <%s>' % (order.billing_address.get_name(), order.billing_address.email)
+            send_mail(msg_subject, msg_text, [to_email], True)
         
         self.order_id = order_id
         self.receipt_code = receipt_code
@@ -422,14 +423,5 @@ class PrintReceiptView(BaseView):
     
         return super(PrintReceiptView, self).get(request, order=order)
 
-
-def get_default_currency(request):
-    if 'default_currency' in request.session:
-        try:
-            return Currency.objects.get(code=request.session['default_currency']) 
-        except Currency.DoesNotExist:
-            return Currency.get_primary()
-    
-    return Currency.get_primary()
 
 

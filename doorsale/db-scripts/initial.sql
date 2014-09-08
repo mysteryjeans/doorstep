@@ -351,3 +351,17 @@ INSERT INTO sales_payment_method(code, name, is_active, updated_on, updated_by, 
 INSERT INTO sales_payment_method(code, name, is_active, updated_on, updated_by, created_on, created_by) VALUES ('CH', 'Check / Money Order', true, now(), 'system', now(), 'system');
 INSERT INTO sales_payment_method(code, name, is_active, updated_on, updated_by, created_on, created_by) VALUES ('CC', 'Credit Card', true, now(), 'system', now(), 'system');
 INSERT INTO sales_payment_method(code, name, is_active, updated_on, updated_by, created_on, created_by) VALUES ('PO', 'Purchase Order', true, now(), 'system', now(), 'system');
+
+
+-- Card Issuer doorsale.payments
+INSERT INTO payments_card_issuer(descriptor, name, is_active, updated_on, updated_by, created_on, created_by) VALUES ('visa', 'Visa', true, now(), 'system', now(), 'system');
+INSERT INTO payments_card_issuer(descriptor, name, is_active, updated_on, updated_by, created_on, created_by) VALUES ('mastercard', 'MasterCard', true, now(), 'system', now(), 'system');
+INSERT INTO payments_card_issuer(descriptor, name, is_active, updated_on, updated_by, created_on, created_by) VALUES ('maestro', 'Maestro', true, now(), 'system', now(), 'system');
+INSERT INTO payments_card_issuer(descriptor, name, is_active, updated_on, updated_by, created_on, created_by) VALUES ('discover', 'Discover Card', true, now(), 'system', now(), 'system');
+INSERT INTO payments_card_issuer(descriptor, name, is_active, updated_on, updated_by, created_on, created_by) VALUES ('amex', 'American Express', true, now(), 'system', now(), 'system');
+INSERT INTO payments_card_issuer(descriptor, name, is_active, updated_on, updated_by, created_on, created_by) VALUES ('diners_club_carte_blanche', 'Diners Club Carte Blanche', true, now(), 'system', now(), 'system');
+INSERT INTO payments_card_issuer(descriptor, name, is_active, updated_on, updated_by, created_on, created_by) VALUES ('jcb', 'JCB', true, now(), 'system', now(), 'system');
+INSERT INTO payments_card_issuer(descriptor, name, is_active, updated_on, updated_by, created_on, created_by) VALUES ('laser', 'Laser', true, now(), 'system', now(), 'system');
+INSERT INTO payments_card_issuer(descriptor, name, is_active, updated_on, updated_by, created_on, created_by) VALUES ('visa_electron', 'Visa Electron', true, now(), 'system', now(), 'system');
+
+

@@ -235,7 +235,6 @@ class OrderManager(models.Manager):
                             shipping_cost=cart.get_shipping_cost(),
                             taxes=cart.get_taxes(),
                             total=cart.get_total(),
-                            refunded_amount=0.0,
                             exchange_rate=currency.exchange_rate,
                             exchange_value=exchange_value,
                             order_status=self.model.ORDER_PENDING,
@@ -312,7 +311,7 @@ class Order(models.Model):
     shipping_cost = models.DecimalField(max_digits=9, decimal_places=2)
     taxes = models.DecimalField(max_digits=9, decimal_places=2)
     total = models.DecimalField(max_digits=9, decimal_places=2)
-    refunded_amount = models.DecimalField(max_digits=9, decimal_places=2)
+    refunded_amount = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True)
     exchange_rate = models.FloatField(default=1)
     exchange_value = models.DecimalField(max_digits=9, decimal_places=2, help_text='Order total in user prefered currency.')
     order_status = models.CharField(max_length=2, choices=ORDER_STATUSES)

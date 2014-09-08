@@ -194,4 +194,14 @@ class ChangeCurrencyView(View):
         request.session['default_currency'] = default_currency
         
         return HttpResponseRedirect(next_url)
+
+
+def get_default_currency(request):
+    if 'default_currency' in request.session:
+        try:
+            return Currency.objects.get(code=request.session['default_currency']) 
+        except Currency.DoesNotExist:
+            return Currency.get_primary()
+    
+    return Currency.get_primary()
         

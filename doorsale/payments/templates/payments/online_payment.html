@@ -1,0 +1,88 @@
+{% load catalog_filters %}
+
+<div id="payment-options">
+    <ul>
+        <li><a href="#payment-credit-card">Credit Card</a></li>
+        {% for gateway in gateways %}
+        <li><a href="#payment-{{ gateway.get_name_display }}">{{ gateway.get_name_display }}</a></li>
+        {% endfor %}
+    </ul>
+    <div id="payment-credit-card" class="credit-card action-form">
+        <form method="post" data-ajax="true" data-ajax-url="{% url 'payments_credit_card_payment' order.id order.receipt_code %}" data-ajax-update="#payment-options-container" data-ajax-complete="paymentResponse">
+            {% csrf_token %}
+            <ul>
+                {% if error %}
+                <li class="error-message-box">
+                    {{ error }}
+                </li>
+                {% endif %}
+                <li>
+                    {{ form.card_name }}
+                    {{ form.card_name.errors }}
+                </li>
+                <li>
+                    {{ form.card_number }}
+                    {{ form.card_number.errors }}
+                </li>
+                <li>
+                    {{ form.card_type }}
+                    {{ form.cvv2 }}
+                </li>
+                <li>
+                    {{ form.expire_month }}
+                    {{ form.expire_year }}
+                </li>
+                <li>
+                    <input type="submit" value="Pay {{ order.total|currency:default_currency }}" class="pay-button" />
+                </li>
+            </ul>
+        </form>
+    </div>
+    {% for gateway in gateways %}
+    <div id="payment-{{ gateway.get_name_display }}">
+        <form method="post" action="{% url 'payments_account_payment' order.id order.receipt_code %}">
+            {% csrf_token %}
+            <input type="hidden" name="order_id" value="{{ order.id }}"/>
+            <input type="hidden" name="gateway_name" value="{{ gateway.name }}"/>
+            <ul class="action-form">
+                <li class="info-message-box">Pay with your {{ gateway.get_name_display }} account.</li>
+                <li>
+                    <input type="submit" value="Pay {{ order.total|currency:default_currency }}" class="pay-button" />
+                </li>
+            </ul>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+<script type="text/javascript">
+    // Detect Credit Card Type by Card Number and
+    // fills appropiate type automatically in Card Type
+    var $cardNumber = $('#id_card_number')
+    $cardNumber.change(function(){
+        $cardNumber.validateCreditCard(function(result){
+            $('#id_card_type').val('');
+            
+            // Removed error highlight if user corrected his card number
+            if($cardNumber.hasClass('input-error') && result.length_valid && result.luhn_valid)
+                $cardNumber.removeClass('input-error');
+
+            if(result.card_type) {
+                $('#id_card_type').val(result.card_type.name);
+
+                // Highlight card number if wrong when user done with entering
+                if(!$cardNumber.is(':focus') && (!result.length_valid || !result.luhn_valid))
+                    $cardNumber.addClass('input-error');
+            }
+        });
+    });
+
+    // Payments options in tabs
+    $('#payment-options').tabs();
+
+    // Initializing new forms in payment options
+    bootstrapAjax($, '#payment-options');
+
+    function paymentResponse(data, status, response) {
+        
+    }
+</script>
