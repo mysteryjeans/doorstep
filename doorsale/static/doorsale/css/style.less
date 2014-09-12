@@ -16,6 +16,12 @@
 @info-message-color: @text-color;
 @error-message-color: maroon;
 @success-message-color: green;
+@monospace-font-family: Consolas, Monaco, "Lucida Console", Monaco, monospace;
+
+
+.light-text {
+  color: @light-text-color;
+}
 
 .border-radius (@radius) {
   -webkit-border-radius: @radius;
@@ -99,6 +105,12 @@ input[type="text"], input[type="password"], input[type="email"], textarea, selec
   .border-radius(2px);
   overflow: hidden;
   padding: 5px;
+}
+
+select {
+  height: 2.1em;
+  box-sizing: border-box;
+  background: white;
 }
 
 .button {

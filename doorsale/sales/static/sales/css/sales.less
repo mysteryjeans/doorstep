@@ -338,9 +338,7 @@
 }
 
 #payment-options.ui-tabs {
-    .border;
-    padding: 20px;
-    display: inline-block;
+    padding: 40px;
 
     .ui-tabs-nav {
         .border;
@@ -368,18 +366,72 @@
     }
 
     .ui-tabs-panel {
-        padding: 10px 0px;
-        min-height: 220px;
-        min-width: 400px;
+        min-height: 194px;
     }
 
     .action-form ul {
         margin-left: 0px;
+        margin-bottom: 0px;
+        margin-top: 10px;
+
+        li {
+            position: relative;
+
+            i {
+                position: absolute;
+                left: 0px;
+                margin-top: 8px;
+                margin-left: 5px;
+                color: @first-color;
+            }
+
+            input[type="text"] {
+                font-size: 1.2em;
+                font-family: @monospace-font-family;
+                padding: 6px;
+                padding-left: 24px;
+            }
+
+            .fa-check {
+                left: auto;
+                right: 0px;
+                margin-right: 5px;
+                display: none;
+                color: @second-color;
+            }
+        }
+
+        li:last-child {
+            padding-bottom: 0px;
+        }
+
+        ul.errorlist {
+            margin-top: 0px;
+        }
+
+        .dual-input {
+            input[type="text"] {
+                float: left;
+                width: 50%;
+            }
+
+            i.fa-lock {
+                left: 50%;
+            }
+        }
     }
 
     .pay-button {
         font-size: 1.2em;
         width: 100%;
         margin: auto;
+    }
+
+    .online-account {
+        .info-message-box {
+            margin: 30px 0px;
+            font-size: 2em;
+            padding-left: 30px;
+        }
     }
 }

@@ -91,7 +91,7 @@ h2 {
   ul.errorlist {
     margin-bottom: 0px;
   }
-  
+
   .errorlist, .gender {
     padding-top: 0px;
     
@@ -145,5 +145,19 @@ h2 {
 .ui-dialog {
   background: white;
   width: auto;
+  z-index: 101;
+  .border-radius(2px);
+}
 
+.ui-widget-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  bottom: 0;
+  display: block;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 100;
 }

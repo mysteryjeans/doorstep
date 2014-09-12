@@ -8,7 +8,7 @@
         {% endfor %}
     </ul>
     <div id="payment-credit-card" class="credit-card action-form">
-        <form method="post" data-ajax="true" data-ajax-url="{% url 'payments_credit_card_payment' order.id order.receipt_code %}" data-ajax-update="#payment-options-container" data-ajax-complete="paymentResponse">
+        <form method="post" data-ajax="true" action="{% url 'payments_credit_card_payment' order.id order.receipt_code %}" data-ajax-update="#payment-options-container">
             {% csrf_token %}
             <ul>
                 {% if error %}
@@ -17,37 +17,48 @@
                 </li>
                 {% endif %}
                 <li>
+                    <i class="fa fa-user"></i>
                     {{ form.card_name }}
                     {{ form.card_name.errors }}
                 </li>
                 <li>
+                    <i class="fa fa-credit-card"></i>
                     {{ form.card_number }}
+                    <i class="fa fa-check"></i>
                     {{ form.card_number.errors }}
+                    {{ form.card_type.errors }}
+                </li>
+                <li class="dual-input">
+                    <span>
+                        <i class="fa fa-calendar-o"></i>
+                        {{ form.expiry }}
+                    </span>
+                    <span>
+                        <i class="fa fa-lock fa-lg"></i>
+                        {{ form.cvv2 }}
+                    </span>
+                    <br/>
+                    {{ form.expiry.errors }}
+                    {{ form.cvv2.errors }}
                 </li>
                 <li>
-                    {{ form.card_type }}
-                    {{ form.cvv2 }}
-                </li>
-                <li>
-                    {{ form.expire_month }}
-                    {{ form.expire_year }}
-                </li>
-                <li>
-                    <input type="submit" value="Pay {{ order.total|currency:default_currency }}" class="pay-button" />
+                    <input type="submit" value="Pay {{ order.total|currency:default_currency }}" class="pay-button" onclick="javascript:processCreditCard();" />
                 </li>
             </ul>
+            {{ form.card_type }}
         </form>
     </div>
     {% for gateway in gateways %}
-    <div id="payment-{{ gateway.get_name_display }}">
+    <div id="payment-{{ gateway.get_name_display }}" class="action-form online-account" >
         <form method="post" action="{% url 'payments_account_payment' order.id order.receipt_code %}">
             {% csrf_token %}
-            <input type="hidden" name="order_id" value="{{ order.id }}"/>
             <input type="hidden" name="gateway_name" value="{{ gateway.name }}"/>
-            <ul class="action-form">
-                <li class="info-message-box">Pay with your {{ gateway.get_name_display }} account.</li>
+            <ul>
+                <li class="info-message-box">
+                    Pay with your {{ gateway.get_name_display }} account.
+                </li>
                 <li>
-                    <input type="submit" value="Pay {{ order.total|currency:default_currency }}" class="pay-button" />
+                   <input type="submit" value="Pay {{ order.total|currency:default_currency }}" class="pay-button" />
                 </li>
             </ul>
         </form>
@@ -61,13 +72,15 @@
     $cardNumber.change(function(){
         $cardNumber.validateCreditCard(function(result){
             $('#id_card_type').val('');
-            
+            $('#payment-options .action-form .fa-check').hide();
+
             // Removed error highlight if user corrected his card number
             if($cardNumber.hasClass('input-error') && result.length_valid && result.luhn_valid)
                 $cardNumber.removeClass('input-error');
 
             if(result.card_type) {
                 $('#id_card_type').val(result.card_type.name);
+                $('#payment-options .action-form .fa-check').css('display', 'inline-block');
 
                 // Highlight card number if wrong when user done with entering
                 if(!$cardNumber.is(':focus') && (!result.length_valid || !result.luhn_valid))
@@ -79,10 +92,13 @@
     // Payments options in tabs
     $('#payment-options').tabs();
 
-    // Initializing new forms in payment options
+    // Initializing new forms in payment options for ajax requests
     bootstrapAjax($, '#payment-options');
 
-    function paymentResponse(data, status, response) {
-        
-    }
+    // Masking inforce correct inputs
+    $.mask.definitions['0']='[01]';
+
+    $('#id_card_number').mask('9999 9999 9999 9999? 9999', {placeholder: ' '});
+    $('#id_expiry').mask('09 / 99', {placeholder: '_'});
+    $('#id_cvv2').mask('999?9', {placeholder: ' '});
 </script>
