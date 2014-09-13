@@ -8,7 +8,7 @@
         {% endfor %}
     </ul>
     <div id="payment-credit-card" class="credit-card action-form">
-        <form method="post" data-ajax="true" action="{% url 'payments_credit_card_payment' order.id order.receipt_code %}" data-ajax-update="#payment-options-container">
+        <form method="post" data-ajax="true" action="{% url 'payments_credit_card_payment' order.id order.receipt_code %}" data-ajax-update="#payment-options-container" data-ajax-loading="#process-credit-card">
             {% csrf_token %}
             <ul>
                 {% if error %}
@@ -31,18 +31,19 @@
                 <li class="dual-input">
                     <span>
                         <i class="fa fa-calendar-o"></i>
-                        {{ form.expiry }}
+                        {{ form.expire_date }}
                     </span>
                     <span>
                         <i class="fa fa-lock fa-lg"></i>
                         {{ form.cvv2 }}
                     </span>
                     <br/>
-                    {{ form.expiry.errors }}
+                    {{ form.expire_date.errors }}
                     {{ form.cvv2.errors }}
                 </li>
-                <li>
-                    <input type="submit" value="Pay {{ order.total|currency:default_currency }}" class="pay-button" onclick="javascript:processCreditCard();" />
+                <li class="pay-botton-container">
+                    <i id="process-credit-card" class="fa fa-spinner fa-lg fa-spin"></i>
+                    <input type="submit" value="Pay {{ order.total|currency:default_currency }}" class="pay-button" onclick="javascript:$(this).attr('disabled','disabled');" />
                 </li>
             </ul>
             {{ form.card_type }}
@@ -99,6 +100,6 @@
     $.mask.definitions['0']='[01]';
 
     $('#id_card_number').mask('9999 9999 9999 9999? 9999', {placeholder: ' '});
-    $('#id_expiry').mask('09 / 99', {placeholder: '_'});
+    $('#id_expire_date').mask('09 / 99', {placeholder: '_'});
     $('#id_cvv2').mask('999?9', {placeholder: ' '});
 </script>

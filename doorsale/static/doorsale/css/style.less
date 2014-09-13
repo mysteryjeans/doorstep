@@ -19,6 +19,10 @@
 @monospace-font-family: Consolas, Monaco, "Lucida Console", Monaco, monospace;
 
 
+.text {
+  color: @text-color;
+}
+
 .light-text {
   color: @light-text-color;
 }
@@ -130,6 +134,10 @@ select {
 
 input[type="submit"], input[type="button"], button {
   .button;
+}
+
+input[disabled="disabled"] {
+  .opacity(0.5);
 }
 
 a.button, a:hover.button {

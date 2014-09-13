@@ -383,10 +383,12 @@
                 margin-top: 8px;
                 margin-left: 5px;
                 color: @first-color;
+                z-index: 102;
             }
 
             input[type="text"] {
                 font-size: 1.2em;
+                font-weight: bold;
                 font-family: @monospace-font-family;
                 padding: 6px;
                 padding-left: 24px;
@@ -421,10 +423,21 @@
         }
     }
 
-    .pay-button {
-        font-size: 1.2em;
-        width: 100%;
-        margin: auto;
+    .pay-botton-container {
+
+        i {
+            right: 0px;
+            left: auto !important;
+            margin-right: 5px;
+            color: white !important;
+            display: none;
+        }
+
+        .pay-button {
+            font-size: 1.2em;
+            width: 100%;
+            margin: auto;
+        }
     }
 
     .online-account {
@@ -432,6 +445,21 @@
             margin: 30px 0px;
             font-size: 2em;
             padding-left: 30px;
+        }
+    }
+}
+
+#payment-options-container {
+
+    .credit-card-processed {
+        padding: 30px;
+
+        i {
+            color: @first-color;
+        }
+
+        .success-message-box {
+            font-size: 1.2em;
         }
     }
 }

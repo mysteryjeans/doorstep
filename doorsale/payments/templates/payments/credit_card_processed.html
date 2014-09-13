@@ -1,0 +1,26 @@
+<div class="credit-card-processed">
+    <p class="success-message">
+        <i class="fa fa-credit-card"></i>
+        Your credit card has been processed successfully. redirecting<span id="dots" class="text"></span>
+        <br/>
+        <br/>
+        <a id="a-order-receipt" href="{% url 'sales_checkout_receipt' order.id order.receipt_code %}" style="display: none;">View your order receipt here...</a>
+    </p>
+</div>
+<script type="text/javascript">
+    setTimeout(function(){
+        $('#a-order-receipt').fadeIn(1000);
+        window.location = $('#a-order-receipt').attr('href');
+    }, 3000);
+
+    setInterval(aniDots, 600);
+    function aniDots() {
+        if(dots < 3) {
+            $('#dots').append('.');
+            dots++;
+        } else {
+            $('#dots').html('');
+            dots = 0;
+        }
+    }
+</script>

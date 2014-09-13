@@ -43,7 +43,7 @@ class Gateway(models.Model):
     created_by = models.CharField(max_length=100)
     
     def __unicode__(self):
-        return self.name
+        return self.account
 
     @classmethod
     def get_gateways(cls):
@@ -57,7 +57,7 @@ class GatewayParam(models.Model):
     """
     Represents a payment processing gateway settings
     """
-    gateway = models.ForeignKey(Gateway)
+    gateway = models.ForeignKey(Gateway, related_name='params')
     name = models.CharField(max_length=250, help_text='Gateway settings parameter name.')
     value = models.CharField(max_length=500, help_text='Gateway settings parameter value.')
     updated_on = models.DateTimeField(auto_now=True)
@@ -70,7 +70,7 @@ class GatewayParam(models.Model):
         verbose_name_plural = 'Gateway Params'
         unique_together = ('gateway', 'name')
         
-    def __unique__(self):
+    def __unicode__(self):
         return '%s: %s' % (self.name, self.value)
 
 
@@ -118,7 +118,7 @@ class TransactionParam(models.Model):
     """
     Represents payment transaction parameters
     """
-    transaction = models.ForeignKey(Transaction)
+    transaction = models.ForeignKey(Transaction, related_name='params')
     name = models.CharField(max_length=100, help_text='Transaction parameter name.')
     value = models.CharField(max_length=250, help_text='Transaction parameter value.')
     created_on = models.DateTimeField(auto_now_add=True)
