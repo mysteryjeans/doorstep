@@ -49,7 +49,7 @@ class PayPal:
     
     def create_account_payment(self, order, user):
         """
-        Creates payment transaction of PayPal account
+        Creates payment transaction for PayPal account
         """
         access_token = get_random_string(20)
 
@@ -121,7 +121,6 @@ class PayPal:
                 if link.rel == 'approval_url' and link.method == 'REDIRECT':
                     return link.href
         
-        print payment.error
         payment_txn.status = Transaction.STATUS_FAILED
         payment_txn.error_message = payment.error['message']
         payment_txn.save()

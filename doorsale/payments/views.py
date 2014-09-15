@@ -83,7 +83,7 @@ def process_account_request(request, order_id, receipt_code):
                 raise ImproperlyConfigured('Doorsale doesn\'t yet support payment with %s account.' % gateway.get_name_display())
         except DoorsaleError as e:
             request.session['processing_error'] = e.message
-            return HttpResponseRedirect(reverse('payments_processing_error'))
+            return HttpResponseRedirect(reverse('payments_processing_message'))
 
     raise Http404
 
@@ -113,26 +113,30 @@ def process_account_response(request, transaction_id, access_token, success):
                     return HttpResponseRedirect(reverse('sales_checkout_receipt', args=[order.id, order.receipt_code]))
                 else:
                     processor.cancel_account_payment(payment_txn, request.user)
-                    return HttpResponseRedirect(reverse('sales_checkout_cart'))
+                    request.session['processing_message'] = 'Your order has been canceled.'
+                    return HttpResponseRedirect(reverse('payments_processing_message'))
             else:
                 raise ImproperlyConfigured('Doorsale doesn\'t yet support payment with %s account.' % gateway.get_name_display())
 
         except DoorsaleError as e:
             request.session['processing_error'] = e.message
-            return HttpResponseRedirect(reverse('payments_processing_error'))
+            return HttpResponseRedirect(reverse('payments_processing_message'))
 
     raise Http404
 
 
-class ProcessingErrorView(CatalogBaseView):
+class ProcessingMessageView(CatalogBaseView):
     """
-    Shows payment processing error
+    Shows payment processing message or error
     """
-    template_name = 'payments/processing_error.html'
+    template_name = 'payments/processing_message.html'
 
     def get(self, request):
+        breadcrumbs = ({'name': 'Processing Status', 'url': reverse('payments_processing_message')},)
+
         if 'processing_error' in request.session:
-            breadcrumbs = ({'name': 'Processing Error', 'url': reverse('payments_processing_error')},)
-            return super(ProcessingErrorView, self).get(request, error=request.session.pop('processing_error'), breadcrumbs=breadcrumbs)
+            return super(ProcessingMessageView, self).get(request, error=request.session.pop('processing_error'), breadcrumbs=breadcrumbs)
+        elif 'processing_message' in request.session:
+            return super(ProcessingMessageView, self).get(request, message=request.session.pop('processing_message'), breadcrumbs=breadcrumbs)
 
         return HttpResponseRedirect(reverse('sales_checkout_cart'))
