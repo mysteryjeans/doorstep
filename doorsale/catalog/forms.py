@@ -2,9 +2,9 @@ from django import forms
 
 from doorsale.catalog.models import Manufacturer, Category
 
-class AdvanceSearchForm(forms.Form):
+class AdvancedSearchForm(forms.Form):
     """
-    Advance Catalog Search form
+    Advanced Catalog Search form
     """
     keyword = forms.CharField(max_length=15, error_messages={'required': 'Please enter search keyword.'}, 
                               widget=forms.TextInput(attrs={'placeholder': 'Search store...'}))

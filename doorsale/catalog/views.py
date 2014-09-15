@@ -7,7 +7,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django.views.generic import View
 
 from doorsale.views import BaseView
-from doorsale.catalog.forms import AdvanceSearchForm
+from doorsale.catalog.forms import AdvancedSearchForm
 from doorsale.catalog.models import Manufacturer, Category, Product
 from doorsale.financial.models import Currency
 
@@ -135,7 +135,7 @@ class SearchProductsView(CatalogBaseView):
         params = { 'q': q.encode('utf-8')}
         query = '?' + urllib.urlencode(params)
         breadcrumbs = ({'name': page_title, 'url': reverse('catalog_search') + query },)
-        form = AdvanceSearchForm(initial={'keyword': q})
+        form = AdvancedSearchForm(initial={'keyword': q})
         products = Product.search_products(q)
         return super(SearchProductsView, self).get(request,
                                                    q=q,
@@ -145,7 +145,7 @@ class SearchProductsView(CatalogBaseView):
                                                    page_title=page_title)
     
     def post(self, request):
-        form = AdvanceSearchForm(request.POST)
+        form = AdvancedSearchForm(request.POST)
         
         is_valid = form.is_valid()
         data = form.cleaned_data
