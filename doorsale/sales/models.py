@@ -225,8 +225,8 @@ class OrderManager(models.Manager):
         shipping_address = Address.objects.get(id=shipping_address_id)
         payment_method = PaymentMethod.objects.get(code=payment_method)
         currency = Currency.objects.get(code=currency_code)
-        exchange_value = float(cart.get_total())
-        exchange_value *= float(currency.exchange_rate)
+        charge_amount = float(cart.get_total())
+        charge_amount *= float(currency.exchange_rate)
         receipt_code = get_random_string(20) # allows secure access to order receipt
         
         order = self.create(customer=user,
@@ -236,7 +236,7 @@ class OrderManager(models.Manager):
                             taxes=cart.get_taxes(),
                             total=cart.get_total(),
                             exchange_rate=currency.exchange_rate,
-                            exchange_value=exchange_value,
+                            charge_amount=charge_amount,
                             order_status=self.model.ORDER_PENDING,
                             payment_method=payment_method,
                             payment_status=self.model.PAYMENT_PENDING,
@@ -313,7 +313,7 @@ class Order(models.Model):
     total = models.DecimalField(max_digits=9, decimal_places=2)
     refunded_amount = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True)
     exchange_rate = models.FloatField(default=1)
-    exchange_value = models.DecimalField(max_digits=9, decimal_places=2, help_text='Order total in user prefered currency.')
+    charge_amount = models.DecimalField(max_digits=9, decimal_places=2, help_text='Order total amount in user prefered currency that has been charged.')
     order_status = models.CharField(max_length=2, choices=ORDER_STATUSES)
     payment_method = models.ForeignKey(PaymentMethod, db_column='payment_method_code')
     payment_status = models.CharField(max_length=2, choices=PAYMENT_STATUSES)

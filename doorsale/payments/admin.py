@@ -26,7 +26,7 @@ class GatewayParamAdmin(ModelAdmin):
 
 
 class TransactionAdmin(ModelAdmin):
-    list_display = ('id', 'order', 'status', 'amount')
+    list_display = ('id', 'order', 'status', 'amount', 'currency')
     list_filter = ('gateway__name', 'status',)
     search_fields = ('id', 'order', 'gateway__name',)
     date_hierarchy = 'created_on'

@@ -14,6 +14,7 @@ from django.core.urlresolvers import reverse
 
 from doorsale.exceptions import DoorsaleError
 from doorsale.sales.models import Order
+from doorsale.financial.models import Currency
 from doorsale.payments.models import Gateway, GatewayParam, Transaction, TransactionParam
 
 # Processors module logger
@@ -51,42 +52,54 @@ class PayPal:
         Creates payment transaction of PayPal account
         """
         access_token = get_random_string(20)
+
         with transaction.atomic():
             payment_txn = Transaction.objects.create(gateway=self.gateway,
                                                      order=order,
                                                      description='Transaction for order #%s' % order.id,
                                                      status=Transaction.STATUS_PROCESSING,
                                                      currency=order.currency.code,
-                                                     amount=order.total,
+                                                     amount=order.charge_amount,
                                                      updated_by=unicode(user),
                                                      created_by=unicode(user))
             payment_txn.add_param('access_token', access_token, user)
             payment_txn.save()
 
-        payment = paypalrestsdk.Payment({
-            'intent': 'sale',
-            'redirect_urls': {
-                'return_url':'http://%s%s' % (settings.DOMAIN, reverse('payments_process_account_success', args=[payment_txn.id, access_token])),
-                'cancel_url':'http://%s%s' % (settings.DOMAIN, reverse('payments_process_account_cancel', args=[payment_txn.id, access_token])),
-            },
-            'payer': {
-                'payment_method': 'paypal',
-                },
-            'transactions': [{
-                'amount': {
-                    'total': unicode(order.total),
-                    'currency': order.currency.code,
-                    'details': {
-                        'subtotal': unicode(order.sub_total),
-                        'tax': unicode(order.taxes),
-                        'shipping': unicode(order.shipping_cost)
-                        }
-                    },
-                'description': 'Payment for order #%s' % (order.id)
-                }],
-            }, api=self.api)
-
         try:
+            payment = {
+                'intent': 'sale',
+                'redirect_urls': {
+                    'return_url':'http://%s%s' % (settings.DOMAIN, reverse('payments_process_account_success', args=[payment_txn.id, access_token])),
+                    'cancel_url':'http://%s%s' % (settings.DOMAIN, reverse('payments_process_account_cancel', args=[payment_txn.id, access_token])),
+                },
+                'payer': {
+                    'payment_method': 'paypal',
+                    },
+                'transactions': [{
+                    'item_list': { 
+                        'items': [{
+                            'name': item.product.name,
+                            'sku': item.product.name,
+                            'price': _exchange_amount(item.price, order.exchange_rate),
+                            'currency': order.currency.code,
+                            'quantity': item.quantity
+                        } for item in order.items.all()]
+                    },
+                    'amount': {
+                        'total': unicode(order.charge_amount),
+                        'currency': order.currency.code,
+                        'details': {
+                            'subtotal': _exchange_amount(order.sub_total, order.exchange_rate),
+                            'tax': _exchange_amount(order.taxes, order.exchange_rate),
+                            'shipping': _exchange_amount(order.shipping_cost, order.exchange_rate)
+                            }
+                        },
+                    'description': 'Payment for order #%s' % (order.id)
+                    }],
+            }
+
+            logger.info('Processing PayPal account.', extra=payment)
+            payment = paypalrestsdk.Payment(payment, api=self.api)
             payment_created = payment.create()
         except Exception as e:
             logger.error('Failed to process PayPal account (transaction_id: %s)' % payment_txn.id)
@@ -107,7 +120,8 @@ class PayPal:
             for link in payment.links:
                 if link.rel == 'approval_url' and link.method == 'REDIRECT':
                     return link.href
-            
+        
+        print payment.error
         payment_txn.status = Transaction.STATUS_FAILED
         payment_txn.error_message = payment.error['message']
         payment_txn.save()
@@ -157,7 +171,7 @@ class PayPal:
         """
         Payment transaction of credit card from PayPal gateway
         """
-        payment = paypalrestsdk.Payment({
+        payment = {
             'intent': 'sale',
             'payer': {
                 'payment_method': 'credit_card',
@@ -175,17 +189,15 @@ class PayPal:
                 },
             'transactions': [{
                 'amount': {
-                    'total': unicode(order.total),
-                    'currency': order.currency.code,
-                    'details': {
-                        'subtotal': unicode(order.sub_total),
-                        'tax': unicode(order.taxes),
-                        'shipping': unicode(order.shipping_cost)
-                        }
+                    'total': unicode(order.charge_amount),
+                    'currency': order.currency.code
                     },
                 'description': 'Payment for order #%s' % (order.id)
                 }],
-            }, api=self.api)
+        }
+        
+        logger.info('Processing Credit Card via PayPal', extra=payment)
+        payment = paypalrestsdk.Payment(payment, api=self.api)
         
         with transaction.atomic():
             payment_txn = Transaction.objects.create(gateway=self.gateway,
@@ -193,7 +205,7 @@ class PayPal:
                                                      description='Transaction for order #%s' % order.id,
                                                      status=Transaction.STATUS_PROCESSING,
                                                      currency=order.currency.code,
-                                                     amount=order.total,
+                                                     amount=order.charge_amount,
                                                      updated_by=unicode(user),
                                                      created_by=unicode(user))
 
@@ -277,12 +289,12 @@ class Stripe:
                                                      description='Transaction for order #%s' % order.id,
                                                      status=Transaction.STATUS_PROCESSING,
                                                      currency=order.currency.code,
-                                                     amount=order.total,
+                                                     amount=order.charge_amount,
                                                      updated_by=unicode(user),
                                                      created_by=unicode(user))
         try:
             charge = stripe.Charge.create(
-                amount=int(order.total * 100), # 100 cents to charge $1.00
+                amount=int(order.charge_amount * 100), # 100 cents to charge $1.00
                 currency=order.currency.code.lower(),
                 description='Payment for order #%s' % (order.id),
                 card={
@@ -331,4 +343,9 @@ class Stripe:
         Refunds an transaction amount
         """
 
+def _exchange_amount(amount, rate):
+    """
+    Returns rounded exchange value of amount
+    """
+    return '%.2f' % round(float(amount) * float(rate), 2)
         
