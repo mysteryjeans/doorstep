@@ -2,14 +2,18 @@
 
 <div id="payment-options">
     <ul>
+        {% if form %}
         <li><a href="#payment-credit-card">Credit Card</a></li>
+        {% endif %}
         {% for gateway in gateways %}
         <li><a href="#payment-{{ gateway.get_name_display }}">{{ gateway.get_name_display }}</a></li>
         {% endfor %}
     </ul>
+    {% if form %}
     <div id="payment-credit-card" class="credit-card action-form">
         <form method="post" data-ajax="true" action="{% url 'payments_credit_card_payment' order.id order.receipt_code %}" data-ajax-update="#payment-options-container" data-ajax-loading="#process-credit-card">
             {% csrf_token %}
+            {{ form.gateway }}
             <ul>
                 {% if error %}
                 <li class="error-message-box">
@@ -49,6 +53,7 @@
             {{ form.card_type }}
         </form>
     </div>
+    {% endif %}
     {% for gateway in gateways %}
     <div id="payment-{{ gateway.get_name_display }}" class="action-form online-account" >
         <form method="post" action="{% url 'payments_account_payment' order.id order.receipt_code %}">

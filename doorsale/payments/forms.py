@@ -5,7 +5,7 @@ import calendar
 from django import forms
 from django.forms.extras.widgets import SelectDateWidget
 
-from doorsale.payments.models import CardIssuer
+from doorsale.payments.models import CardIssuer, Gateway
 
 
 class CreditCardForm(forms.Form):
@@ -15,6 +15,7 @@ class CreditCardForm(forms.Form):
     REGEX_EXPIRY = re.compile(r'^(\d{2})\s/\s(\d{2})$')
     REGEX_CVV2 = re.compile(r'^(\d{3,4})$')
 
+    gateway = forms.ModelChoiceField(queryset=Gateway.objects.filter(is_active=True, accept_credit_card=True), empty_label=None, widget=forms.HiddenInput())
     card_name = forms.CharField(max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Name...'}), error_messages={'required': 'Please specify name on credit card.'})
     card_number = forms.CharField(max_length=24, widget=forms.TextInput(attrs={'placeholder': 'Number...'}), error_messages={'required': 'Please specify credit card number.'})
     card_type = forms.CharField(widget=forms.HiddenInput(), required=False)
@@ -77,6 +78,7 @@ class CreditCardForm(forms.Form):
                 'number': cleaned_data['card_number'],
                 'type': cleaned_data['card_type'],
                 'cvv2': cleaned_data['cvv2'],
+                'name': card_name,
                 'first_name': card_name.split(' ')[0],
                 'last_name': ' '.join(card_name.split(' ')[1:]),
                 'expire_month': str(expire_date.month),

@@ -9,7 +9,7 @@ from doorsale.sales.models import Order
 from doorsale.catalog.views import get_default_currency
 from doorsale.payments.forms import CreditCardForm
 from doorsale.payments.models import Gateway
-from doorsale.payments.processors import PayPal
+from doorsale.payments.processors import PayPal, Stripe
 
 
 def online_payment(request, order_id, receipt_code):   
@@ -19,8 +19,11 @@ def online_payment(request, order_id, receipt_code):
     order = get_object_or_404(Order, id=order_id, receipt_code=receipt_code)
     default_currency = get_default_currency(request)
 
-    form = CreditCardForm()
+    form = None
     gateways = Gateway.get_gateways()
+    for gateway in gateways:
+        if gateway.accept_credit_card:
+            form = CreditCardForm(initial={ 'gateway': gateway })
     return render(request, 'payments/online_payment.html', { 'form': form, 'order': order, 'gateways': gateways, 'default_currency': default_currency })
 
 
@@ -36,11 +39,17 @@ def credit_card_payment(request, order_id, receipt_code):
         if form.is_valid():
             error = None
             data = form.cleaned_data
+            gateway = data['gateway']
+            
+            if gateway.name == Gateway.PAYPAL:
+                processor = PayPal(gateway)
+            elif gateway.name == Gateway.STRIPE:
+                processor = Stripe(gateway)
+            else:
+                raise ImproperlyConfigured('%s is not supported gateway for processing credit cards.' % gateway)
 
-            # Doorsale by default accept credit card payment via PayPal
-            paypal = PayPal()
             try:
-                transaction = paypal.credit_card_payment(data['card'], order, request.user)
+                transaction = processor.credit_card_payment(data['card'], order, request.user)
                 return render(request, 'payments/credit_card_processed.html', { 'order': order })
             except DoorsaleError as e:
                 error = e.message
@@ -52,7 +61,7 @@ def credit_card_payment(request, order_id, receipt_code):
     raise Http404
 
 
-@transaction.atomic
+@transaction.non_atomic_requests
 def account_payment(request, order_id, receipt_code):
     """
     Process payment via online account like PayPal, Amazon ...etc

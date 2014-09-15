@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.core.exceptions import ValidationError
 
 from doorsale.sales.models import Order
 
@@ -30,20 +31,30 @@ class Gateway(models.Model):
     Represents payment processing gateways
     """
     PAYPAL = 'PP'
+    STRIPE = 'ST'
     AMAZON_PAYMENTS = 'AP'
     ALL = ((PAYPAL, 'PayPal'),
+           (STRIPE, 'Stripe'),
            (AMAZON_PAYMENTS, 'Amazon Payments'))
     
     name = models.CharField(primary_key=True, max_length=10, choices=ALL, help_text='Payment processing gateway.')
-    account = models.CharField(max_length=100, help_text='Payment account name, usually it is your configured business email address of your merchant account.')
+    account = models.CharField(max_length=100, help_text='Account name of gateway for reference.')
     is_active = models.BooleanField(help_text='Gateway active for customer to buy through it.')
+    is_sandbox = models.BooleanField(help_text='Sandbox mode for testing & debugging.')
+    accept_credit_card = models.BooleanField(help_text='Process credit card payments.')
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_by = models.CharField(max_length=100)
     created_by = models.CharField(max_length=100)
     
     def __unicode__(self):
-        return self.account
+        return '%s[%s]' % (self.account, self.get_name_display())
+
+    def clean(self):
+        if self.accept_credit_card:
+            gateways = Gateway.objects.filter(accept_credit_card=True).all()
+            if gateways:
+                raise ValidationError('%s is already configured to accept credit card payments.' % (gateways[0]))
 
     @classmethod
     def get_gateways(cls):
