@@ -8,7 +8,9 @@ import paypalrestsdk
 
 from django.db import transaction
 from django.conf import settings
+from django.utils.crypto import get_random_string
 from django.core.exceptions import ImproperlyConfigured
+from django.core.urlresolvers import reverse
 
 from doorsale.exceptions import DoorsaleError
 from doorsale.sales.models import Order
@@ -31,12 +33,12 @@ class PayPal:
         if 'client_id' in params and params['client_id']:
             client_id = params['client_id']
         else:
-            raise ImproperlyConfigured('"client_id" parameter not configured for PayPal gateway "%s".' % self.gateway)
+            raise ImproperlyConfigured('"client_id" parameter not configured for PayPal gateway %s.' % self.gateway.account)
         
         if 'client_secret' in params and params['client_secret']:
             client_secret = params['client_secret']
         else:
-            raise ImproperlyConfigured('"client_secret" parameter not configured for PayPal gateway "%s".' % self.gateway)
+            raise ImproperlyConfigured('"client_secret" parameter not configured for PayPal gateway %s.' % self.gateway.account)
 
         self.api = paypalrestsdk.Api({
             'mode': self.mode,
@@ -44,11 +46,113 @@ class PayPal:
             'client_secret': client_secret
             })
     
-    def account_payment(self, **kwargs):
+    def create_account_payment(self, order, user):
         """
-        Payment transaction from PayPal account
+        Creates payment transaction of PayPal account
         """
-    
+        access_token = get_random_string(20)
+        with transaction.atomic():
+            payment_txn = Transaction.objects.create(gateway=self.gateway,
+                                                     order=order,
+                                                     description='Transaction for order #%s' % order.id,
+                                                     status=Transaction.STATUS_PROCESSING,
+                                                     currency=order.currency.code,
+                                                     amount=order.total,
+                                                     updated_by=unicode(user),
+                                                     created_by=unicode(user))
+            payment_txn.add_param('access_token', access_token, user)
+            payment_txn.save()
+
+        payment = paypalrestsdk.Payment({
+            'intent': 'sale',
+            'redirect_urls': {
+                'return_url':'http://%s%s' % (settings.DOMAIN, reverse('payments_process_account_success', args=[payment_txn.id, access_token])),
+                'cancel_url':'http://%s%s' % (settings.DOMAIN, reverse('payments_process_account_cancel', args=[payment_txn.id, access_token])),
+            },
+            'payer': {
+                'payment_method': 'paypal',
+                },
+            'transactions': [{
+                'amount': {
+                    'total': unicode(order.total),
+                    'currency': order.currency.code,
+                    'details': {
+                        'subtotal': unicode(order.sub_total),
+                        'tax': unicode(order.taxes),
+                        'shipping': unicode(order.shipping_cost)
+                        }
+                    },
+                'description': 'Payment for order #%s' % (order.id)
+                }],
+            }, api=self.api)
+
+        try:
+            payment_created = payment.create()
+        except Exception as e:
+            logger.error('Failed to process PayPal account (transaction_id: %s)' % payment_txn.id)
+            logger.exception(e)
+
+            raise DoorsaleError('We failed to process your PayPal account at the moment, please try again later!')
+
+        if payment_created:
+            with transaction.atomic():
+                payment_txn.add_param('id', unicode(payment.id), user)
+                payment_txn.add_param('create_time', unicode(payment.create_time), user)
+                payment_txn.add_param('update_time', unicode(payment.update_time), user)
+                payment_txn.add_param('state', unicode(payment.state), user)
+                payment_txn.add_param('intent', unicode(payment.intent), user)
+                payment_txn.add_param('payment_method', unicode(payment.payer.payment_method), user)
+                payment_txn.save()
+
+            for link in payment.links:
+                if link.rel == 'approval_url' and link.method == 'REDIRECT':
+                    return link.href
+            
+        payment_txn.status = Transaction.STATUS_FAILED
+        payment_txn.error_message = payment.error['message']
+        payment_txn.save()
+
+        raise DoorsaleError('We failed to process your PayPal account at the moment, please try again later!')
+
+    def execute_account_payment(self, payer_id, payment_txn, user):
+        """
+        Excecutes user's approved payment of PayPal account
+        """
+        order = payment_txn.order
+        payment = paypalrestsdk.Payment.find(payment_txn.get_param('id'), api=self.api)
+        
+        if payment.execute({'payer_id': payer_id}):
+            with transaction.atomic():
+                payment_txn.status = Transaction.STATUS_APPROVED
+                payment_txn.add_param('sale_id', unicode(payment.transactions[0].related_resources[0].sale.id), user)
+                payment_txn.save()
+
+                order.payment_status = Order.PAYMENT_PAID
+                order.updated_by = unicode(user)
+                order.save()
+        else:
+            with transaction.atomic():
+                payment_txn.status = Transaction.STATUS_FAILED
+                payment_txn.error_message = payment.error['message']
+                payment_txn.save()
+
+            raise DoorsaleError('We failed to process your PayPal account at the moment, please try again later!')
+
+    def cancel_account_payment(self, payment_txn, user):
+        """
+        Cancels user's payment request of PayPal account
+        """
+        order = payment_txn.order
+        with transaction.atomic():
+            payment_txn.status = Transaction.STATUS_FAILED
+            payment_txn.save()
+
+            order.order_status = Order.ORDER_CANCELLED
+            order.payment_status = Order.PAYMENT_VOID
+            order.shipping_status = Order.SHIPPING_NOT_REQUIRED
+            order.updated_by = unicode(user)
+            order.save()
+        
     def credit_card_payment(self, card, order, user):
         """
         Payment transaction of credit card from PayPal gateway
@@ -126,8 +230,6 @@ class PayPal:
 
             with transaction.atomic():
                 payment_txn.status = Transaction.STATUS_FAILED
-                dir(payment.error)
-                print payment.error
                 payment_txn.error_message = payment.error['message']
                 payment_txn.save()
 
@@ -164,11 +266,6 @@ class Stripe:
                 raise ImproperlyConfigured('"%s" Gateway is configured for live mode but uses test "api_key".' % self.gateway)
 
         stripe.api_key = self.api_key
-
-    def account_payment(self, **kwargs):
-        """
-        Payment transaction of Strip account
-        """
 
     def credit_card_payment(self, card, order, user):
         """

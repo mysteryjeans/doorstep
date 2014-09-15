@@ -1,9 +1,10 @@
 <div class="credit-card-processed">
-    <p class="success-message">
+    <p class="info-message-box">
         <i class="fa fa-credit-card"></i>
         Your credit card has been processed successfully. redirecting<span id="dots" class="text"></span>
-        <br/>
-        <br/>
+    </p>
+    <p>
+        <br/>   
         <a id="a-order-receipt" href="{% url 'sales_checkout_receipt' order.id order.receipt_code %}" style="display: none;">View your order receipt here...</a>
     </p>
 </div>

@@ -347,12 +347,17 @@
         .border-radius(2px);
 
         li {
-            border-left: 1px solid @border-dark-color;
+            border-left: 1px solid @border-color;
             float: left;
 
             a {
                 display: block;
                 padding: 5px 20px;
+                color: @text-color;
+            }
+
+            a:hover {
+                text-decoration: none;
             }
         }
 
@@ -361,7 +366,7 @@
         }
 
         .ui-tabs-active {
-            background-color: @border-color;
+            background-color: @border-color; 
         }
     }
 
@@ -443,7 +448,6 @@
     .online-account {
         .info-message-box {
             margin: 30px 0px;
-            font-size: 2em;
             padding-left: 30px;
         }
     }

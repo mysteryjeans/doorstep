@@ -1,43 +1,47 @@
 from django.db import transaction
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.core.exceptions import ImproperlyConfigured
 from django.core.urlresolvers import reverse
 
 from doorsale.exceptions import DoorsaleError
 from doorsale.sales.models import Order
-from doorsale.catalog.views import get_default_currency
+from doorsale.catalog.views import CatalogBaseView, get_default_currency
 from doorsale.payments.forms import CreditCardForm
-from doorsale.payments.models import Gateway
+from doorsale.payments.models import Gateway, Transaction, TransactionParam
 from doorsale.payments.processors import PayPal, Stripe
 
 
-def online_payment(request, order_id, receipt_code):   
+def process_online(request, order_id, receipt_code):   
     """
     Shows online or process online payment
     """
-    order = get_object_or_404(Order, id=order_id, receipt_code=receipt_code)
-    default_currency = get_default_currency(request)
+    if request.method == 'GET':
+        form = None
+        gateways = Gateway.get_gateways()
+        order = get_object_or_404(Order, id=order_id, receipt_code=receipt_code)
+        default_currency = get_default_currency(request)
+        
+        for gateway in gateways:
+            if gateway.accept_credit_card:
+                form = CreditCardForm(initial={ 'gateway': gateway })
 
-    form = None
-    gateways = Gateway.get_gateways()
-    for gateway in gateways:
-        if gateway.accept_credit_card:
-            form = CreditCardForm(initial={ 'gateway': gateway })
-    return render(request, 'payments/online_payment.html', { 'form': form, 'order': order, 'gateways': gateways, 'default_currency': default_currency })
+        return render(request, 'payments/process_online.html', { 'form': form, 'order': order, 'gateways': gateways, 'default_currency': default_currency })
+
+    raise Http404
 
 
 @transaction.non_atomic_requests
-def credit_card_payment(request, order_id, receipt_code):
+def process_credit_card(request, order_id, receipt_code):
     """
     Process credit card payment
     """
     if request.method == 'POST':
+        error = None
         form = CreditCardForm(request.POST)
         order = get_object_or_404(Order, id=order_id, receipt_code=receipt_code)
         
         if form.is_valid():
-            error = None
             data = form.cleaned_data
             gateway = data['gateway']
             
@@ -56,13 +60,13 @@ def credit_card_payment(request, order_id, receipt_code):
      
         gateways = Gateway.get_gateways()
         default_currency = get_default_currency(request)
-        return render(request, 'payments/online_payment.html', { 'form': form, 'order': order, 'gateways': gateways, 'default_currency': default_currency, 'error': error })
+        return render(request, 'payments/process_online.html', { 'form': form, 'order': order, 'gateways': gateways, 'default_currency': default_currency, 'error': error })
 
     raise Http404
 
 
 @transaction.non_atomic_requests
-def account_payment(request, order_id, receipt_code):
+def process_account_request(request, order_id, receipt_code):
     """
     Process payment via online account like PayPal, Amazon ...etc
     """
@@ -71,6 +75,64 @@ def account_payment(request, order_id, receipt_code):
         gateway_name = request.POST["gateway_name"]
         gateway = get_object_or_404(Gateway, name=gateway_name)
 
-        raise ImproperlyConfigured('Doorsale doesn''t yet support Payment Processing Gateway: "%s"' % gateway.get_name_display())
+        try:
+            if gateway.name == Gateway.PAYPAL:
+                processor = PayPal(gateway)
+                return HttpResponseRedirect(processor.create_account_payment(order, request.user))
+            else:
+                raise ImproperlyConfigured('Doorsale doesn\'t yet support payment with %s account.' % gateway.get_name_display())
+        except DoorsaleError as e:
+            request.session['processing_error'] = e.message
+            return HttpResponseRedirect(reverse('payments_processing_error'))
 
     raise Http404
+
+
+@transaction.non_atomic_requests
+def process_account_response(request, transaction_id, access_token, success):
+    """
+    Process payment via online account like PayPal, Amazon ...etc
+    """
+    payment_txn = get_object_or_404(Transaction, id=int(transaction_id))
+    try:
+        if payment_txn.get_param('access_token') != access_token:
+            raise Http404
+    except TransactionParam.DoesNotExist:
+        raise Http404
+
+    if request.method == "GET":
+        order = payment_txn.order
+        gateway = payment_txn.gateway
+
+        try:
+            if gateway.name == Gateway.PAYPAL:
+                processor = PayPal(gateway)
+                if success:
+                    payer_id = request.GET['PayerID']
+                    processor.execute_account_payment(payer_id, payment_txn, request.user)
+                    return HttpResponseRedirect(reverse('sales_checkout_receipt', args=[order.id, order.receipt_code]))
+                else:
+                    processor.cancel_account_payment(payment_txn, request.user)
+                    return HttpResponseRedirect(reverse('sales_checkout_cart'))
+            else:
+                raise ImproperlyConfigured('Doorsale doesn\'t yet support payment with %s account.' % gateway.get_name_display())
+
+        except DoorsaleError as e:
+            request.session['processing_error'] = e.message
+            return HttpResponseRedirect(reverse('payments_processing_error'))
+
+    raise Http404
+
+
+class ProcessingErrorView(CatalogBaseView):
+    """
+    Shows payment processing error
+    """
+    template_name = 'payments/processing_error.html'
+
+    def get(self, request):
+        if 'processing_error' in request.session:
+            breadcrumbs = ({'name': 'Processing Error', 'url': reverse('payments_processing_error')},)
+            return super(ProcessingErrorView, self).get(request, error=request.session.pop('processing_error'), breadcrumbs=breadcrumbs)
+
+        return HttpResponseRedirect(reverse('sales_checkout_cart'))

@@ -6,12 +6,14 @@
         <li><a href="#payment-credit-card">Credit Card</a></li>
         {% endif %}
         {% for gateway in gateways %}
+        {% if gateway.accept_account %}
         <li><a href="#payment-{{ gateway.get_name_display }}">{{ gateway.get_name_display }}</a></li>
+        {% endif %}
         {% endfor %}
     </ul>
     {% if form %}
     <div id="payment-credit-card" class="credit-card action-form">
-        <form method="post" data-ajax="true" action="{% url 'payments_credit_card_payment' order.id order.receipt_code %}" data-ajax-update="#payment-options-container" data-ajax-loading="#process-credit-card">
+        <form method="post" data-ajax="true" action="{% url 'payments_process_credit_card' order.id order.receipt_code %}" data-ajax-update="#payment-options-container" data-ajax-loading="#process-credit-card">
             {% csrf_token %}
             {{ form.gateway }}
             <ul>
@@ -55,20 +57,22 @@
     </div>
     {% endif %}
     {% for gateway in gateways %}
+    {% if gateway.accept_account %}
     <div id="payment-{{ gateway.get_name_display }}" class="action-form online-account" >
-        <form method="post" action="{% url 'payments_account_payment' order.id order.receipt_code %}">
+        <form method="post" action="{% url 'payments_process_account_request' order.id order.receipt_code %}">
             {% csrf_token %}
             <input type="hidden" name="gateway_name" value="{{ gateway.name }}"/>
             <ul>
                 <li class="info-message-box">
-                    Pay with your {{ gateway.get_name_display }} account.
+                    Check out with your existing {{ gateway.get_name_display }} account.
                 </li>
-                <li>
+                <li class="pay-botton-container">
                    <input type="submit" value="Pay {{ order.total|currency:default_currency }}" class="pay-button" />
                 </li>
             </ul>
         </form>
     </div>
+    {% endif %}
     {% endfor %}
 </div>
 <script type="text/javascript">

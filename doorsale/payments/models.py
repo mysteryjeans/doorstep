@@ -42,6 +42,7 @@ class Gateway(models.Model):
     is_active = models.BooleanField(help_text='Gateway active for customer to buy through it.')
     is_sandbox = models.BooleanField(help_text='Sandbox mode for testing & debugging.')
     accept_credit_card = models.BooleanField(help_text='Process credit card payments.')
+    accept_account = models.BooleanField(help_text='Process payments with customer\'s existing accounts on gateway, like PayPal account.')
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_by = models.CharField(max_length=100)
@@ -118,11 +119,18 @@ class Transaction(models.Model):
 
     def add_param(self, name, value, user):
         """
-        Add transaction parameters
+        Add transaction parameter
         """
         param = TransactionParam(name=name, value=value, created_by=str(user))
         self.params.add(param)
         return param
+
+    def get_param(self, name):
+        """
+        Returns transaction parameter value
+        """
+        param = self.params.get(name=name)
+        return param.value
 
 
 class TransactionParam(models.Model):
