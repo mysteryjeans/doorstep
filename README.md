@@ -10,6 +10,7 @@ The powerful e-commerce solution for Django. This project is in its early stages
 4. doorsale.geo: Countries, States and Addresses
 5. doorsale.sales: Order processing and shopping cart
 6. doorsale.accounts: User accounts
+7. doorsale.payments: Payment gateways like PayPal, Stripe
 
 **Django models and admin models have been defined in detail, I need your help & contributions to make this project full fledged e-commerce solution.**
 
