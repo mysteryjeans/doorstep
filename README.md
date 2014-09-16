@@ -11,6 +11,11 @@ The powerful e-commerce solution for Django. This project is in its early stages
 5. doorsale.sales: Order processing and shopping cart
 6. doorsale.accounts: User accounts
 7. doorsale.payments: Payment gateways like PayPal, Stripe
+8. doorsale.pages: Flat pages and footer links
+
+### Payment Gateways
+1. PayPal
+2. Stripe
 
 **Django models and admin models have been defined in detail, I need your help & contributions to make this project full fledged e-commerce solution.**
 
