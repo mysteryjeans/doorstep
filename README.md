@@ -19,7 +19,7 @@ Payment processing gateways implemented to accept Credit Card & online merchant 
 1. PayPal
 2. Stripe
 
-**Backoffice is done using Django administration app, your contributions will help to complete this solution, lot of intuitive works needs to be done for backoffice operations as well.**
+**Backoffice is done using Django administration app, your contributions will definately help this project, lot of intuitive works needs to be done for backoffice operations as well.**
 
 # Demo
 Doorsale [demo](http://doorsale-demo.fanaticlab.com/) site for the list of features developed so far. Get started with development of your own site using doorsale, clone both repos ([doorsale](https://github.com/mysteryjeans/doorsale) & [doorsale-demo](https://github.com/mysteryjeans/doorsale-demo)) and restore demo database to it in action.
