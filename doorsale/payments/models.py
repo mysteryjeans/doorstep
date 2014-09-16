@@ -49,7 +49,7 @@ class Gateway(models.Model):
     created_by = models.CharField(max_length=100)
     
     def __unicode__(self):
-        return '%s[%s]' % (self.account, self.get_name_display())
+        return '%s -- %s' % (self.get_name_display(), self.account)
 
     def clean(self):
         if self.accept_credit_card:

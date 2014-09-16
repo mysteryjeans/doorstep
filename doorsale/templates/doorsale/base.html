@@ -1,5 +1,6 @@
 {% load staticfiles %}
 {% load compressed %}
+{% load pages_tags %}
 
 <html>
 	<head>
@@ -42,7 +43,6 @@
 				<li><a href="{% url 'accounts_login' %}">Login</a></li>
 				<li><a href="{% url 'accounts_register' %}" title="Register to shop faster and better!">Register</a></li>
 				{% endif %}
-				<li><a href="#">Contact Us</a></li>
 			</ul>
 			{% endblock %}
 		</header>
@@ -52,6 +52,12 @@
 		</div>
 		<footer>
 			{% block footer %}
+			{% get_pages_links %}
+			<div class="copyright">
+				<p>
+					<span class="statement">Copyright &copy; 2014 Doorsale demo store. All rights reserved.</span> <span class="poweredby">Powered by <a href="https://github.com/mysteryjeans/doorsale">Doorsale</a></span>
+				<p>
+			</div>
 			{% endblock %}
 		</footer>
 		{% endblock %}

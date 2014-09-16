@@ -38,9 +38,74 @@ h2 {
   border-bottom: 1px solid @border-color;
 }
 
+footer {
+  color: @footer-text-color;
+  background: @footer-color;
+  min-height: 100px;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  margin-top: 20px;
+
+  a {
+    color: @footer-dark-text-color;
+  }
+
+  a:hover, h4 {
+    color: @footer-text-color;
+    text-decoration: none;
+  }
+
+  .groups {
+    display: inline-block;
+    text-align: left;
+    margin: 40px 0px 80px 0px;
+
+    h4 {
+      font-size: 1.2em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    li.group-header {
+      float: left;
+      padding: 0px 30px;
+
+      .group-links {
+        li {
+          padding: 5px 0px;
+        }
+      }
+
+    }
+  }
+
+  .copyright {
+    background: @footer-light-color;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    padding: 10px;
+    box-sizing: border-box;
+    border-top: 2px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.9em;
+    text-align: center;
+
+    .statement {
+      float: left;
+    }
+
+    .poweredby {
+      float: right;
+    }
+  }
+}
+
 #content {
   clear: both;
   padding-top: 5px;
+  overflow: hidden;
 }
 
 .box {

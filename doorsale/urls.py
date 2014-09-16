@@ -1,4 +1,5 @@
 import sales.urls
+import pages.urls
 import catalog.urls
 import accounts.urls
 import payments.urls
@@ -16,5 +17,6 @@ urlpatterns = patterns('',
     url(r'^accounts/', include(accounts.urls)),
     url(r'^sales/', include(sales.urls)),
     url(r'^payments/', include(payments.urls)),
+    url(r'^pages/', include(pages.urls)),
     url(r'^admin/', include(admin.site.urls)),
 )

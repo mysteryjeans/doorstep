@@ -1,0 +1,13 @@
+{% extends "catalog/catalog_base.html" %}
+
+
+{% block catalog-content %}
+<div>
+    <h2>
+        {{ page.title }}
+    </h2>
+    <div>
+        {{ page.content|safe }}
+    </div>
+</div>
+{% endblock %}

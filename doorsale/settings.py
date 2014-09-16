@@ -8,6 +8,7 @@ import os
 
 from doorsale.catalog import settings as catalog_settings
 from doorsale.sales import settings as sales_settings
+from doorsale.pages import settings as pages_settings
 
 
 DOORSALE_DIR = os.path.dirname(__file__)
@@ -22,11 +23,12 @@ LOGIN_REDIRECT_URL = '/'
 DOORSALE_APPS = (
     'doorsale',
     'doorsale.geo',
+    'doorsale.pages',
     'doorsale.accounts',
     'doorsale.catalog',
     'doorsale.sales',
     'doorsale.financial',
-    'doorsale.payments'
+    'doorsale.payments',
 )
 
 # CSS settings for django-pipeline app
@@ -40,6 +42,7 @@ PIPELINE_CSS = {
 }
 PIPELINE_CSS.update(catalog_settings.PIPELINE_CSS)
 PIPELINE_CSS.update(sales_settings.PIPELINE_CSS)
+PIPELINE_CSS.update(pages_settings.PIPELINE_CSS)
 
 # Javascript settings for django pipeline
 PIPELINE_JS = {
