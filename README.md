@@ -2,7 +2,7 @@ Doorsale
 ========
 [![Build Status](https://travis-ci.org/mysteryjeans/doorsale.svg?branch=master)](https://travis-ci.org/mysteryjeans/doorsale)
 
-The powerful e-commerce solution for Django. This project is in its early stages and lots of work needs to be done. Doorsale project has been defined into following distinct apps.
+The powerful e-commerce solution for Django. Underneath the surface simplicity are features designed to thrive sales, which are reaching to be production ready. Following are discrete seperation into managable Django apps.
 
 1. doorsale: Generice views, templates and settings
 2. doorsale.catalog: Product catalog, Categories, Product Specs and Manufacturers
@@ -13,14 +13,16 @@ The powerful e-commerce solution for Django. This project is in its early stages
 7. doorsale.payments: Payment gateways like PayPal, Stripe
 8. doorsale.pages: Flat pages and footer links
 
-### Payment Gateways
+# Payment Gateways
+Payment processing gateways implemented to accept Credit Card & online merchant accounts.
+
 1. PayPal
 2. Stripe
 
-**Django models and admin models have been defined in detail, I need your help & contributions to make this project full fledged e-commerce solution.**
+**Backoffice is done using Django administration app, your contributions will help to complete this solution, lot of intuitive works needs to be done for backoffice operations as well.**
 
-### Demo
-Visit Doorsale [demo](http://doorsale-demo.fanaticlab.com/) site for the list of active features developed so far. To get start with development of your own site using doorsale, just clone both repos ([doorsale](https://github.com/mysteryjeans/doorsale) & [doorsale-demo](https://github.com/mysteryjeans/doorsale-demo)) and restore demo database.
+# Demo
+Doorsale [demo](http://doorsale-demo.fanaticlab.com/) site for the list of features developed so far. Get started with development of your own site using doorsale, clone both repos ([doorsale](https://github.com/mysteryjeans/doorsale) & [doorsale-demo](https://github.com/mysteryjeans/doorsale-demo)) and restore demo database to it in action.
 
 Demo repository is following master branch on Doorsale, so you should pull changes frequently to keep things synchronized and running smoothly, see [demo project](https://github.com/mysteryjeans/doorsale-demo) readme for more details.
 
