@@ -64,7 +64,7 @@ class AbstractUser(_AbstractUser):
     gender = models.CharField(max_length=1, choices=GENDERS, default=None)
     billing_address = models.ForeignKey(Address, null=True, blank=True, related_name='billing_customers', help_text='Customer default billing address')
     shipping_adress = models.ForeignKey(Address, null=True, blank=True, related_name='shipping_customers', help_text='Customer default shipping address')
-    is_verified = models.BooleanField(default=False)    
+    is_verified = models.BooleanField(default=True)    
     verification_code = models.CharField(max_length=512, blank=True, null=True)
     updated_on = models.DateTimeField(auto_now=True)
     updated_by = models.CharField(max_length=100)
@@ -73,7 +73,7 @@ class AbstractUser(_AbstractUser):
     
     objects = UserManager()
 
-    REQUIRED_FIELDS = ['email', 'is_verified', 'updated_by', 'created_by']
+    REQUIRED_FIELDS = ['email', 'gender', 'updated_by', 'created_by']
     
     class Meta:
         abstract = True

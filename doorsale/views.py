@@ -17,7 +17,7 @@ class BaseView(TemplateView):
         context['SITE_TITLE'] = settings.SITE_TITLE
         context['SITE_DESCRIPTION'] = settings.SITE_DESCRIPTION
         context['COPYRIGHT'] = settings.COPYRIGHT
-        context['CONTACT_EMAIL'] = settings.CONTACT_EMAIL
+        context['SUPPORT_EMAIL'] = settings.SUPPORT_EMAIL
         context['app_user'] = self.request.user
         context['request'] = self.request
         

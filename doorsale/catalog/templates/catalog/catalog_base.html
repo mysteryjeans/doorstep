@@ -34,6 +34,10 @@
 		{% with template_name="catalog/parts/category_list.html" %}
 		{% for category in categories %}
 		{% include template_name %}
+		{% empty %}
+		<li class="info-message-box no-categories-msg">
+			There are no categories defined.
+		</li>
 		{% endfor %}
 		{% endwith %}
 	</ul>
