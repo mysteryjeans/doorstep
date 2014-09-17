@@ -11,17 +11,47 @@ To see Doorsale in action, visit [Demo](http://doorsale-demo.fanaticlab.com) sit
 
 [Doorsale demo](https://github.com/mysteryjeans/doorsale-demo) repository is for quickly getting up and running e-commerce site on your local workstation, its readme contains all steps to setting up a site.
 
+When you have enough testing on prepopulated data in demo projects, starting your own site from skretch is similar to creating project in Django.
+
+Create a virtualenv for your own e-commerce project
+
+```
+$ virtualenv doorsale_env && source doorsale_env/bin/activate
+```
+
+Install the latest development version
+
+```
+$ pip install --upgrade git+https://github.com/mysteryjeans/doorsale.git#egg=Doorsale
+```
+
+Create a e-commerce project using doorsale-admin.py
+
+```
+$ doorsale-admin.py startproject ecom_bar
+```
+
+Create database: by default, django project use SQLite configuration, if you are new to databases this is good choice to start
+
+```
+$ python manage.py syncdb
+```
+
+Let's verify your site works, run development server and visit [http://127.0.0.1:8000](http://127.0.0.1:8000), you will see products catalog page with no products and categories
+
+```
+$ python manage.py runserver
+```
+
 Demo repository is following master branch on Doorsale, so you should pull changes frequently to keep things synchronized and running smoothly, see [demo project](https://github.com/mysteryjeans/doorsale-demo) readme for more details.
 
 
 ## Development
 
-Doorsale is **not** production ready, there are few tasks left in completeness, listed as follows.
+Doorsale is yet to be production ready, there are few tasks left in completeness, listed as follows.
 
-- Backoffice administration
 - Unit tests
-- New project creation script (doorsale-admin.py)
-- Initialize database command for populating lookup tables (Convert initial.sql script to django command "createdb")
+- Backoffice administration
 
 
 ## Built With
