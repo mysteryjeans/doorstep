@@ -1,4 +1,5 @@
 
+
 ################## Doorsale #########################
 #####################################################
 
@@ -42,6 +43,14 @@ COPYRIGHT = 'Copyright &copy; 2014 Doorsale. All rights reserved.'
 
 # SUPPORT_EMAIL address for bugs and error reporting
 SUPPORT_EMAIL = 'demo@doorsaledemo.com'
+
+
+# Email Server settings for sending notifications & confirmations emails
+EMAIL_HOST = ''
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = r''
 
 
 ################ Django-Pipeline #####################

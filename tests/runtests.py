@@ -1,8 +1,19 @@
 #!/usr/bin/env python
 import os
-import doorsale.settings
+
 
 from optparse import OptionParser
+
+DOORSALE_APPS = (
+    'doorsale',
+    'doorsale.geo',
+    'doorsale.pages',
+    'doorsale.accounts',
+    'doorsale.catalog',
+    'doorsale.sales',
+    'doorsale.financial',
+    'doorsale.payments',
+)
 
 
 if __name__ == '__main__':
@@ -20,4 +31,4 @@ if __name__ == '__main__':
 
     from django.core.management import call_command
 
-    call_command('test', *doorsale.settings.DOORSALE_APPS)
+    call_command('test', *DOORSALE_APPS)
