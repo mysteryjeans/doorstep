@@ -1,24 +1,23 @@
 import os
-import sys
 
 from setuptools import setup, find_packages
 
-
+SETUP_DIR = os.path.dirname(os.path.abspath(__file__))
 EXCLUDE_FROM_PACKAGES = ['doorsale.conf.project_settings',
                          'doorsale.bin']
+
 
 # Dynamically calculate the version based on django.VERSION.
 version = __import__('doorsale').get_version()
 
 
-SETUP_DIR = os.path.dirname(os.path.abspath(__file__))
+# Setup should be run from any extracted folder
+os.chdir(SETUP_DIR)
 
 
+# Getting setup's long descripton from README.md
 with open(os.path.join(SETUP_DIR, 'README.md')) as readme:
     README = readme.read()
-
-# Allowing setup to run from any location
-os.chdir(SETUP_DIR)
 
 
 setup(name='Doorsale',
@@ -36,5 +35,4 @@ setup(name='Doorsale',
                         'django-pipeline',
                         'Pillow',
                         'paypalrestsdk',
-                        'stripe'],
-)
+                        'stripe'])
