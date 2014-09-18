@@ -28,10 +28,10 @@ $ pip install --upgrade git+https://github.com/mysteryjeans/doorsale.git#egg=Doo
 Create a e-commerce project using doorsale-admin.py
 
 ```
-$ doorsale-admin.py startproject ecom_bar
+$ doorsale-admin.py startproject doorsale_site
 ```
 
-Create database: by default, django project use SQLite configuration, if you are new to databases this is good choice to start
+Create a database, new django project use SQLite by default, if you are new to databases this is good choice to start
 
 ```
 $ python manage.py syncdb
