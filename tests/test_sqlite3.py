@@ -1,5 +1,5 @@
 # Test settings for using sqlite3 database
-from base_settings import  *
+from base_settings import *
 
 DATABASES = {
     'default': {

@@ -14,8 +14,7 @@ from django.core.urlresolvers import reverse
 
 from doorsale.exceptions import DoorsaleError
 from doorsale.sales.models import Order
-from doorsale.financial.models import Currency
-from doorsale.payments.models import Gateway, GatewayParam, Transaction, TransactionParam
+from doorsale.payments.models import GatewayParam, Transaction
 
 # Processors module logger
 logger = logging.getLogger('django.request')
@@ -25,28 +24,31 @@ class PayPal:
     """
     PayPal gateway for processing payments
     """
+
     def __init__(self, gateway):
         self.gateway = gateway
         self.mode = 'sandbox' if gateway.is_sandbox else 'live'
-        
+
         params = dict((param.name, param.value) for param in self.gateway.params.all())
-        
+
         if 'client_id' in params and params['client_id']:
             client_id = params['client_id']
         else:
-            raise ImproperlyConfigured('"client_id" parameter not configured for PayPal gateway %s.' % self.gateway.account)
-        
+            raise ImproperlyConfigured('"client_id" parameter not configured for PayPal gateway %s.'
+                                       % self.gateway.account)
+
         if 'client_secret' in params and params['client_secret']:
             client_secret = params['client_secret']
         else:
-            raise ImproperlyConfigured('"client_secret" parameter not configured for PayPal gateway %s.' % self.gateway.account)
+            raise ImproperlyConfigured('"client_secret" parameter not configured for PayPal gateway %s.'
+                                       % self.gateway.account)
 
         self.api = paypalrestsdk.Api({
             'mode': self.mode,
             'client_id': client_id,
             'client_secret': client_secret
-            })
-    
+        })
+
     def create_account_payment(self, order, user):
         """
         Creates payment transaction for PayPal account
@@ -69,14 +71,16 @@ class PayPal:
             payment = {
                 'intent': 'sale',
                 'redirect_urls': {
-                    'return_url':'http://%s%s' % (settings.DOMAIN, reverse('payments_process_account_success', args=[payment_txn.id, access_token])),
-                    'cancel_url':'http://%s%s' % (settings.DOMAIN, reverse('payments_process_account_cancel', args=[payment_txn.id, access_token])),
+                    'return_url': 'http://%s%s' % (settings.DOMAIN, reverse('payments_process_account_success',
+                                                                            args=[payment_txn.id, access_token])),
+                    'cancel_url': 'http://%s%s' % (settings.DOMAIN, reverse('payments_process_account_cancel',
+                                                                            args=[payment_txn.id, access_token])),
                 },
                 'payer': {
                     'payment_method': 'paypal',
-                    },
+                },
                 'transactions': [{
-                    'item_list': { 
+                    'item_list': {
                         'items': [{
                             'name': item.product.name,
                             'sku': item.product.name,
@@ -92,10 +96,10 @@ class PayPal:
                             'subtotal': _exchange_amount(order.sub_total, order.exchange_rate),
                             'tax': _exchange_amount(order.taxes, order.exchange_rate),
                             'shipping': _exchange_amount(order.shipping_cost, order.exchange_rate)
-                            }
-                        },
+                        }
+                    },
                     'description': 'Payment for order #%s' % (order.id)
-                    }],
+                }],
             }
 
             logger.info('Processing PayPal account.', extra=payment)
@@ -120,7 +124,7 @@ class PayPal:
             for link in payment.links:
                 if link.rel == 'approval_url' and link.method == 'REDIRECT':
                     return link.href
-        
+
         payment_txn.status = Transaction.STATUS_FAILED
         payment_txn.error_message = payment.error['message']
         payment_txn.save()
@@ -133,7 +137,7 @@ class PayPal:
         """
         order = payment_txn.order
         payment = paypalrestsdk.Payment.find(payment_txn.get_param('id'), api=self.api)
-        
+
         if payment.execute({'payer_id': payer_id}):
             with transaction.atomic():
                 payment_txn.status = Transaction.STATUS_APPROVED
@@ -165,7 +169,7 @@ class PayPal:
             order.shipping_status = Order.SHIPPING_NOT_REQUIRED
             order.updated_by = unicode(user)
             order.save()
-        
+
     def credit_card_payment(self, card, order, user):
         """
         Payment transaction of credit card from PayPal gateway
@@ -183,21 +187,21 @@ class PayPal:
                         'cvv2': card['cvv2'],
                         'first_name': card['first_name'],
                         'last_name': card['last_name']
-                        }
-                    }]
-                },
+                    }
+                }]
+            },
             'transactions': [{
                 'amount': {
                     'total': unicode(order.charge_amount),
                     'currency': order.currency.code
-                    },
+                },
                 'description': 'Payment for order #%s' % (order.id)
-                }],
+            }],
         }
-        
+
         logger.info('Processing Credit Card via PayPal', extra=payment)
         payment = paypalrestsdk.Payment(payment, api=self.api)
-        
+
         with transaction.atomic():
             payment_txn = Transaction.objects.create(gateway=self.gateway,
                                                      order=order,
@@ -227,17 +231,20 @@ class PayPal:
                     payment_txn.add_param('state', unicode(payment.state), user)
                     payment_txn.add_param('intent', unicode(payment.intent), user)
                     payment_txn.add_param('payment_method', unicode(payment.payer.payment_method), user)
-                    payment_txn.add_param('sale_id', unicode(payment.transactions[0].related_resources[0].sale.id), user)
+                    payment_txn.add_param('sale_id',
+                                          unicode(payment.transactions[0].related_resources[0].sale.id), user)
                     payment_txn.save()
 
                     order.payment_status = Order.PAYMENT_PAID
                     order.updated_by = unicode(user)
                     order.save()
             except Exception as e:
-                logger.error('Failed to save successful Credit Card payment (transaction_id: %s, payment_id: %s) in database.' % (payment_txn.id, payment.id))
+                logger.error(('Failed to save successful Credit Card payment'
+                              ' (transaction_id: %s, payment_id: %s) in database.') % (payment_txn.id, payment.id))
                 raise e
         else:
-            logger.error('Failed to process Credit Card (transaction_id: %s)' % payment_txn.id, extra={ 'error': payment.error })
+            logger.error('Failed to process Credit Card (transaction_id: %s)' % payment_txn.id,
+                         extra={'error': payment.error})
 
             with transaction.atomic():
                 payment_txn.status = Transaction.STATUS_FAILED
@@ -258,6 +265,7 @@ class Stripe:
     """
     Stripe gateway for processing payments
     """
+
     def __init__(self, gateway):
         self.gateway = gateway
 
@@ -271,10 +279,12 @@ class Stripe:
         # Verifying api_key configured according to sandbox or live mode
         if gateway.is_sandbox:
             if self.api_key.startswith('sk_live'):
-                raise ImproperlyConfigured('"%s" Gateway is configured for sandbox mode but uses live "api_key".' % self.gateway)
+                raise ImproperlyConfigured('"%s" Gateway is configured for sandbox mode but uses live "api_key".'
+                                           % self.gateway)
         else:
             if self.api_key.startswith('sk_test'):
-                raise ImproperlyConfigured('"%s" Gateway is configured for live mode but uses test "api_key".' % self.gateway)
+                raise ImproperlyConfigured('"%s" Gateway is configured for live mode but uses test "api_key".'
+                                           % self.gateway)
 
         stripe.api_key = self.api_key
 
@@ -293,7 +303,7 @@ class Stripe:
                                                      created_by=unicode(user))
         try:
             charge = stripe.Charge.create(
-                amount=int(order.charge_amount * 100), # 100 cents to charge $1.00
+                amount=int(order.charge_amount * 100),  # 100 cents to charge $1.00
                 currency=order.currency.code.lower(),
                 description='Payment for order #%s' % (order.id),
                 card={
@@ -323,7 +333,7 @@ class Stripe:
         except stripe.error.CardError as e:
             # The card has been declined
             body = e.json_body
-            error = body['error'] 
+            error = body['error']
             logger.warning('Credit Card has been declined (transaction_id: %s)' % payment_txn.id, extra=error)
 
             payment_txn.status = Transaction.STATUS_FAILED
@@ -334,7 +344,7 @@ class Stripe:
         except Exception as e:
             logger.error('Failed to process Credit Card (transaction_id: %s)' % payment_txn.id)
             logger.exception(e)
-        
+
             raise DoorsaleError('We failed to process your Credit Card at the moment, please try again later!')
 
     def refund_payment(self, **kwargs):
@@ -342,9 +352,9 @@ class Stripe:
         Refunds an transaction amount
         """
 
+
 def _exchange_amount(amount, rate):
     """
     Returns rounded exchange value of amount
     """
     return '%.2f' % round(float(amount) * float(rate), 2)
-        

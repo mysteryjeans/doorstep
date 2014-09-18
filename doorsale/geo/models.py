@@ -6,7 +6,7 @@ from django.conf import settings
 
 class Country(models.Model):
     """
-    Represents a country 
+    Represents a country
     """
     name = models.CharField(max_length=100, unique=True)
     allow_billing = models.BooleanField(default=True, help_text='Allow billing from this country')
@@ -21,16 +21,17 @@ class Country(models.Model):
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
-    
+
     class Meta:
         ordering = ('display_order', 'name',)
         verbose_name_plural = 'Countries'
-    
+
     def __unicode__(self):
         return self.name
 
 
 class State(models.Model):
+
     """
     Represents a state
     """
@@ -43,10 +44,10 @@ class State(models.Model):
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
-    
+
     class Meta:
         ordering = ('display_order', 'name',)
-    
+
     def __unicode__(self):
         return self.name
 
@@ -72,25 +73,25 @@ class Address(models.Model):
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
-    
+
     class Meta:
         verbose_name_plural = 'Addresses'
-    
+
     def __unicode__(self):
         address = '%s %s %s' % (self.first_name, self.last_name, self.address1)
-        
+
         if self.address2:
             address += ' ' + self.address2
-        
+
         address += ', ' + self.city
-        
+
         if self.state:
             address += ', ' + unicode(self.state)
-        
+
         if self.country:
             address += ', ' + unicode(self.country)
-        
+
         return address
-    
+
     def get_name(self):
         return '%s %s' % (self.first_name, self.last_name)

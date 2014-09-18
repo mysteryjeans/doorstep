@@ -3,7 +3,7 @@
 ############################################
 # Doorsale urls containing urls for all apps
 urlpatterns += patterns('',
-    url(r'^', include('doorsale.urls')),
+                        url(r'^', include('doorsale.urls')),
 )
 
 ################### OR #####################

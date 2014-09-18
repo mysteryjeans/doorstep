@@ -12,7 +12,7 @@ from doorsale.payments.models import Gateway, Transaction, TransactionParam
 from doorsale.payments.processors import PayPal, Stripe
 
 
-def process_online(request, order_id, receipt_code):   
+def process_online(request, order_id, receipt_code):
     """
     Shows online or process online payment
     """
@@ -21,12 +21,13 @@ def process_online(request, order_id, receipt_code):
         gateways = Gateway.get_gateways()
         order = get_object_or_404(Order, id=order_id, receipt_code=receipt_code)
         default_currency = get_default_currency(request)
-        
+
         for gateway in gateways:
             if gateway.accept_credit_card:
-                form = CreditCardForm(initial={ 'gateway': gateway })
+                form = CreditCardForm(initial={'gateway': gateway})
 
-        return render(request, 'payments/process_online.html', { 'form': form, 'order': order, 'gateways': gateways, 'default_currency': default_currency })
+        return render(request, 'payments/process_online.html',
+                      {'form': form, 'order': order, 'gateways': gateways, 'default_currency': default_currency})
 
     raise Http404
 
@@ -40,11 +41,11 @@ def process_credit_card(request, order_id, receipt_code):
         error = None
         form = CreditCardForm(request.POST)
         order = get_object_or_404(Order, id=order_id, receipt_code=receipt_code)
-        
+
         if form.is_valid():
             data = form.cleaned_data
             gateway = data['gateway']
-            
+
             if gateway.name == Gateway.PAYPAL:
                 processor = PayPal(gateway)
             elif gateway.name == Gateway.STRIPE:
@@ -53,14 +54,16 @@ def process_credit_card(request, order_id, receipt_code):
                 raise ImproperlyConfigured('%s is not supported gateway for processing credit cards.' % gateway)
 
             try:
-                transaction = processor.credit_card_payment(data['card'], order, request.user)
-                return render(request, 'payments/credit_card_processed.html', { 'order': order })
+                processor.credit_card_payment(data['card'], order, request.user)
+                return render(request, 'payments/credit_card_processed.html', {'order': order})
             except DoorsaleError as e:
                 error = e.message
-     
+
         gateways = Gateway.get_gateways()
         default_currency = get_default_currency(request)
-        return render(request, 'payments/process_online.html', { 'form': form, 'order': order, 'gateways': gateways, 'default_currency': default_currency, 'error': error })
+        return render(request, 'payments/process_online.html',
+                      {'form': form, 'order': order, 'gateways': gateways,
+                       'default_currency': default_currency, 'error': error})
 
     raise Http404
 
@@ -70,7 +73,7 @@ def process_account_request(request, order_id, receipt_code):
     """
     Process payment via online account like PayPal, Amazon ...etc
     """
-    order = get_object_or_404(Order,id=order_id, receipt_code=receipt_code)
+    order = get_object_or_404(Order, id=order_id, receipt_code=receipt_code)
     if request.method == "POST":
         gateway_name = request.POST["gateway_name"]
         gateway = get_object_or_404(Gateway, name=gateway_name)
@@ -80,7 +83,8 @@ def process_account_request(request, order_id, receipt_code):
                 processor = PayPal(gateway)
                 return HttpResponseRedirect(processor.create_account_payment(order, request.user))
             else:
-                raise ImproperlyConfigured('Doorsale doesn\'t yet support payment with %s account.' % gateway.get_name_display())
+                raise ImproperlyConfigured('Doorsale doesn\'t yet support payment with %s account.'
+                                           % gateway.get_name_display())
         except DoorsaleError as e:
             request.session['processing_error'] = e.message
             return HttpResponseRedirect(reverse('payments_processing_message'))
@@ -116,7 +120,8 @@ def process_account_response(request, transaction_id, access_token, success):
                     request.session['processing_message'] = 'Your order has been canceled.'
                     return HttpResponseRedirect(reverse('payments_processing_message'))
             else:
-                raise ImproperlyConfigured('Doorsale doesn\'t yet support payment with %s account.' % gateway.get_name_display())
+                raise ImproperlyConfigured('Doorsale doesn\'t yet support payment with %s account.'
+                                           % gateway.get_name_display())
 
         except DoorsaleError as e:
             request.session['processing_error'] = e.message
@@ -135,8 +140,10 @@ class ProcessingMessageView(CatalogBaseView):
         breadcrumbs = ({'name': 'Processing Status', 'url': reverse('payments_processing_message')},)
 
         if 'processing_error' in request.session:
-            return super(ProcessingMessageView, self).get(request, error=request.session.pop('processing_error'), breadcrumbs=breadcrumbs)
+            return super(ProcessingMessageView, self).get(
+                request, error=request.session.pop('processing_error'), breadcrumbs=breadcrumbs)
         elif 'processing_message' in request.session:
-            return super(ProcessingMessageView, self).get(request, message=request.session.pop('processing_message'), breadcrumbs=breadcrumbs)
+            return super(ProcessingMessageView, self).get(
+                request, message=request.session.pop('processing_message'), breadcrumbs=breadcrumbs)
 
         return HttpResponseRedirect(reverse('sales_checkout_cart'))

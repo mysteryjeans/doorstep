@@ -12,29 +12,27 @@ from doorsale.geo.models import Address
 from doorsale.sales.models import Cart, Order, PaymentMethod
 from doorsale.sales.forms import AddressForm
 from doorsale.catalog.views import CatalogBaseView, get_default_currency
-from doorsale.financial.models import Currency
 from doorsale.exceptions import DoorsaleError
 from doorsale.views import BaseView
 from doorsale.utils.helpers import send_mail
 
 
-
 @transaction.commit_on_success
-def add_to_cart(request):   
+def add_to_cart(request):
     """
     Add product to cart
     """
     product_id = int(request.POST['product_id'])
-    
+
     # Checking if user already has cart in session
-    # otherwise create a new cart for the user    
+    # otherwise create a new cart for the user
     if 'cart_id' in request.session:
         cart_id = int(request.session['cart_id'])
         cart = Cart.get_cart(cart_id)
     else:
         cart = Cart.get_cart()
         request.session['cart_id'] = cart.id
-    
+
     try:
         quantity = int(request.POST['quantity'])
         if quantity > 0:
@@ -43,7 +41,7 @@ def add_to_cart(request):
             raise ValueError()
     except ValueError:
         return HttpResponseBadRequest('Product quantity is not correct, please enter one or more products in numbers.')
-    
+
     if request.is_ajax():
         default_currency = get_default_currency(request)
         return render(request, 'sales/cart_basket.html', {'cart': cart, 'default_currency': default_currency})
@@ -57,7 +55,7 @@ def remove_from_cart(request):
     Remove product from cart
     """
     product_id = int(request.POST['product_id'])
-    
+
     # Checking if user session has cart or session may already flushed
     # Cart an empty cart for user
     if 'cart_id' in request.session:
@@ -66,7 +64,7 @@ def remove_from_cart(request):
         cart.remove_item(product_id)
     else:
         cart = Cart()
-    
+
     if request.is_ajax():
         default_currency = get_default_currency(request)
         return render(request, 'sales/cart_basket.html', {'cart': cart, 'default_currency': default_currency})
@@ -86,7 +84,7 @@ def remove_all_from_cart(request):
             cart.remove_all_items()
         else:
             cart = Cart()
-        
+
         if request.is_ajax():
             default_currency = get_default_currency(request)
             return render(request, 'sales/cart_basket.html', {'cart': cart, 'default_currency': default_currency})
@@ -98,6 +96,7 @@ class CheckoutBaseView(CatalogBaseView):
     """
     Base checkout steps view
     """
+
     def get_context_data(self, **kwargs):
         breadcrumbs = self.get_breadcrumbs()
         return super(CheckoutBaseView, self).get_context_data(
@@ -145,7 +144,7 @@ class CheckoutCartView(CheckoutBaseView):
                     raise ValueError()
             except ValueError:
                 error = 'Product quantity is not correct, please enter one or more products in numbers.'
-            
+
         else:
             cart = Cart()
 
@@ -160,17 +159,18 @@ class CheckoutAddressView(CheckoutBaseView):
 
     def get_context_data(self, **kwargs):
         context = super(CheckoutAddressView, self).get_context_data(**kwargs)
-        
+
         addresses_filter = None
         request = self.request
 
         if request.user.is_authenticated():
             addresses_filter = Q(email__iexact=request.user.email) | Q(customer=request.user)
-            
+
         if 'addresses' in request.session:
             addresses_ids = request.session['addresses']
-            addresses_filter = addresses_filter | Q(id__in=addresses_ids) if addresses_filter else Q(id__in=addresses_ids)
-        
+            addresses_filter = addresses_filter | (Q(id__in=addresses_ids)
+                                                   if addresses_filter else Q(id__in=addresses_ids))
+
         if addresses_filter:
             context['addresses'] = list(Address.objects.filter(addresses_filter))
 
@@ -270,7 +270,7 @@ class CheckoutPaymentView(CheckoutBaseView):
     step_active = 'payment'
     steps_processed = ['cart', 'billing', 'shipping']
     template_name = 'sales/checkout_payment.html'
-    
+
     def get_context_data(self, **kwargs):
         payment_methods = PaymentMethod.get_all()
         return super(CheckoutPaymentView, self).get_context_data(payment_methods=payment_methods, **kwargs)
@@ -278,19 +278,19 @@ class CheckoutPaymentView(CheckoutBaseView):
     @classmethod
     def get_breadcrumbs(cls):
         return ({'name': 'Payment', 'url': reverse('sales_checkout_payment')},)
-    
+
     def get(self, request):
         po_number = request.session.get('po_number', None)
         payment_method = request.session.get('payment_method', None)
-        
+
         return super(CheckoutPaymentView, self).get(request, payment_method=payment_method, po_number=po_number)
-    
+
     def post(self, request):
         error = None
         payment_method = request.POST.get('payment_method', None)
         payment_methods = dict(PaymentMethod.ALL)
         if payment_method and payment_method in payment_methods:
-            
+
             if payment_method == PaymentMethod.PURCHASE_ORDER:
                 po_number = request.POST['po_number']
                 if po_number:
@@ -302,12 +302,12 @@ class CheckoutPaymentView(CheckoutBaseView):
             else:
                 if 'po_number' in request.session:
                     del request.session['po_number']
-                    
+
                 request.session['payment_method'] = payment_method
                 return HttpResponseRedirect(reverse('sales_checkout_order'))
         else:
             error = 'Please select payment method'
-        
+
         return super(CheckoutPaymentView, self).get(request, error=error, payment_method=payment_method)
 
 
@@ -319,26 +319,30 @@ class CheckoutOrderView(CheckoutBaseView):
     steps_processed = ['cart', 'billing', 'shipping', 'payment']
     template_name = 'sales/checkout_order.html'
     decorators = [transaction.commit_on_success]
-    
+
     @classmethod
     def get_breadcrumbs(cls):
         return ({'name': 'Order', 'url': reverse('sales_checkout_order')},)
-    
+
     def get(self, request, **kwargs):
         if ('cart_id' in request.session
-            and 'payment_method' in request.session
-            and CheckoutBillingView.session_address_key in request.session
-            and CheckoutShippingView.session_address_key in request.session):
-            
+                and 'payment_method' in request.session
+                and CheckoutBillingView.session_address_key in request.session
+                and CheckoutShippingView.session_address_key in request.session):
+
             cart = Cart.get_cart(int(request.session['cart_id']))
             payment_method = PaymentMethod.ALL_METHODS[request.session['payment_method']]
-            billing_address = get_object_or_404(Address, id=int(request.session[CheckoutBillingView.session_address_key]))
-            shipping_address = get_object_or_404(Address, id=int(request.session[CheckoutShippingView.session_address_key]))
-            
-            return super(CheckoutOrderView, self).get(request, cart=cart, payment_method=payment_method, billing_address=billing_address, shipping_address=shipping_address, **kwargs)
-        
+            billing_address = get_object_or_404(
+                Address, id=int(request.session[CheckoutBillingView.session_address_key]))
+            shipping_address = get_object_or_404(
+                Address, id=int(request.session[CheckoutShippingView.session_address_key]))
+
+            return super(CheckoutOrderView, self).get(
+                request, cart=cart, payment_method=payment_method, billing_address=billing_address,
+                shipping_address=shipping_address, **kwargs)
+
         return HttpResponseRedirect(reverse('sales_checkout_cart'))
-    
+
     def post(self, request):
         error = None
         try:
@@ -347,31 +351,32 @@ class CheckoutOrderView(CheckoutBaseView):
             po_number = request.session.get('po_number', None)
             billing_address_id = request.session[CheckoutBillingView.session_address_key]
             shipping_address_id = request.session[CheckoutShippingView.session_address_key]
-            
+
             if request.user.is_authenticated():
                 user = request.user
                 username = str(user)
             else:
                 user = None
                 username = str(request.user)
-                
+
             currency_code = self.request.session.get('default_currency', self.primary_currency.code)
-            order = Order.objects.place(cart_id, billing_address_id, shipping_address_id, payment_method, po_number, currency_code, user, username)
-            
+            order = Order.objects.place(cart_id, billing_address_id, shipping_address_id,
+                                        payment_method, po_number, currency_code, user, username)
+
             del request.session['cart_id']
             del request.session['payment_method']
             del request.session['billing_address']
             del request.session['shipping_address']
             request.session['order_confirmed'] = True
-            
+
             if payment_method == PaymentMethod.CREDIT_CARD:
                 return HttpResponseRedirect(reverse('payments_process_online', args=[order.id, order.receipt_code]))
 
             return HttpResponseRedirect(reverse('sales_checkout_receipt', args=[order.id, order.receipt_code]))
-            
+
         except DoorsaleError as e:
             error = e.message
-        
+
         return self.get(request, error=error)
 
 
@@ -384,27 +389,33 @@ class CheckoutReceiptView(CheckoutBaseView):
     template_name = 'sales/checkout_receipt.html'
 
     def get_breadcrumbs(self):
-        return ({'name': 'Order Receipt', 'url': reverse('sales_checkout_receipt', args=[self.order_id, self.receipt_code])},)
-    
+        return ({'name': 'Order Receipt', 'url': reverse('sales_checkout_receipt',
+                                                         args=[self.order_id, self.receipt_code])},)
+
     def get(self, request, order_id, receipt_code):
         order_id = int(order_id)
         order_confirmed = request.session.pop('order_confirmed', None)
-        
+
         try:
-            order = Order.objects.prefetch_related('billing_address', 'shipping_address', 'payment_method', 'currency', 'items').get(id=order_id, receipt_code=receipt_code)
+            order = Order.objects.prefetch_related('billing_address', 'shipping_address', 'payment_method',
+                                                   'currency', 'items').get(id=order_id, receipt_code=receipt_code)
         except Order.DoesNotExist:
             raise Http404()
 
         if order_confirmed:
             # Sending order confirmation email to user's billing email address
-            msg_subject = get_template("sales/email/order_confirmation_subject.txt").render(Context({'order': order, 'user': request.user, 'SITE_NAME': settings.SITE_NAME, 'DOMAIN': settings.DOMAIN }))
-            msg_text = get_template("sales/email/order_confirmation.html").render(Context({'order': order, 'user': request.user, 'SITE_NAME': settings.SITE_NAME, 'DOMAIN': settings.DOMAIN  }))
+            context = Context(
+                {'order': order, 'user': request.user, 'SITE_NAME': settings.SITE_NAME, 'DOMAIN': settings.DOMAIN})
+            msg_subject = get_template("sales/email/order_confirmation_subject.txt").render(context)
+            context = Context({'order': order, 'user': request.user,
+                               'SITE_NAME': settings.SITE_NAME, 'DOMAIN': settings.DOMAIN})
+            msg_text = get_template("sales/email/order_confirmation.html").render(context)
             to_email = '%s <%s>' % (order.billing_address.get_name(), order.billing_address.email)
             send_mail(msg_subject, msg_text, [to_email], True)
-        
+
         self.order_id = order_id
         self.receipt_code = receipt_code
-        
+
         return super(CheckoutReceiptView, self).get(request, order=order, order_confirmed=order_confirmed)
 
 
@@ -417,11 +428,10 @@ class PrintReceiptView(BaseView):
     def get(self, request, order_id, receipt_code):
         order_id = int(order_id)
         try:
-            order = Order.objects.prefetch_related('billing_address', 'shipping_address', 'payment_method', 'currency', 'items').get(id=order_id, receipt_code=receipt_code)
+            order = Order.objects.prefetch_related(
+                'billing_address', 'shipping_address', 'payment_method',
+                'currency', 'items').get(id=order_id, receipt_code=receipt_code)
         except Order.DoesNotExist:
-                raise Http404()
-    
+            raise Http404()
+
         return super(PrintReceiptView, self).get(request, order=order)
-
-
-

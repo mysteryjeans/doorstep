@@ -2,7 +2,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.core.exceptions import ValidationError
-from django.contrib.flatpages.models import FlatPage
 
 
 class FlatPage(models.Model):
@@ -11,11 +10,12 @@ class FlatPage(models.Model):
     """
     PAGE_VIEWS = (('pages_base_page', 'Base View'),
                   ('pages_catalog_page', 'Catalog View'))
-    
+
     title = models.CharField(max_length=200)
     url = models.SlugField(max_length=100, unique=True)
     content = models.TextField(blank=True)
-    render_view = models.CharField(max_length=100, choices=PAGE_VIEWS, help_text='Render page in base template or catalog template.')
+    render_view = models.CharField(max_length=100, choices=PAGE_VIEWS,
+                                   help_text='Render page in base template or catalog template.')
     is_active = models.BooleanField()
     updated_by = models.CharField(max_length=100)
     updated_on = models.DateTimeField(auto_now=True)
@@ -51,7 +51,5 @@ class Link(models.Model):
     def clean(self):
         # Link resource must points to either flat page resource or any other url resource
         if not (self.url or self.page):
-            raise ValidationError('You must specify either flat page resource or any other url resource this link points to.')
-
-
-
+            raise ValidationError('You must specify either flat page resource or any'
+                                  ' other url resource this link points to.')

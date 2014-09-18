@@ -1,6 +1,6 @@
 from django import forms
 
-from doorsale.geo.models import Country, State, Address
+from doorsale.geo.models import State, Address
 
 
 class AddressForm(forms.ModelForm):
@@ -9,7 +9,8 @@ class AddressForm(forms.ModelForm):
     """
     class Meta:
         model = Address
-        fields = ('first_name', 'last_name', 'email', 'address1', 'address2', 'phone_number', 'fax_number', 'zip_or_postal_code', 'city', 'country', 'state', 'company')
+        fields = ('first_name', 'last_name', 'email', 'address1', 'address2',
+                  'phone_number', 'fax_number', 'zip_or_postal_code', 'city', 'country', 'state', 'company')
         widgets = {
             'first_name': forms.TextInput(attrs=({'placeholder': 'First name...', 'class': 'mandatory'})),
             'last_name': forms.TextInput(attrs=({'placeholder': 'Last name...', 'class': 'mandatory'})),

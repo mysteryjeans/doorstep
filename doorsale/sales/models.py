@@ -17,7 +17,7 @@ class Cart(models.Model):
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
-    
+
     def get_sub_total(self):
         """
         Sub total of cart items (without taxes)
@@ -25,9 +25,9 @@ class Cart(models.Model):
         sub_total = 0.0
         for item in self.items.all():
             sub_total += item.get_sub_total()
-        
+
         return sub_total
-    
+
     def get_taxes(self):
         """
         Total taxes applied on cart items
@@ -35,7 +35,7 @@ class Cart(models.Model):
         taxes = 0.0
         for item in self.get_items():
             taxes += item.get_taxes()
-        
+
         return taxes
 
     def get_shipping_cost(self):
@@ -47,13 +47,13 @@ class Cart(models.Model):
             shipping_cost += item.get_shipping_cost()
 
         return shipping_cost
-    
+
     def get_total(self):
         """
         Total price of cart items with taxes
         """
         return float(self.get_sub_total() + self.get_taxes() + self.get_shipping_cost())
-    
+
     def get_items_count(self):
         """
         Returns total number of items
@@ -61,9 +61,9 @@ class Cart(models.Model):
         items_count = 0
         for item in self.get_items():
             items_count += item.quantity
-        
+
         return items_count
-    
+
     def add_item(self, product_id, quantity, user):
         """
         Add or augment quantity of product
@@ -73,14 +73,14 @@ class Cart(models.Model):
             item.quantity += quantity
             item.save()
             return item
-        
+
         item = self.items.create(product_id=product_id,
                                  quantity=quantity,
                                  updated_by=str(user),
                                  created_by=str(user))
-        
+
         return item
-    
+
     def remove_item(self, product_id):
         """
         Remove an item from cart
@@ -109,13 +109,13 @@ class Cart(models.Model):
         Fetch cart items with products and pics
         """
         return self.items.prefetch_related('product', 'product__pics').all()
-    
+
     def get_items_with_taxes(self):
         """
         Fetch cart items with products and taxes
         """
         return self.items.prefetch_related('product', 'product__tax').all()
-    
+
     @classmethod
     def get_cart(cls, cart_id=None):
         """
@@ -123,9 +123,8 @@ class Cart(models.Model):
         """
         if cart_id:
             return cls.objects.get(id=cart_id)
-        
+
         return cls.objects.create()
-        
 
 
 class CartItem(models.Model):
@@ -139,19 +138,19 @@ class CartItem(models.Model):
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
-    
+
     class Meta:
         db_table = 'sales_cart_item'
         ordering = ('id',)
         verbose_name_plural = 'Cart Items'
         unique_together = ('cart', 'product',)
-    
+
     def get_sub_total(self):
         """
         Sub total of cart item (without taxes)
         """
         return float(self.product.price) * self.quantity
-    
+
     def get_taxes(self):
         """
         Total taxes applied on cart item
@@ -159,7 +158,7 @@ class CartItem(models.Model):
         product = self.product
         if product.tax:
             return product.tax.calculate(product.price, self.quantity)
-        
+
         return 0.0
 
     def get_shipping_cost(self):
@@ -171,7 +170,7 @@ class CartItem(models.Model):
             return 0.0
 
         return float(product.shipping_cost) * float(self.quantity)
-    
+
     def get_total(self):
         """
         Total price of cart item with taxes
@@ -193,7 +192,7 @@ class PaymentMethod(models.Model):
            (CREDIT_CARD, 'Credit Card'),
            (PURCHASE_ORDER, 'Purchase Order'))
     ALL_METHODS = dict(ALL)
-    
+
     code = models.CharField(primary_key=True, max_length=2, choices=ALL)
     name = models.CharField(max_length=100, unique=True)
     is_active = models.BooleanField(default=True)
@@ -201,14 +200,14 @@ class PaymentMethod(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
-    
+
     class Meta:
         db_table = 'sales_payment_method'
         verbose_name_plural = 'Payment Methods'
-        
+
     def __unicode__(self):
         return '%s: %s' % (self.code, self.name)
-    
+
     @classmethod
     def get_all(cls):
         """
@@ -218,8 +217,8 @@ class PaymentMethod(models.Model):
 
 
 class OrderManager(models.Manager):
-    
-    def place(self, cart_id, billing_address_id, shipping_address_id, payment_method, po_number, currency_code, user, username):
+    def place(self, cart_id, billing_address_id, shipping_address_id, payment_method,
+              po_number, currency_code, user, username):
         cart = Cart.get_cart(cart_id)
         billing_address = Address.objects.get(id=billing_address_id)
         shipping_address = Address.objects.get(id=shipping_address_id)
@@ -227,8 +226,8 @@ class OrderManager(models.Manager):
         currency = Currency.objects.get(code=currency_code)
         charge_amount = float(cart.get_total())
         charge_amount *= float(currency.exchange_rate)
-        receipt_code = get_random_string(20) # allows secure access to order receipt
-        
+        receipt_code = get_random_string(20)  # allows secure access to order receipt
+
         order = self.create(customer=user,
                             currency=currency,
                             sub_total=cart.get_sub_total(),
@@ -247,7 +246,7 @@ class OrderManager(models.Manager):
                             receipt_code=receipt_code,
                             updated_by=username,
                             created_by=username)
-        
+
         for item in cart.get_items_with_taxes():
             product = item.product
             OrderItem.objects.create(order=order,
@@ -261,9 +260,9 @@ class OrderManager(models.Manager):
                                      tax_method=product.tax.method,
                                      updated_by=username,
                                      created_by=username)
-        
+
         return order
-    
+
 
 class Order(models.Model):
     """
@@ -278,7 +277,7 @@ class Order(models.Model):
                       (ORDER_PROCESSING, 'Processing'),
                       (ORDER_COMPLETE, 'Complete'),
                       (ORDER_CANCELLED, 'Cancelled'))
-    
+
     # Payment statuses
     PAYMENT_PENDING = 'PE'
     PAYMENT_AUTHORIZED = 'AU'
@@ -292,7 +291,7 @@ class Order(models.Model):
                         (PAYMENT_PARTIALLY_REFUNDED, 'Partially Refunded'),
                         (PAYMENT_REFUNDED, 'Refunded'),
                         (PAYMENT_VOID, 'Void'))
-    
+
     # Shipping statuses
     SHIPPING_NOT_REQUIRED = 'NR'
     SHIPPING_PENDING = 'PE'
@@ -304,8 +303,9 @@ class Order(models.Model):
                          (SHIPPING_PARTIALLY_SHIPPED, 'Partially Shipped'),
                          (SHIPPING_SHIPPED, 'Shipped'),
                          (SHIPPING_DELIVERED, 'Delivered'))
-    
-    customer = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True) # Referencing custom defined model in settings file
+
+    # Referencing custom defined model in settings file
+    customer = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
     currency = models.ForeignKey(Currency)
     sub_total = models.DecimalField(max_digits=9, decimal_places=2)
     shipping_cost = models.DecimalField(max_digits=9, decimal_places=2)
@@ -313,7 +313,8 @@ class Order(models.Model):
     total = models.DecimalField(max_digits=9, decimal_places=2)
     refunded_amount = models.DecimalField(max_digits=9, decimal_places=2, null=True, blank=True)
     exchange_rate = models.FloatField(default=1)
-    charge_amount = models.DecimalField(max_digits=9, decimal_places=2, help_text='Order total amount in user prefered currency that has been charged.')
+    charge_amount = models.DecimalField(max_digits=9, decimal_places=2,
+                                        help_text='Order total amount in user prefered currency that has been charged.')
     order_status = models.CharField(max_length=2, choices=ORDER_STATUSES)
     payment_method = models.ForeignKey(PaymentMethod, db_column='payment_method_code')
     payment_status = models.CharField(max_length=2, choices=PAYMENT_STATUSES)
@@ -327,18 +328,18 @@ class Order(models.Model):
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
-    
+
     objects = OrderManager()
-    
+
     def __unicode__(self):
         return unicode(self.id)
-    
+
     def get_order_status(self):
         return next((status[1] for status in self.ORDER_STATUSES if status[0] == self.order_status), None)
-    
+
     def get_payment_status(self):
         return next((status[1] for status in self.PAYMENT_STATUSES if status[0] == self.payment_status), None)
-    
+
     def get_shipping_status(self):
         return next((status[1] for status in self.SHIPPING_STATUSES if status[0] == self.shipping_status), None)
 
@@ -360,8 +361,7 @@ class OrderItem(models.Model):
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
-    
+
     class Meta:
         db_table = 'sales_order_item'
         verbose_name_plural = 'Order Items'
-        

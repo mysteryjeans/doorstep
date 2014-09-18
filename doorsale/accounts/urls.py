@@ -7,4 +7,4 @@ urlpatterns = patterns('',
                        url(r'^logout/$', LogoutView.as_view(), name='accounts_logout'),
                        url(r'^register/$', RegisterView.as_view(), name='accounts_register'),
                        url(r'^forgot_password/$', ForgotPasswordView.as_view(), name='accounts_forgot_password'),
-)
+                       )

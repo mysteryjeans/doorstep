@@ -18,6 +18,5 @@ class TaxAdmin(ModelAdmin):
     date_hierarchy = 'created_on'
 
 
-
 admin.site.register(models.Currency, CurrencyAdmin)
 admin.site.register(models.Tax, TaxAdmin)

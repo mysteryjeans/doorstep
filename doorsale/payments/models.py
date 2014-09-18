@@ -36,18 +36,19 @@ class Gateway(models.Model):
     ALL = ((PAYPAL, 'PayPal'),
            (STRIPE, 'Stripe'),
            (AMAZON_PAYMENTS, 'Amazon Payments'))
-    
+
     name = models.CharField(primary_key=True, max_length=10, choices=ALL, help_text='Payment processing gateway.')
     account = models.CharField(max_length=100, help_text='Account name of gateway for reference.')
     is_active = models.BooleanField(help_text='Gateway active for customer to buy through it.')
     is_sandbox = models.BooleanField(help_text='Sandbox mode for testing & debugging.')
     accept_credit_card = models.BooleanField(help_text='Process credit card payments.')
-    accept_account = models.BooleanField(help_text='Process payments with customer\'s existing accounts on gateway, like PayPal account.')
+    accept_account = models.BooleanField(
+        help_text='Process payments with customer\'s existing accounts on gateway, like PayPal account.')
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_by = models.CharField(max_length=100)
     created_by = models.CharField(max_length=100)
-    
+
     def __unicode__(self):
         return '%s -- %s' % (self.get_name_display(), self.account)
 
@@ -76,12 +77,12 @@ class GatewayParam(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_by = models.CharField(max_length=100)
     created_by = models.CharField(max_length=100)
-    
+
     class Meta:
         db_table = 'payments_gateway_param'
         verbose_name_plural = 'Gateway Params'
         unique_together = ('gateway', 'name')
-        
+
     def __unicode__(self):
         return '%s: %s' % (self.name, self.value)
 
@@ -113,7 +114,7 @@ class Transaction(models.Model):
     created_on = models.DateTimeField(auto_now_add=True)
     updated_by = models.CharField(max_length=100)
     created_by = models.CharField(max_length=100)
-    
+
     def __unicode__(self):
         return unicode(self.id)
 
@@ -142,14 +143,11 @@ class TransactionParam(models.Model):
     value = models.CharField(max_length=250, help_text='Transaction parameter value.')
     created_on = models.DateTimeField(auto_now_add=True)
     created_by = models.CharField(max_length=100)
-    
+
     class Meta:
         db_table = 'payments_transaction_param'
         verbose_name_plural = 'Transaction Params'
         unique_together = ('transaction', 'name',)
-    
-    
+
     def __unicode__(self):
         return self.name
-    
-    
