@@ -14,7 +14,7 @@ class RegisterForm(forms.ModelForm):
     """
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Your new password...'}),
                                min_length=8, max_length=50,
-                               serror_messages={'required': 'Please enter your new password.'})
+                               error_messages={'required': 'Please enter your new password.'})
     confirm_password = forms.CharField(
         widget=forms.PasswordInput(attrs={'placeholder': 'Your new password again...'}),
         max_length=50, error_messages={'required': 'Please re-enter your new password for confirmation.'})
