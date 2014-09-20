@@ -35,4 +35,5 @@ setup(name='Doorsale',
                         'django-pipeline',
                         'Pillow',
                         'paypalrestsdk',
-                        'stripe'])
+                        'stripe',
+                        'pytz'])
