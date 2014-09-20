@@ -104,6 +104,580 @@
     }
 },
 {
+    "pk": "CC", 
+    "model": "sales.paymentmethod", 
+    "fields": {
+        "name": "Credit Card", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.526Z", 
+        "updated_on": "2014-09-17T03:34:08.526Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "CH", 
+    "model": "sales.paymentmethod", 
+    "fields": {
+        "name": "Check / Money Order", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.525Z", 
+        "updated_on": "2014-09-17T03:34:08.525Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "CO", 
+    "model": "sales.paymentmethod", 
+    "fields": {
+        "name": "Cash On Delivery", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.523Z", 
+        "updated_on": "2014-09-17T03:34:08.523Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "PO", 
+    "model": "sales.paymentmethod", 
+    "fields": {
+        "name": "Purchase Order", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.526Z", 
+        "updated_on": "2014-09-17T03:34:08.526Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 1, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "USD", 
+        "name": "US Dollar", 
+        "locale": "en-US", 
+        "is_primary": true, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 1.0, 
+        "created_on": "2014-09-17T03:34:08.097Z", 
+        "updated_on": "2014-09-17T03:34:08.097Z", 
+        "display_format": "${0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 2, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "PKR", 
+        "name": "Pakistani Rupee", 
+        "locale": "ur-PK", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 98.65, 
+        "created_on": "2014-09-17T03:34:08.101Z", 
+        "updated_on": "2014-09-17T03:34:08.101Z", 
+        "display_format": "Rs. {0:,.0f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 3, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "AUD", 
+        "name": "Australian Dollar", 
+        "locale": "en-AU", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 0.94, 
+        "created_on": "2014-09-17T03:34:08.102Z", 
+        "updated_on": "2014-09-17T03:34:08.102Z", 
+        "display_format": "A${0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 4, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "GBP", 
+        "name": "British Pound", 
+        "locale": "en-GB", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 0.61, 
+        "created_on": "2014-09-17T03:34:08.102Z", 
+        "updated_on": "2014-09-17T03:34:08.102Z", 
+        "display_format": "\u00a3{0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 5, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "CAD", 
+        "name": "Canadian Dollar", 
+        "locale": "en-CA", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 0.98, 
+        "created_on": "2014-09-17T03:34:08.105Z", 
+        "updated_on": "2014-09-17T03:34:08.105Z", 
+        "display_format": "C${0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 6, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "CNY", 
+        "name": "Chinese Yuan Renminbi", 
+        "locale": "zh-CN", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 6.48, 
+        "created_on": "2014-09-17T03:34:08.106Z", 
+        "updated_on": "2014-09-17T03:34:08.106Z", 
+        "display_format": "\uffe5{0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 7, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "EUR", 
+        "name": "Euro", 
+        "locale": "", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 0.79, 
+        "created_on": "2014-09-17T03:34:08.107Z", 
+        "updated_on": "2014-09-17T03:34:08.107Z", 
+        "display_format": "\u20ac{0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 8, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "HKD", 
+        "name": "Hong Kong Dollar", 
+        "locale": "zh-HK", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 7.75, 
+        "created_on": "2014-09-17T03:34:08.107Z", 
+        "updated_on": "2014-09-17T03:34:08.107Z", 
+        "display_format": "HK${0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 9, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "JPY", 
+        "name": "Japanese Yen", 
+        "locale": "ja-JP", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 80.07, 
+        "created_on": "2014-09-17T03:34:08.108Z", 
+        "updated_on": "2014-09-17T03:34:08.108Z", 
+        "display_format": "\uffe5{0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 10, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "RUB", 
+        "name": "Russian Rouble", 
+        "locale": "ru-RU", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 27.7, 
+        "created_on": "2014-09-17T03:34:08.109Z", 
+        "updated_on": "2014-09-17T03:34:08.109Z", 
+        "display_format": "RUB{0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 11, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "SEK", 
+        "name": "Swedish Krona", 
+        "locale": "sv-SE", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 6.19, 
+        "created_on": "2014-09-17T03:34:08.109Z", 
+        "updated_on": "2014-09-17T03:34:08.109Z", 
+        "display_format": "kr{0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 12, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "RON", 
+        "name": "Romanian Leu", 
+        "locale": "ro-RO", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 2.85, 
+        "created_on": "2014-09-17T03:34:08.110Z", 
+        "updated_on": "2014-09-17T03:34:08.110Z", 
+        "display_format": "{0:,.2f} lei", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "amex", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "American Express", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.529Z", 
+        "updated_on": "2014-09-17T03:34:08.529Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "diners_club_carte_blanche", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "Diners Club Carte Blanche", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.530Z", 
+        "updated_on": "2014-09-17T03:34:08.530Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "discover", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "Discover Card", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.529Z", 
+        "updated_on": "2014-09-17T03:34:08.529Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "jcb", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "JCB", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.531Z", 
+        "updated_on": "2014-09-17T03:34:08.531Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "laser", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "Laser", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.531Z", 
+        "updated_on": "2014-09-17T03:34:08.531Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "maestro", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "Maestro", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.528Z", 
+        "updated_on": "2014-09-17T03:34:08.528Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "mastercard", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "MasterCard", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.528Z", 
+        "updated_on": "2014-09-17T03:34:08.528Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "visa", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "Visa", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.527Z", 
+        "updated_on": "2014-09-17T03:34:08.527Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "visa_electron", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "Visa Electron", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.532Z", 
+        "updated_on": "2014-09-17T03:34:08.532Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 1, 
+    "model": "pages.flatpage", 
+    "fields": {
+        "updated_by": "mysteryjeans", 
+        "title": "Contact", 
+        "url": "contact", 
+        "render_view": "pages_base_page", 
+        "is_active": true, 
+        "created_by": "mysteryjeans", 
+        "content": "<p>\r\nWrite contact information in here, you can edit this in admin site.\r\n<br/>\r\n<br/>\r\n</p>\r\n<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet metus non bibendum maximus. Fusce tincidunt, tortor ut ultricies scelerisque, felis sem placerat orci, tempus commodo eros velit eget justo. Fusce tempus quis orci non faucibus. In quis justo eu urna semper condimentum nec at justo. Nullam sit amet nibh vitae mauris porta molestie ac ut lectus. Mauris nibh nisl, porta id ipsum porta, fringilla posuere risus. Ut at elit vel arcu placerat elementum a non dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\n</p>", 
+        "created_on": "2014-09-15T21:55:15.004Z", 
+        "updated_on": "2014-09-16T15:15:12.163Z"
+    }
+},
+{
+    "pk": 2, 
+    "model": "pages.flatpage", 
+    "fields": {
+        "updated_by": "mysteryjeans", 
+        "title": "About", 
+        "url": "about", 
+        "render_view": "pages_base_page", 
+        "is_active": true, 
+        "created_by": "mysteryjeans", 
+        "content": "<p>\r\nWrite about yourself in here, you can edit this in admin site.\r\n<br/>\r\n<br/>\r\n</p>\r\n<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet metus non bibendum maximus. Fusce tincidunt, tortor ut ultricies scelerisque, felis sem placerat orci, tempus commodo eros velit eget justo. Fusce tempus quis orci non faucibus. In quis justo eu urna semper condimentum nec at justo. Nullam sit amet nibh vitae mauris porta molestie ac ut lectus. Mauris nibh nisl, porta id ipsum porta, fringilla posuere risus. Ut at elit vel arcu placerat elementum a non dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\n</p>", 
+        "created_on": "2014-09-15T22:58:22.873Z", 
+        "updated_on": "2014-09-16T15:15:27.897Z"
+    }
+},
+{
+    "pk": 3, 
+    "model": "pages.flatpage", 
+    "fields": {
+        "updated_by": "mysteryjeans", 
+        "title": "Privacy Policy", 
+        "url": "privacy-policy", 
+        "render_view": "pages_base_page", 
+        "is_active": true, 
+        "created_by": "mysteryjeans", 
+        "content": "<p>\r\nWrite about your privacy policy here, you can edit this in admin.\r\n<br/>\r\n<br/>\r\n</p>\r\n<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet metus non bibendum maximus. Fusce tincidunt, tortor ut ultricies scelerisque, felis sem placerat orci, tempus commodo eros velit eget justo. Fusce tempus quis orci non faucibus. In quis justo eu urna semper condimentum nec at justo. Nullam sit amet nibh vitae mauris porta molestie ac ut lectus. Mauris nibh nisl, porta id ipsum porta, fringilla posuere risus. Ut at elit vel arcu placerat elementum a non dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\n</p>", 
+        "created_on": "2014-09-15T23:00:39.304Z", 
+        "updated_on": "2014-09-15T23:14:20.157Z"
+    }
+},
+{
+    "pk": 4, 
+    "model": "pages.flatpage", 
+    "fields": {
+        "updated_by": "mysteryjeans", 
+        "title": "Terms of Service", 
+        "url": "terms-service", 
+        "render_view": "pages_base_page", 
+        "is_active": true, 
+        "created_by": "mysteryjeans", 
+        "content": "<p>\r\nWrite about your Term's of Service here, you can edit this page in admin.\r\n<br/>\r\n<br/>\r\n</p>\r\n<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet metus non bibendum maximus. Fusce tincidunt, tortor ut ultricies scelerisque, felis sem placerat orci, tempus commodo eros velit eget justo. Fusce tempus quis orci non faucibus. In quis justo eu urna semper condimentum nec at justo. Nullam sit amet nibh vitae mauris porta molestie ac ut lectus. Mauris nibh nisl, porta id ipsum porta, fringilla posuere risus. Ut at elit vel arcu placerat elementum a non dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\n</p>", 
+        "created_on": "2014-09-15T23:05:16.057Z", 
+        "updated_on": "2014-09-15T23:15:00.676Z"
+    }
+},
+{
+    "pk": 1, 
+    "model": "pages.link", 
+    "fields": {
+        "group": "Company", 
+        "name": "Contact", 
+        "url": "", 
+        "created_by": "mysteryjeans", 
+        "created_on": "2014-09-15T22:55:08.589Z", 
+        "updated_on": "2014-09-16T15:15:45.108Z", 
+        "page": 1, 
+        "updated_by": "mysteryjeans"
+    }
+},
+{
+    "pk": 2, 
+    "model": "pages.link", 
+    "fields": {
+        "group": "Company", 
+        "name": "About", 
+        "url": "", 
+        "created_by": "mysteryjeans", 
+        "created_on": "2014-09-15T22:59:16.660Z", 
+        "updated_on": "2014-09-16T15:15:39.817Z", 
+        "page": 2, 
+        "updated_by": "mysteryjeans"
+    }
+},
+{
+    "pk": 3, 
+    "model": "pages.link", 
+    "fields": {
+        "group": "Company", 
+        "name": "Privacy Policy", 
+        "url": "", 
+        "created_by": "mysteryjeans", 
+        "created_on": "2014-09-15T23:01:17.643Z", 
+        "updated_on": "2014-09-15T23:01:17.643Z", 
+        "page": 3, 
+        "updated_by": "mysteryjeans"
+    }
+},
+{
+    "pk": 5, 
+    "model": "pages.link", 
+    "fields": {
+        "group": "Company", 
+        "name": "Terms of Service", 
+        "url": "", 
+        "created_by": "mysteryjeans", 
+        "created_on": "2014-09-15T23:05:59.465Z", 
+        "updated_on": "2014-09-15T23:05:59.465Z", 
+        "page": 4, 
+        "updated_by": "mysteryjeans"
+    }
+},
+{
+    "pk": 6, 
+    "model": "pages.link", 
+    "fields": {
+        "group": "Service", 
+        "name": "Login", 
+        "url": "/accounts/login/", 
+        "created_by": "mysteryjeans", 
+        "created_on": "2014-09-15T23:21:26.408Z", 
+        "updated_on": "2014-09-15T23:27:47.210Z", 
+        "page": null, 
+        "updated_by": "mysteryjeans"
+    }
+},
+{
+    "pk": 7, 
+    "model": "pages.link", 
+    "fields": {
+        "group": "Service", 
+        "name": "Register", 
+        "url": "/accounts/register/", 
+        "created_by": "mysteryjeans", 
+        "created_on": "2014-09-15T23:23:00.305Z", 
+        "updated_on": "2014-09-15T23:27:40.736Z", 
+        "page": null, 
+        "updated_by": "mysteryjeans"
+    }
+},
+{
+    "pk": 8, 
+    "model": "pages.link", 
+    "fields": {
+        "group": "Follow Us", 
+        "name": "Facebook", 
+        "url": "http://facebook.com", 
+        "created_by": "mysteryjeans", 
+        "created_on": "2014-09-15T23:24:48.684Z", 
+        "updated_on": "2014-09-15T23:24:48.684Z", 
+        "page": null, 
+        "updated_by": "mysteryjeans"
+    }
+},
+{
+    "pk": 9, 
+    "model": "pages.link", 
+    "fields": {
+        "group": "Follow Us", 
+        "name": "Twitter", 
+        "url": "https://twitter.com", 
+        "created_by": "mysteryjeans", 
+        "created_on": "2014-09-15T23:25:11.964Z", 
+        "updated_on": "2014-09-15T23:25:11.963Z", 
+        "page": null, 
+        "updated_by": "mysteryjeans"
+    }
+},
+{
+    "pk": 10, 
+    "model": "pages.link", 
+    "fields": {
+        "group": "Follow Us", 
+        "name": "Google+", 
+        "url": "https://plus.google.com", 
+        "created_by": "mysteryjeans", 
+        "created_on": "2014-09-15T23:25:39.098Z", 
+        "updated_on": "2014-09-15T23:25:39.098Z", 
+        "page": null, 
+        "updated_by": "mysteryjeans"
+    }
+},
+{
+    "pk": 11, 
+    "model": "pages.link", 
+    "fields": {
+        "group": "Service", 
+        "name": "support@doorsale.com", 
+        "url": "mailto:support@doorsale.com", 
+        "created_by": "mysteryjeans", 
+        "created_on": "2014-09-15T23:26:17.976Z", 
+        "updated_on": "2014-09-15T23:26:17.976Z", 
+        "page": null, 
+        "updated_by": "mysteryjeans"
+    }
+},
+{
+    "pk": 12, 
+    "model": "pages.link", 
+    "fields": {
+        "group": "Service", 
+        "name": "P: (800) 111-4444 ", 
+        "url": "tel:++18001114444 ", 
+        "created_by": "mysteryjeans", 
+        "created_on": "2014-09-15T23:27:22.601Z", 
+        "updated_on": "2014-09-16T15:20:51.517Z", 
+        "page": null, 
+        "updated_by": "mysteryjeans"
+    }
+},
+{
     "pk": 1, 
     "model": "geo.country", 
     "fields": {
@@ -5804,1149 +6378,6 @@
         "created_on": "2014-09-17T03:34:08.522Z", 
         "updated_on": "2014-09-17T03:34:08.522Z", 
         "updated_by": "system"
-    }
-},
-{
-    "pk": "CC", 
-    "model": "sales.paymentmethod", 
-    "fields": {
-        "name": "Credit Card", 
-        "is_active": true, 
-        "created_by": "system", 
-        "created_on": "2014-09-17T03:34:08.526Z", 
-        "updated_on": "2014-09-17T03:34:08.526Z", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": "CH", 
-    "model": "sales.paymentmethod", 
-    "fields": {
-        "name": "Check / Money Order", 
-        "is_active": true, 
-        "created_by": "system", 
-        "created_on": "2014-09-17T03:34:08.525Z", 
-        "updated_on": "2014-09-17T03:34:08.525Z", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": "CO", 
-    "model": "sales.paymentmethod", 
-    "fields": {
-        "name": "Cash On Delivery", 
-        "is_active": true, 
-        "created_by": "system", 
-        "created_on": "2014-09-17T03:34:08.523Z", 
-        "updated_on": "2014-09-17T03:34:08.523Z", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": "PO", 
-    "model": "sales.paymentmethod", 
-    "fields": {
-        "name": "Purchase Order", 
-        "is_active": true, 
-        "created_by": "system", 
-        "created_on": "2014-09-17T03:34:08.526Z", 
-        "updated_on": "2014-09-17T03:34:08.526Z", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": 1, 
-    "model": "financial.currency", 
-    "fields": {
-        "code": "USD", 
-        "name": "US Dollar", 
-        "locale": "en-US", 
-        "is_primary": true, 
-        "is_active": true, 
-        "created_by": "system", 
-        "exchange_rate": 1.0, 
-        "created_on": "2014-09-17T03:34:08.097Z", 
-        "updated_on": "2014-09-17T03:34:08.097Z", 
-        "display_format": "${0:,.2f}", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": 2, 
-    "model": "financial.currency", 
-    "fields": {
-        "code": "PKR", 
-        "name": "Pakistani Rupee", 
-        "locale": "ur-PK", 
-        "is_primary": false, 
-        "is_active": true, 
-        "created_by": "system", 
-        "exchange_rate": 98.65, 
-        "created_on": "2014-09-17T03:34:08.101Z", 
-        "updated_on": "2014-09-17T03:34:08.101Z", 
-        "display_format": "Rs. {0:,.0f}", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": 3, 
-    "model": "financial.currency", 
-    "fields": {
-        "code": "AUD", 
-        "name": "Australian Dollar", 
-        "locale": "en-AU", 
-        "is_primary": false, 
-        "is_active": true, 
-        "created_by": "system", 
-        "exchange_rate": 0.94, 
-        "created_on": "2014-09-17T03:34:08.102Z", 
-        "updated_on": "2014-09-17T03:34:08.102Z", 
-        "display_format": "A${0:,.2f}", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": 4, 
-    "model": "financial.currency", 
-    "fields": {
-        "code": "GBP", 
-        "name": "British Pound", 
-        "locale": "en-GB", 
-        "is_primary": false, 
-        "is_active": true, 
-        "created_by": "system", 
-        "exchange_rate": 0.61, 
-        "created_on": "2014-09-17T03:34:08.102Z", 
-        "updated_on": "2014-09-17T03:34:08.102Z", 
-        "display_format": "\u00a3{0:,.2f}", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": 5, 
-    "model": "financial.currency", 
-    "fields": {
-        "code": "CAD", 
-        "name": "Canadian Dollar", 
-        "locale": "en-CA", 
-        "is_primary": false, 
-        "is_active": true, 
-        "created_by": "system", 
-        "exchange_rate": 0.98, 
-        "created_on": "2014-09-17T03:34:08.105Z", 
-        "updated_on": "2014-09-17T03:34:08.105Z", 
-        "display_format": "C${0:,.2f}", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": 6, 
-    "model": "financial.currency", 
-    "fields": {
-        "code": "CNY", 
-        "name": "Chinese Yuan Renminbi", 
-        "locale": "zh-CN", 
-        "is_primary": false, 
-        "is_active": true, 
-        "created_by": "system", 
-        "exchange_rate": 6.48, 
-        "created_on": "2014-09-17T03:34:08.106Z", 
-        "updated_on": "2014-09-17T03:34:08.106Z", 
-        "display_format": "\uffe5{0:,.2f}", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": 7, 
-    "model": "financial.currency", 
-    "fields": {
-        "code": "EUR", 
-        "name": "Euro", 
-        "locale": "", 
-        "is_primary": false, 
-        "is_active": true, 
-        "created_by": "system", 
-        "exchange_rate": 0.79, 
-        "created_on": "2014-09-17T03:34:08.107Z", 
-        "updated_on": "2014-09-17T03:34:08.107Z", 
-        "display_format": "\u20ac{0:,.2f}", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": 8, 
-    "model": "financial.currency", 
-    "fields": {
-        "code": "HKD", 
-        "name": "Hong Kong Dollar", 
-        "locale": "zh-HK", 
-        "is_primary": false, 
-        "is_active": true, 
-        "created_by": "system", 
-        "exchange_rate": 7.75, 
-        "created_on": "2014-09-17T03:34:08.107Z", 
-        "updated_on": "2014-09-17T03:34:08.107Z", 
-        "display_format": "HK${0:,.2f}", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": 9, 
-    "model": "financial.currency", 
-    "fields": {
-        "code": "JPY", 
-        "name": "Japanese Yen", 
-        "locale": "ja-JP", 
-        "is_primary": false, 
-        "is_active": true, 
-        "created_by": "system", 
-        "exchange_rate": 80.07, 
-        "created_on": "2014-09-17T03:34:08.108Z", 
-        "updated_on": "2014-09-17T03:34:08.108Z", 
-        "display_format": "\uffe5{0:,.2f}", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": 10, 
-    "model": "financial.currency", 
-    "fields": {
-        "code": "RUB", 
-        "name": "Russian Rouble", 
-        "locale": "ru-RU", 
-        "is_primary": false, 
-        "is_active": true, 
-        "created_by": "system", 
-        "exchange_rate": 27.7, 
-        "created_on": "2014-09-17T03:34:08.109Z", 
-        "updated_on": "2014-09-17T03:34:08.109Z", 
-        "display_format": "RUB{0:,.2f}", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": 11, 
-    "model": "financial.currency", 
-    "fields": {
-        "code": "SEK", 
-        "name": "Swedish Krona", 
-        "locale": "sv-SE", 
-        "is_primary": false, 
-        "is_active": true, 
-        "created_by": "system", 
-        "exchange_rate": 6.19, 
-        "created_on": "2014-09-17T03:34:08.109Z", 
-        "updated_on": "2014-09-17T03:34:08.109Z", 
-        "display_format": "kr{0:,.2f}", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": 12, 
-    "model": "financial.currency", 
-    "fields": {
-        "code": "RON", 
-        "name": "Romanian Leu", 
-        "locale": "ro-RO", 
-        "is_primary": false, 
-        "is_active": true, 
-        "created_by": "system", 
-        "exchange_rate": 2.85, 
-        "created_on": "2014-09-17T03:34:08.110Z", 
-        "updated_on": "2014-09-17T03:34:08.110Z", 
-        "display_format": "{0:,.2f} lei", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": "amex", 
-    "model": "payments.cardissuer", 
-    "fields": {
-        "name": "American Express", 
-        "is_active": true, 
-        "created_by": "system", 
-        "created_on": "2014-09-17T03:34:08.529Z", 
-        "updated_on": "2014-09-17T03:34:08.529Z", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": "diners_club_carte_blanche", 
-    "model": "payments.cardissuer", 
-    "fields": {
-        "name": "Diners Club Carte Blanche", 
-        "is_active": true, 
-        "created_by": "system", 
-        "created_on": "2014-09-17T03:34:08.530Z", 
-        "updated_on": "2014-09-17T03:34:08.530Z", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": "discover", 
-    "model": "payments.cardissuer", 
-    "fields": {
-        "name": "Discover Card", 
-        "is_active": true, 
-        "created_by": "system", 
-        "created_on": "2014-09-17T03:34:08.529Z", 
-        "updated_on": "2014-09-17T03:34:08.529Z", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": "jcb", 
-    "model": "payments.cardissuer", 
-    "fields": {
-        "name": "JCB", 
-        "is_active": true, 
-        "created_by": "system", 
-        "created_on": "2014-09-17T03:34:08.531Z", 
-        "updated_on": "2014-09-17T03:34:08.531Z", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": "laser", 
-    "model": "payments.cardissuer", 
-    "fields": {
-        "name": "Laser", 
-        "is_active": true, 
-        "created_by": "system", 
-        "created_on": "2014-09-17T03:34:08.531Z", 
-        "updated_on": "2014-09-17T03:34:08.531Z", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": "maestro", 
-    "model": "payments.cardissuer", 
-    "fields": {
-        "name": "Maestro", 
-        "is_active": true, 
-        "created_by": "system", 
-        "created_on": "2014-09-17T03:34:08.528Z", 
-        "updated_on": "2014-09-17T03:34:08.528Z", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": "mastercard", 
-    "model": "payments.cardissuer", 
-    "fields": {
-        "name": "MasterCard", 
-        "is_active": true, 
-        "created_by": "system", 
-        "created_on": "2014-09-17T03:34:08.528Z", 
-        "updated_on": "2014-09-17T03:34:08.528Z", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": "visa", 
-    "model": "payments.cardissuer", 
-    "fields": {
-        "name": "Visa", 
-        "is_active": true, 
-        "created_by": "system", 
-        "created_on": "2014-09-17T03:34:08.527Z", 
-        "updated_on": "2014-09-17T03:34:08.527Z", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": "visa_electron", 
-    "model": "payments.cardissuer", 
-    "fields": {
-        "name": "Visa Electron", 
-        "is_active": true, 
-        "created_by": "system", 
-        "created_on": "2014-09-17T03:34:08.532Z", 
-        "updated_on": "2014-09-17T03:34:08.532Z", 
-        "updated_by": "system"
-    }
-},
-{
-    "pk": 1, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_logentry", 
-        "name": "Can add log entry", 
-        "content_type": 1
-    }
-},
-{
-    "pk": 2, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_logentry", 
-        "name": "Can change log entry", 
-        "content_type": 1
-    }
-},
-{
-    "pk": 3, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_logentry", 
-        "name": "Can delete log entry", 
-        "content_type": 1
-    }
-},
-{
-    "pk": 4, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_permission", 
-        "name": "Can add permission", 
-        "content_type": 2
-    }
-},
-{
-    "pk": 5, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_permission", 
-        "name": "Can change permission", 
-        "content_type": 2
-    }
-},
-{
-    "pk": 6, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_permission", 
-        "name": "Can delete permission", 
-        "content_type": 2
-    }
-},
-{
-    "pk": 7, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_group", 
-        "name": "Can add group", 
-        "content_type": 3
-    }
-},
-{
-    "pk": 8, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_group", 
-        "name": "Can change group", 
-        "content_type": 3
-    }
-},
-{
-    "pk": 9, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_group", 
-        "name": "Can delete group", 
-        "content_type": 3
-    }
-},
-{
-    "pk": 10, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_contenttype", 
-        "name": "Can add content type", 
-        "content_type": 4
-    }
-},
-{
-    "pk": 11, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_contenttype", 
-        "name": "Can change content type", 
-        "content_type": 4
-    }
-},
-{
-    "pk": 12, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_contenttype", 
-        "name": "Can delete content type", 
-        "content_type": 4
-    }
-},
-{
-    "pk": 13, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_session", 
-        "name": "Can add session", 
-        "content_type": 5
-    }
-},
-{
-    "pk": 14, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_session", 
-        "name": "Can change session", 
-        "content_type": 5
-    }
-},
-{
-    "pk": 15, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_session", 
-        "name": "Can delete session", 
-        "content_type": 5
-    }
-},
-{
-    "pk": 16, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_sysconfig", 
-        "name": "Can add System Config", 
-        "content_type": 6
-    }
-},
-{
-    "pk": 17, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_sysconfig", 
-        "name": "Can change System Config", 
-        "content_type": 6
-    }
-},
-{
-    "pk": 18, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_sysconfig", 
-        "name": "Can delete System Config", 
-        "content_type": 6
-    }
-},
-{
-    "pk": 19, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_country", 
-        "name": "Can add country", 
-        "content_type": 7
-    }
-},
-{
-    "pk": 20, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_country", 
-        "name": "Can change country", 
-        "content_type": 7
-    }
-},
-{
-    "pk": 21, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_country", 
-        "name": "Can delete country", 
-        "content_type": 7
-    }
-},
-{
-    "pk": 22, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_state", 
-        "name": "Can add state", 
-        "content_type": 8
-    }
-},
-{
-    "pk": 23, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_state", 
-        "name": "Can change state", 
-        "content_type": 8
-    }
-},
-{
-    "pk": 24, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_state", 
-        "name": "Can delete state", 
-        "content_type": 8
-    }
-},
-{
-    "pk": 25, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_address", 
-        "name": "Can add address", 
-        "content_type": 9
-    }
-},
-{
-    "pk": 26, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_address", 
-        "name": "Can change address", 
-        "content_type": 9
-    }
-},
-{
-    "pk": 27, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_address", 
-        "name": "Can delete address", 
-        "content_type": 9
-    }
-},
-{
-    "pk": 28, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_flatpage", 
-        "name": "Can add Flat page", 
-        "content_type": 10
-    }
-},
-{
-    "pk": 29, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_flatpage", 
-        "name": "Can change Flat page", 
-        "content_type": 10
-    }
-},
-{
-    "pk": 30, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_flatpage", 
-        "name": "Can delete Flat page", 
-        "content_type": 10
-    }
-},
-{
-    "pk": 31, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_link", 
-        "name": "Can add link", 
-        "content_type": 11
-    }
-},
-{
-    "pk": 32, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_link", 
-        "name": "Can change link", 
-        "content_type": 11
-    }
-},
-{
-    "pk": 33, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_link", 
-        "name": "Can delete link", 
-        "content_type": 11
-    }
-},
-{
-    "pk": 34, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_user", 
-        "name": "Can add user", 
-        "content_type": 12
-    }
-},
-{
-    "pk": 35, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_user", 
-        "name": "Can change user", 
-        "content_type": 12
-    }
-},
-{
-    "pk": 36, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_user", 
-        "name": "Can delete user", 
-        "content_type": 12
-    }
-},
-{
-    "pk": 37, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_manufacturer", 
-        "name": "Can add manufacturer", 
-        "content_type": 13
-    }
-},
-{
-    "pk": 38, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_manufacturer", 
-        "name": "Can change manufacturer", 
-        "content_type": 13
-    }
-},
-{
-    "pk": 39, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_manufacturer", 
-        "name": "Can delete manufacturer", 
-        "content_type": 13
-    }
-},
-{
-    "pk": 40, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_category", 
-        "name": "Can add category", 
-        "content_type": 14
-    }
-},
-{
-    "pk": 41, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_category", 
-        "name": "Can change category", 
-        "content_type": 14
-    }
-},
-{
-    "pk": 42, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_category", 
-        "name": "Can delete category", 
-        "content_type": 14
-    }
-},
-{
-    "pk": 43, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_product", 
-        "name": "Can add product", 
-        "content_type": 15
-    }
-},
-{
-    "pk": 44, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_product", 
-        "name": "Can change product", 
-        "content_type": 15
-    }
-},
-{
-    "pk": 45, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_product", 
-        "name": "Can delete product", 
-        "content_type": 15
-    }
-},
-{
-    "pk": 46, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_productspec", 
-        "name": "Can add product spec", 
-        "content_type": 16
-    }
-},
-{
-    "pk": 47, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_productspec", 
-        "name": "Can change product spec", 
-        "content_type": 16
-    }
-},
-{
-    "pk": 48, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_productspec", 
-        "name": "Can delete product spec", 
-        "content_type": 16
-    }
-},
-{
-    "pk": 49, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_productpic", 
-        "name": "Can add product pic", 
-        "content_type": 17
-    }
-},
-{
-    "pk": 50, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_productpic", 
-        "name": "Can change product pic", 
-        "content_type": 17
-    }
-},
-{
-    "pk": 51, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_productpic", 
-        "name": "Can delete product pic", 
-        "content_type": 17
-    }
-},
-{
-    "pk": 52, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_cart", 
-        "name": "Can add cart", 
-        "content_type": 18
-    }
-},
-{
-    "pk": 53, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_cart", 
-        "name": "Can change cart", 
-        "content_type": 18
-    }
-},
-{
-    "pk": 54, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_cart", 
-        "name": "Can delete cart", 
-        "content_type": 18
-    }
-},
-{
-    "pk": 55, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_cartitem", 
-        "name": "Can add cart item", 
-        "content_type": 19
-    }
-},
-{
-    "pk": 56, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_cartitem", 
-        "name": "Can change cart item", 
-        "content_type": 19
-    }
-},
-{
-    "pk": 57, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_cartitem", 
-        "name": "Can delete cart item", 
-        "content_type": 19
-    }
-},
-{
-    "pk": 58, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_paymentmethod", 
-        "name": "Can add payment method", 
-        "content_type": 20
-    }
-},
-{
-    "pk": 59, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_paymentmethod", 
-        "name": "Can change payment method", 
-        "content_type": 20
-    }
-},
-{
-    "pk": 60, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_paymentmethod", 
-        "name": "Can delete payment method", 
-        "content_type": 20
-    }
-},
-{
-    "pk": 61, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_order", 
-        "name": "Can add order", 
-        "content_type": 21
-    }
-},
-{
-    "pk": 62, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_order", 
-        "name": "Can change order", 
-        "content_type": 21
-    }
-},
-{
-    "pk": 63, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_order", 
-        "name": "Can delete order", 
-        "content_type": 21
-    }
-},
-{
-    "pk": 64, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_orderitem", 
-        "name": "Can add order item", 
-        "content_type": 22
-    }
-},
-{
-    "pk": 65, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_orderitem", 
-        "name": "Can change order item", 
-        "content_type": 22
-    }
-},
-{
-    "pk": 66, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_orderitem", 
-        "name": "Can delete order item", 
-        "content_type": 22
-    }
-},
-{
-    "pk": 67, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_currency", 
-        "name": "Can add currency", 
-        "content_type": 23
-    }
-},
-{
-    "pk": 68, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_currency", 
-        "name": "Can change currency", 
-        "content_type": 23
-    }
-},
-{
-    "pk": 69, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_currency", 
-        "name": "Can delete currency", 
-        "content_type": 23
-    }
-},
-{
-    "pk": 70, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_tax", 
-        "name": "Can add tax", 
-        "content_type": 24
-    }
-},
-{
-    "pk": 71, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_tax", 
-        "name": "Can change tax", 
-        "content_type": 24
-    }
-},
-{
-    "pk": 72, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_tax", 
-        "name": "Can delete tax", 
-        "content_type": 24
-    }
-},
-{
-    "pk": 73, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_cardissuer", 
-        "name": "Can add card issuer", 
-        "content_type": 25
-    }
-},
-{
-    "pk": 74, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_cardissuer", 
-        "name": "Can change card issuer", 
-        "content_type": 25
-    }
-},
-{
-    "pk": 75, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_cardissuer", 
-        "name": "Can delete card issuer", 
-        "content_type": 25
-    }
-},
-{
-    "pk": 76, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_gateway", 
-        "name": "Can add gateway", 
-        "content_type": 26
-    }
-},
-{
-    "pk": 77, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_gateway", 
-        "name": "Can change gateway", 
-        "content_type": 26
-    }
-},
-{
-    "pk": 78, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_gateway", 
-        "name": "Can delete gateway", 
-        "content_type": 26
-    }
-},
-{
-    "pk": 79, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_gatewayparam", 
-        "name": "Can add gateway param", 
-        "content_type": 27
-    }
-},
-{
-    "pk": 80, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_gatewayparam", 
-        "name": "Can change gateway param", 
-        "content_type": 27
-    }
-},
-{
-    "pk": 81, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_gatewayparam", 
-        "name": "Can delete gateway param", 
-        "content_type": 27
-    }
-},
-{
-    "pk": 82, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_transaction", 
-        "name": "Can add transaction", 
-        "content_type": 28
-    }
-},
-{
-    "pk": 83, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_transaction", 
-        "name": "Can change transaction", 
-        "content_type": 28
-    }
-},
-{
-    "pk": 84, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_transaction", 
-        "name": "Can delete transaction", 
-        "content_type": 28
-    }
-},
-{
-    "pk": 85, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_transactionparam", 
-        "name": "Can add transaction param", 
-        "content_type": 29
-    }
-},
-{
-    "pk": 86, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_transactionparam", 
-        "name": "Can change transaction param", 
-        "content_type": 29
-    }
-},
-{
-    "pk": 87, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_transactionparam", 
-        "name": "Can delete transaction param", 
-        "content_type": 29
     }
 }
 ]
