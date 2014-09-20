@@ -5,7 +5,6 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.models import AbstractUser as _AbstractUser, UserManager as _UserManager
 
 from doorsale.geo.models import Address
-from doorsale.utils.helpers import random_digest
 
 
 class UserManager(_UserManager):
@@ -17,7 +16,7 @@ class UserManager(_UserManager):
         # Is verified can be later use to verify user email address
         verification_code = None
         if not is_verified:
-            verification_code = random_digest()
+            verification_code = self.make_random_password(length=20)
 
         if self.filter(email__iexact=email).count() > 0:
             raise ValidationError("User with this Email address already exists.")

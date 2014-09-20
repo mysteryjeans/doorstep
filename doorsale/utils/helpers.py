@@ -1,17 +1,8 @@
 from __future__ import unicode_literals
 
-import random
-import hashlib
-
 from django.conf import settings
 from django.core.mail import EmailMessage
 from django.core.exceptions import ImproperlyConfigured
-
-
-def random_digest():
-    algo = hashlib.md5()
-    algo.update(str(random.randrange(100, 10000000)))
-    return algo.hexdigest()
 
 
 def send_mail(subject, message, recipients, is_html):
