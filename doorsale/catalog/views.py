@@ -3,6 +3,7 @@ import urllib
 from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ImproperlyConfigured
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import View
 
 from doorsale.views import BaseView
@@ -88,21 +89,20 @@ class IndexView(CatalogBaseView):
 
 
 class CategoryProductsView(CatalogBaseView):
-
     """
     Displays list products from the Category
     """
     template_name = 'catalog/category_products.html'
 
-    def get(self, request, slug):
-        category = next(
-            (category for category in self.categories if category.slug == slug), None)
+    def get(self, request, slug, page_num):
+        category = next((category for category in self.categories if category.slug == slug), None)
 
         if category is None:
             raise Http404()
 
         breadcrumbs = category.get_breadcrumbs()
-        products = Product.category_products(category)
+        products = paginate(Product.category_products(category), self.get_page_size(),
+                            page_num, 'catalog_category', [slug])
 
         return super(CategoryProductsView, self).get(request,
                                                      category=category,
@@ -117,7 +117,7 @@ class ManufacturerProductsView(CatalogBaseView):
     """
     template_name = 'catalog/manufacturer_products.html'
 
-    def get(self, request, slug):
+    def get(self, request, slug, page_num):
         manufacturer = next(
             (manufacturer for manufacturer in self.manufacturers if manufacturer.slug == slug), None)
 
@@ -125,7 +125,8 @@ class ManufacturerProductsView(CatalogBaseView):
             raise Http404()
 
         breadcrumbs = manufacturer.get_breadcrumbs()
-        products = Product.manufacturer_products(manufacturer)
+        products = paginate(Product.manufacturer_products(manufacturer), self.get_page_size(),
+                            page_num, 'catalog_manufacturer', [slug])
 
         return super(ManufacturerProductsView, self).get(request,
                                                          manufacturer=manufacturer,
@@ -140,48 +141,28 @@ class SearchProductsView(CatalogBaseView):
     """
     template_name = 'catalog/search_products.html'
 
-    def get(self, request):
-        q = request.REQUEST.get('q', None)
-
-        if not q:
-            return HttpResponseRedirect(reverse('catalog_index'))
-
-        page_title = 'Search: ' + q
-        params = {'q': q.encode('utf-8')}
-        query = '?' + urllib.urlencode(params)
-        breadcrumbs = (
-            {'name': page_title, 'url': reverse('catalog_search') + query},)
-        form = AdvancedSearchForm(initial={'keyword': q})
-        products = Product.search_products(q)
-        return super(SearchProductsView, self).get(request,
-                                                   q=q,
-                                                   breadcrumbs=breadcrumbs,
-                                                   form=form,
-                                                   products=products,
-                                                   page_title=page_title)
-
-    def post(self, request):
-        form = AdvancedSearchForm(request.POST)
-
-        is_valid = form.is_valid()
-        data = form.cleaned_data
-        q = data.get('keyword', '')
-        params = {'q': q.encode('utf-8')}
-        query = '?' + urllib.urlencode(params)
-        breadcrumbs = (
-            {'name': 'Search: ' + q, 'url': reverse('catalog_search') + query},)
-
+    def get(self, request, page_num):
+        form = AdvancedSearchForm(request.GET)
+        query = '?' + request.GET.urlencode()
         products = None
-        if is_valid:
-            products = Product.search_advance_products(
+        keyword = request.GET.get('keyword', None)
+        page_title = 'Search: ' + keyword
+        breadcrumbs = ({'name': 'Search: ' + keyword, 'url': reverse('catalog_search') + query},)
+
+        if form.is_valid():
+            data = form.cleaned_data
+
+            products = paginate(Product.search_advance_products(
                 data['keyword'], data['category'], data['manufacturer'],
-                data['price_from'], data['price_to'], self.categories)
+                data['price_from'], data['price_to'], self.categories),
+                self.get_page_size(), page_num, 'catalog_search', qs=query)
 
         return super(SearchProductsView, self).get(request,
-                                                   q=q,
-                                                   breadcrumbs=breadcrumbs,
                                                    form=form,
-                                                   products=products)
+                                                   keyword=keyword,
+                                                   products=products,
+                                                   page_title=page_title,
+                                                   breadcrumbs=breadcrumbs)
 
 
 class ProductDetailView(CatalogBaseView):
@@ -224,3 +205,28 @@ def get_default_currency(request):
             return Currency.get_primary()
 
     return Currency.get_primary()
+
+
+def paginate(query_set, page_size, page_num, url_name, url_args=[], qs=None):
+    paginator = Paginator(query_set, page_size)
+    try:
+        page = paginator.page(page_num)
+    except PageNotAnInteger:
+        page = paginator.page(1)
+    except EmptyPage:
+        page = paginator.page(paginator.num_pages)
+
+    # Generating paginated previous and next urls
+    # if page 1 than suppressing page number in url
+    if page.has_previous():
+        previous_page_num = page.previous_page_number()
+        if previous_page_num == 1:
+            page.previous_url = reverse(url_name, args=url_args) + (qs or '')
+        else:
+            page.previous_url = reverse(url_name, args=(url_args + [previous_page_num])) + (qs or '')
+
+    if page.has_next():
+        next_page_num = page.next_page_number()
+        page.next_url = reverse(url_name, args=(url_args + [next_page_num])) + (qs or '')
+
+    return page

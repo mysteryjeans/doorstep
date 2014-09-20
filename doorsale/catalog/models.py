@@ -48,14 +48,10 @@ class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
     description = models.TextField(null=True, blank=True)
-    pic = models.ImageField(
-        upload_to='images/catalog/categories', null=True, blank=True)
-    parent = models.ForeignKey(
-        'self', related_name='sub_categories',
-        null=True, blank=True)
-    tags = models.CharField(
-        max_length=100, null=True, blank=True,
-        help_text='Comma-delimited set of SEO keywords for meta tag')
+    pic = models.ImageField(upload_to='images/catalog/categories', null=True, blank=True)
+    parent = models.ForeignKey('self', related_name='sub_categories', null=True, blank=True)
+    tags = models.CharField(max_length=100, null=True, blank=True,
+                            help_text='Comma-delimited set of SEO keywords for meta tag')
     display_order = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
     updated_by = models.CharField(max_length=100)
@@ -264,21 +260,21 @@ class Product(models.Model):
         sub_categories_ids = [
             sub_category.id for sub_category in category.get_all_sub_categories()]
         sub_categories_ids.append(category.id)
-        return list(cls.get_active().filter(category_id__in=sub_categories_ids))
+        return cls.get_active().filter(category_id__in=sub_categories_ids)
 
     @classmethod
     def manufacturer_products(cls, manufacturer):
         """
         Returns products of manufacturer
         """
-        return list(cls.get_active().filter(brand=manufacturer))
+        return cls.get_active().filter(brand=manufacturer)
 
     @classmethod
     def search_products(cls, q):
         """
         Returns products for search query
         """
-        return list(cls.get_search(q))
+        return cls.get_search(q)
 
     @classmethod
     def search_advance_products(cls, keyword, category, manufacturer, price_from, price_to, categories):
@@ -288,11 +284,9 @@ class Product(models.Model):
         query = cls.get_search(keyword)
 
         if category:
-            category = next(
-                category2 for category2 in categories if category2.id == category.id)
+            category = next(category2 for category2 in categories if category2.id == category.id)
             sub_categories_ids = [category.id]
-            sub_categories_ids += (
-                sub_category.id for sub_category in category.get_all_sub_categories())
+            sub_categories_ids += (sub_category.id for sub_category in category.get_all_sub_categories())
 
             query = query.filter(category_id__in=sub_categories_ids)
 
@@ -303,7 +297,7 @@ class Product(models.Model):
         if price_to:
             query = query.filter(price__lte=price_to)
 
-        return list(query)
+        return query
 
 
 class ProductSpec(models.Model):

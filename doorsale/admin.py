@@ -2,6 +2,7 @@ from django.contrib import admin
 
 from doorsale.models import SysConfig
 
+
 class ModelAdmin(admin.ModelAdmin):
     """
     Abstract admin models for populating columns updated_by and created_by

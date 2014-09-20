@@ -36,3 +36,18 @@
 		{% endfor %}
 	</ul>
 </div>
+{% if products.number %}
+<div class="pagination">
+    <span class="step-links">
+        {% if products.has_previous %}
+            <a href="{{ products.previous_url }}" rel="prev"><i class="fa fa-angle-left"></i> previous</a>
+        {% endif %}
+        <span class="current">
+            Page {{ products.number }} of {{ products.paginator.num_pages }}
+        </span>
+        {% if products.has_next %}
+            <a href="{{ products.next_url }}" rel="next">next <i class="fa fa-angle-right"></i></a>
+        {% endif %}
+    </span>
+</div>
+{% endif %}

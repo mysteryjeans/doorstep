@@ -11,6 +11,7 @@ $('#advance-search-filter').click(function() {
 	}
 });
 
-if ($('.advance-search-option input[type="text"]').val() != '' || $('.advance-search-option select').val() != '') {
-	$('.advance-search-option').show();
-}
+$('.advance-search-option input[type="text"], .advance-search-option select').each(function(){
+	if($(this).val() != '')
+		$('.advance-search-option').show();	
+});

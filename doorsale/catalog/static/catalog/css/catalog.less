@@ -402,8 +402,8 @@
     #advance-search-filter {
       font-size: 18px;
       position: absolute;
-      right: 30px;
-      top: 7px;
+      right: 33px;
+      top: 13px;
       cursor: pointer;
     }
     
@@ -432,6 +432,7 @@
   
   .products-list {
     clear: both;
+    overflow: hidden;
     
     .product {
       float: left;
@@ -469,6 +470,19 @@
       div {
         padding: 5px 10px;
       }
+    }
+  }
+
+  .pagination {
+    clear: both;
+    margin-top: 10px;
+    border-bottom: 1px dotted @border-color;
+    padding: 10px;
+
+    a {
+      .border;
+      padding: 5px;
+      display: inline-block;
     }
   }
   

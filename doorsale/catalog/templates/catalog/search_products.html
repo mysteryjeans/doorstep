@@ -3,9 +3,8 @@
 {% load compressed %}
 
 {% block catalog-content %}
-<h3>Search: {{ q }}</h3>
-<form method="post" action="{% url 'catalog_search_advance' %}" class="advance-search">
-	{% csrf_token %}
+<h3>Search: {{ form.clean_keyword }}</h3>
+<form method="get" action="{% url 'catalog_search' %}" class="advance-search">
 	<i id="advance-search-filter" class="fa fa-search-plus" title="Advance search options..."></i>
 	<ul>
 		<li>
