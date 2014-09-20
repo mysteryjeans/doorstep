@@ -1,6 +1,5 @@
 import urllib
 
-from django.conf import settings
 from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ImproperlyConfigured
@@ -10,9 +9,6 @@ from doorsale.views import BaseView
 from doorsale.catalog.forms import AdvancedSearchForm
 from doorsale.catalog.models import Manufacturer, Category, Product
 from doorsale.financial.models import Currency
-
-
-MAX_RECENT_ARRIVALS = getattr(settings, 'MAX_RECENT_ARRIVALS', 10)
 
 
 class CatalogBaseView(BaseView):
@@ -56,14 +52,20 @@ class CatalogBaseView(BaseView):
             (currency for currency in self.currencies if currency.code == default_currency), self.primary_currency)
 
         context['breadcrumbs'] = breadcrumbs
-        context['categories'] = (
-            category for category in self.categories if category.parent is None)
+        context['categories'] = (category for category in self.categories if category.parent is None)
         context['manufacturers'] = self.manufacturers
         context['currencies'] = self.currencies
         context['primary_currency'] = self.primary_currency
         context['default_currency'] = default_currency
 
         return context
+
+    @classmethod
+    def get_page_size(cls):
+        """
+        Returns page size for products listing
+        """
+        return int(cls.get_config('PAGE_SIZE'))
 
 
 class IndexView(CatalogBaseView):
@@ -74,11 +76,15 @@ class IndexView(CatalogBaseView):
 
     def get(self, request):
         featured_products = Product.featured_products()
-        recent_products = Product.recent_products(MAX_RECENT_ARRIVALS)
+        recent_products = Product.recent_products(self.get_max_recent_arrivals())
 
         return super(IndexView, self).get(request,
                                           featured_products=featured_products,
                                           recent_products=recent_products)
+
+    @classmethod
+    def get_max_recent_arrivals(cls):
+        return int(cls.get_config('MAX_RECENT_ARRIVALS'))
 
 
 class CategoryProductsView(CatalogBaseView):

@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from doorsale.models import SysConfig
 
 class ModelAdmin(admin.ModelAdmin):
     """
@@ -17,3 +18,12 @@ class ModelAdmin(admin.ModelAdmin):
             obj.created_by = unicode(request.user)
 
         return obj
+
+
+class SysConfigAdmin(ModelAdmin):
+    list_display = ('name', 'value', 'description',)
+    search_fields = ('name', 'value', 'description',)
+    date_hierarchy = 'created_on'
+
+
+admin.site.register(SysConfig, SysConfigAdmin)

@@ -26,32 +26,6 @@ INSTALLED_APPS += (
     'doorsale.payments',
 )
 
-# DOMAIN will be used in link generation specially in emails
-DOMAIN = '127.0.0.1:8000'
-
-# SITE_NAME it will be used in all pages, this is the name of your website
-SITE_NAME = 'Doorsale'
-
-# SITE_TITLE for index pages of your website
-SITE_TITLE = 'The powerful e-commerce solution for Django'
-
-# Meta description for SEO
-SITE_DESCRIPTION = 'The e-commerce solution site build using Doorsale'
-
-# COPYRIGHT statement for all pages
-COPYRIGHT = 'Copyright &copy; 2014 Doorsale. All rights reserved.'
-
-# SUPPORT_EMAIL address for bugs and error reporting
-SUPPORT_EMAIL = 'demo@doorsaledemo.com'
-
-
-# Email Server settings for sending notifications & confirmations emails
-EMAIL_HOST = ''
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = ''
-EMAIL_HOST_PASSWORD = r''
-
 
 ################ Django-Pipeline #####################
 ######################################################
