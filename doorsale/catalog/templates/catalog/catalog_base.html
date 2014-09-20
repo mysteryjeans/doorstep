@@ -55,6 +55,7 @@
 	{% endif %}
 </div>
 <div id="catalog-content">
+	{% if breadcrumbs %}
 	<ul class="breadcrumbs">
 		{% for crumb in breadcrumbs %}
 		{% if forloop.last %}
@@ -76,6 +77,7 @@
 		{% endif %}
 		{% endfor %}
 	</ul>
+	{% endif %}
 	{% block catalog-content %}
 	{% endblock %}
 </div>

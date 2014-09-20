@@ -8,11 +8,16 @@ from django.http import HttpResponseRedirect
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 from django.contrib.auth import get_user_model, authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.template import Context
+from django.template.loader import get_template
 
 from doorsale.views import BaseView
+from doorsale.exceptions import DoorsaleError
 from doorsale.decorators import anonymous_required
 from doorsale.catalog.views import CatalogBaseView
-from doorsale.accounts.forms import RegisterForm
+from doorsale.accounts.forms import RegisterForm, PasswordResetForm, ChangePasswordForm
+from doorsale.utils.helpers import send_mail
 
 
 User = get_user_model()
@@ -107,5 +112,106 @@ class ForgotPasswordView(CatalogBaseView):
     """
     Password recovery view
     """
-    template_name = 'accounts'
+    template_name = 'accounts/forgot_password.html'
     decorators = [anonymous_required]
+    page_title = 'Forgot password'
+
+    def get_context_data(self, **kwargs):
+        context = super(ForgotPasswordView, self).get_context_data(**kwargs)
+        context['breadcrumbs'] += ({'name': 'Forgot password', 'url': reverse('accounts_forgot_password')},)
+
+        return context
+
+    def post(self, request):
+        error = None
+        success = None
+        email = request.POST.get('email', None)
+
+        if email:
+            email = email.strip()
+            try:
+                user = User.objects.get_reset_code(email)
+
+                # Sending password reset link email to user
+                context = Context({'user': user, 'SITE_NAME': settings.SITE_NAME, 'DOMAIN': settings.DOMAIN})
+                msg_subject = get_template("accounts/email/password_reset_subject.txt").render(context)
+                context = Context({'user': user, 'SITE_NAME': settings.SITE_NAME, 'DOMAIN': settings.DOMAIN})
+                msg_text = get_template("accounts/email/password_reset.html").render(context)
+                to_email = '%s <%s>' % (user.get_full_name(), user.email)
+                send_mail(msg_subject, msg_text, [to_email], True)
+
+                success = 'Password reset intructions has been sent to your email address.'
+            except DoorsaleError as e:
+                error = e.message
+
+        return self.get(request, error=error, success=success)
+
+
+class PasswordResetView(CatalogBaseView):
+    """
+    Password recovery view
+    """
+    page_title = 'Password reset'
+    template_name = 'accounts/password_reset.html'
+    decorators = [anonymous_required]
+
+    def get_context_data(self, **kwargs):
+        context = super(PasswordResetView, self).get_context_data(**kwargs)
+        context['breadcrumbs'] += ({
+            'name': 'Password reset',
+            'url': reverse('accounts_password_reset', args=[context['user_id'], context['reset_code']])},)
+
+        return context
+
+    def get(self, request, user_id, reset_code):
+        form = PasswordResetForm()
+        return super(PasswordResetView, self).get(request, form=form, user_id=user_id, reset_code=reset_code)
+
+    def post(self, request, user_id, reset_code):
+        error = None
+        success = None
+        form = PasswordResetForm(request.POST)
+
+        if form.is_valid():
+            data = form.cleaned_data
+            try:
+                User.objects.reset_password(user_id, reset_code, data['password'])
+                success = 'Your password has been reset successfully.'
+            except DoorsaleError as e:
+                error = e.message
+
+        return super(PasswordResetView, self).get(request, form=form, user_id=user_id, reset_code=reset_code,
+                                                  error=error, success=success)
+
+
+class ChangePasswordView(CatalogBaseView):
+    """
+    Password recovery view
+    """
+    page_title = 'Change password'
+    template_name = 'accounts/change_password.html'
+    decorators = [login_required]
+
+    def get_context_data(self, **kwargs):
+        context = super(ChangePasswordView, self).get_context_data(**kwargs)
+        context['breadcrumbs'] += ({'name': 'Change password', 'url': reverse('accounts_change_password')},)
+        return context
+
+    def get(self, request):
+        form = ChangePasswordForm()
+        return super(ChangePasswordView, self).get(request, form=form)
+
+    def post(self, request):
+        error = None
+        success = None
+        form = ChangePasswordForm(request.POST)
+
+        if form.is_valid():
+            data = form.cleaned_data
+            try:
+                User.objects.change_password(request.user, data['current_password'], data['password'])
+                success = 'Your password has been changed successfully.'
+            except DoorsaleError as e:
+                error = e.message
+
+        return super(ChangePasswordView, self).get(request, form=form, error=error, success=success)

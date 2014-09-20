@@ -1,9 +1,14 @@
 from __future__ import unicode_literals
 
+from datetime import timedelta
+
 from django.db import models
+from django.contrib.auth import get_user_model
+from django.utils import timezone
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import AbstractUser as _AbstractUser, UserManager as _UserManager
 
+from doorsale.exceptions import DoorsaleError
 from doorsale.geo.models import Address
 
 
@@ -14,9 +19,9 @@ class UserManager(_UserManager):
         Creates a new user in database, and also marked first user as staff and superuser
         """
         # Is verified can be later use to verify user email address
-        verification_code = None
+        verify_code = None
         if not is_verified:
-            verification_code = self.make_random_password(length=20)
+            verify_code = self.make_random_password(length=20)
 
         if self.filter(email__iexact=email).count() > 0:
             raise ValidationError("User with this Email address already exists.")
@@ -30,7 +35,7 @@ class UserManager(_UserManager):
                                          password=password,
                                          gender=gender,
                                          is_verified=is_verified,
-                                         verification_code=verification_code,
+                                         verify_code=verify_code,
                                          updated_by=username,
                                          created_by=username,
                                          **extra_fields)
@@ -42,16 +47,68 @@ class UserManager(_UserManager):
                                     password=password,
                                     gender=gender,
                                     is_verified=is_verified,
-                                    verification_code=verification_code,
+                                    verify_code=verify_code,
                                     updated_by=username,
                                     created_by=username,
                                     **extra_fields)
 
         return user
 
+    def get_reset_code(self, email):
+        """
+        Generates a new password reset code returns user
+        """
+
+        try:
+            user = self.get(email__iexact=email)
+            user.reset_code = self.make_random_password(length=20)
+            user.reset_code_expire = timezone.now() + timedelta(days=2)
+            user.save()
+
+            return user
+        except get_user_model().DoesNotExist:
+            raise DoorsaleError('We can\'t find that email address, sorry!')
+
+    def reset_password(self, user_id, reset_code, password):
+        """
+        Set new password for the user
+        """
+
+        if not password:
+            raise DoorsaleError('New password can\'t be blank.')
+
+        try:
+            user = self.get(id=user_id)
+            if not user.reset_code or user.reset_code != reset_code or user.reset_code_expire < timezone.now():
+                raise DoorsaleError('Password reset code is invalid or expired.')
+
+            # Password reset code shouldn't be used again
+            user.reset_code = None
+            user.set_password(password)
+            user.save()
+
+        except get_user_model().DoesNotExist:
+            raise DoorsaleError('Password reset code is invalid or expired.')
+
+    def change_password(self, user, current_password, password):
+        """
+        Updates user's current password
+        """
+
+        if not password:
+            raise DoorsaleError('New password can\'t be blank.')
+
+        # Changing user's password if old password verifies
+        user = self.get(id=user.id)
+
+        if not user.check_password(current_password):
+            raise DoorsaleError('Your current password is wrong.')
+
+        user.set_password(password)
+        user.save()
+
 
 class AbstractUser(_AbstractUser):
-
     """
     An abstract class extending Django authentication user model for Doorsale.
     """
@@ -67,7 +124,12 @@ class AbstractUser(_AbstractUser):
     shipping_adress = models.ForeignKey(Address, null=True, blank=True, related_name='shipping_customers',
                                         help_text='Customer default shipping address')
     is_verified = models.BooleanField(default=True)
-    verification_code = models.CharField(max_length=512, blank=True, null=True)
+    verify_code = models.CharField(max_length=512, blank=True, null=True,
+                                   help_text='User account verification code.', editable=False)
+    reset_code = models.CharField(max_length=512, blank=True, null=True,
+                                  help_text='Password reset code.', editable=False)
+    reset_code_expire = models.DateTimeField(max_length=512, blank=True, null=True,
+                                             help_text='Password reset code expire date.', editable=False)
     updated_on = models.DateTimeField(auto_now=True)
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -89,7 +151,6 @@ class AbstractUser(_AbstractUser):
 
 
 class User(AbstractUser):
-
     """
     Extends Django authentication user model for Doorsale.
     """

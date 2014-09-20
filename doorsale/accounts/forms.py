@@ -66,3 +66,30 @@ class RegisterForm(forms.ModelForm):
         if 'password' in self.cleaned_data and self.cleaned_data['password'] != confirm_password:
             raise forms.ValidationError("Your new password and confirm password didn't matched.")
         return confirm_password
+
+
+class PasswordResetForm(forms.Form):
+    """
+    Password reset form
+    """
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'New password...'}), min_length=8, max_length=50,
+        error_messages={'required': 'Please enter your new password.'})
+    confirm_password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Confirm your password...'}), max_length=50,
+        error_messages={'required': 'Please re-enter your new password for confirmation.'})
+
+    def clean_confirm_password(self):
+        confirm_password = self.cleaned_data['confirm_password']
+        if 'password' in self.cleaned_data and self.cleaned_data['password'] != confirm_password:
+            raise forms.ValidationError("Your new password and confirm password didn't matched.")
+        return confirm_password
+
+
+class ChangePasswordForm(PasswordResetForm):
+    """
+    Change password form
+    """
+    current_password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'placeholder': 'Current password...'}), max_length=50,
+        error_messages={'required': 'Please enter your current password.'})

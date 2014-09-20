@@ -38,7 +38,7 @@
 				{% if app_user.is_staff %}
 				<li><a href="/admin/">Admin</a></li>
 				{% endif %}
-				<li><a href="{% url 'accounts_logout' %}">Logout</a></li>
+				<li><a href="{% url 'accounts_change_password' %}">Change password</a> | <a href="{% url 'accounts_logout' %}">Logout</a></li>
 				{% else %}
 				<li><a href="{% url 'accounts_login' %}">Login</a></li>
 				<li><a href="{% url 'accounts_register' %}" title="Register to shop faster and better!">Register</a></li>
