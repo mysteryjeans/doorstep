@@ -1,5 +1,3 @@
-import urllib
-
 from django.http import Http404, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ImproperlyConfigured
