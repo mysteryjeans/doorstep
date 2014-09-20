@@ -37,10 +37,16 @@ Create a database, new django project use SQLite by default, if you are new to d
 $ python manage.py syncdb
 ```
 
-Let's verify your site works, run development server and visit [http://127.0.0.1:8000](http://127.0.0.1:8000), you will see products catalog page with no products and categories
+Assuming [node.js](http://nodejs.org/) already installed, let's verify that your site works, run development server and visit [http://127.0.0.1:8000](http://127.0.0.1:8000), you will see products catalog page with no products and categories
 
 ```
 $ python manage.py runserver
+```
+
+Django-Pipeline settings is configured to use [Less](http://lesscss.org/#using-less-installation) & [Yuglify](https://github.com/yui/yuglify) node.js packages for static files compression. When you deploy your site with collectstatic command these packages will be called. You can install both packages with [npm](https://www.npmjs.org/) (node.js package manager).
+
+```
+$ npm install -g less yuglify 
 ```
 
 Demo repository is following master branch on Doorsale, so you should pull changes frequently to keep things synchronized and running smoothly, see [demo project](https://github.com/mysteryjeans/doorsale-demo) readme for more details.
