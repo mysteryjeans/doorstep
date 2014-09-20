@@ -29,19 +29,6 @@ class BaseView(TemplateView):
         return context
 
     @classmethod
-    def get_config(cls, name):
-        """
-        Returns System Configuration value defined in database against name
-        """
-        if not hasattr(cls, 'sys_configs'):
-            cls.sys_configs = dict((sys_config.name, sys_config.value) for sys_config in SysConfig.objects.all())
-
-        if name in cls.sys_configs:
-            return cls.sys_configs[name]
-
-        raise ImproperlyConfigured('"%s" does not found, it should be defined it in System Configs' % name)
-
-    @classmethod
     def as_view(cls, **initkwargs):
         """
         Returns view function
@@ -55,3 +42,7 @@ class BaseView(TemplateView):
                 view = decorator(view)
 
         return view
+
+    @staticmethod
+    def get_config(name):
+        return SysConfig.get_config(name)
