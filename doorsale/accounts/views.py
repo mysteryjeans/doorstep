@@ -19,7 +19,6 @@ User = get_user_model()
 
 
 class LoginView(CatalogBaseView):
-
     """
     Login view for Doorsale
     """
@@ -50,7 +49,6 @@ class LoginView(CatalogBaseView):
 
 
 class LogoutView(BaseView):
-
     """
     Logout view from Doorsale
     """
@@ -61,7 +59,6 @@ class LogoutView(BaseView):
 
 
 class RegisterView(CatalogBaseView):
-
     """
     User registration view
     """
@@ -107,7 +104,6 @@ class RegisterView(CatalogBaseView):
 
 
 class ForgotPasswordView(CatalogBaseView):
-
     """
     Password recovery view
     """
