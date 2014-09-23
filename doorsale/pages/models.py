@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.conf import settings
 from django.core.exceptions import ValidationError
 
 
@@ -27,12 +28,52 @@ class FlatPage(models.Model):
         verbose_name_plural = 'Flat Pages'
         ordering = ('url',)
 
-    def __str__(self):
-        return "%s -- %s" % (self.url, self.title)
-
     @models.permalink
     def get_absolute_url(self):
         return (self.render_view, (self.url,))
+
+
+class Article(models.Model):
+    """
+    Article represents page, blog post or content representing pages or post
+    """
+
+    TYPE_PAGE = 'PA'
+    TYPE_POST = 'PO'
+    TYPE_CONTENT = 'CO'
+
+    TYPES = ((TYPE_PAGE, 'Page'),
+             (TYPE_POST, 'Post'),
+             (TYPE_CONTENT, 'Content'),)
+
+    STATUS_DRAFT = 'DR'
+    STATUS_WITHDRAWN = 'WD'
+    STATUS_PUBLISHED = 'PU'
+
+    STATUSES = ((STATUS_DRAFT, 'Draft'),
+                (STATUS_WITHDRAWN, 'Withdrawn'),
+                (STATUS_PUBLISHED, 'Published'),)
+
+    title = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True, max_length=255,
+                            help_text='Title text to be used in url for this post')
+    content = models.TextField()
+    excerpt = models.TextField(blank=True,
+                               help_text='Content excerpt (optional)')
+    status = models.CharField(max_length=2, choices=STATUSES, default=STATUS_DRAFT)
+    tags = models.CharField(max_length=255, blank=True, help_text='Tags for the published article')
+    author = models.ForeignKey(settings.AUTH_USER_MODEL)
+    published = models.DateTimeField('published date', blank=True, null=True)
+    created_on = models.DateTimeField('creation date', auto_now_add=True)
+    created_by = models.CharField(max_length=100)
+    updated_on = models.DateTimeField('last updated', auto_now=True)
+    updated_by = models.CharField(max_length=100)
+
+    def __unicode__(self):
+        return "%s -- %s" % (self.url, self.title)
+
+    def is_published(self):
+        return self.status == self.STATUS_PUBLISHED
 
 
 class Link(models.Model):
