@@ -141,3 +141,8 @@ PIPELINE_JS = {
         'output_filename': 'sales/scripts/sales_checkout_order.js',
     }
 }
+
+# Views to render page from doorsale.pages
+PAGE_VIEWS = (('pages_base_page', 'Base View'),
+              ('pages_catalog_page', 'Catalog View')
+)

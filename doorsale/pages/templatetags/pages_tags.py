@@ -1,6 +1,6 @@
 from django import template
 
-from doorsale.pages.models import Link, FlatPage
+from doorsale.pages.models import Link, Page
 
 
 register = template.Library()
@@ -12,7 +12,7 @@ def get_pages_links():
     Returns pages links
     """
     groups = []
-    links = [link for link in Link.objects.order_by('group', 'id').all().prefetch_related('page') if link.page is None or link.page.is_active]
+    links = [link for link in Link.objects.order_by('group', 'id').all().prefetch_related('page') if link.page is None or link.page.is_published()]
     
     for link in links:
         if not link.group in groups:
