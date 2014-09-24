@@ -8,6 +8,7 @@ class BasePageView(BaseView):
     """
     Renders page under BaseView
     """
+    style_name = 'pages'
     template_name = 'pages/base_page.html'
 
     def get(self, request, slug):
