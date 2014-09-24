@@ -465,14 +465,14 @@
 },
 {
     "pk": 1, 
-    "model": "pages.flatpage", 
+    "model": "pages.page", 
     "fields": {
         "updated_by": "mysteryjeans", 
         "title": "Contact", 
-        "url": "contact", 
-        "render_view": "pages_base_page", 
-        "is_active": true, 
-        "created_by": "mysteryjeans", 
+        "slug": "contact",
+        "created_by": "mysteryjeans",
+        "published": "2014-09-16T15:15:12.163Z",
+        "status": "PU",  
         "content": "<p>\r\nWrite contact information in here, you can edit this in admin site.\r\n<br/>\r\n<br/>\r\n</p>\r\n<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet metus non bibendum maximus. Fusce tincidunt, tortor ut ultricies scelerisque, felis sem placerat orci, tempus commodo eros velit eget justo. Fusce tempus quis orci non faucibus. In quis justo eu urna semper condimentum nec at justo. Nullam sit amet nibh vitae mauris porta molestie ac ut lectus. Mauris nibh nisl, porta id ipsum porta, fringilla posuere risus. Ut at elit vel arcu placerat elementum a non dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\n</p>", 
         "created_on": "2014-09-15T21:55:15.004Z", 
         "updated_on": "2014-09-16T15:15:12.163Z"
@@ -480,14 +480,14 @@
 },
 {
     "pk": 2, 
-    "model": "pages.flatpage", 
+    "model": "pages.page", 
     "fields": {
         "updated_by": "mysteryjeans", 
         "title": "About", 
-        "url": "about", 
-        "render_view": "pages_base_page", 
-        "is_active": true, 
-        "created_by": "mysteryjeans", 
+        "slug": "about",
+        "created_by": "mysteryjeans",
+        "published": "2014-09-16T15:15:12.163Z",
+        "status": "PU",  
         "content": "<p>\r\nWrite about yourself in here, you can edit this in admin site.\r\n<br/>\r\n<br/>\r\n</p>\r\n<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet metus non bibendum maximus. Fusce tincidunt, tortor ut ultricies scelerisque, felis sem placerat orci, tempus commodo eros velit eget justo. Fusce tempus quis orci non faucibus. In quis justo eu urna semper condimentum nec at justo. Nullam sit amet nibh vitae mauris porta molestie ac ut lectus. Mauris nibh nisl, porta id ipsum porta, fringilla posuere risus. Ut at elit vel arcu placerat elementum a non dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\n</p>", 
         "created_on": "2014-09-15T22:58:22.873Z", 
         "updated_on": "2014-09-16T15:15:27.897Z"
@@ -495,14 +495,14 @@
 },
 {
     "pk": 3, 
-    "model": "pages.flatpage", 
+    "model": "pages.page", 
     "fields": {
         "updated_by": "mysteryjeans", 
         "title": "Privacy Policy", 
-        "url": "privacy-policy", 
-        "render_view": "pages_base_page", 
-        "is_active": true, 
-        "created_by": "mysteryjeans", 
+        "slug": "privacy-policy",
+        "created_by": "mysteryjeans",
+        "published": "2014-09-16T15:15:12.163Z",
+        "status": "PU",  
         "content": "<p>\r\nWrite about your privacy policy here, you can edit this in admin.\r\n<br/>\r\n<br/>\r\n</p>\r\n<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet metus non bibendum maximus. Fusce tincidunt, tortor ut ultricies scelerisque, felis sem placerat orci, tempus commodo eros velit eget justo. Fusce tempus quis orci non faucibus. In quis justo eu urna semper condimentum nec at justo. Nullam sit amet nibh vitae mauris porta molestie ac ut lectus. Mauris nibh nisl, porta id ipsum porta, fringilla posuere risus. Ut at elit vel arcu placerat elementum a non dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\n</p>", 
         "created_on": "2014-09-15T23:00:39.304Z", 
         "updated_on": "2014-09-15T23:14:20.157Z"
@@ -510,14 +510,14 @@
 },
 {
     "pk": 4, 
-    "model": "pages.flatpage", 
+    "model": "pages.page", 
     "fields": {
         "updated_by": "mysteryjeans", 
         "title": "Terms of Service", 
-        "url": "terms-service", 
-        "render_view": "pages_base_page", 
-        "is_active": true, 
-        "created_by": "mysteryjeans", 
+        "slug": "terms-service",
+        "created_by": "mysteryjeans",
+        "published": "2014-09-16T15:15:12.163Z",
+        "status": "PU",  
         "content": "<p>\r\nWrite about your Term's of Service here, you can edit this page in admin.\r\n<br/>\r\n<br/>\r\n</p>\r\n<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse laoreet metus non bibendum maximus. Fusce tincidunt, tortor ut ultricies scelerisque, felis sem placerat orci, tempus commodo eros velit eget justo. Fusce tempus quis orci non faucibus. In quis justo eu urna semper condimentum nec at justo. Nullam sit amet nibh vitae mauris porta molestie ac ut lectus. Mauris nibh nisl, porta id ipsum porta, fringilla posuere risus. Ut at elit vel arcu placerat elementum a non dui. Lorem ipsum dolor sit amet, consectetur adipiscing elit. \r\n</p>", 
         "created_on": "2014-09-15T23:05:16.057Z", 
         "updated_on": "2014-09-15T23:15:00.676Z"

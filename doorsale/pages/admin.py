@@ -1,14 +1,14 @@
 from django.contrib import admin
 
 from doorsale.admin import ModelAdmin
-from doorsale.pages.models import FlatPage, Link
+from doorsale.pages.models import Page, Link
 
 
-class FlatPageAdmin(ModelAdmin):
-    list_display = ('url', 'title', 'is_active', 'render_view')
-    list_filter = ('is_active', 'render_view')
-    search_fields = ('url', 'title',)
-    prepopulated_fields = {"url": ("title",)}
+class PageAdmin(ModelAdmin):
+    list_display = ('slug', 'title', 'status', 'published',)
+    list_filter = ('status',)
+    search_fields = ('slug', 'title',)
+    prepopulated_fields = {"slug": ("title",)}
     date_hierarchy = 'created_on'
 
 
@@ -19,5 +19,5 @@ class LinkAdmin(ModelAdmin):
     date_hierarchy = 'created_on'
 
 
-admin.site.register(FlatPage, FlatPageAdmin)
+admin.site.register(Page, PageAdmin)
 admin.site.register(Link, LinkAdmin)
