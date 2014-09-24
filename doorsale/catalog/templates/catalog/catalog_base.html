@@ -4,7 +4,7 @@
 {% load compressed %}
 
 {% block styles %}
-{% compressed_css 'catalog' %}
+{{ block.super }}
 {% compressed_css 'font-awesome' %}
 {% endblock %}
 

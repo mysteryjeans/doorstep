@@ -14,6 +14,7 @@ class CatalogBaseView(BaseView):
     """
     Generic view for all catalog pages
     """
+    style_name = 'catalog'
 
     def __init__(self, *args, **kwargs):
         super(CatalogBaseView, self).__init__(*args, **kwargs)

@@ -96,6 +96,7 @@ class CheckoutBaseView(CatalogBaseView):
     """
     Base checkout steps view
     """
+    style_name = 'sales'
 
     def get_context_data(self, **kwargs):
         breadcrumbs = self.get_breadcrumbs()
