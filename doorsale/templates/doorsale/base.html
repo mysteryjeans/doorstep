@@ -30,9 +30,12 @@
 	<body>
 		{% block body %}
 		<header>
-			{% block header %}
+			{% block header-content %}
+			{% block header-logo %}
 			<a href="{% url 'catalog_index' %}" class="logo"><h1>{{ SITE_NAME }}</h1></a>
+			{% endblock %}
 			<ul id="menu">
+				{% block header-menu-list %}
 				{% if user.is_authenticated %}
 				<li>Welcome! {{ user.get_username }}</li>
 				{% if user.is_staff %}
@@ -43,6 +46,7 @@
 				<li><a href="{% url 'accounts_login' %}">Login</a></li>
 				<li><a href="{% url 'accounts_register' %}" title="Register to shop faster and better!">Register</a></li>
 				{% endif %}
+				{% endblock %}
 			</ul>
 			{% endblock %}
 		</header>
