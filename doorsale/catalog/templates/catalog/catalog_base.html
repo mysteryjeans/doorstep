@@ -8,24 +8,15 @@
 {% compressed_css 'font-awesome' %}
 {% endblock %}
 
-{% block content %}
-<div id="catalog-bar">
+
+{% block header-menu-list %}
+<li>
 	{% include "catalog/parts/search_box.html" %}
-	<div class="cart-basket">
-		<div id="basket-container" onclick="javascript:$('.basket-items', this).fadeIn('fast');">
-			{% cart_basket %}
-		</div>
-		<form method="post" action="{% url 'catalog_change_currency' %}" class="currencies">
-			{% csrf_token %}
-			<input type="hidden" name="next" value="{{ request.get_full_path }}" />
-			<select name="default_currency" class="currencies" onchange="javascript:$(this).closest('form').submit();">
-				{% for currency in currencies %}
-				<option value="{{ currency.code }}" {% if default_currency.code == currency.code %}selected="selected"{% endif %}>{{ currency.code }}</option>
-				{% endfor %}
-			</select>
-		</form>
-	</div>
-</div>
+</li>
+{{ block.super }}
+{% endblock %}
+
+{% block content %}
 <div id="categories-sidebar">
 	<ul id="categories">
 		<li>
@@ -54,32 +45,51 @@
 	</ul>
 	{% endif %}
 </div>
-<div id="catalog-content">
-	{% if breadcrumbs %}
-	<ul class="breadcrumbs">
-		{% for crumb in breadcrumbs %}
-		{% if forloop.last %}
-		<li>
-			{% if crumb.name == 'Home' %}
-			<i class="fa fa-home" style="font-size: 1.2em;"></i>
+<div id="catalog-content-container">
+	<div id="catalog-bar">
+		{% if breadcrumbs %}
+		<ul class="breadcrumbs">
+			{% for crumb in breadcrumbs %}
+			{% if forloop.last %}
+			<li>
+				{% if crumb.name == 'Home' %}
+				<i class="fa fa-home" style="font-size: 1.2em"></i>
+				{% else %}
+				<span>{{ crumb.name }}</span>
+				{% endif %}
+			</li>
+			{% elif crumb.name == 'Home' %}
+			<li>
+				<a href="{{ crumb.url }}" title="Go to {{ crumb.name }}" ><i class="fa fa-home" style="font-size: 1.2em; text-decoration: none;"></i></a>
+			</li>
 			{% else %}
-			<span>{{ crumb.name }}</span>
+			<li>
+				<a href="{{ crumb.url }}" title="Go to {{ crumb.name }}" >{{ crumb.name }}</a>
+			</li>
 			{% endif %}
-		</li>
-		{% elif crumb.name == 'Home' %}
-		<li>
-			<a href="{{ crumb.url }}" title="Go to {{ crumb.name }}" ><i class="fa fa-home" style="font-size: 1.2em; text-decoration: none;"></i></a>
-		</li>
-		{% else %}
-		<li>
-			<a href="{{ crumb.url }}" title="Go to {{ crumb.name }}" >{{ crumb.name }}</a>
-		</li>
+			{% endfor %}
+		</ul>
 		{% endif %}
-		{% endfor %}
-	</ul>
-	{% endif %}
-	{% block catalog-content %}
-	{% endblock %}
+		<div class="cart-basket">
+			<div id="basket-container" onclick="javascript:$('.basket-items', this).fadeIn('fast');">
+				{% cart_basket %}
+			</div>
+			<form method="post" action="{% url 'catalog_change_currency' %}" class="currencies">
+				{% csrf_token %}
+				<input type="hidden" name="next" value="{{ request.get_full_path }}" />
+				<select name="default_currency" class="currencies" onchange="javascript:$(this).closest('form').submit();">
+					{% for currency in currencies %}
+					<option value="{{ currency.code }}" {% if default_currency.code == currency.code %}selected="selected"{% endif %}>{{ currency.code }}</option>
+					{% endfor %}
+				</select>
+			</form>
+			<br/>
+		</div>
+	</div>
+	<div id="catalog-content">
+		{% block catalog-content %}
+		{% endblock %}
+	</div>
 </div>
 {% endblock %}
 

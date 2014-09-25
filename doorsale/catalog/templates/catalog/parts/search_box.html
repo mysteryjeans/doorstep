@@ -1,6 +1,4 @@
 <form action="{% url 'catalog_search' %}" class="search-box">
 	<button onclick="javascript:$(this).closest('form').submit();"><i class="fa fa-search"></i></button>
-	<div>
-		<input name="keyword" type="text" placeholder="Search store catalog..." value="{{ keyword|default:'' }}" />
-	</div>
+	<input name="keyword" type="text" placeholder="Search catalog..." value="{{ keyword|default:'' }}" />
 </form>

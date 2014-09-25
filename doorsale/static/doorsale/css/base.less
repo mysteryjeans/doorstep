@@ -1,14 +1,31 @@
 @import url('style.less');
 
+@header-color: @second-color;
+
 header {
-  padding: 10px;
-  
-  .logo:hover {
-    text-decoration: none !important;
+  padding: 0px 15px;
+  background: @header-color;
+  color: white;
+  overflow: hidden;
+
+  .logo {
+    display: inline-block;
+    padding: 5px 0px;
+    margin-top: 8px;
   }
-  
-  h1 {
-    float: left; 
+
+  .logo h1 {
+    color: white !important;
+    float: left;
+  }
+
+  a {
+    color: whitesmoke;
+  }
+
+  a:hover {
+    color: white;
+    text-decoration: none !important;
   }
   
   #menu {
@@ -16,17 +33,12 @@ header {
     
     li {
       float: left;
-      padding: 5px;
+      padding: 15px 10px;
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
     }
-    
-    li:after {
-      margin-left: 10px;
-      content: "\00B7";
-      color: @light-text-color;
-    }
-    
-    li:last-child:after {
-      content: none;
+
+    li:first-child {
+      border-left: none;
     }
   }
 }
@@ -104,7 +116,6 @@ footer {
 
 #content {
   clear: both;
-  padding-top: 5px;
   overflow: hidden;
 }
 
