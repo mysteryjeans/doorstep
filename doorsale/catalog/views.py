@@ -15,6 +15,7 @@ class CatalogBaseView(BaseView):
     Generic view for all catalog pages
     """
     style_name = 'catalog'
+    catalog_template_name = 'catalog/catalog_base.html'
 
     def __init__(self, *args, **kwargs):
         super(CatalogBaseView, self).__init__(*args, **kwargs)
@@ -44,10 +45,9 @@ class CatalogBaseView(BaseView):
 
         # Getting user selected currency from session, if not defined than
         # selecting default currency
-        default_currency = self.request.session.get(
-            'default_currency', self.primary_currency.code)
+        default_currency = self.request.session.get('default_currency', self.primary_currency.code)
 
-        # If user currency is not active than choosing default currency
+        # If user currency is not active than choosing primary currency
         default_currency = next(
             (currency for currency in self.currencies if currency.code == default_currency), self.primary_currency)
 
@@ -57,6 +57,7 @@ class CatalogBaseView(BaseView):
         context['currencies'] = self.currencies
         context['primary_currency'] = self.primary_currency
         context['default_currency'] = default_currency
+        context['catalog_template_name'] = self.catalog_template_name
 
         return context
 

@@ -13,6 +13,7 @@ class BaseView(TemplateView):
     """
     # Pipeline CSS style package name
     style_name = 'base'
+    base_template_name = 'doorsale/base.html'
 
     def get_context_data(self, **kwargs):
         context = super(BaseView, self).get_context_data(**kwargs)
@@ -20,6 +21,7 @@ class BaseView(TemplateView):
         # Settings context data for base template
         context['request'] = self.request
         context['style_name'] = self.style_name
+        context['base_template_name'] = self.base_template_name
         context['SITE_NAME'] = self.get_config('SITE_NAME')
         context['SITE_TITLE'] = self.get_config('SITE_TITLE')
         context['SITE_DESCRIPTION'] = self.get_config('SITE_DESCRIPTION')

@@ -97,6 +97,7 @@ class CheckoutBaseView(CatalogBaseView):
     Base checkout steps view
     """
     style_name = 'sales'
+    checkout_template_name = 'sales/checkout_base.html'
 
     def get_context_data(self, **kwargs):
         breadcrumbs = self.get_breadcrumbs()
@@ -104,6 +105,7 @@ class CheckoutBaseView(CatalogBaseView):
             breadcrumbs=breadcrumbs,
             step_active=self.step_active,
             steps_processed=self.steps_processed,
+            checkout_template_name=self.checkout_template_name,
             **kwargs)
 
 
