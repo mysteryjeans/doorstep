@@ -13,7 +13,12 @@ class BaseView(TemplateView):
     """
     # Pipeline CSS style package name
     style_name = 'base'
+
+    # Base template to extend in drived views
     base_template_name = 'doorsale/base.html'
+
+    # Decorators applied to generated view
+    decorators = []
 
     def get_context_data(self, **kwargs):
         context = super(BaseView, self).get_context_data(**kwargs)
@@ -34,6 +39,15 @@ class BaseView(TemplateView):
         return context
 
     @classmethod
+    def get_decorators(cls):
+        """
+        Returns list of decorators defined as attribute of class
+
+        Generic base views should override get_decorators method instead of defining decorators attribute
+        """
+        return cls.decorators
+
+    @classmethod
     def as_view(cls, **initkwargs):
         """
         Returns view function
@@ -42,9 +56,9 @@ class BaseView(TemplateView):
         """
         view = super(BaseView, cls).as_view(**initkwargs)
 
-        if hasattr(cls, 'decorators'):
-            for decorator in cls.decorators:
-                view = decorator(view)
+        # Applying decorators to generated view
+        for decorator in cls.get_decorators():
+            view = decorator(view)
 
         return view
 
