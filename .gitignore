@@ -53,3 +53,7 @@ docs/_build/
 
 # Avoiding CSS for less
 *.css
+
+
+# Mac
+.DS_Store
