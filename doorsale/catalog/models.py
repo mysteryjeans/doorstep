@@ -143,8 +143,8 @@ class Product(models.Model):
     brand = models.ForeignKey(Manufacturer, help_text='Manufacturer')
     part_number = models.CharField(
         max_length=50, null=True, blank=True, help_text='Manufacturer part number')
-    sku = models.CharField(max_length=50, null=True, blank=True)
-    gtin = models.CharField(max_length=50, null=True, blank=True,
+    sku = models.CharField(max_length=50, verbose_name='SKU', null=True, blank=True)
+    gtin = models.CharField(max_length=50, verbose_name='GTIN', null=True, blank=True,
                             help_text='Global Trade Item Number (GTIN)')
     category = models.ForeignKey(Category)
     gist = models.CharField(
