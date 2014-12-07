@@ -69,7 +69,7 @@ class RegisterView(CatalogBaseView):
     """
     page_title = 'Register'
     template_name = "accounts/register.html"
-    decorators = [transaction.commit_on_success, anonymous_required]
+    decorators = [transaction.atomic, anonymous_required]
 
     def get_context_data(self, **kwargs):
         next_url = self.request.REQUEST.get('next', '')

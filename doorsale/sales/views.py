@@ -17,7 +17,7 @@ from doorsale.views import BaseView
 from doorsale.utils.helpers import send_mail
 
 
-@transaction.commit_on_success
+@transaction.atomic
 def add_to_cart(request):
     """
     Add product to cart
@@ -49,7 +49,7 @@ def add_to_cart(request):
     return HttpResponseRedirect(reverse('sales_checkout_cart'))
 
 
-@transaction.commit_on_success
+@transaction.atomic
 def remove_from_cart(request):
     """
     Remove product from cart
@@ -72,7 +72,7 @@ def remove_from_cart(request):
     return HttpResponseRedirect(reverse('sales_checkout_cart'))
 
 
-@transaction.commit_on_success
+@transaction.atomic
 def remove_all_from_cart(request):
     """
     Remove all products from cart
@@ -321,7 +321,7 @@ class CheckoutOrderView(CheckoutBaseView):
     step_active = 'order'
     steps_processed = ['cart', 'billing', 'shipping', 'payment']
     template_name = 'sales/checkout_order.html'
-    decorators = [transaction.commit_on_success]
+    decorators = [transaction.atomic]
 
     @classmethod
     def get_breadcrumbs(cls):
