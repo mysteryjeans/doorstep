@@ -12,7 +12,7 @@ class CardIssuer(models.Model):
     """
     descriptor = models.CharField(primary_key=True, max_length=100)
     name = models.CharField(max_length=100)
-    is_active = models.BooleanField()
+    is_active = models.BooleanField(default=False)
     updated_on = models.DateTimeField(auto_now=True)
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
@@ -39,10 +39,10 @@ class Gateway(models.Model):
 
     name = models.CharField(primary_key=True, max_length=10, choices=ALL, help_text='Payment processing gateway.')
     account = models.CharField(max_length=100, help_text='Account name of gateway for reference.')
-    is_active = models.BooleanField(help_text='Gateway active for customer to buy through it.')
-    is_sandbox = models.BooleanField(help_text='Sandbox mode for testing & debugging.')
-    accept_credit_card = models.BooleanField(help_text='Process credit card payments.')
-    accept_account = models.BooleanField(
+    is_active = models.BooleanField(default=False, help_text='Gateway active for customer to buy through it.')
+    is_sandbox = models.BooleanField(default=False, help_text='Sandbox mode for testing & debugging.')
+    accept_credit_card = models.BooleanField(default=False, help_text='Process credit card payments.')
+    accept_account = models.BooleanField(default=False,
         help_text='Process payments with customer\'s existing accounts on gateway, like PayPal account.')
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)
