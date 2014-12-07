@@ -29,6 +29,8 @@ if __name__ == '__main__':
 
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", options.settings)
 
+    import django
+    django.setup()
+    
     from django.core.management import call_command
-
     call_command('test', *DOORSALE_APPS)
