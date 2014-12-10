@@ -61,7 +61,7 @@ PIPELINE_DISABLE_WRAPPER = True
 # for LESS compiler
 from doorsale.utils.finders import get_static_paths
 STATIC_PATHS = os.pathsep.join(get_static_paths(INSTALLED_APPS))
-PIPELINE_LESS_ARGUMENTS = '--include-path=%s' % STATIC_PATHS
+PIPELINE_LESS_ARGUMENTS = '--include-path="%s"' % STATIC_PATHS
 
 # CSS configurations for django-pipeline
 # All LESS styles configured for doorsale defined
