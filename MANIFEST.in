@@ -5,6 +5,7 @@ recursive-include doorsale/bin *
 recursive-include doorsale/fixtures *
 recursive-include doorsale/static *
 recursive-include doorsale/templates *
+recursive-include doorsale/sales/static *
 recursive-include doorsale/sales/templates *
 recursive-include doorsale/catalog/static *
 recursive-include doorsale/catalog/templates *
