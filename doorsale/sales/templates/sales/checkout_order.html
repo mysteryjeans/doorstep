@@ -1,7 +1,7 @@
 {% extends checkout_template_name %}
 
 {% load catalog_filters %}
-{% load compressed %}
+{% load pipeline %}
 
 {% block checkout-content %}
 <div class="order">
@@ -97,7 +97,7 @@
 
 {% block scripts %}
 {{ block.super }}
-{% compressed_js 'sales_checkout_order' %}
+{% javascript 'sales_checkout_order' %}
 <script type="text/javascript">
 	function showPaymentOptions() {
 		$("#payment-options-container").dialog({

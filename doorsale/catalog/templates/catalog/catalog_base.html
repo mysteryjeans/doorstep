@@ -1,11 +1,11 @@
 {% extends base_template_name %}
 
 {% load cart %}
-{% load compressed %}
+{% load pipeline %}
 
 {% block styles %}
 {{ block.super }}
-{% compressed_css 'font-awesome' %}
+{% stylesheet 'font-awesome' %}
 {% endblock %}
 
 
@@ -95,5 +95,5 @@
 
 {% block scripts %}
 {{ block.super }}
-{% compressed_js 'catalog_base' %}
+{% javascript 'catalog_base' %}
 {% endblock %}

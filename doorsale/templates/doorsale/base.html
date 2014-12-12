@@ -1,5 +1,5 @@
 {% load staticfiles %}
-{% load compressed %}
+{% load pipeline %}
 {% load pages_tags %}
 
 <html>
@@ -24,7 +24,7 @@
 		{% block head %}
 		{% endblock %}
 		{% block styles %}
-		{% compressed_css style_name %}
+		{% stylesheet style_name %}
 		{% endblock %}
 	</head>
 	<body>
@@ -68,7 +68,7 @@
 		{% block scripts %}	
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
-		{% compressed_js 'base' %}
+		{% javascript 'base' %}
 		{% endblock %}
 	</body>
 </html>

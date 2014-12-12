@@ -1,5 +1,5 @@
 {% load staticfiles %}
-{% load compressed %}
+{% load pipeline %}
 
 <html>
 	<head>
@@ -10,7 +10,7 @@
 
 		<title>Order #{{ order.id }} | {{ SITE_NAME }}</title>
 		<link rel="icon shortcut" href="{% static 'img/icon.png' %}" type="image/png"/>
-		{% compressed_css 'sales' %}
+		{% stylesheet 'sales' %}
 	</head>
 	<body class="print-receipt">
 		{% include "sales/parts/receipt.html" %}

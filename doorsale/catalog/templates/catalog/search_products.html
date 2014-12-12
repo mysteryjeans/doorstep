@@ -1,6 +1,6 @@
 {% extends catalog_template_name %}
 
-{% load compressed %}
+{% load pipeline %}
 
 {% block catalog-content %}
 <h3>Search: {{ form.clean_keyword }}</h3>
@@ -41,5 +41,5 @@
 
 {% block scripts %}
 {{ block.super }}
-{% compressed_js 'search_products' %}
+{% javascript 'search_products' %}
 {% endblock %}
