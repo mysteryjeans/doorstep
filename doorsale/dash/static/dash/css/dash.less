@@ -1,0 +1,25 @@
+@import url("doorsale/css/base.less");
+
+@dash-sidebar-color: #3f4b5c;
+@dash-content-color: #e1ebf0;
+
+
+.dash-content-container {
+    position: relative;
+
+    .dash-sidebar {
+        background: @dash-sidebar-color;
+        width: 18%;
+        float: left;
+        top: 0px;
+        bottom: 0px;
+        position: absolute;
+    }
+
+    .dash-content {
+        background: @dash-content-color;
+        overflow: hidden;
+        margin-left: 18%;
+        min-height: 600px;
+    }
+}

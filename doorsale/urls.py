@@ -7,5 +7,6 @@ urlpatterns = patterns('',
                        url(r'^accounts/', include('doorsale.accounts.urls')),
                        url(r'^sales/', include('doorsale.sales.urls')),
                        url(r'^payments/', include('doorsale.payments.urls')),
-                       url(r'^pages/', include('doorsale.pages.urls'))
+                       url(r'^pages/', include('doorsale.pages.urls')),
+                       url(r'^dash/', include('doorsale.dash.urls'))
                        )

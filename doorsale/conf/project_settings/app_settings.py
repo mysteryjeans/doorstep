@@ -24,6 +24,7 @@ LOGIN_REDIRECT_URL = '/'
 INSTALLED_APPS += (
     'doorsale',
     'doorsale.geo',
+    'doorsale.dash',
     'doorsale.pages',
     'doorsale.accounts',
     'doorsale.catalog',
@@ -111,6 +112,13 @@ PIPELINE_CSS = {
             'pages/css/pages.less',
         ),
         'output_filename': 'pages/css/pages.css'
+    },
+    # doorsale.dash: Dashboard app LESS styles
+    'dash': {
+        'source_filenames': (
+            'dash/css/dash.less',
+        ),
+        'output_filename': 'dash/css/dash.css'
     }
 }
 

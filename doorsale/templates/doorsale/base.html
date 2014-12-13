@@ -37,6 +37,7 @@
 		{% if user.is_authenticated %}
 		<li>Welcome! {{ user.get_username }}</li>
 		{% if user.is_staff %}
+		<li><a href="{% url 'dash_index' %}">Dash</a></li>
 		<li><a href="/admin/">Admin</a></li>
 		{% endif %}
 		<li><a href="{% url 'accounts_change_password' %}">Change password</a> | <a href="{% url 'accounts_logout' %}">Logout</a></li>
