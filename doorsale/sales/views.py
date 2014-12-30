@@ -169,10 +169,9 @@ class CheckoutAddressView(CheckoutBaseView):
         if request.user.is_authenticated():
             addresses_filter = Q(email__iexact=request.user.email) | Q(customer=request.user)
 
-        if 'addresses' in request.session:
-            addresses_ids = request.session['addresses']
-            addresses_filter = addresses_filter | (Q(id__in=addresses_ids)
-                                                   if addresses_filter else Q(id__in=addresses_ids))
+        addresses_ids = request.session.get('addresses', None)
+        if addresses_ids:
+            addresses_filter = (addresses_filter | Q(id__in=addresses_ids)) if addresses_filter else Q(id__in=addresses_ids) 
 
         if addresses_filter:
             context['addresses'] = list(Address.objects.filter(addresses_filter))
