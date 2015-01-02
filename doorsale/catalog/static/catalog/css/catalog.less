@@ -222,24 +222,18 @@
   position: relative;
   margin-top: -4px;
   margin-bottom: -10px;
+
+  .fa {
+    color: @place-holder-color;
+  }
   
   input[type="text"] {
     font-size: 1em;
     padding: 5px 12px;
     padding-right: 25px;
     width: 220px;
-    color: @place-holder-color;
-    font-size: 0.9em;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: transparent;
-    color: rgba(255, 255, 255, 0.5);
+    color: @text-color;
     .border-radius(12px);
-    .transition(color 0.5s);
-  }
-  
-  input[type="text"]:focus {
-    color: white;
-    box-shadow: 0 0 2px white;
   }
   
   button {
