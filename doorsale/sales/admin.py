@@ -18,6 +18,13 @@ class CartItemAdmin(ModelAdmin):
     date_hierarchy = 'created_on'
 
 
+class PaymentMethodAdmin(ModelAdmin):
+    list_display = ('name', 'is_active',)
+    list_filter = ('is_active',)
+    search_fields = ('name',)
+    date_hierarchy = 'created_on'
+
+
 class OrderAdmin(ModelAdmin):
     list_display = ('id', 'customer', 'sub_total', 'taxes', 'total', 'currency', 'charge_amount',
                     'refunded_amount', 'payment_status', 'order_status', 'shipping_status', )
@@ -34,6 +41,7 @@ class OrderItemAdmin(ModelAdmin):
     date_hierarchy = 'created_on'
 
 
+admin.site.register(models.PaymentMethod, PaymentMethodAdmin)
 admin.site.register(models.Cart, CartAdmin)
 admin.site.register(models.CartItem, CartItemAdmin)
 admin.site.register(models.Order, OrderAdmin)
