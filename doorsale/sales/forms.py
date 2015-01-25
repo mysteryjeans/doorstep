@@ -1,6 +1,6 @@
 from django import forms
 
-from doorsale.geo.models import State, Address
+from doorsale.geo.models import Country, State, Address
 
 
 class AddressForm(forms.ModelForm):
@@ -21,7 +21,7 @@ class AddressForm(forms.ModelForm):
             'address2': forms.TextInput(attrs=({'placeholder': 'Address line 2... (Optional)', 'class': 'optional'})),
             'zip_or_postal_code': forms.TextInput(attrs=({'placeholder': 'Zip/Postal Code...', 'class': 'mandatory'})),
             'city': forms.TextInput(attrs=({'placeholder': 'City...', 'class': 'mandatory'})),
-            'Country': forms.Select(attrs=({'placeholder': 'Country...', 'class': 'mandatory'})),
+            'country': forms.Select(attrs=({'placeholder': 'Country...', 'class': 'mandatory'})),
             'company': forms.TextInput(attrs=({'placeholder': 'Company... (Optional)', 'class': 'optional'})),
 
         }
@@ -39,6 +39,7 @@ class AddressForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(AddressForm, self).__init__(*args, **kwargs)
         self.fields['country'].empty_label = None
+        self.fields['country'].queryset = Country.objects.filter(is_active=True)
 
     @classmethod
     def get_states(cls):
