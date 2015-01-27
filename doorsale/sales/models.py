@@ -249,6 +249,7 @@ class OrderManager(models.Manager):
 
         for item in cart.get_items_with_taxes():
             product = item.product
+            tax_rate = product.tax.rate if product.tax else 0.0
             OrderItem.objects.create(order=order,
                                      product=product,
                                      price=product.price,
@@ -256,7 +257,7 @@ class OrderManager(models.Manager):
                                      taxes=item.get_taxes(),
                                      sub_total=item.get_sub_total(),
                                      total=item.get_total(),
-                                     tax_rate=product.tax.rate,
+                                     tax_rate=tax_rate,
                                      tax_method=product.tax.method,
                                      updated_by=username,
                                      created_by=username)
