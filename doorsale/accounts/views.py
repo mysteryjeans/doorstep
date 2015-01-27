@@ -133,9 +133,9 @@ class ForgotPasswordView(CatalogBaseView):
                 user = User.objects.get_reset_code(email)
 
                 # Sending password reset link email to user
-                context = Context({'user': user, 'SITE_NAME': settings.SITE_NAME, 'DOMAIN': settings.DOMAIN})
+                context = Context({'user': user, 'SITE_NAME': self.get_config('SITE_NAME'), 'DOMAIN': self.get_config('DOMAIN')})
                 msg_subject = get_template("accounts/email/password_reset_subject.txt").render(context)
-                context = Context({'user': user, 'SITE_NAME': settings.SITE_NAME, 'DOMAIN': settings.DOMAIN})
+                context = Context({'user': user, 'SITE_NAME': self.get_config('SITE_NAME'), 'DOMAIN': self.get_config('DOMAIN')})
                 msg_text = get_template("accounts/email/password_reset.html").render(context)
                 to_email = '%s <%s>' % (user.get_full_name(), user.email)
                 send_mail(msg_subject, msg_text, [to_email], True)

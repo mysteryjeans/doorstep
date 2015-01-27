@@ -54,6 +54,7 @@ class PayPal:
         Creates payment transaction for PayPal account
         """
         access_token = get_random_string(20)
+        domain = SysConfig.get_config('DOMAIN')
 
         with transaction.atomic():
             payment_txn = Transaction.objects.create(gateway=self.gateway,
@@ -71,9 +72,9 @@ class PayPal:
             payment = {
                 'intent': 'sale',
                 'redirect_urls': {
-                    'return_url': 'http://%s%s' % (settings.DOMAIN, reverse('payments_process_account_success',
+                    'return_url': 'http://%s%s' % (domain, reverse('payments_process_account_success',
                                                                             args=[payment_txn.id, access_token])),
-                    'cancel_url': 'http://%s%s' % (settings.DOMAIN, reverse('payments_process_account_cancel',
+                    'cancel_url': 'http://%s%s' % (domain, reverse('payments_process_account_cancel',
                                                                             args=[payment_txn.id, access_token])),
                 },
                 'payer': {
