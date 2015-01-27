@@ -249,7 +249,14 @@ class OrderManager(models.Manager):
 
         for item in cart.get_items_with_taxes():
             product = item.product
-            tax_rate = product.tax.rate if product.tax else 0.0
+
+            if product.tax:
+                tax_rate = product.tax.rate
+                tax_method = product.tax.method
+            else:
+                tax_rate = 0.0
+                tax_method = None
+
             OrderItem.objects.create(order=order,
                                      product=product,
                                      price=product.price,
@@ -258,7 +265,7 @@ class OrderManager(models.Manager):
                                      sub_total=item.get_sub_total(),
                                      total=item.get_total(),
                                      tax_rate=tax_rate,
-                                     tax_method=product.tax.method,
+                                     tax_method=tax_method,
                                      updated_by=username,
                                      created_by=username)
 
@@ -357,7 +364,7 @@ class OrderItem(models.Model):
     sub_total = models.DecimalField(max_digits=9, decimal_places=2)
     total = models.DecimalField(max_digits=9, decimal_places=2)
     tax_rate = models.FloatField(default=0.0)
-    tax_method = models.CharField(max_length=2, choices=Tax.TAX_METHODS)
+    tax_method = models.CharField(max_length=2, choices=Tax.TAX_METHODS, null=True, blank=True)
     updated_on = models.DateTimeField(auto_now=True)
     updated_by = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
