@@ -37,4 +37,4 @@ setup(name='Doorsale',
                         'paypalrestsdk',
                         'stripe',
                         'pytz',
-                        'easy-thumbnails'])
+                        'sorl-thumbnail'])

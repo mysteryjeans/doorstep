@@ -34,7 +34,7 @@ INSTALLED_APPS += (
 
 # Thumbnail generator app for Doorsale
 INSTALLED_APPS += (
-    'easy_thumbnails',
+    'sorl.thumbnail',
 )
 # Raise thumbnail errors and send it via emails
 THUMBNAIL_DEBUG = True

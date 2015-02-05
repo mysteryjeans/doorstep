@@ -30,8 +30,9 @@
         <tr class="cart-item">
             <td>
                 <div class="item-preview">
-                    {% thumbnail product.pics.all.0.url 94x94 as thumb %}
-                    <img src="{{ thumb.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
+                    {% thumbnail product.pics.all.0.url "94x94" as im %}
+                    <img src="{{ im.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
+                    {% endthumbnail %}
                 </div>
                 <a class="item-title" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
             </td>

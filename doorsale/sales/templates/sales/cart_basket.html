@@ -20,8 +20,9 @@
 			{% with product=item.product %}
 			<li class="cart-item">
 				<div class="item-preview">
-					{% thumbnail product.pics.all.0.url 54x54 as thumb %}
-					<img src="{{ thumb.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
+					{% thumbnail product.pics.all.0.url "54x54" as im %}
+					<img src="{{ im.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
+					{% endthumbnail %}
 				</div>
 				<form method="post" class="cart-item-remove" data-ajax="true" data-ajax-url="{% url 'sales_remove_from_cart' %}" data-ajax-update="#basket-container" data-ajax-success="basketChanged();">
 					{% csrf_token %}
