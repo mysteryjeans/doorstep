@@ -36,4 +36,5 @@ setup(name='Doorsale',
                         'Pillow',
                         'paypalrestsdk',
                         'stripe',
-                        'pytz'])
+                        'pytz',
+                        'easy-thumbnails'])

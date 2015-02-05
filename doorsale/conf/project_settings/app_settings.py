@@ -32,6 +32,10 @@ INSTALLED_APPS += (
     'doorsale.payments',
 )
 
+# Thumbnail generator app for Doorsale
+INSTALLED_APPS += (
+    'easy_thumbnails',
+)
 
 ################ Django-Pipeline #####################
 ######################################################

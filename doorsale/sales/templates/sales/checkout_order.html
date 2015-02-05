@@ -1,5 +1,6 @@
 {% extends checkout_template_name %}
 
+{% load thumbnail %}
 {% load catalog_filters %}
 {% load pipeline %}
 
@@ -38,7 +39,8 @@
 				<tr class="cart-item">
 					<td>
 					<div class="item-preview">
-						<img src="{{ MEDIA_URL }}{{ product.pics.all.0.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
+						{% thumbnail product.pics.all.0.url 94x94 as thumb %}
+						<img src="{{ thumb.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
 					</div><a class="item-title" href="{{ product.get_absolute_url }}">{{ product.name }}</a></td>
 					<td><span class="price"> {{ product.price|currency:default_currency }}
 						{% if product.old_price %}

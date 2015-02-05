@@ -1,4 +1,5 @@
 {% load catalog_filters %}
+{% load thumbnail %}
 
 {% with items=cart.get_items sub_total=cart.get_sub_total items_count=cart.get_items_count %}
 <div class="basket">
@@ -19,7 +20,8 @@
 			{% with product=item.product %}
 			<li class="cart-item">
 				<div class="item-preview">
-					<img src="{{ MEDIA_URL }}{{ product.pics.all.0.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
+					{% thumbnail product.pics.all.0.url 54x54 as thumb %}
+					<img src="{{ thumb.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
 				</div>
 				<form method="post" class="cart-item-remove" data-ajax="true" data-ajax-url="{% url 'sales_remove_from_cart' %}" data-ajax-update="#basket-container" data-ajax-success="basketChanged();">
 					{% csrf_token %}

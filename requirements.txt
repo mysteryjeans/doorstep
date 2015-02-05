@@ -5,3 +5,4 @@ Pillow>=2.3.1
 paypalrestsdk>=1.2.2
 stripe>=1.19.0
 pytz
+easy-thumbnails
