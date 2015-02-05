@@ -36,6 +36,8 @@ INSTALLED_APPS += (
 INSTALLED_APPS += (
     'easy_thumbnails',
 )
+# Raise thumbnail errors and send it via emails
+THUMBNAIL_DEBUG = True
 
 ################ Django-Pipeline #####################
 ######################################################
