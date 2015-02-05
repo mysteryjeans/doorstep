@@ -9,7 +9,6 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.models import AbstractUser as _AbstractUser, UserManager as _UserManager
 
 from doorsale.exceptions import DoorsaleError
-from doorsale.geo.models import Address
 
 
 class UserManager(_UserManager):
@@ -119,10 +118,6 @@ class AbstractUser(_AbstractUser):
 
     birth_date = models.DateField(null=True, blank=True)
     gender = models.CharField(max_length=1, choices=GENDERS, default=None)
-    billing_address = models.ForeignKey(Address, null=True, blank=True, related_name='billing_customers',
-                                        help_text='Customer default billing address')
-    shipping_adress = models.ForeignKey(Address, null=True, blank=True, related_name='shipping_customers',
-                                        help_text='Customer default shipping address')
     is_verified = models.BooleanField(default=True)
     verify_code = models.CharField(max_length=512, blank=True, null=True,
                                    help_text='User account verification code.', editable=False)

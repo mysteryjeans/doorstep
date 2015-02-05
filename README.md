@@ -34,7 +34,13 @@ $ doorsale-admin.py startproject doorsale_site
 Create a database, new django project use SQLite by default, if you are new to databases this is good choice to start
 
 ```
-$ python manage.py syncdb
+$ python manage.py migrate
+```
+
+Initial data was loaded by syncdb command from, but with migrated we need to do it manually.
+
+```
+$ python manage.py loadata initial_data.json
 ```
 
 Assuming [node.js](http://nodejs.org/) already installed, let's verify that your site works, run development server and visit [http://127.0.0.1:8000](http://127.0.0.1:8000), you will see products catalog page with no products and categories
