@@ -78,7 +78,8 @@ class RegisterView(CatalogBaseView):
 
     def get(self, request):
         form = RegisterForm()
-        return super(RegisterView, self).get(request, form=form)
+        as_superuser = User.objects.count() == 0
+        return super(RegisterView, self).get(request, form=form, as_superuser=as_superuser)
 
     def post(self, request):
         error = None
