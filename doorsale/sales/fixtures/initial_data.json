@@ -1,0 +1,50 @@
+[
+{
+    "pk": "CC", 
+    "model": "sales.paymentmethod", 
+    "fields": {
+        "name": "Credit Card", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.526Z", 
+        "updated_on": "2014-09-17T03:34:08.526Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "CH", 
+    "model": "sales.paymentmethod", 
+    "fields": {
+        "name": "Check / Money Order", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.525Z", 
+        "updated_on": "2014-09-17T03:34:08.525Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "CO", 
+    "model": "sales.paymentmethod", 
+    "fields": {
+        "name": "Cash On Delivery", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.523Z", 
+        "updated_on": "2014-09-17T03:34:08.523Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "PO", 
+    "model": "sales.paymentmethod", 
+    "fields": {
+        "name": "Purchase Order", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.526Z", 
+        "updated_on": "2014-09-17T03:34:08.526Z", 
+        "updated_by": "system"
+    }
+}
+]

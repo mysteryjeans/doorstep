@@ -2,6 +2,11 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from django.core.management import call_command
+
+
+def load_data(apps, schema_editor):
+    call_command('loaddata', 'initial_data', app_label='doorsale', verbosity=0)
 
 
 class Migration(migrations.Migration):
@@ -30,4 +35,5 @@ class Migration(migrations.Migration):
             },
             bases=(models.Model,),
         ),
+        migrations.RunPython(load_data),
     ]

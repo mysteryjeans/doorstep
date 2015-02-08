@@ -1,0 +1,206 @@
+[
+{
+    "pk": 1, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "USD", 
+        "name": "US Dollar", 
+        "locale": "en-US", 
+        "is_primary": true, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 1.0, 
+        "created_on": "2014-09-17T03:34:08.097Z", 
+        "updated_on": "2014-09-17T03:34:08.097Z", 
+        "display_format": "${0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 2, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "PKR", 
+        "name": "Pakistani Rupee", 
+        "locale": "ur-PK", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 98.65, 
+        "created_on": "2014-09-17T03:34:08.101Z", 
+        "updated_on": "2014-09-17T03:34:08.101Z", 
+        "display_format": "Rs. {0:,.0f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 3, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "AUD", 
+        "name": "Australian Dollar", 
+        "locale": "en-AU", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 0.94, 
+        "created_on": "2014-09-17T03:34:08.102Z", 
+        "updated_on": "2014-09-17T03:34:08.102Z", 
+        "display_format": "A${0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 4, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "GBP", 
+        "name": "British Pound", 
+        "locale": "en-GB", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 0.61, 
+        "created_on": "2014-09-17T03:34:08.102Z", 
+        "updated_on": "2014-09-17T03:34:08.102Z", 
+        "display_format": "\u00a3{0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 5, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "CAD", 
+        "name": "Canadian Dollar", 
+        "locale": "en-CA", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 0.98, 
+        "created_on": "2014-09-17T03:34:08.105Z", 
+        "updated_on": "2014-09-17T03:34:08.105Z", 
+        "display_format": "C${0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 6, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "CNY", 
+        "name": "Chinese Yuan Renminbi", 
+        "locale": "zh-CN", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 6.48, 
+        "created_on": "2014-09-17T03:34:08.106Z", 
+        "updated_on": "2014-09-17T03:34:08.106Z", 
+        "display_format": "\uffe5{0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 7, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "EUR", 
+        "name": "Euro", 
+        "locale": "", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 0.79, 
+        "created_on": "2014-09-17T03:34:08.107Z", 
+        "updated_on": "2014-09-17T03:34:08.107Z", 
+        "display_format": "\u20ac{0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 8, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "HKD", 
+        "name": "Hong Kong Dollar", 
+        "locale": "zh-HK", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 7.75, 
+        "created_on": "2014-09-17T03:34:08.107Z", 
+        "updated_on": "2014-09-17T03:34:08.107Z", 
+        "display_format": "HK${0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 9, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "JPY", 
+        "name": "Japanese Yen", 
+        "locale": "ja-JP", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 80.07, 
+        "created_on": "2014-09-17T03:34:08.108Z", 
+        "updated_on": "2014-09-17T03:34:08.108Z", 
+        "display_format": "\uffe5{0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 10, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "RUB", 
+        "name": "Russian Rouble", 
+        "locale": "ru-RU", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 27.7, 
+        "created_on": "2014-09-17T03:34:08.109Z", 
+        "updated_on": "2014-09-17T03:34:08.109Z", 
+        "display_format": "RUB{0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 11, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "SEK", 
+        "name": "Swedish Krona", 
+        "locale": "sv-SE", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 6.19, 
+        "created_on": "2014-09-17T03:34:08.109Z", 
+        "updated_on": "2014-09-17T03:34:08.109Z", 
+        "display_format": "kr{0:,.2f}", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 12, 
+    "model": "financial.currency", 
+    "fields": {
+        "code": "RON", 
+        "name": "Romanian Leu", 
+        "locale": "ro-RO", 
+        "is_primary": false, 
+        "is_active": true, 
+        "created_by": "system", 
+        "exchange_rate": 2.85, 
+        "created_on": "2014-09-17T03:34:08.110Z", 
+        "updated_on": "2014-09-17T03:34:08.110Z", 
+        "display_format": "{0:,.2f} lei", 
+        "updated_by": "system"
+    }
+}
+]
