@@ -50,7 +50,16 @@ def configure_doorsale(project_name):
 
 
 if __name__ == "__main__":
-    management.execute_from_command_line()
+    import doorsale
+    project_template = os.path.join(os.path.dirname(doorsale.__file__),
+        'conf', 'project_template',)
 
-    if 'startproject' in sys.argv:
-        configure_doorsale(sys.argv[-1])
+    has_template = False
+    for arg in sys.argv:
+        if '--template' == arg or arg.startswith('--template='):
+            has_template = True
+
+    if not has_template:
+        sys.argv.append('--template=' + project_template)
+
+    management.execute_from_command_line()

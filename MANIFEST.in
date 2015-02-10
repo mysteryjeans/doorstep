@@ -16,7 +16,7 @@ recursive-include doorsale/catalog/static *
 recursive-include doorsale/catalog/templates *
 recursive-include doorsale/accounts/templates *
 recursive-include doorsale/payments/templates *
-recursive-include doorsale/conf/project_settings *
+recursive-include doorsale/conf/project_template *
 recursive-include doorsale/pages/static *
 recursive-include doorsale/pages/templates *
 recursive-exclude * .DS_Store

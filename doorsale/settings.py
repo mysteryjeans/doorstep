@@ -1,13 +1,5 @@
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-MEDIA_URL = '/media/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
-################## Doorsale #########################
-#####################################################
+import os
 
 # Doorsale e-commerce settings for Django project
 # Customize these settings only if you know
@@ -21,7 +13,7 @@ LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
 # Doorsale apps configuration required for Django
-INSTALLED_APPS += (
+DOORSALE_APPS = (
     'doorsale',
     'doorsale.geo',
     'doorsale.pages',
@@ -33,23 +25,17 @@ INSTALLED_APPS += (
 )
 
 # Thumbnail generator app for Doorsale
-INSTALLED_APPS += (
+DOORSALE_APPS += (
     'sorl.thumbnail',
 )
 # Raise thumbnail errors and send it via emails
 THUMBNAIL_DEBUG = True
 
-################ Django-Pipeline #####################
-######################################################
-
 # Doorsale uses django-pipeline for LESS & Javascript
 # preprocessing, compression and versioning.
-
 # When collectstatic called during deployment LESS & Javascript will be
 # compiled, compressed and versioned before copying to static folder
-
-# Django-Pipeline app required by Doorsale
-INSTALLED_APPS += ('pipeline',)
+DOORSALE_APPS += ('pipeline',)
 
 # LESS compiler configuration for django-pipeline
 PIPELINE_COMPILERS = ('pipeline.compilers.less.LessCompiler',)
@@ -72,7 +58,7 @@ PIPELINE_DISABLE_WRAPPER = True
 # All resources in app's static directory will be available
 # for LESS compiler
 from doorsale.utils.finders import get_static_paths
-STATIC_PATHS = os.pathsep.join(get_static_paths(INSTALLED_APPS))
+STATIC_PATHS = os.pathsep.join(get_static_paths(DOORSALE_APPS))
 PIPELINE_LESS_ARGUMENTS = '--include-path="%s"' % STATIC_PATHS
 
 # CSS configurations for django-pipeline
