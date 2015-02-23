@@ -4,7 +4,7 @@ Doorsale
 
 Doorsale is open source e-commerce solution, simplicity are features designed to thrive sales, which are reaching to be production ready.
 
-To see Doorsale in action, visit [Demo](http://doorsale-demo.fanaticlab.com) site.
+To see Doorsale in action, visit [Demo](http://doorsale-demo.rootplugin.com) site.
 
 
 ## Setting up Doorsale e-commerce
