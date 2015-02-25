@@ -76,6 +76,9 @@ body {
   background: @bg-color;
   font-family: @font-family !important;
   font-size: @font-size !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 input[type="radio"] {
@@ -99,7 +102,7 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6 {
   color: @h-color;
-  font-weight: normal;
+  font-weight: 300;
   overflow: hidden;
 }
 
