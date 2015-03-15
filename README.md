@@ -22,7 +22,7 @@ $ virtualenv doorsale_env && source doorsale_env/bin/activate
 Install the latest development version from this git repository.
 
 ```
-$ pip install --upgrade git+https://github.com/mysteryjeans/doorsale.git
+$ pip install --upgrade git+https://github.com/mysteryjeans/doorsale.git#egg=Doorsale
 ```
 
 Create a e-commerce project using doorsale-admin.py instead of using django-admin.py.
