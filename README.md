@@ -31,16 +31,10 @@ Create a e-commerce project using doorsale-admin.py instead of using django-admi
 $ doorsale-admin.py startproject doorsale_site
 ```
 
-Create database schema by running migrate command, by default django project use SQLite, which off course you can changed in settings.py, if you are new to databases this is good choice to start with.
+Create database schema by running migrate command, by default django project use SQLite, which off course you can changed in settings.py, if you are new to databases this is good choice to start with. Migrate command will also load initial data in database as well.
 
 ```
 $ python manage.py migrate
-```
-
-We need to load initial data fixtures manually, this data is required by Doorsale.
-
-```
-$ python manage.py loadata initial_data.json
 ```
 
 Node.js is required for LESS & javascript preprocessing, assuming [node.js](http://nodejs.org/) is already installed, let's verify that your site works, run development server and visit [http://127.0.0.1:8000](http://127.0.0.1:8000), you will see products catalog index page with no products and categories
@@ -52,7 +46,7 @@ $ python manage.py runserver
 Django-Pipeline settings is configured to use [LESS](http://lesscss.org/#using-less-installation) & [Yuglify](https://github.com/yui/yuglify) node.js packages for static files preprocessing & compression. When you deploy your site with collectstatic command these packages will be called. You can install both packages with [npm](https://www.npmjs.org/) (node.js package manager).
 
 ```
-$ npm install -g less yuglify 
+$ npm install -g less yuglify
 ```
 
 Demo repository is following master branch on Doorsale, so you should pull changes frequently to keep things synchronized and running smoothly, see [demo project](https://github.com/mysteryjeans/doorsale-demo) readme for more details.
