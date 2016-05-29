@@ -1,6 +1,6 @@
 Django>=1.8.4,<1.9
 psycopg2>=2.6,<2.7
-django-pipeline>=1.5.4,<1.6
+django-pipeline>=1.6
 Pillow>=2.3.1
 paypalrestsdk>=1.2.2
 stripe>=1.19.0
