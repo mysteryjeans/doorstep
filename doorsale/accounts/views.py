@@ -31,7 +31,7 @@ class LoginView(CatalogBaseView):
     decorators = [anonymous_required]
 
     def get_context_data(self, **kwargs):
-        next_url = self.request.REQUEST.get('next', '')
+        next_url = self.request.GET.get('next', '')
         breadcrumbs = ({'name': 'Login', 'url': reverse('accounts_login')},)
         return super(LoginView, self).get_context_data(breadcrumbs=breadcrumbs, next_url=next_url, **kwargs)
 
