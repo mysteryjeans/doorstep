@@ -72,7 +72,7 @@ class RegisterView(CatalogBaseView):
     decorators = [transaction.atomic, anonymous_required]
 
     def get_context_data(self, **kwargs):
-        next_url = self.request.REQUEST.get('next', '')
+        next_url = self.request.GET.get('next', '')
         breadcrumbs = ({'name': 'Register', 'url': reverse('accounts_register')},)
         return super(RegisterView, self).get_context_data(breadcrumbs=breadcrumbs, next_url=next_url, **kwargs)
 
