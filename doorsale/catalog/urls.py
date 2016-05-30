@@ -1,9 +1,8 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from doorsale.catalog.views import *
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^$', IndexView.as_view(), name='catalog_index'),
     url(r'^categories/(?P<slug>[\w-]+)/$', CategoryProductsView.as_view(), {'page_num': 1}, name='catalog_category'),
     url(r'^categories/(?P<slug>[\w-]+)/(?P<page_num>\d+)/$', CategoryProductsView.as_view(), name='catalog_category'),
@@ -15,4 +14,4 @@ urlpatterns = patterns(
     url(r'^search/(?P<page_num>\d+)/$', SearchProductsView.as_view(), name='catalog_search'),
     url(r'^products/(?P<product_id>\d+)/(?P<slug>[\w-]+)/$', ProductDetailView.as_view(), name='catalog_product'),
     url(r'^change_currency/$', ChangeCurrencyView.as_view(), name='catalog_change_currency'),
-)
+]

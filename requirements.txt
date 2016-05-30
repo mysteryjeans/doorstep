@@ -1,8 +1,8 @@
-Django>=1.8.4,<1.9
+Django>=1.8.13,<1.10
 psycopg2>=2.6,<2.7
 django-pipeline>=1.6
-Pillow>=2.3.1
-paypalrestsdk>=1.2.2
-stripe>=1.19.0
-pytz
-sorl-thumbnail
+Pillow>=2.7
+paypalrestsdk>=1.8
+stripe>=1.21.0
+pytz>=2014.10
+sorl-thumbnail>=12.3
