@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block content %}
-{% cache 300 sidebar categories|length manufacturers|length %}
+{% cache cache_timeout sidebar categories|length manufacturers|length %}
 <div id="categories-sidebar">
 	<ul id="categories">
 		<li>
