@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Doorsale by mysteryjeans</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Doorsale</h1>
+      <h2 class="project-tagline">The powerful e-commerce solution for Django</h2>
+      <a href="https://github.com/mysteryjeans/doorsale" class="btn">View on GitHub</a>
+      <a href="https://github.com/mysteryjeans/doorsale/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/mysteryjeans/doorsale/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="doorsale" class="anchor" href="#doorsale" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Doorsale</h1>
+
+<p><a href="https://travis-ci.org/mysteryjeans/doorsale"><img src="https://travis-ci.org/mysteryjeans/doorsale.svg?branch=master" alt="Build Status"></a></p>
+
+<p>Doorsale is open source e-commerce solution, simplicity are features designed to thrive sales, which are reaching to be production ready.</p>
+
+<p>To see Doorsale in action, visit <a href="http://doorsale-demo.rootplugin.com">Demo</a> site.</p>
+
+<h2>
+<a id="setting-up-doorsale-e-commerce" class="anchor" href="#setting-up-doorsale-e-commerce" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Setting up Doorsale e-commerce</h2>
+
+<p><a href="https://github.com/mysteryjeans/doorsale-demo">Doorsale demo</a> repository is for quickly getting up and running e-commerce site on your local workstation, its readme contains all steps to setting up a site.</p>
+
+<p>When you have enough testing on prepopulated data in demo projects, starting your own site from skretch is similar to creating project in Django.</p>
+
+<p>Create a new virtualenv for your own e-commerce project</p>
+
+<pre><code>$ virtualenv doorsale_env &amp;&amp; source doorsale_env/bin/activate
+</code></pre>
+
+<p>Install the latest development version from this git repository.</p>
+
+<pre><code>$ pip install --upgrade git+https://github.com/mysteryjeans/doorsale.git#egg=Doorsale
+</code></pre>
+
+<p>Create a e-commerce project using doorsale-admin.py instead of using django-admin.py.</p>
+
+<pre><code>$ doorsale-admin.py startproject doorsale_site
+</code></pre>
+
+<p>Create database schema by running migrate command, by default django project use SQLite, which off course you can changed in settings.py, if you are new to databases this is good choice to start with. Migrate command will also load initial data in database as well.</p>
+
+<pre><code>$ python manage.py migrate
+</code></pre>
+
+<p>Node.js is required for LESS &amp; javascript preprocessing, assuming <a href="http://nodejs.org/">node.js</a> is already installed, let's verify that your site works, run development server and visit <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a>, you will see products catalog index page with no products and categories</p>
+
+<pre><code>$ python manage.py runserver
+</code></pre>
+
+<p>Django-Pipeline settings is configured to use <a href="http://lesscss.org/#using-less-installation">LESS</a> &amp; <a href="https://github.com/yui/yuglify">Yuglify</a> node.js packages for static files preprocessing &amp; compression. When you deploy your site with collectstatic command these packages will be called. You can install both packages with <a href="https://www.npmjs.org/">npm</a> (node.js package manager).</p>
+
+<pre><code>$ npm install -g less yuglify
+</code></pre>
+
+<p>Demo repository is following master branch on Doorsale, so you should pull changes frequently to keep things synchronized and running smoothly, see <a href="https://github.com/mysteryjeans/doorsale-demo">demo project</a> readme for more details.</p>
+
+<h2>
+<a id="development" class="anchor" href="#development" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Development</h2>
+
+<p>Doorsale is yet to be production ready, there are few tasks left in completeness, listed as follows.</p>
+
+<ul>
+<li>Unit tests</li>
+<li>Backoffice administration</li>
+</ul>
+
+<h2>
+<a id="built-with" class="anchor" href="#built-with" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Built With</h2>
+
+<ul>
+<li>
+<a href="https://github.com/django/django">Django</a> — Web development framework for python, we utilizes full stack.</li>
+<li>
+<a href="https://github.com/less/less.js">LESS</a> — Our styling totally done in LESS, a preprocessor for CSS.</li>
+<li>
+<a href="https://github.com/cyberdelia/django-pipeline">Django-Pipeline</a> — We use django-pipeline to compile &amp; compress LESS and also Javascript before deployment.</li>
+<li>
+<a href="http://www.postgresql.org/">PostgreSQL</a> — Our primary database is PostgreSQL, although project intended to support all databases that Django supports.</li>
+</ul>
+
+<h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>Doorsale is free and open-source, we support and encourages an active heathly community that accepts contributions from the public – including you!</p>
+
+<p>We look forward to seeing your pull requests!</p>
+
+<h2>
+<a id="screenshot" class="anchor" href="#screenshot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Screenshot</h2>
+
+<p><img src="https://raw.github.com/mysteryjeans/doorsale-demo/master/media/images/demo-screenshot.png" alt="Doorsale Demo Screenshot"></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/mysteryjeans/doorsale">Doorsale</a> is maintained by <a href="https://github.com/mysteryjeans">mysteryjeans</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
