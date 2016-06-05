@@ -1,0 +1,5705 @@
+[
+{
+    "pk": 1, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "United States", 
+        "iso_code2": "US", 
+        "iso_code3": "USA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.111Z", 
+        "created_by": "system", 
+        "iso_numeric": 840, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.111Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 2, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Canada", 
+        "iso_code2": "CA", 
+        "iso_code3": "CAN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.112Z", 
+        "created_by": "system", 
+        "iso_numeric": 124, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.112Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 3, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Argentina", 
+        "iso_code2": "AR", 
+        "iso_code3": "ARG", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.114Z", 
+        "created_by": "system", 
+        "iso_numeric": 32, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.114Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 4, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Armenia", 
+        "iso_code2": "AM", 
+        "iso_code3": "ARM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.115Z", 
+        "created_by": "system", 
+        "iso_numeric": 51, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.115Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 5, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Aruba", 
+        "iso_code2": "AW", 
+        "iso_code3": "ABW", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.115Z", 
+        "created_by": "system", 
+        "iso_numeric": 533, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.115Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 6, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Australia", 
+        "iso_code2": "AU", 
+        "iso_code3": "AUS", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.116Z", 
+        "created_by": "system", 
+        "iso_numeric": 36, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.116Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 7, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Austria", 
+        "iso_code2": "AT", 
+        "iso_code3": "AUT", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.117Z", 
+        "created_by": "system", 
+        "iso_numeric": 40, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.117Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 8, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Azerbaijan", 
+        "iso_code2": "AZ", 
+        "iso_code3": "AZE", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.117Z", 
+        "created_by": "system", 
+        "iso_numeric": 31, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.117Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 9, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Bahamas", 
+        "iso_code2": "BS", 
+        "iso_code3": "BHS", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.118Z", 
+        "created_by": "system", 
+        "iso_numeric": 44, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.118Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 10, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Bangladesh", 
+        "iso_code2": "BD", 
+        "iso_code3": "BGD", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.119Z", 
+        "created_by": "system", 
+        "iso_numeric": 50, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.119Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 11, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Belarus", 
+        "iso_code2": "BY", 
+        "iso_code3": "BLR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.120Z", 
+        "created_by": "system", 
+        "iso_numeric": 112, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.120Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 12, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Belgium", 
+        "iso_code2": "BE", 
+        "iso_code3": "BEL", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.120Z", 
+        "created_by": "system", 
+        "iso_numeric": 56, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.120Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 13, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Belize", 
+        "iso_code2": "BZ", 
+        "iso_code3": "BLZ", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.121Z", 
+        "created_by": "system", 
+        "iso_numeric": 84, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.121Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 14, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Bermuda", 
+        "iso_code2": "BM", 
+        "iso_code3": "BMU", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.122Z", 
+        "created_by": "system", 
+        "iso_numeric": 60, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.122Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 15, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Bolivia", 
+        "iso_code2": "BO", 
+        "iso_code3": "BOL", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.123Z", 
+        "created_by": "system", 
+        "iso_numeric": 68, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.123Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 16, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Bosnia and Herzegowina", 
+        "iso_code2": "BA", 
+        "iso_code3": "BIH", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.123Z", 
+        "created_by": "system", 
+        "iso_numeric": 70, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.123Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 17, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Brazil", 
+        "iso_code2": "BR", 
+        "iso_code3": "BRA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.124Z", 
+        "created_by": "system", 
+        "iso_numeric": 76, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.124Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 18, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Bulgaria", 
+        "iso_code2": "BG", 
+        "iso_code3": "BGR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.125Z", 
+        "created_by": "system", 
+        "iso_numeric": 100, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.125Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 19, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Cayman Islands", 
+        "iso_code2": "KY", 
+        "iso_code3": "CYM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.125Z", 
+        "created_by": "system", 
+        "iso_numeric": 136, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.125Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 20, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Chile", 
+        "iso_code2": "CL", 
+        "iso_code3": "CHL", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.126Z", 
+        "created_by": "system", 
+        "iso_numeric": 152, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.126Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 21, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "China", 
+        "iso_code2": "CN", 
+        "iso_code3": "CHN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.127Z", 
+        "created_by": "system", 
+        "iso_numeric": 156, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.127Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 22, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Colombia", 
+        "iso_code2": "CO", 
+        "iso_code3": "COL", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.127Z", 
+        "created_by": "system", 
+        "iso_numeric": 170, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.127Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 23, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Costa Rica", 
+        "iso_code2": "CR", 
+        "iso_code3": "CRI", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.128Z", 
+        "created_by": "system", 
+        "iso_numeric": 188, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.128Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 24, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Croatia", 
+        "iso_code2": "HR", 
+        "iso_code3": "HRV", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.129Z", 
+        "created_by": "system", 
+        "iso_numeric": 191, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.129Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 25, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Cuba", 
+        "iso_code2": "CU", 
+        "iso_code3": "CUB", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.129Z", 
+        "created_by": "system", 
+        "iso_numeric": 192, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.129Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 26, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Cyprus", 
+        "iso_code2": "CY", 
+        "iso_code3": "CYP", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.130Z", 
+        "created_by": "system", 
+        "iso_numeric": 196, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.130Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 27, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Czech Republic", 
+        "iso_code2": "CZ", 
+        "iso_code3": "CZE", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.131Z", 
+        "created_by": "system", 
+        "iso_numeric": 203, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.131Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 28, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Denmark", 
+        "iso_code2": "DK", 
+        "iso_code3": "DNK", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.132Z", 
+        "created_by": "system", 
+        "iso_numeric": 208, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.132Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 29, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Dominican Republic", 
+        "iso_code2": "DO", 
+        "iso_code3": "DOM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.133Z", 
+        "created_by": "system", 
+        "iso_numeric": 214, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.133Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 30, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Ecuador", 
+        "iso_code2": "EC", 
+        "iso_code3": "ECU", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.134Z", 
+        "created_by": "system", 
+        "iso_numeric": 218, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.134Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 31, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Egypt", 
+        "iso_code2": "EG", 
+        "iso_code3": "EGY", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.134Z", 
+        "created_by": "system", 
+        "iso_numeric": 818, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.134Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 32, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Finland", 
+        "iso_code2": "FI", 
+        "iso_code3": "FIN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.135Z", 
+        "created_by": "system", 
+        "iso_numeric": 246, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.135Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 33, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "France", 
+        "iso_code2": "FR", 
+        "iso_code3": "FRA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.136Z", 
+        "created_by": "system", 
+        "iso_numeric": 250, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.136Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 34, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Georgia", 
+        "iso_code2": "GE", 
+        "iso_code3": "GEO", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.136Z", 
+        "created_by": "system", 
+        "iso_numeric": 268, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.136Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 35, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Germany", 
+        "iso_code2": "DE", 
+        "iso_code3": "DEU", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.137Z", 
+        "created_by": "system", 
+        "iso_numeric": 276, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.137Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 36, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Gibraltar", 
+        "iso_code2": "GI", 
+        "iso_code3": "GIB", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.137Z", 
+        "created_by": "system", 
+        "iso_numeric": 292, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.137Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 37, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Greece", 
+        "iso_code2": "GR", 
+        "iso_code3": "GRC", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.138Z", 
+        "created_by": "system", 
+        "iso_numeric": 300, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.138Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 38, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Guatemala", 
+        "iso_code2": "GT", 
+        "iso_code3": "GTM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.139Z", 
+        "created_by": "system", 
+        "iso_numeric": 320, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.139Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 39, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Hong Kong", 
+        "iso_code2": "HK", 
+        "iso_code3": "HKG", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.139Z", 
+        "created_by": "system", 
+        "iso_numeric": 344, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.139Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 40, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Hungary", 
+        "iso_code2": "HU", 
+        "iso_code3": "HUN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.140Z", 
+        "created_by": "system", 
+        "iso_numeric": 348, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.140Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 41, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "India", 
+        "iso_code2": "IN", 
+        "iso_code3": "IND", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.141Z", 
+        "created_by": "system", 
+        "iso_numeric": 356, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.141Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 42, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Indonesia", 
+        "iso_code2": "ID", 
+        "iso_code3": "IDN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.141Z", 
+        "created_by": "system", 
+        "iso_numeric": 360, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.141Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 43, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Ireland", 
+        "iso_code2": "IE", 
+        "iso_code3": "IRL", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.142Z", 
+        "created_by": "system", 
+        "iso_numeric": 372, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.142Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 44, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Israel", 
+        "iso_code2": "IL", 
+        "iso_code3": "ISR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.142Z", 
+        "created_by": "system", 
+        "iso_numeric": 376, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.142Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 45, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Italy", 
+        "iso_code2": "IT", 
+        "iso_code3": "ITA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.143Z", 
+        "created_by": "system", 
+        "iso_numeric": 380, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.143Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 46, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Jamaica", 
+        "iso_code2": "JM", 
+        "iso_code3": "JAM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.144Z", 
+        "created_by": "system", 
+        "iso_numeric": 388, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.144Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 47, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Japan", 
+        "iso_code2": "JP", 
+        "iso_code3": "JPN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.144Z", 
+        "created_by": "system", 
+        "iso_numeric": 392, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.144Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 48, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Jordan", 
+        "iso_code2": "JO", 
+        "iso_code3": "JOR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.145Z", 
+        "created_by": "system", 
+        "iso_numeric": 400, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.145Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 49, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Kazakhstan", 
+        "iso_code2": "KZ", 
+        "iso_code3": "KAZ", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.145Z", 
+        "created_by": "system", 
+        "iso_numeric": 398, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.145Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 50, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Korea, Democratic People's Republic of", 
+        "iso_code2": "KP", 
+        "iso_code3": "PRK", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.146Z", 
+        "created_by": "system", 
+        "iso_numeric": 408, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.146Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 51, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Kuwait", 
+        "iso_code2": "KW", 
+        "iso_code3": "KWT", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.147Z", 
+        "created_by": "system", 
+        "iso_numeric": 414, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.147Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 52, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Malaysia", 
+        "iso_code2": "MY", 
+        "iso_code3": "MYS", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.147Z", 
+        "created_by": "system", 
+        "iso_numeric": 458, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.147Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 53, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Mexico", 
+        "iso_code2": "MX", 
+        "iso_code3": "MEX", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.148Z", 
+        "created_by": "system", 
+        "iso_numeric": 484, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.148Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 54, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Netherlands", 
+        "iso_code2": "NL", 
+        "iso_code3": "NLD", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.149Z", 
+        "created_by": "system", 
+        "iso_numeric": 528, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.149Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 55, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "New Zealand", 
+        "iso_code2": "NZ", 
+        "iso_code3": "NZL", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.149Z", 
+        "created_by": "system", 
+        "iso_numeric": 554, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.149Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 56, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Norway", 
+        "iso_code2": "NO", 
+        "iso_code3": "NOR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.150Z", 
+        "created_by": "system", 
+        "iso_numeric": 578, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.150Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 57, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Pakistan", 
+        "iso_code2": "PK", 
+        "iso_code3": "PAK", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.151Z", 
+        "created_by": "system", 
+        "iso_numeric": 586, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.151Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 58, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Paraguay", 
+        "iso_code2": "PY", 
+        "iso_code3": "PRY", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.152Z", 
+        "created_by": "system", 
+        "iso_numeric": 600, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.152Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 59, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Peru", 
+        "iso_code2": "PE", 
+        "iso_code3": "PER", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.152Z", 
+        "created_by": "system", 
+        "iso_numeric": 604, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.152Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 60, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Philippines", 
+        "iso_code2": "PH", 
+        "iso_code3": "PHL", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.153Z", 
+        "created_by": "system", 
+        "iso_numeric": 608, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.153Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 61, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Poland", 
+        "iso_code2": "PL", 
+        "iso_code3": "POL", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.153Z", 
+        "created_by": "system", 
+        "iso_numeric": 616, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.153Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 62, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Portugal", 
+        "iso_code2": "PT", 
+        "iso_code3": "PRT", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.154Z", 
+        "created_by": "system", 
+        "iso_numeric": 620, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.154Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 63, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Puerto Rico", 
+        "iso_code2": "PR", 
+        "iso_code3": "PRI", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.155Z", 
+        "created_by": "system", 
+        "iso_numeric": 630, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.155Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 64, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Qatar", 
+        "iso_code2": "QA", 
+        "iso_code3": "QAT", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.155Z", 
+        "created_by": "system", 
+        "iso_numeric": 634, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.155Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 65, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Romania", 
+        "iso_code2": "RO", 
+        "iso_code3": "ROM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.156Z", 
+        "created_by": "system", 
+        "iso_numeric": 642, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.156Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 66, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Russia", 
+        "iso_code2": "RU", 
+        "iso_code3": "RUS", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.156Z", 
+        "created_by": "system", 
+        "iso_numeric": 643, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.156Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 67, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Saudi Arabia", 
+        "iso_code2": "SA", 
+        "iso_code3": "SAU", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.157Z", 
+        "created_by": "system", 
+        "iso_numeric": 682, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.157Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 68, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Singapore", 
+        "iso_code2": "SG", 
+        "iso_code3": "SGP", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.158Z", 
+        "created_by": "system", 
+        "iso_numeric": 702, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.158Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 69, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Slovakia (Slovak Republic)", 
+        "iso_code2": "SK", 
+        "iso_code3": "SVK", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.159Z", 
+        "created_by": "system", 
+        "iso_numeric": 703, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.159Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 70, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Slovenia", 
+        "iso_code2": "SI", 
+        "iso_code3": "SVN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.159Z", 
+        "created_by": "system", 
+        "iso_numeric": 705, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.159Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 71, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "South Africa", 
+        "iso_code2": "ZA", 
+        "iso_code3": "ZAF", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.160Z", 
+        "created_by": "system", 
+        "iso_numeric": 710, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.160Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 72, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Spain", 
+        "iso_code2": "ES", 
+        "iso_code3": "ESP", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.161Z", 
+        "created_by": "system", 
+        "iso_numeric": 724, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.161Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 73, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Sweden", 
+        "iso_code2": "SE", 
+        "iso_code3": "SWE", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.161Z", 
+        "created_by": "system", 
+        "iso_numeric": 752, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.161Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 74, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Switzerland", 
+        "iso_code2": "CH", 
+        "iso_code3": "CHE", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.162Z", 
+        "created_by": "system", 
+        "iso_numeric": 756, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.162Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 75, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Taiwan", 
+        "iso_code2": "TW", 
+        "iso_code3": "TWN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.178Z", 
+        "created_by": "system", 
+        "iso_numeric": 158, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.178Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 76, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Thailand", 
+        "iso_code2": "TH", 
+        "iso_code3": "THA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.195Z", 
+        "created_by": "system", 
+        "iso_numeric": 764, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.195Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 77, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Turkey", 
+        "iso_code2": "TR", 
+        "iso_code3": "TUR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.197Z", 
+        "created_by": "system", 
+        "iso_numeric": 792, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.197Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 78, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Ukraine", 
+        "iso_code2": "UA", 
+        "iso_code3": "UKR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.198Z", 
+        "created_by": "system", 
+        "iso_numeric": 804, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.198Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 79, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "United Arab Emirates", 
+        "iso_code2": "AE", 
+        "iso_code3": "ARE", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.199Z", 
+        "created_by": "system", 
+        "iso_numeric": 784, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.199Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 80, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "United Kingdom", 
+        "iso_code2": "GB", 
+        "iso_code3": "GBR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.200Z", 
+        "created_by": "system", 
+        "iso_numeric": 826, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.200Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 81, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "United States minor outlying islands", 
+        "iso_code2": "UM", 
+        "iso_code3": "UMI", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.201Z", 
+        "created_by": "system", 
+        "iso_numeric": 581, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.201Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 82, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Uruguay", 
+        "iso_code2": "UY", 
+        "iso_code3": "URY", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.202Z", 
+        "created_by": "system", 
+        "iso_numeric": 858, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.202Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 83, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Uzbekistan", 
+        "iso_code2": "UZ", 
+        "iso_code3": "UZB", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.203Z", 
+        "created_by": "system", 
+        "iso_numeric": 860, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.203Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 84, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Venezuela", 
+        "iso_code2": "VE", 
+        "iso_code3": "VEN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.204Z", 
+        "created_by": "system", 
+        "iso_numeric": 862, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.204Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 85, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Serbia", 
+        "iso_code2": "RS", 
+        "iso_code3": "SRB", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.205Z", 
+        "created_by": "system", 
+        "iso_numeric": 688, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.205Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 86, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Afghanistan", 
+        "iso_code2": "AF", 
+        "iso_code3": "AFG", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.206Z", 
+        "created_by": "system", 
+        "iso_numeric": 4, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.206Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 87, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Albania", 
+        "iso_code2": "AL", 
+        "iso_code3": "ALB", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.206Z", 
+        "created_by": "system", 
+        "iso_numeric": 8, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.206Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 88, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Algeria", 
+        "iso_code2": "DZ", 
+        "iso_code3": "DZA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.207Z", 
+        "created_by": "system", 
+        "iso_numeric": 12, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.207Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 89, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "American Samoa", 
+        "iso_code2": "AS", 
+        "iso_code3": "ASM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.223Z", 
+        "created_by": "system", 
+        "iso_numeric": 16, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.223Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 90, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Andorra", 
+        "iso_code2": "AD", 
+        "iso_code3": "AND", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.240Z", 
+        "created_by": "system", 
+        "iso_numeric": 20, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.240Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 91, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Angola", 
+        "iso_code2": "AO", 
+        "iso_code3": "AGO", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.241Z", 
+        "created_by": "system", 
+        "iso_numeric": 24, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.241Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 92, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Anguilla", 
+        "iso_code2": "AI", 
+        "iso_code3": "AIA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.242Z", 
+        "created_by": "system", 
+        "iso_numeric": 660, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.242Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 93, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Antarctica", 
+        "iso_code2": "AQ", 
+        "iso_code3": "ATA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.243Z", 
+        "created_by": "system", 
+        "iso_numeric": 10, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.243Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 94, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Antigua and Barbuda", 
+        "iso_code2": "AG", 
+        "iso_code3": "ATG", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.244Z", 
+        "created_by": "system", 
+        "iso_numeric": 28, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.244Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 95, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Bahrain", 
+        "iso_code2": "BH", 
+        "iso_code3": "BHR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.245Z", 
+        "created_by": "system", 
+        "iso_numeric": 48, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.245Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 96, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Barbados", 
+        "iso_code2": "BB", 
+        "iso_code3": "BRB", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.246Z", 
+        "created_by": "system", 
+        "iso_numeric": 52, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.246Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 97, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Benin", 
+        "iso_code2": "BJ", 
+        "iso_code3": "BEN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.246Z", 
+        "created_by": "system", 
+        "iso_numeric": 204, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.246Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 98, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Bhutan", 
+        "iso_code2": "BT", 
+        "iso_code3": "BTN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.247Z", 
+        "created_by": "system", 
+        "iso_numeric": 64, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.247Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 99, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Botswana", 
+        "iso_code2": "BW", 
+        "iso_code3": "BWA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.248Z", 
+        "created_by": "system", 
+        "iso_numeric": 72, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.248Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 100, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Bouvet Island", 
+        "iso_code2": "BV", 
+        "iso_code3": "BVT", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.249Z", 
+        "created_by": "system", 
+        "iso_numeric": 74, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.249Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 101, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "British Indian Ocean Territory", 
+        "iso_code2": "IO", 
+        "iso_code3": "IOT", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.250Z", 
+        "created_by": "system", 
+        "iso_numeric": 86, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.250Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 102, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Brunei Darussalam", 
+        "iso_code2": "BN", 
+        "iso_code3": "BRN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.251Z", 
+        "created_by": "system", 
+        "iso_numeric": 96, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.251Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 103, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Burkina Faso", 
+        "iso_code2": "BF", 
+        "iso_code3": "BFA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.267Z", 
+        "created_by": "system", 
+        "iso_numeric": 854, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.267Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 104, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Burundi", 
+        "iso_code2": "BI", 
+        "iso_code3": "BDI", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.284Z", 
+        "created_by": "system", 
+        "iso_numeric": 108, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.284Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 105, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Cambodia", 
+        "iso_code2": "KH", 
+        "iso_code3": "KHM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.285Z", 
+        "created_by": "system", 
+        "iso_numeric": 116, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.285Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 106, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Cameroon", 
+        "iso_code2": "CM", 
+        "iso_code3": "CMR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.287Z", 
+        "created_by": "system", 
+        "iso_numeric": 120, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.287Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 107, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Cape Verde", 
+        "iso_code2": "CV", 
+        "iso_code3": "CPV", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.287Z", 
+        "created_by": "system", 
+        "iso_numeric": 132, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.287Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 108, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Central African Republic", 
+        "iso_code2": "CF", 
+        "iso_code3": "CAF", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.288Z", 
+        "created_by": "system", 
+        "iso_numeric": 140, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.288Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 109, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Chad", 
+        "iso_code2": "TD", 
+        "iso_code3": "TCD", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.289Z", 
+        "created_by": "system", 
+        "iso_numeric": 148, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.289Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 110, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Christmas Island", 
+        "iso_code2": "CX", 
+        "iso_code3": "CXR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.290Z", 
+        "created_by": "system", 
+        "iso_numeric": 162, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.290Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 111, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Cocos (Keeling) Islands", 
+        "iso_code2": "CC", 
+        "iso_code3": "CCK", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.291Z", 
+        "created_by": "system", 
+        "iso_numeric": 166, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.291Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 112, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Comoros", 
+        "iso_code2": "KM", 
+        "iso_code3": "COM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.291Z", 
+        "created_by": "system", 
+        "iso_numeric": 174, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.291Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 113, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Congo", 
+        "iso_code2": "CG", 
+        "iso_code3": "COG", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.292Z", 
+        "created_by": "system", 
+        "iso_numeric": 178, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.292Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 114, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Cook Islands", 
+        "iso_code2": "CK", 
+        "iso_code3": "COK", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.293Z", 
+        "created_by": "system", 
+        "iso_numeric": 184, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.293Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 115, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Cote D'Ivoire", 
+        "iso_code2": "CI", 
+        "iso_code3": "CIV", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.294Z", 
+        "created_by": "system", 
+        "iso_numeric": 384, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.294Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 116, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Djibouti", 
+        "iso_code2": "DJ", 
+        "iso_code3": "DJI", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.295Z", 
+        "created_by": "system", 
+        "iso_numeric": 262, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.295Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 117, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Dominica", 
+        "iso_code2": "DM", 
+        "iso_code3": "DMA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.311Z", 
+        "created_by": "system", 
+        "iso_numeric": 212, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.311Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 118, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "El Salvador", 
+        "iso_code2": "SV", 
+        "iso_code3": "SLV", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.328Z", 
+        "created_by": "system", 
+        "iso_numeric": 222, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.328Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 119, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Equatorial Guinea", 
+        "iso_code2": "GQ", 
+        "iso_code3": "GNQ", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.329Z", 
+        "created_by": "system", 
+        "iso_numeric": 226, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.329Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 120, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Eritrea", 
+        "iso_code2": "ER", 
+        "iso_code3": "ERI", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.330Z", 
+        "created_by": "system", 
+        "iso_numeric": 232, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.330Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 121, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Estonia", 
+        "iso_code2": "EE", 
+        "iso_code3": "EST", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.331Z", 
+        "created_by": "system", 
+        "iso_numeric": 233, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.331Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 122, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Ethiopia", 
+        "iso_code2": "ET", 
+        "iso_code3": "ETH", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.332Z", 
+        "created_by": "system", 
+        "iso_numeric": 231, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.332Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 123, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Falkland Islands (Malvinas)", 
+        "iso_code2": "FK", 
+        "iso_code3": "FLK", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.333Z", 
+        "created_by": "system", 
+        "iso_numeric": 238, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.333Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 124, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Faroe Islands", 
+        "iso_code2": "FO", 
+        "iso_code3": "FRO", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.334Z", 
+        "created_by": "system", 
+        "iso_numeric": 234, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.334Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 125, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Fiji", 
+        "iso_code2": "FJ", 
+        "iso_code3": "FJI", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.335Z", 
+        "created_by": "system", 
+        "iso_numeric": 242, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.335Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 126, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "French Guiana", 
+        "iso_code2": "GF", 
+        "iso_code3": "GUF", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.335Z", 
+        "created_by": "system", 
+        "iso_numeric": 254, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.335Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 127, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "French Polynesia", 
+        "iso_code2": "PF", 
+        "iso_code3": "PYF", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.336Z", 
+        "created_by": "system", 
+        "iso_numeric": 258, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.336Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 128, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "French Southern Territories", 
+        "iso_code2": "TF", 
+        "iso_code3": "ATF", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.337Z", 
+        "created_by": "system", 
+        "iso_numeric": 260, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.337Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 129, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Gabon", 
+        "iso_code2": "GA", 
+        "iso_code3": "GAB", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.337Z", 
+        "created_by": "system", 
+        "iso_numeric": 266, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.337Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 130, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Gambia", 
+        "iso_code2": "GM", 
+        "iso_code3": "GMB", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.338Z", 
+        "created_by": "system", 
+        "iso_numeric": 270, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.338Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 131, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Ghana", 
+        "iso_code2": "GH", 
+        "iso_code3": "GHA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.354Z", 
+        "created_by": "system", 
+        "iso_numeric": 288, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.354Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 132, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Greenland", 
+        "iso_code2": "GL", 
+        "iso_code3": "GRL", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.370Z", 
+        "created_by": "system", 
+        "iso_numeric": 304, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.370Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 133, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Grenada", 
+        "iso_code2": "GD", 
+        "iso_code3": "GRD", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.371Z", 
+        "created_by": "system", 
+        "iso_numeric": 308, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.371Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 134, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Guadeloupe", 
+        "iso_code2": "GP", 
+        "iso_code3": "GLP", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.372Z", 
+        "created_by": "system", 
+        "iso_numeric": 312, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.372Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 135, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Guam", 
+        "iso_code2": "GU", 
+        "iso_code3": "GUM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.373Z", 
+        "created_by": "system", 
+        "iso_numeric": 316, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.373Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 136, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Guinea", 
+        "iso_code2": "GN", 
+        "iso_code3": "GIN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.374Z", 
+        "created_by": "system", 
+        "iso_numeric": 324, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.374Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 137, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Guinea-bissau", 
+        "iso_code2": "GW", 
+        "iso_code3": "GNB", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.375Z", 
+        "created_by": "system", 
+        "iso_numeric": 624, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.375Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 138, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Guyana", 
+        "iso_code2": "GY", 
+        "iso_code3": "GUY", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.376Z", 
+        "created_by": "system", 
+        "iso_numeric": 328, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.376Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 139, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Haiti", 
+        "iso_code2": "HT", 
+        "iso_code3": "HTI", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.377Z", 
+        "created_by": "system", 
+        "iso_numeric": 332, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.377Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 140, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Heard and Mc Donald Islands", 
+        "iso_code2": "HM", 
+        "iso_code3": "HMD", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.377Z", 
+        "created_by": "system", 
+        "iso_numeric": 334, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.377Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 141, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Honduras", 
+        "iso_code2": "HN", 
+        "iso_code3": "HND", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.378Z", 
+        "created_by": "system", 
+        "iso_numeric": 340, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.378Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 142, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Iceland", 
+        "iso_code2": "IS", 
+        "iso_code3": "ISL", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.379Z", 
+        "created_by": "system", 
+        "iso_numeric": 352, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.379Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 143, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Iran (Islamic Republic of)", 
+        "iso_code2": "IR", 
+        "iso_code3": "IRN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.380Z", 
+        "created_by": "system", 
+        "iso_numeric": 364, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.380Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 144, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Iraq", 
+        "iso_code2": "IQ", 
+        "iso_code3": "IRQ", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.380Z", 
+        "created_by": "system", 
+        "iso_numeric": 368, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.380Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 145, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Kenya", 
+        "iso_code2": "KE", 
+        "iso_code3": "KEN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.381Z", 
+        "created_by": "system", 
+        "iso_numeric": 404, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.381Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 146, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Kiribati", 
+        "iso_code2": "KI", 
+        "iso_code3": "KIR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.382Z", 
+        "created_by": "system", 
+        "iso_numeric": 296, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.382Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 147, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Korea", 
+        "iso_code2": "KR", 
+        "iso_code3": "KOR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.383Z", 
+        "created_by": "system", 
+        "iso_numeric": 410, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.383Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 148, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Kyrgyzstan", 
+        "iso_code2": "KG", 
+        "iso_code3": "KGZ", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.384Z", 
+        "created_by": "system", 
+        "iso_numeric": 417, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.384Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 149, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Lao People's Democratic Republic", 
+        "iso_code2": "LA", 
+        "iso_code3": "LAO", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.385Z", 
+        "created_by": "system", 
+        "iso_numeric": 418, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.385Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 150, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Latvia", 
+        "iso_code2": "LV", 
+        "iso_code3": "LVA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.385Z", 
+        "created_by": "system", 
+        "iso_numeric": 428, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.385Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 151, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Lebanon", 
+        "iso_code2": "LB", 
+        "iso_code3": "LBN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.386Z", 
+        "created_by": "system", 
+        "iso_numeric": 422, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.386Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 152, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Lesotho", 
+        "iso_code2": "LS", 
+        "iso_code3": "LSO", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.387Z", 
+        "created_by": "system", 
+        "iso_numeric": 426, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.387Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 153, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Liberia", 
+        "iso_code2": "LR", 
+        "iso_code3": "LBR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.387Z", 
+        "created_by": "system", 
+        "iso_numeric": 430, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.387Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 154, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Libyan Arab Jamahiriya", 
+        "iso_code2": "LY", 
+        "iso_code3": "LBY", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.388Z", 
+        "created_by": "system", 
+        "iso_numeric": 434, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.388Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 155, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Liechtenstein", 
+        "iso_code2": "LI", 
+        "iso_code3": "LIE", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.389Z", 
+        "created_by": "system", 
+        "iso_numeric": 438, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.389Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 156, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Lithuania", 
+        "iso_code2": "LT", 
+        "iso_code3": "LTU", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.389Z", 
+        "created_by": "system", 
+        "iso_numeric": 440, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.389Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 157, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Luxembourg", 
+        "iso_code2": "LU", 
+        "iso_code3": "LUX", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.390Z", 
+        "created_by": "system", 
+        "iso_numeric": 442, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.390Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 158, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Macau", 
+        "iso_code2": "MO", 
+        "iso_code3": "MAC", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.390Z", 
+        "created_by": "system", 
+        "iso_numeric": 446, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.390Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 159, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Macedonia", 
+        "iso_code2": "MK", 
+        "iso_code3": "MKD", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.391Z", 
+        "created_by": "system", 
+        "iso_numeric": 807, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.391Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 160, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Madagascar", 
+        "iso_code2": "MG", 
+        "iso_code3": "MDG", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.392Z", 
+        "created_by": "system", 
+        "iso_numeric": 450, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.392Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 161, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Malawi", 
+        "iso_code2": "MW", 
+        "iso_code3": "MWI", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.392Z", 
+        "created_by": "system", 
+        "iso_numeric": 454, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.392Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 162, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Maldives", 
+        "iso_code2": "MV", 
+        "iso_code3": "MDV", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.393Z", 
+        "created_by": "system", 
+        "iso_numeric": 462, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.393Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 163, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Mali", 
+        "iso_code2": "ML", 
+        "iso_code3": "MLI", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.394Z", 
+        "created_by": "system", 
+        "iso_numeric": 466, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.394Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 164, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Malta", 
+        "iso_code2": "MT", 
+        "iso_code3": "MLT", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.395Z", 
+        "created_by": "system", 
+        "iso_numeric": 470, 
+        "allow_billing": true, 
+        "subject_to_vat": true, 
+        "updated_on": "2014-09-17T03:34:08.395Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 165, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Marshall Islands", 
+        "iso_code2": "MH", 
+        "iso_code3": "MHL", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.395Z", 
+        "created_by": "system", 
+        "iso_numeric": 584, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.395Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 166, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Martinique", 
+        "iso_code2": "MQ", 
+        "iso_code3": "MTQ", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.396Z", 
+        "created_by": "system", 
+        "iso_numeric": 474, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.396Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 167, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Mauritania", 
+        "iso_code2": "MR", 
+        "iso_code3": "MRT", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.397Z", 
+        "created_by": "system", 
+        "iso_numeric": 478, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.397Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 168, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Mauritius", 
+        "iso_code2": "MU", 
+        "iso_code3": "MUS", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.397Z", 
+        "created_by": "system", 
+        "iso_numeric": 480, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.397Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 169, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Mayotte", 
+        "iso_code2": "YT", 
+        "iso_code3": "MYT", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.398Z", 
+        "created_by": "system", 
+        "iso_numeric": 175, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.398Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 170, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Micronesia", 
+        "iso_code2": "FM", 
+        "iso_code3": "FSM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.399Z", 
+        "created_by": "system", 
+        "iso_numeric": 583, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.399Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 171, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Moldova", 
+        "iso_code2": "MD", 
+        "iso_code3": "MDA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.399Z", 
+        "created_by": "system", 
+        "iso_numeric": 498, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.399Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 172, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Monaco", 
+        "iso_code2": "MC", 
+        "iso_code3": "MCO", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.400Z", 
+        "created_by": "system", 
+        "iso_numeric": 492, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.400Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 173, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Mongolia", 
+        "iso_code2": "MN", 
+        "iso_code3": "MNG", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.400Z", 
+        "created_by": "system", 
+        "iso_numeric": 496, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.400Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 174, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Montenegro", 
+        "iso_code2": "ME", 
+        "iso_code3": "MNE", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.401Z", 
+        "created_by": "system", 
+        "iso_numeric": 499, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.401Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 175, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Montserrat", 
+        "iso_code2": "MS", 
+        "iso_code3": "MSR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.402Z", 
+        "created_by": "system", 
+        "iso_numeric": 500, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.402Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 176, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Morocco", 
+        "iso_code2": "MA", 
+        "iso_code3": "MAR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.402Z", 
+        "created_by": "system", 
+        "iso_numeric": 504, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.402Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 177, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Mozambique", 
+        "iso_code2": "MZ", 
+        "iso_code3": "MOZ", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.403Z", 
+        "created_by": "system", 
+        "iso_numeric": 508, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.403Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 178, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Myanmar", 
+        "iso_code2": "MM", 
+        "iso_code3": "MMR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.403Z", 
+        "created_by": "system", 
+        "iso_numeric": 104, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.403Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 179, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Namibia", 
+        "iso_code2": "NA", 
+        "iso_code3": "NAM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.404Z", 
+        "created_by": "system", 
+        "iso_numeric": 516, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.404Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 180, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Nauru", 
+        "iso_code2": "NR", 
+        "iso_code3": "NRU", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.405Z", 
+        "created_by": "system", 
+        "iso_numeric": 520, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.405Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 181, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Nepal", 
+        "iso_code2": "NP", 
+        "iso_code3": "NPL", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.406Z", 
+        "created_by": "system", 
+        "iso_numeric": 524, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.406Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 182, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Netherlands Antilles", 
+        "iso_code2": "AN", 
+        "iso_code3": "ANT", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.406Z", 
+        "created_by": "system", 
+        "iso_numeric": 530, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.406Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 183, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "New Caledonia", 
+        "iso_code2": "NC", 
+        "iso_code3": "NCL", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.407Z", 
+        "created_by": "system", 
+        "iso_numeric": 540, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.407Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 184, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Nicaragua", 
+        "iso_code2": "NI", 
+        "iso_code3": "NIC", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.408Z", 
+        "created_by": "system", 
+        "iso_numeric": 558, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.408Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 185, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Niger", 
+        "iso_code2": "NE", 
+        "iso_code3": "NER", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.408Z", 
+        "created_by": "system", 
+        "iso_numeric": 562, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.408Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 186, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Nigeria", 
+        "iso_code2": "NG", 
+        "iso_code3": "NGA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.409Z", 
+        "created_by": "system", 
+        "iso_numeric": 566, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.409Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 187, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Niue", 
+        "iso_code2": "NU", 
+        "iso_code3": "NIU", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.410Z", 
+        "created_by": "system", 
+        "iso_numeric": 570, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.410Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 188, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Norfolk Island", 
+        "iso_code2": "NF", 
+        "iso_code3": "NFK", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.410Z", 
+        "created_by": "system", 
+        "iso_numeric": 574, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.410Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 189, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Northern Mariana Islands", 
+        "iso_code2": "MP", 
+        "iso_code3": "MNP", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.411Z", 
+        "created_by": "system", 
+        "iso_numeric": 580, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.411Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 190, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Oman", 
+        "iso_code2": "OM", 
+        "iso_code3": "OMN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.411Z", 
+        "created_by": "system", 
+        "iso_numeric": 512, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.411Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 191, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Palau", 
+        "iso_code2": "PW", 
+        "iso_code3": "PLW", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.412Z", 
+        "created_by": "system", 
+        "iso_numeric": 585, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.412Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 192, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Panama", 
+        "iso_code2": "PA", 
+        "iso_code3": "PAN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.412Z", 
+        "created_by": "system", 
+        "iso_numeric": 591, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.412Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 193, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Papua New Guinea", 
+        "iso_code2": "PG", 
+        "iso_code3": "PNG", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.413Z", 
+        "created_by": "system", 
+        "iso_numeric": 598, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.413Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 194, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Pitcairn", 
+        "iso_code2": "PN", 
+        "iso_code3": "PCN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.414Z", 
+        "created_by": "system", 
+        "iso_numeric": 612, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.414Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 195, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Reunion", 
+        "iso_code2": "RE", 
+        "iso_code3": "REU", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.414Z", 
+        "created_by": "system", 
+        "iso_numeric": 638, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.414Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 196, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Rwanda", 
+        "iso_code2": "RW", 
+        "iso_code3": "RWA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.415Z", 
+        "created_by": "system", 
+        "iso_numeric": 646, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.415Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 197, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Saint Kitts and Nevis", 
+        "iso_code2": "KN", 
+        "iso_code3": "KNA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.416Z", 
+        "created_by": "system", 
+        "iso_numeric": 659, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.416Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 198, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Saint Lucia", 
+        "iso_code2": "LC", 
+        "iso_code3": "LCA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.417Z", 
+        "created_by": "system", 
+        "iso_numeric": 662, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.417Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 199, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Saint Vincent and the Grenadines", 
+        "iso_code2": "VC", 
+        "iso_code3": "VCT", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.417Z", 
+        "created_by": "system", 
+        "iso_numeric": 670, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.417Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 200, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Samoa", 
+        "iso_code2": "WS", 
+        "iso_code3": "WSM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.418Z", 
+        "created_by": "system", 
+        "iso_numeric": 882, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.418Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 201, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "San Marino", 
+        "iso_code2": "SM", 
+        "iso_code3": "SMR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.419Z", 
+        "created_by": "system", 
+        "iso_numeric": 674, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.419Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 202, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Sao Tome and Principe", 
+        "iso_code2": "ST", 
+        "iso_code3": "STP", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.419Z", 
+        "created_by": "system", 
+        "iso_numeric": 678, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.419Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 203, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Senegal", 
+        "iso_code2": "SN", 
+        "iso_code3": "SEN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.420Z", 
+        "created_by": "system", 
+        "iso_numeric": 686, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.420Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 204, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Seychelles", 
+        "iso_code2": "SC", 
+        "iso_code3": "SYC", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.420Z", 
+        "created_by": "system", 
+        "iso_numeric": 690, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.420Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 205, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Sierra Leone", 
+        "iso_code2": "SL", 
+        "iso_code3": "SLE", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.421Z", 
+        "created_by": "system", 
+        "iso_numeric": 694, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.421Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 206, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Solomon Islands", 
+        "iso_code2": "SB", 
+        "iso_code3": "SLB", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.422Z", 
+        "created_by": "system", 
+        "iso_numeric": 90, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.422Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 207, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Somalia", 
+        "iso_code2": "SO", 
+        "iso_code3": "SOM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.422Z", 
+        "created_by": "system", 
+        "iso_numeric": 706, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.422Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 208, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "South Georgia & South Sandwich Islands", 
+        "iso_code2": "GS", 
+        "iso_code3": "SGS", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.423Z", 
+        "created_by": "system", 
+        "iso_numeric": 239, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.423Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 209, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Sri Lanka", 
+        "iso_code2": "LK", 
+        "iso_code3": "LKA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.423Z", 
+        "created_by": "system", 
+        "iso_numeric": 144, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.423Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 210, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "St. Helena", 
+        "iso_code2": "SH", 
+        "iso_code3": "SHN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.424Z", 
+        "created_by": "system", 
+        "iso_numeric": 654, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.424Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 211, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "St. Pierre and Miquelon", 
+        "iso_code2": "PM", 
+        "iso_code3": "SPM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.424Z", 
+        "created_by": "system", 
+        "iso_numeric": 666, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.424Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 212, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Sudan", 
+        "iso_code2": "SD", 
+        "iso_code3": "SDN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.425Z", 
+        "created_by": "system", 
+        "iso_numeric": 736, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.425Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 213, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Suriname", 
+        "iso_code2": "SR", 
+        "iso_code3": "SUR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.426Z", 
+        "created_by": "system", 
+        "iso_numeric": 740, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.426Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 214, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Svalbard and Jan Mayen Islands", 
+        "iso_code2": "SJ", 
+        "iso_code3": "SJM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.427Z", 
+        "created_by": "system", 
+        "iso_numeric": 744, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.427Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 215, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Swaziland", 
+        "iso_code2": "SZ", 
+        "iso_code3": "SWZ", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.428Z", 
+        "created_by": "system", 
+        "iso_numeric": 748, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.428Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 216, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Syrian Arab Republic", 
+        "iso_code2": "SY", 
+        "iso_code3": "SYR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.428Z", 
+        "created_by": "system", 
+        "iso_numeric": 760, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.428Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 217, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Tajikistan", 
+        "iso_code2": "TJ", 
+        "iso_code3": "TJK", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.429Z", 
+        "created_by": "system", 
+        "iso_numeric": 762, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.429Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 218, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Tanzania", 
+        "iso_code2": "TZ", 
+        "iso_code3": "TZA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.430Z", 
+        "created_by": "system", 
+        "iso_numeric": 834, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.430Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 219, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Togo", 
+        "iso_code2": "TG", 
+        "iso_code3": "TGO", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.430Z", 
+        "created_by": "system", 
+        "iso_numeric": 768, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.430Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 220, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Tokelau", 
+        "iso_code2": "TK", 
+        "iso_code3": "TKL", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.431Z", 
+        "created_by": "system", 
+        "iso_numeric": 772, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.431Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 221, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Tonga", 
+        "iso_code2": "TO", 
+        "iso_code3": "TON", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.432Z", 
+        "created_by": "system", 
+        "iso_numeric": 776, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.432Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 222, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Trinidad and Tobago", 
+        "iso_code2": "TT", 
+        "iso_code3": "TTO", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.432Z", 
+        "created_by": "system", 
+        "iso_numeric": 780, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.432Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 223, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Tunisia", 
+        "iso_code2": "TN", 
+        "iso_code3": "TUN", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.433Z", 
+        "created_by": "system", 
+        "iso_numeric": 788, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.433Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 224, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Turkmenistan", 
+        "iso_code2": "TM", 
+        "iso_code3": "TKM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.433Z", 
+        "created_by": "system", 
+        "iso_numeric": 795, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.433Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 225, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Turks and Caicos Islands", 
+        "iso_code2": "TC", 
+        "iso_code3": "TCA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.434Z", 
+        "created_by": "system", 
+        "iso_numeric": 796, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.434Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 226, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Tuvalu", 
+        "iso_code2": "TV", 
+        "iso_code3": "TUV", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.435Z", 
+        "created_by": "system", 
+        "iso_numeric": 798, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.435Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 227, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Uganda", 
+        "iso_code2": "UG", 
+        "iso_code3": "UGA", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.435Z", 
+        "created_by": "system", 
+        "iso_numeric": 800, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.435Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 228, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Vanuatu", 
+        "iso_code2": "VU", 
+        "iso_code3": "VUT", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.436Z", 
+        "created_by": "system", 
+        "iso_numeric": 548, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.436Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 229, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Vatican City State (Holy See)", 
+        "iso_code2": "VA", 
+        "iso_code3": "VAT", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.437Z", 
+        "created_by": "system", 
+        "iso_numeric": 336, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.437Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 230, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Viet Nam", 
+        "iso_code2": "VN", 
+        "iso_code3": "VNM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.437Z", 
+        "created_by": "system", 
+        "iso_numeric": 704, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.437Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 231, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Virgin Islands (British)", 
+        "iso_code2": "VG", 
+        "iso_code3": "VGB", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.438Z", 
+        "created_by": "system", 
+        "iso_numeric": 92, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.438Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 232, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Virgin Islands (U.S.)", 
+        "iso_code2": "VI", 
+        "iso_code3": "VIR", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.439Z", 
+        "created_by": "system", 
+        "iso_numeric": 850, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.439Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 233, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Wallis and Futuna Islands", 
+        "iso_code2": "WF", 
+        "iso_code3": "WLF", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.439Z", 
+        "created_by": "system", 
+        "iso_numeric": 876, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.439Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 234, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Western Sahara", 
+        "iso_code2": "EH", 
+        "iso_code3": "ESH", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.440Z", 
+        "created_by": "system", 
+        "iso_numeric": 732, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.440Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 235, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Yemen", 
+        "iso_code2": "YE", 
+        "iso_code3": "YEM", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.440Z", 
+        "created_by": "system", 
+        "iso_numeric": 887, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.440Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 236, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Zambia", 
+        "iso_code2": "ZM", 
+        "iso_code3": "ZMB", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.441Z", 
+        "created_by": "system", 
+        "iso_numeric": 894, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.441Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 237, 
+    "model": "geo.country", 
+    "fields": {
+        "name": "Zimbabwe", 
+        "iso_code2": "ZW", 
+        "iso_code3": "ZWE", 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_on": "2014-09-17T03:34:08.442Z", 
+        "created_by": "system", 
+        "iso_numeric": 716, 
+        "allow_billing": true, 
+        "subject_to_vat": false, 
+        "updated_on": "2014-09-17T03:34:08.442Z", 
+        "allow_shipping": true, 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 1, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "AA", 
+        "name": "AA (Armed Forces Americas)", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.443Z", 
+        "updated_on": "2014-09-17T03:34:08.443Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 2, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "AE", 
+        "name": "AE (Armed Forces Europe)", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.447Z", 
+        "updated_on": "2014-09-17T03:34:08.447Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 3, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "AL", 
+        "name": "Alabama", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.449Z", 
+        "updated_on": "2014-09-17T03:34:08.449Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 4, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "AK", 
+        "name": "Alaska", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.450Z", 
+        "updated_on": "2014-09-17T03:34:08.450Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 5, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "AS", 
+        "name": "American Samoa", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.451Z", 
+        "updated_on": "2014-09-17T03:34:08.451Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 6, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "AP", 
+        "name": "AP (Armed Forces Pacific)", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.453Z", 
+        "updated_on": "2014-09-17T03:34:08.453Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 7, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "AZ", 
+        "name": "Arizona", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.454Z", 
+        "updated_on": "2014-09-17T03:34:08.454Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 8, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "AR", 
+        "name": "Arkansas", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.455Z", 
+        "updated_on": "2014-09-17T03:34:08.455Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 9, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "CA", 
+        "name": "California", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.455Z", 
+        "updated_on": "2014-09-17T03:34:08.455Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 10, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "CO", 
+        "name": "Colorado", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.456Z", 
+        "updated_on": "2014-09-17T03:34:08.456Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 11, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "CT", 
+        "name": "Connecticut", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.457Z", 
+        "updated_on": "2014-09-17T03:34:08.457Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 12, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "DE", 
+        "name": "Delaware", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.458Z", 
+        "updated_on": "2014-09-17T03:34:08.458Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 13, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "DC", 
+        "name": "District of Columbia", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.459Z", 
+        "updated_on": "2014-09-17T03:34:08.459Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 14, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "FM", 
+        "name": "Federated States of Micronesia", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.460Z", 
+        "updated_on": "2014-09-17T03:34:08.460Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 15, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "FL", 
+        "name": "Florida", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.461Z", 
+        "updated_on": "2014-09-17T03:34:08.461Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 16, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "GA", 
+        "name": "Georgia", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.462Z", 
+        "updated_on": "2014-09-17T03:34:08.462Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 17, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "GU", 
+        "name": "Guam", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.463Z", 
+        "updated_on": "2014-09-17T03:34:08.463Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 18, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "HI", 
+        "name": "Hawaii", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.463Z", 
+        "updated_on": "2014-09-17T03:34:08.463Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 19, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "ID", 
+        "name": "Idaho", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.464Z", 
+        "updated_on": "2014-09-17T03:34:08.464Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 20, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "IL", 
+        "name": "Illinois", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.465Z", 
+        "updated_on": "2014-09-17T03:34:08.465Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 21, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "IN", 
+        "name": "Indiana", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.466Z", 
+        "updated_on": "2014-09-17T03:34:08.466Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 22, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "IA", 
+        "name": "Iowa", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.467Z", 
+        "updated_on": "2014-09-17T03:34:08.467Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 23, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "KS", 
+        "name": "Kansas", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.468Z", 
+        "updated_on": "2014-09-17T03:34:08.468Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 24, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "KY", 
+        "name": "Kentucky", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.469Z", 
+        "updated_on": "2014-09-17T03:34:08.469Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 25, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "LA", 
+        "name": "Louisiana", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.470Z", 
+        "updated_on": "2014-09-17T03:34:08.470Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 26, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "ME", 
+        "name": "Maine", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.471Z", 
+        "updated_on": "2014-09-17T03:34:08.471Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 27, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "MH", 
+        "name": "Marshall Islands", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.472Z", 
+        "updated_on": "2014-09-17T03:34:08.472Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 28, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "MD", 
+        "name": "Maryland", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.473Z", 
+        "updated_on": "2014-09-17T03:34:08.473Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 29, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "MA", 
+        "name": "Massachusetts", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.474Z", 
+        "updated_on": "2014-09-17T03:34:08.474Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 30, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "MI", 
+        "name": "Michigan", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.475Z", 
+        "updated_on": "2014-09-17T03:34:08.475Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 31, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "MN", 
+        "name": "Minnesota", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.476Z", 
+        "updated_on": "2014-09-17T03:34:08.476Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 32, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "MS", 
+        "name": "Mississippi", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.477Z", 
+        "updated_on": "2014-09-17T03:34:08.477Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 33, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "MO", 
+        "name": "Missouri", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.478Z", 
+        "updated_on": "2014-09-17T03:34:08.478Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 34, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "MT", 
+        "name": "Montana", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.479Z", 
+        "updated_on": "2014-09-17T03:34:08.479Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 35, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "NE", 
+        "name": "Nebraska", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.480Z", 
+        "updated_on": "2014-09-17T03:34:08.480Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 36, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "NV", 
+        "name": "Nevada", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.481Z", 
+        "updated_on": "2014-09-17T03:34:08.481Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 37, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "NH", 
+        "name": "New Hampshire", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.482Z", 
+        "updated_on": "2014-09-17T03:34:08.482Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 38, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "NJ", 
+        "name": "New Jersey", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.483Z", 
+        "updated_on": "2014-09-17T03:34:08.483Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 39, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "NM", 
+        "name": "New Mexico", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.484Z", 
+        "updated_on": "2014-09-17T03:34:08.484Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 40, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "NY", 
+        "name": "New York", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.485Z", 
+        "updated_on": "2014-09-17T03:34:08.485Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 41, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "NC", 
+        "name": "North Carolina", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.486Z", 
+        "updated_on": "2014-09-17T03:34:08.486Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 42, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "ND", 
+        "name": "North Dakota", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.487Z", 
+        "updated_on": "2014-09-17T03:34:08.487Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 43, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "MP", 
+        "name": "Northern Mariana Islands", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.488Z", 
+        "updated_on": "2014-09-17T03:34:08.488Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 44, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "OH", 
+        "name": "Ohio", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.489Z", 
+        "updated_on": "2014-09-17T03:34:08.489Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 45, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "OK", 
+        "name": "Oklahoma", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.490Z", 
+        "updated_on": "2014-09-17T03:34:08.490Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 46, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "OR", 
+        "name": "Oregon", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.490Z", 
+        "updated_on": "2014-09-17T03:34:08.490Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 47, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "PW", 
+        "name": "Palau", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.491Z", 
+        "updated_on": "2014-09-17T03:34:08.491Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 48, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "PA", 
+        "name": "Pennsylvania", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.492Z", 
+        "updated_on": "2014-09-17T03:34:08.492Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 49, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "PR", 
+        "name": "Puerto Rico", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.493Z", 
+        "updated_on": "2014-09-17T03:34:08.493Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 50, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "RI", 
+        "name": "Rhode Island", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.494Z", 
+        "updated_on": "2014-09-17T03:34:08.494Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 51, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "SC", 
+        "name": "South Carolina", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.495Z", 
+        "updated_on": "2014-09-17T03:34:08.495Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 52, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "SD", 
+        "name": "South Dakota", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.496Z", 
+        "updated_on": "2014-09-17T03:34:08.496Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 53, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "TN", 
+        "name": "Tennessee", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.497Z", 
+        "updated_on": "2014-09-17T03:34:08.497Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 54, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "TX", 
+        "name": "Texas", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.498Z", 
+        "updated_on": "2014-09-17T03:34:08.498Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 55, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "UT", 
+        "name": "Utah", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.499Z", 
+        "updated_on": "2014-09-17T03:34:08.499Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 56, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "VT", 
+        "name": "Vermont", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.500Z", 
+        "updated_on": "2014-09-17T03:34:08.500Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 57, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "VI", 
+        "name": "Virgin Islands", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.501Z", 
+        "updated_on": "2014-09-17T03:34:08.501Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 58, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "VA", 
+        "name": "Virginia", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.502Z", 
+        "updated_on": "2014-09-17T03:34:08.502Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 59, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "WA", 
+        "name": "Washington", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.503Z", 
+        "updated_on": "2014-09-17T03:34:08.503Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 60, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "WV", 
+        "name": "West Virginia", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.504Z", 
+        "updated_on": "2014-09-17T03:34:08.504Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 61, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "WI", 
+        "name": "Wisconsin", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.505Z", 
+        "updated_on": "2014-09-17T03:34:08.505Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 62, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "WY", 
+        "name": "Wyoming", 
+        "country": 1, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.506Z", 
+        "updated_on": "2014-09-17T03:34:08.506Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 63, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "AB", 
+        "name": "Alberta", 
+        "country": 2, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.506Z", 
+        "updated_on": "2014-09-17T03:34:08.506Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 64, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "BC", 
+        "name": "British Columbia", 
+        "country": 2, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.507Z", 
+        "updated_on": "2014-09-17T03:34:08.507Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 65, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "MB", 
+        "name": "Manitoba", 
+        "country": 2, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.508Z", 
+        "updated_on": "2014-09-17T03:34:08.508Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 66, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "NB", 
+        "name": "New Brunswick", 
+        "country": 2, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.509Z", 
+        "updated_on": "2014-09-17T03:34:08.509Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 67, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "NL", 
+        "name": "Newfoundland and Labrador", 
+        "country": 2, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.510Z", 
+        "updated_on": "2014-09-17T03:34:08.510Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 68, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "NT", 
+        "name": "Northwest Territories", 
+        "country": 2, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.511Z", 
+        "updated_on": "2014-09-17T03:34:08.511Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 69, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "NS", 
+        "name": "Nova Scotia", 
+        "country": 2, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.512Z", 
+        "updated_on": "2014-09-17T03:34:08.512Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 70, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "NU", 
+        "name": "Nunavut", 
+        "country": 2, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.513Z", 
+        "updated_on": "2014-09-17T03:34:08.513Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 71, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "ON", 
+        "name": "Ontario", 
+        "country": 2, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.514Z", 
+        "updated_on": "2014-09-17T03:34:08.514Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 72, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "PE", 
+        "name": "Prince Edward Island", 
+        "country": 2, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.515Z", 
+        "updated_on": "2014-09-17T03:34:08.515Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 73, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "QC", 
+        "name": "Quebec", 
+        "country": 2, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.516Z", 
+        "updated_on": "2014-09-17T03:34:08.516Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 74, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "SK", 
+        "name": "Saskatchewan", 
+        "country": 2, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.517Z", 
+        "updated_on": "2014-09-17T03:34:08.517Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 75, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "YU", 
+        "name": "Yukon Territory", 
+        "country": 2, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.518Z", 
+        "updated_on": "2014-09-17T03:34:08.518Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 76, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "SI", 
+        "name": "Sindh", 
+        "country": 57, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.519Z", 
+        "updated_on": "2014-09-17T03:34:08.519Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 77, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "PU", 
+        "name": "Punjab", 
+        "country": 57, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.520Z", 
+        "updated_on": "2014-09-17T03:34:08.520Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 78, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "BA", 
+        "name": "Balochistan", 
+        "country": 57, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.521Z", 
+        "updated_on": "2014-09-17T03:34:08.521Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 79, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "KP", 
+        "name": "Khyber Pakhtunkhwa", 
+        "country": 57, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.522Z", 
+        "updated_on": "2014-09-17T03:34:08.522Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": 80, 
+    "model": "geo.state", 
+    "fields": {
+        "code": "FA", 
+        "name": "FATA", 
+        "country": 57, 
+        "display_order": 0, 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.522Z", 
+        "updated_on": "2014-09-17T03:34:08.522Z", 
+        "updated_by": "system"
+    }
+}
+]

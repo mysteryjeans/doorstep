@@ -1,0 +1,110 @@
+[
+{
+    "pk": "amex", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "American Express", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.529Z", 
+        "updated_on": "2014-09-17T03:34:08.529Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "diners_club_carte_blanche", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "Diners Club Carte Blanche", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.530Z", 
+        "updated_on": "2014-09-17T03:34:08.530Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "discover", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "Discover Card", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.529Z", 
+        "updated_on": "2014-09-17T03:34:08.529Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "jcb", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "JCB", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.531Z", 
+        "updated_on": "2014-09-17T03:34:08.531Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "laser", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "Laser", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.531Z", 
+        "updated_on": "2014-09-17T03:34:08.531Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "maestro", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "Maestro", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.528Z", 
+        "updated_on": "2014-09-17T03:34:08.528Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "mastercard", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "MasterCard", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.528Z", 
+        "updated_on": "2014-09-17T03:34:08.528Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "visa", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "Visa", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.527Z", 
+        "updated_on": "2014-09-17T03:34:08.527Z", 
+        "updated_by": "system"
+    }
+},
+{
+    "pk": "visa_electron", 
+    "model": "payments.cardissuer", 
+    "fields": {
+        "name": "Visa Electron", 
+        "is_active": true, 
+        "created_by": "system", 
+        "created_on": "2014-09-17T03:34:08.532Z", 
+        "updated_on": "2014-09-17T03:34:08.532Z", 
+        "updated_by": "system"
+    }
+}
+]

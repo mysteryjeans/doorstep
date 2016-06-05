@@ -76,6 +76,9 @@ body {
   background: @bg-color;
   font-family: @font-family !important;
   font-size: @font-size !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 input[type="radio"] {
@@ -99,14 +102,14 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6 {
   color: @h-color;
-  font-weight: normal;
-  overflow: hidden; 
+  font-weight: 300;
+  overflow: hidden;
 }
 
 h4 { font-size: @h-font-size; }
-h3 { font-size: (@h-font-size + 0.1); }
-h2 { font-size: (@h-font-size + 0.2); }
-h1 { font-size: (@h-font-size + 0.3); }
+h3 { font-size: (@h-font-size + 1); }
+h2 { font-size: (@h-font-size + 2); }
+h1 { font-size: (@h-font-size + 3); }
 
 input[type="text"], input[type="password"], input[type="email"], textarea, select {
   .border;
@@ -126,7 +129,7 @@ select {
   border: 0px;
   display: inline-block;
   padding: 5px 10px;
-  cursor: pointer;  
+  cursor: pointer;
   color: @button-text-color;
   background: @button-color;
   border: 0px;

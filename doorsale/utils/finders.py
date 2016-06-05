@@ -5,7 +5,7 @@ def get_app_paths(app_names):
     """
     Returns list of app directory paths
     """
-    from django.utils.importlib import import_module
+    from importlib import import_module
 
     app_paths = []
 
@@ -25,7 +25,7 @@ def get_static_paths(app_names):
 
     for app_dir in get_app_paths(app_names):
         app_static_dir = os.path.join(app_dir, 'static')
-        
+
         if os.path.exists(app_static_dir):
             static_paths.append(app_static_dir)
 

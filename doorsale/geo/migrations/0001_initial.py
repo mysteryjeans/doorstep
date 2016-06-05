@@ -3,6 +3,11 @@ from __future__ import unicode_literals
 
 from django.db import models, migrations
 from django.conf import settings
+from django.core.management import call_command
+
+
+def load_data(apps, schema_editor):
+    call_command('loaddata', 'initial_data', app_label='geo', verbosity=0)
 
 
 class Migration(migrations.Migration):
@@ -97,4 +102,5 @@ class Migration(migrations.Migration):
             field=models.ForeignKey(blank=True, to='geo.State', null=True),
             preserve_default=True,
         ),
+        migrations.RunPython(load_data),
     ]

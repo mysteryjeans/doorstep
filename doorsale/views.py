@@ -24,6 +24,7 @@ class BaseView(TemplateView):
         context = super(BaseView, self).get_context_data(**kwargs)
 
         # Settings context data for base template
+        context['cache_timeout'] = 300
         context['request'] = self.request
         context['style_name'] = self.style_name
         context['base_template_name'] = self.base_template_name

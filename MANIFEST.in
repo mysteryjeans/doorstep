@@ -3,6 +3,11 @@ include LICENSE
 include MANIFEST.in
 recursive-include doorsale/bin *
 recursive-include doorsale/fixtures *
+recursive-include doorsale/geo/fixtures *
+recursive-include doorsale/sales/fixtures *
+recursive-include doorsale/pages/fixtures *
+recursive-include doorsale/payments/fixtures *
+recursive-include doorsale/financial/fixtures *
 recursive-include doorsale/static *
 recursive-include doorsale/templates *
 recursive-include doorsale/sales/static *
@@ -11,7 +16,7 @@ recursive-include doorsale/catalog/static *
 recursive-include doorsale/catalog/templates *
 recursive-include doorsale/accounts/templates *
 recursive-include doorsale/payments/templates *
-recursive-include doorsale/conf/project_settings *
+recursive-include doorsale/conf/project_template *
 recursive-include doorsale/pages/static *
 recursive-include doorsale/pages/templates *
 recursive-exclude * .DS_Store

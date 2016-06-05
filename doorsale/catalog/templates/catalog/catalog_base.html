@@ -2,6 +2,7 @@
 
 {% load cart %}
 {% load pipeline %}
+{% load cache %}
 
 {% block styles %}
 {{ block.super }}
@@ -17,6 +18,7 @@
 {% endblock %}
 
 {% block content %}
+{% cache cache_timeout sidebar categories|length manufacturers|length %}
 <div id="categories-sidebar">
 	<ul id="categories">
 		<li>
@@ -45,6 +47,7 @@
 	</ul>
 	{% endif %}
 </div>
+{% endcache %}
 <div id="catalog-content-container">
 	<div id="catalog-bar">
 		{% if breadcrumbs %}

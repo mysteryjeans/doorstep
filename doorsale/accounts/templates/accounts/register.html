@@ -5,6 +5,11 @@
 	<form method="post" action="{% url 'accounts_register' %}">
 		{% csrf_token %}
 		<input type="hidden" name="next" value="{{ next_url }}"/>
+		{% if as_superuser %}
+		<p class="error-message-box" style="margin-bottom: 20px;">
+			Register yourself as site administrator, you will have all permissions on this site.
+		</p>
+		{% endif %}
 		{% if success %}
 		<div class="success-message-box">
 			{{ success|safe }}

@@ -4,7 +4,7 @@ Doorsale
 
 Doorsale is open source e-commerce solution, simplicity are features designed to thrive sales, which are reaching to be production ready.
 
-To see Doorsale in action, visit [Demo](http://doorsale-demo.fanaticlab.com) site.
+To see Doorsale in action, visit [Demo](http://doorsale-demo.rootplugin.com) site.
 
 
 ## Setting up Doorsale e-commerce
@@ -13,46 +13,40 @@ To see Doorsale in action, visit [Demo](http://doorsale-demo.fanaticlab.com) sit
 
 When you have enough testing on prepopulated data in demo projects, starting your own site from skretch is similar to creating project in Django.
 
-Create a virtualenv for your own e-commerce project
+Create a new virtualenv for your own e-commerce project
 
 ```
 $ virtualenv doorsale_env && source doorsale_env/bin/activate
 ```
 
-Install the latest development version
+Install the latest development version from this git repository.
 
 ```
-$ pip install --upgrade git+https://github.com/mysteryjeans/doorsale.git
+$ pip install --upgrade git+https://github.com/mysteryjeans/doorsale.git#egg=Doorsale
 ```
 
-Create a e-commerce project using doorsale-admin.py
+Create a e-commerce project using doorsale-admin.py instead of using django-admin.py.
 
 ```
 $ doorsale-admin.py startproject doorsale_site
 ```
 
-Create a database, new django project use SQLite by default, if you are new to databases this is good choice to start
+Create database schema by running migrate command, by default django project use SQLite, which off course you can changed in settings.py, if you are new to databases this is good choice to start with. Migrate command will also load initial data in database as well.
 
 ```
 $ python manage.py migrate
 ```
 
-Initial data was loaded by syncdb command from, but with migrated we need to do it manually.
-
-```
-$ python manage.py loadata initial_data.json
-```
-
-Assuming [node.js](http://nodejs.org/) already installed, let's verify that your site works, run development server and visit [http://127.0.0.1:8000](http://127.0.0.1:8000), you will see products catalog page with no products and categories
+Node.js is required for LESS & javascript preprocessing, assuming [node.js](http://nodejs.org/) is already installed, let's verify that your site works, run development server and visit [http://127.0.0.1:8000](http://127.0.0.1:8000), you will see products catalog index page with no products and categories
 
 ```
 $ python manage.py runserver
 ```
 
-Django-Pipeline settings is configured to use [Less](http://lesscss.org/#using-less-installation) & [Yuglify](https://github.com/yui/yuglify) node.js packages for static files compression. When you deploy your site with collectstatic command these packages will be called. You can install both packages with [npm](https://www.npmjs.org/) (node.js package manager).
+Django-Pipeline settings is configured to use [LESS](http://lesscss.org/#using-less-installation) & [Yuglify](https://github.com/yui/yuglify) node.js packages for static files preprocessing & compression. When you deploy your site with collectstatic command these packages will be called. You can install both packages with [npm](https://www.npmjs.org/) (node.js package manager).
 
 ```
-$ npm install -g less yuglify 
+$ npm install -g less yuglify
 ```
 
 Demo repository is following master branch on Doorsale, so you should pull changes frequently to keep things synchronized and running smoothly, see [demo project](https://github.com/mysteryjeans/doorsale-demo) readme for more details.

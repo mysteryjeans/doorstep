@@ -8,8 +8,9 @@
 			{% with pic=product.pics.all.0 %}
 			<a href="{{ product.get_absolute_url }}">
 				<div class="pic-container">
-					{% thumbnail pic.url 128x128 as thumb %}
-					<img src="{{ thumb.url }}" alt="{{ product.name }}"/>
+					{% thumbnail pic.url "128x128" as im %}
+					<img src="{{ im.url }}" alt="{{ product.name }}"/>
+					{% endthumbnail %}
 				</div>
 				<div class="title">
 					{{ product.name }}

@@ -56,6 +56,7 @@ class Category(models.Model):
                             help_text='Comma-delimited set of SEO keywords for meta tag')
     display_order = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
+    is_expended = models.BooleanField(default=False, help_text='Catergory will always shown expended')
     updated_by = models.CharField(max_length=100)
     updated_on = models.DateTimeField(auto_now=True)
     created_on = models.DateTimeField(auto_now_add=True)
