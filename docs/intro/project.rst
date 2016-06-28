@@ -40,7 +40,7 @@ supported by Django.
 
 .. _Django: https://www.djangoproject.com
 .. _SQLite: https://www.sqlite.org
-.. _databases: https://docs.djangoproject.com/en/1.9/ref/databases/
+.. _databases: https://docs.djangoproject.com/en/stable/ref/databases/
 
 Run your site
 =============

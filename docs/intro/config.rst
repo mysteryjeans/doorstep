@@ -52,7 +52,7 @@ directly references user auth model class. ::
 
     AUTH_USER_MODEL = 'myauth.MyUser'
 
-.. _auth user model: https://docs.djangoproject.com/en/1.9/ref/contrib/auth/
+.. _auth user model: https://docs.djangoproject.com/en/stable/ref/contrib/auth/
 
 
 Login Auth

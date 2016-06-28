@@ -32,7 +32,7 @@ admin and etc, each app is design to serve specific purpose.
 
 * ``doorsale.payments``: payment gateways like PayPal & Stripe
 
-.. _apps: https://docs.djangoproject.com/en/1.9/intro/reusable-apps/
+.. _apps: https://docs.djangoproject.com/en/stable/intro/reusable-apps/
 
 Built With
 ==========
