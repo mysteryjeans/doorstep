@@ -16,6 +16,7 @@ LOGIN_REDIRECT_URL = '/'
 DOORSALE_APPS = (
     'doorsale',
     'doorsale.geo',
+    'doorsale.dash',
     'doorsale.pages',
     'doorsale.accounts',
     'doorsale.catalog',
@@ -98,6 +99,13 @@ PIPELINE = {
                 'pages/css/pages.less',
             ),
             'output_filename': 'pages/css/pages.css'
+        },
+        # doorsale.dash LESS styles for dashboard
+        'dash': {
+            'source_filenames': (
+                'dash/css/dash.less',
+            ),
+            'output_filename': 'dash/css/dash.css'
         }
     },
 
