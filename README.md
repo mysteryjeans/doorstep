@@ -2,16 +2,13 @@ Doorsale
 ========
 [![Build Status](https://travis-ci.org/mysteryjeans/doorsale.svg?branch=master)](https://travis-ci.org/mysteryjeans/doorsale)
 
-Doorsale is open source e-commerce solution, simplicity are features designed to thrive sales, which are reaching to be production ready.
-
-To see Doorsale in action, visit [Demo](http://doorsale-demo.rootplugin.com) site.
-
+Doorsale is open source e-commerce solution, simplicity in designed is to thrive sales and reduce development effort. Please read the documentation http://doorsale.readthedocs.io
 
 ## Setting up Doorsale e-commerce
 
 [Doorsale demo](https://github.com/mysteryjeans/doorsale-demo) repository is for quickly getting up and running e-commerce site on your local workstation, its readme contains all steps to setting up a site.
 
-When you have enough testing on prepopulated data in demo projects, starting your own site from skretch is similar to creating project in Django.
+When you have enough testing on prepopulated data in demo projects, starting your own site from scratch is similar to creating project in Django.
 
 Create a new virtualenv for your own e-commerce project
 
@@ -70,7 +67,7 @@ Doorsale is yet to be production ready, there are few tasks left in completeness
 
 ## Contributing
 
-Doorsale is free and open-source, we support and encourages an active heathly community that accepts contributions from the public – including you!
+Doorsale is free and open-source, I support and encourage an active healthy community that accepts contributions from the public – **including you!**
 
 We look forward to seeing your pull requests!
 
