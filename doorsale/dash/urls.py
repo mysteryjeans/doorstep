@@ -1,8 +1,7 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from doorsale.dash.views import IndexView
 
-urlpatterns = patterns(
-  '',
-  url(r'^$', IndexView.as_view(), name='dash_index'),
-  )
+urlpatterns = [
+    url(r'^$', IndexView.as_view(), name='dash_index'),
+]
