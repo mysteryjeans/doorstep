@@ -51,11 +51,10 @@ Demo repository is following master branch on Doorstep, so you should pull chang
 
 ## Development
 
-Doorstep is yet to be production ready, there are few tasks left in completeness, listed as follows.
+Doorstep is yet to be production ready, there are few features left in completeness are:
 
+- Administration\Backoffice
 - Unit tests
-- Backoffice administration
-
 
 ## Built With
 
