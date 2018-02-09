@@ -3,12 +3,12 @@ import os
 from setuptools import setup, find_packages
 
 SETUP_DIR = os.path.dirname(os.path.abspath(__file__))
-EXCLUDE_FROM_PACKAGES = ['doorsale.conf.project_settings',
-                         'doorsale.bin']
+EXCLUDE_FROM_PACKAGES = ['doorstep.conf.project_settings',
+                         'doorstep.bin']
 
 
 # Dynamically calculate the version based on django.VERSION.
-version = __import__('doorsale').get_version()
+version = __import__('doorstep').get_version()
 
 
 # Setup should be run from any extracted folder
@@ -20,9 +20,9 @@ with open(os.path.join(SETUP_DIR, 'README.md')) as readme:
     README = readme.read()
 
 
-setup(name='Doorsale',
+setup(name='Doorstep',
       version=version,
-      url='https://github.com/mysteryjeans/doorsale',
+      url='https://github.com/mysteryjeans/doorstep',
       author='Faraz Masood Khan',
       author_email='faraz@fanaticlab.com',
       description='The powerful e-commerce solution for Django.',
@@ -30,7 +30,7 @@ setup(name='Doorsale',
       license='GPLv2',
       packages=find_packages(exclude=EXCLUDE_FROM_PACKAGES),
       include_package_data=True,
-      scripts=['doorsale/bin/doorsale-admin.py'],
+      scripts=['doorstep/bin/doorstep-admin.py'],
       install_requires=['Django>=1.8.13,<1.10',
                         'django-pipeline>=1.6',
                         'Pillow>=2.7.0',

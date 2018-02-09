@@ -1,0 +1,106 @@
+[
+{
+    "pk": 1, 
+    "model": "doorstep.sysconfig", 
+    "fields": {
+        "updated_by": "system", 
+        "description": "Domain name will be used in link generation, specially in emails", 
+        "value": "127.0.0.1:8000", 
+        "created_on": "2014-09-19T22:28:46.663Z", 
+        "created_by": "system", 
+        "updated_on": "2014-09-19T22:28:46.663Z", 
+        "name": "DOMAIN"
+    }
+},
+{
+    "pk": 2, 
+    "model": "doorstep.sysconfig", 
+    "fields": {
+        "updated_by": "system", 
+        "description": "Name of your website that will be used in all pages", 
+        "value": "Doorstep", 
+        "created_on": "2014-09-19T22:28:46.684Z", 
+        "created_by": "system", 
+        "updated_on": "2014-09-19T22:28:46.684Z", 
+        "name": "SITE_NAME"
+    }
+},
+{
+    "pk": 3, 
+    "model": "doorstep.sysconfig", 
+    "fields": {
+        "updated_by": "system", 
+        "description": "Page title for index pages of your website", 
+        "value": "The powerful e-commerce solution for Django", 
+        "created_on": "2014-09-19T22:28:46.704Z", 
+        "created_by": "system", 
+        "updated_on": "2014-09-19T22:28:46.704Z", 
+        "name": "SITE_TITLE"
+    }
+},
+{
+    "pk": 5, 
+    "model": "doorstep.sysconfig", 
+    "fields": {
+        "updated_by": "system", 
+        "description": "Meta description for SEO", 
+        "value": "The e-commerce solution site build using Doorstep", 
+        "created_on": "2014-09-19T22:28:46.747Z", 
+        "created_by": "system", 
+        "updated_on": "2014-09-19T22:28:46.747Z", 
+        "name": "SITE_DESCRIPTION"
+    }
+},
+{
+    "pk": 6, 
+    "model": "doorstep.sysconfig", 
+    "fields": {
+        "updated_by": "system", 
+        "description": "Copyright statement displayed on all pages", 
+        "value": "Copyright &copy; 2015 Doorstep. All rights reserved.", 
+        "created_on": "2014-09-19T22:28:46.768Z", 
+        "created_by": "system", 
+        "updated_on": "2014-09-19T22:28:46.768Z", 
+        "name": "COPYRIGHT"
+    }
+},
+{
+    "pk": 7, 
+    "model": "doorstep.sysconfig", 
+    "fields": {
+        "updated_by": "system", 
+        "description": "Support email address displayed for bugs and error reporting", 
+        "value": "demo@doorstep.com", 
+        "created_on": "2014-09-19T22:28:46.789Z", 
+        "created_by": "system", 
+        "updated_on": "2014-09-19T22:28:46.789Z", 
+        "name": "SUPPORT_EMAIL"
+    }
+},
+{
+    "pk": 14, 
+    "model": "doorstep.sysconfig", 
+    "fields": {
+        "updated_by": "system", 
+        "description": "Number of products listing on single page", 
+        "value": "20", 
+        "created_on": "2014-09-19T22:28:46.917Z", 
+        "created_by": "system", 
+        "updated_on": "2014-09-19T22:28:46.917Z", 
+        "name": "PAGE_SIZE"
+    }
+},
+{
+    "pk": 15, 
+    "model": "doorstep.sysconfig", 
+    "fields": {
+        "updated_by": "system", 
+        "description": "Maximun number of products should be displayed as new arrivals", 
+        "value": "10", 
+        "created_on": "2014-09-19T22:28:46.917Z", 
+        "created_by": "system", 
+        "updated_on": "2014-09-19T22:28:46.917Z", 
+        "name": "MAX_RECENT_ARRIVALS"
+    }
+}
+]

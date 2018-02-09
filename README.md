@@ -1,31 +1,31 @@
-Doorsale
+Doorstep
 ========
-[![Build Status](https://travis-ci.org/mysteryjeans/doorsale.svg?branch=master)](https://travis-ci.org/mysteryjeans/doorsale)
+[![Build Status](https://travis-ci.org/mysteryjeans/doorstep.svg?branch=master)](https://travis-ci.org/mysteryjeans/doorstep)
 
-Doorsale is open source e-commerce solution, simplicity in designed is to thrive sales and reduce development effort. Please read the documentation http://doorsale.readthedocs.io
+Doorstep is open source e-commerce solution, simplicity in designed is to thrive sales and reduce development effort. Please read the documentation http://doorstep.readthedocs.io
 
-## Setting up Doorsale e-commerce
+## Setting up Doorstep e-commerce
 
-[Doorsale demo](https://github.com/mysteryjeans/doorsale-demo) repository is for quickly getting up and running e-commerce site on your local workstation, its readme contains all steps to setting up a site.
+[Doorstep demo](https://github.com/mysteryjeans/doorstep-demo) repository is for quickly getting up and running e-commerce site on your local workstation, its readme contains all steps to setting up a site.
 
 When you have enough testing on prepopulated data in demo projects, starting your own site from scratch is similar to creating project in Django.
 
 Create a new virtualenv for your own e-commerce project
 
 ```
-$ virtualenv doorsale_env && source doorsale_env/bin/activate
+$ virtualenv doorstep_env && source doorstep_env/bin/activate
 ```
 
 Install the latest development version from this git repository.
 
 ```
-$ pip install --upgrade git+https://github.com/mysteryjeans/doorsale.git#egg=Doorsale
+$ pip install --upgrade git+https://github.com/mysteryjeans/doorstep.git#egg=Doorstep
 ```
 
-Create a e-commerce project using doorsale-admin.py instead of using django-admin.py.
+Create a e-commerce project using doorstep-admin.py instead of using django-admin.py.
 
 ```
-$ doorsale-admin.py startproject doorsale_site
+$ doorstep-admin.py startproject doorstep_site
 ```
 
 Create database schema by running migrate command, by default django project use SQLite, which off course you can changed in settings.py, if you are new to databases this is good choice to start with. Migrate command will also load initial data in database as well.
@@ -46,12 +46,12 @@ Django-Pipeline settings is configured to use [LESS](http://lesscss.org/#using-l
 $ npm install -g less yuglify
 ```
 
-Demo repository is following master branch on Doorsale, so you should pull changes frequently to keep things synchronized and running smoothly, see [demo project](https://github.com/mysteryjeans/doorsale-demo) readme for more details.
+Demo repository is following master branch on Doorstep, so you should pull changes frequently to keep things synchronized and running smoothly, see [demo project](https://github.com/mysteryjeans/doorstep-demo) readme for more details.
 
 
 ## Development
 
-Doorsale is yet to be production ready, there are few tasks left in completeness, listed as follows.
+Doorstep is yet to be production ready, there are few tasks left in completeness, listed as follows.
 
 - Unit tests
 - Backoffice administration
@@ -67,11 +67,11 @@ Doorsale is yet to be production ready, there are few tasks left in completeness
 
 ## Contributing
 
-Doorsale is free and open-source, I support and encourage an active healthy community that accepts contributions from the public – **including you!**
+Doorstep is free and open-source, I support and encourage an active healthy community that accepts contributions from the public – **including you!**
 
 We look forward to seeing your pull requests!
 
 
 ## Screenshot
 
-![Doorsale Demo Screenshot](https://raw.github.com/mysteryjeans/doorsale-demo/master/media/images/demo-screenshot.png)
+![Doorstep Demo Screenshot](https://raw.github.com/mysteryjeans/doorstep-demo/master/media/images/demo-screenshot.png)

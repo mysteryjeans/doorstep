@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'doorsale_test_settings_key'
+SECRET_KEY = 'doorstep_test_settings_key'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,7 +41,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'doorsale.urls'
+ROOT_URLCONF = 'doorstep.urls'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -63,49 +63,49 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-################## Doorsale #########################
+################## Doorstep #########################
 #####################################################
 
-# Doorsale e-commerce settings for Django project
+# Doorstep e-commerce settings for Django project
 # Customize these settings only if you know
 
-# Django authentication app extended by Doorsale in Django way
+# Django authentication app extended by Doorstep in Django way
 # To implement your own custom auth user model, extend
-# doorsale.accounts.AbstractUser instead and change AUTH_USER_MODEL
-# similarly. Doorsale will adopt new AUTH_USER_MODEL seemlessly
+# doorstep.accounts.AbstractUser instead and change AUTH_USER_MODEL
+# similarly. Doorstep will adopt new AUTH_USER_MODEL seemlessly
 AUTH_USER_MODEL = 'accounts.User'
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 
-# Doorsale apps configuration required for Django
+# Doorstep apps configuration required for Django
 INSTALLED_APPS += (
-    'doorsale',
-    'doorsale.geo',
-    'doorsale.pages',
-    'doorsale.accounts',
-    'doorsale.catalog',
-    'doorsale.sales',
-    'doorsale.financial',
-    'doorsale.payments',
+    'doorstep',
+    'doorstep.geo',
+    'doorstep.pages',
+    'doorstep.accounts',
+    'doorstep.catalog',
+    'doorstep.sales',
+    'doorstep.financial',
+    'doorstep.payments',
 )
 
 # DOMAIN will be used in link generation specially in emails
 DOMAIN = '127.0.0.1:8000'
 
 # SITE_NAME it will be used in all pages, this is the name of your website
-SITE_NAME = 'Doorsale'
+SITE_NAME = 'Doorstep'
 
 # SITE_TITLE for index pages of your website
 SITE_TITLE = 'The powerful e-commerce solution for Django'
 
 # Meta description for SEO
-SITE_DESCRIPTION = 'The e-commerce solution site build using Doorsale'
+SITE_DESCRIPTION = 'The e-commerce solution site build using Doorstep'
 
 # COPYRIGHT statement for all pages
-COPYRIGHT = 'Copyright &copy; 2014 Doorsale. All rights reserved.'
+COPYRIGHT = 'Copyright &copy; 2014 Doorstep. All rights reserved.'
 
 # SUPPORT_EMAIL address for bugs and error reporting
-SUPPORT_EMAIL = 'demo@doorsaledemo.com'
+SUPPORT_EMAIL = 'demo@doorstepdemo.com'
 
 
 # Email Server settings for sending notifications & confirmations emails
@@ -119,13 +119,13 @@ EMAIL_HOST_PASSWORD = r''
 ################ Django-Pipeline #####################
 ######################################################
 
-# Doorsale uses django-pipeline for LESS & Javascript
+# Doorstep uses django-pipeline for LESS & Javascript
 # preprocessing, compression and versioning.
 
 # When collectstatic called during deployment LESS & Javascript will be
 # compiled, compressed and versioned before copying to static folder
 
-# Django-Pipeline app required by Doorsale
+# Django-Pipeline app required by Doorstep
 INSTALLED_APPS += ('pipeline',)
 
 # LESS compiler configuration for django-pipeline
@@ -135,22 +135,22 @@ PIPELINE_COMPILERS = ('pipeline.compilers.less.LessCompiler',)
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
 # Custom Javascript needs to be in global scope
-# in order for Doorsale to work properly
+# in order for Doorstep to work properly
 PIPELINE_DISABLE_WRAPPER = True
 
 
 # CSS configurations for django-pipeline
-# All LESS styles configured for doorsale defined
+# All LESS styles configured for doorstep defined
 # You can append your LESS configurations here.
 PIPELINE_CSS = {
-    # doorsale app LESS styles
+    # doorstep app LESS styles
     'base': {
         'source_filenames': (
-            'doorsale/css/base.less',
+            'doorstep/css/base.less',
         ),
-        'output_filename': 'doorsale/css/base.css'
+        'output_filename': 'doorstep/css/base.css'
     },
-    # doorsale.catalog LESS styles for products catalog
+    # doorstep.catalog LESS styles for products catalog
     'catalog': {
         'source_filenames': (
             'catalog/css/catalog.less',
@@ -164,14 +164,14 @@ PIPELINE_CSS = {
         ),
         'output_filename': 'catalog/css/font-awesome/css/font-awesome.min.css'
     },
-    # doorsale.sales LESS styles for checkout pages
+    # doorstep.sales LESS styles for checkout pages
     'sales': {
         'source_filenames': (
             'sales/css/sales.less',
         ),
         'output_filename': 'sales/css/sales.css'
     },
-    # doorsale.pages LESS styles for flat pages
+    # doorstep.pages LESS styles for flat pages
     'pages': {
         'source_filenames': (
             'pages/css/pages.less',
@@ -182,18 +182,18 @@ PIPELINE_CSS = {
 
 
 # Javascript configuration for django-pipeline
-# Doorsale app's Javascript compressed & versioned before deployment
+# Doorstep app's Javascript compressed & versioned before deployment
 # Simply add your project or apps Javascript here
 PIPELINE_JS = {
-    # doorsale: Base javascript include in every page
+    # doorstep: Base javascript include in every page
     'base': {
         'source_filenames': (
-            'doorsale/scripts/jquery-ajax.js',
-            'doorsale/scripts/jquery-utils.js',
+            'doorstep/scripts/jquery-ajax.js',
+            'doorstep/scripts/jquery-utils.js',
         ),
-        'output_filename': 'doorsale/scripts/base.js',
+        'output_filename': 'doorstep/scripts/base.js',
     },
-    # doorsale.catalog: Javascript for product catalog pages
+    # doorstep.catalog: Javascript for product catalog pages
     'catalog_base': {
         'source_filenames': (
             'catalog/scripts/jquery.catalog_base.js',

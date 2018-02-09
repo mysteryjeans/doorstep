@@ -4,33 +4,33 @@
 Overview
 ========
 
-Doorsale is open source e-commerce solution, simplicity in designed is to thrive
+Doorstep is open source e-commerce solution, simplicity in designed is to thrive
 sales, which are reaching to be production ready. It is built on top of Django_
 Web-development framework for Python.
 
 .. _Django: https://djangoproject.com/
 
-Doorsale Apps
+Doorstep Apps
 =============
 
-Doorsale is set of Django `apps`_ similar to builtin apps like session, auth,
+Doorstep is set of Django `apps`_ similar to builtin apps like session, auth,
 admin and etc, each app is design to serve specific purpose.
 
-* ``doorsale``: core app for base classes of views and templates and hold all urls
+* ``doorstep``: core app for base classes of views and templates and hold all urls
 
-* ``doorsale.geo``: contains models for country, state & addresses
+* ``doorstep.geo``: contains models for country, state & addresses
 
-* ``doorsale.pages``: to serve static pages for about, contact and policy
+* ``doorstep.pages``: to serve static pages for about, contact and policy
 
-* ``doorsale.accounts``: extends Django auth model and also provide abstract classes
+* ``doorstep.accounts``: extends Django auth model and also provide abstract classes
 
-* ``doorsale.catalog``: products catalog and listings
+* ``doorstep.catalog``: products catalog and listings
 
-* ``doorsale.sales``: order processing
+* ``doorstep.sales``: order processing
 
-* ``doorsale.financial``: currency rate and conversion
+* ``doorstep.financial``: currency rate and conversion
 
-* ``doorsale.payments``: payment gateways like PayPal & Stripe
+* ``doorstep.payments``: payment gateways like PayPal & Stripe
 
 .. _apps: https://docs.djangoproject.com/en/stable/intro/reusable-apps/
 

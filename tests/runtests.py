@@ -5,14 +5,14 @@ import os
 from optparse import OptionParser
 
 DOORSALE_APPS = (
-    'doorsale',
-    'doorsale.geo',
-    'doorsale.pages',
-    'doorsale.accounts',
-    'doorsale.catalog',
-    'doorsale.sales',
-    'doorsale.financial',
-    'doorsale.payments',
+    'doorstep',
+    'doorstep.geo',
+    'doorstep.pages',
+    'doorstep.accounts',
+    'doorstep.catalog',
+    'doorstep.sales',
+    'doorstep.financial',
+    'doorstep.payments',
 )
 
 

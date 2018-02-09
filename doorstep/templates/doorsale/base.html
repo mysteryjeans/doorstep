@@ -1,0 +1,73 @@
+{% extends "doorstep/skeleton.html" %}
+
+{% load staticfiles %}
+{% load pipeline %}
+{% load pages_tags %}
+{% load cache %}
+
+{% block head %}
+{{ block.super }}
+<meta name="application-name" content="{{ SITE_NAME }}"/>
+<meta name="copyright" content="{{ COPYRIGHT }}"/>
+<meta name="description" content="{{ page_description|default:SITE_DESCRIPTION }}"/>
+{% block og_meta %}
+<meta property="og:site_name" content="{{ SITE_NAME }}"/>
+<meta property="og:title" content="{{ page_title|default:SITE_TITLE }} | {{ SITE_NAME }}"/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="{% static 'img/icon.png' %}"/>
+<meta property="og:description" content="{{ page_description|default:SITE_DESCRIPTION }}"/>
+<meta name="author" content="{{ SITE_NAME }}, {{ CONTACT_EMAIL }}"/>
+{% endblock %}
+<title>{{ page_title|default:SITE_TITLE }} | {{ SITE_NAME }}</title>
+<link rel="icon shortcut" href="{% static 'img/icon.png' %}" type="image/png"/>
+
+{% block styles %}
+{% stylesheet style_name %}
+{% endblock %}
+{% endblock %}
+
+{% block body %}
+{{ block.super }}
+<header>
+	{% block header-content %}
+	{% block header-logo %}
+	<a href="{% url 'catalog_index' %}" class="logo"><h1>{{ SITE_NAME }}</h1></a>
+	{% endblock %}
+	<ul id="menu">
+		{% block header-menu-list %}
+		{% if user.is_authenticated %}
+		<li>Welcome! {{ user.get_username }}</li>
+		{% if user.is_staff %}
+		<li><a href="/admin/">Admin</a></li>
+		{% endif %}
+		<li><a href="{% url 'accounts_change_password' %}">Change password</a> | <a href="{% url 'accounts_logout' %}">Logout</a></li>
+		{% else %}
+		<li><a href="{% url 'accounts_login' %}">Login</a></li>
+		<li><a href="{% url 'accounts_register' %}" title="Register to shop faster and better!">Register</a></li>
+		{% endif %}
+		{% endblock %}
+	</ul>
+	{% endblock %}
+</header>
+<div id="content">
+	{% block content %}
+	{% endblock %}
+</div>
+<footer>
+	{% block footer %}
+	{% cache cache_timeout page-links %}
+	{% get_pages_links %}
+	<div class="copyright">
+		<p>
+			<span class="statement">{{ COPYRIGHT|safe }}</span> <span class="poweredby">Powered by <a href="https://github.com/mysteryjeans/doorstep">Doorstep</a></span>
+		<p>
+	</div>
+	{% endcache %}
+	{% endblock %}
+</footer>
+{% block scripts %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+{% javascript 'base' %}
+{% endblock %}
+{% endblock %}

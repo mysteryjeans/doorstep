@@ -4,33 +4,33 @@
 Project
 =======
 
-I'll assume you have :doc:`Doorsale installed <install>` already. You can
+I'll assume you have :doc:`Doorstep installed <install>` already. You can
 tell which version by running the following command:
 
 .. code-block:: console
 
-    $ python -c "import doorsale; print(doorsale.get_version())"
+    $ python -c "import doorstep; print(doorstep.get_version())"
 
-If Doorsale is installed, you should see the version of your installation. If it
-isn't, you'll get an error telling "No module named doorsale".
+If Doorstep is installed, you should see the version of your installation. If it
+isn't, you'll get an error telling "No module named doorstep".
 
 Start new project
 =================
 
 If you haven't develop with Django_ before, this documentation doesn't cover you
-for Django development. Doorsale itself follows Django philosophy and uses,
+for Django development. Doorstep itself follows Django philosophy and uses,
 extends or even copies it where ever possible.
 
-Start your own e-commerce project using ``doorsale-admin.py``, it simple wrapper
+Start your own e-commerce project using ``doorstep-admin.py``, it simple wrapper
 around Django's own ``django-admin.py``:
 
 .. code-block:: console
 
-    $ doorsale-admin.py startproject ecomstore
+    $ doorstep-admin.py startproject ecomstore
 
 Now that your own site is created, lets change directory to ecomstore & create
 database tables by running following command. This will create all tables
-required by Django & Doorsale. Default database is SQLite_ which is a good
+required by Django & Doorstep. Default database is SQLite_ which is a good
 starting point, you can later switch to your favorite databases_ that are
 supported by Django.
 

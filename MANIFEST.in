@@ -1,24 +1,24 @@
 include README.md
 include LICENSE
 include MANIFEST.in
-recursive-include doorsale/bin *
-recursive-include doorsale/fixtures *
-recursive-include doorsale/geo/fixtures *
-recursive-include doorsale/sales/fixtures *
-recursive-include doorsale/pages/fixtures *
-recursive-include doorsale/payments/fixtures *
-recursive-include doorsale/financial/fixtures *
-recursive-include doorsale/static *
-recursive-include doorsale/templates *
-recursive-include doorsale/sales/static *
-recursive-include doorsale/sales/templates *
-recursive-include doorsale/catalog/static *
-recursive-include doorsale/catalog/templates *
-recursive-include doorsale/accounts/templates *
-recursive-include doorsale/payments/templates *
-recursive-include doorsale/conf/project_template *
-recursive-include doorsale/pages/static *
-recursive-include doorsale/pages/templates *
+recursive-include doorstep/bin *
+recursive-include doorstep/fixtures *
+recursive-include doorstep/geo/fixtures *
+recursive-include doorstep/sales/fixtures *
+recursive-include doorstep/pages/fixtures *
+recursive-include doorstep/payments/fixtures *
+recursive-include doorstep/financial/fixtures *
+recursive-include doorstep/static *
+recursive-include doorstep/templates *
+recursive-include doorstep/sales/static *
+recursive-include doorstep/sales/templates *
+recursive-include doorstep/catalog/static *
+recursive-include doorstep/catalog/templates *
+recursive-include doorstep/accounts/templates *
+recursive-include doorstep/payments/templates *
+recursive-include doorstep/conf/project_template *
+recursive-include doorstep/pages/static *
+recursive-include doorstep/pages/templates *
 recursive-exclude * .DS_Store
 recursive-exclude * *.py[co]
 recursive-exclude * __pycache__

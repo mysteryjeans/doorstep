@@ -4,34 +4,34 @@
 Installation
 ============
 
-Before you can start with your e-commerce project, lets install Doorsale.
+Before you can start with your e-commerce project, lets install Doorstep.
 
 
 Virtual environment
 ==========================
 
-Create a new `virtual environment`_ for Doorsale, its isolated Python environment
-which are more practical than installing Doorsale systemwide. They also allow
+Create a new `virtual environment`_ for Doorstep, its isolated Python environment
+which are more practical than installing Doorstep systemwide. They also allow
 installing packages without root privileges, you may create separate virtualenv_
 for each of your e-commerce site.
 
 .. code-block:: console
 
-     $ virtualenv doorsale_env && source doorsale_env/bin/activate
+     $ virtualenv doorstep_env && source doorstep_env/bin/activate
 
 .. _virtualenv: http://www.virtualenv.org/
 .. _virtual environment: http://www.virtualenv.org/
 
-Install Doorsale
+Install Doorstep
 ================
 
-Recommend way to install Doorsale is via pip_, it will be easy
+Recommend way to install Doorstep is via pip_, it will be easy
 to upgrade to latest version. Alternatively you can download repository and
 install with via setuptools_ ``python setup.py install``
 
 .. code-block:: console
 
-   $ pip install --upgrade git+https://github.com/mysteryjeans/doorsale.git#egg=Doorsale
+   $ pip install --upgrade git+https://github.com/mysteryjeans/doorstep.git#egg=Doorstep
 
 .. _pip: https://pip.pypa.io/
 .. _setuptools: https://pypi.python.org/pypi/setuptools
