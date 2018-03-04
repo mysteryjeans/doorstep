@@ -8,7 +8,9 @@
 {{ block.super }}
 <div class="right">
 	<ul>
-		<li><a><i class="material-icons">shopping_cart</i></a></li>
+		<li id="basket-container">
+				{% cart_basket %}
+		</li>
 		<li>
 			<a class="dropdown-button" data-activates="currency-dropdown" data-constrainwidth="false" data-alignment="right" data-beloworigin="true">
 				{{ default_currency.code }}
@@ -67,7 +69,7 @@
 		</a>
 		<div id="manufacturers-dropdown" class="dropdown-content row">
 			{% for manufacturer in manufacturers %}
-			<div class="col s2">
+			<div class="col s3">
 				<a href="{{ manufacturer.get_absolute_url }}" class="black-text">{{ manufacturer.name }}</a>
 			</div>
 			{% endfor %}
@@ -124,12 +126,6 @@
 			{% endfor %}
 		</ul>
 		{% endif %}
-		<div class="cart-basket">
-			<div id="basket-container" onclick="javascript:$('.basket-items', this).fadeIn('fast');">
-				{% cart_basket %}
-			</div>
-			<br/>
-		</div>
 	</div>
 	<div id="catalog-content">
 		{% block catalog-content %}

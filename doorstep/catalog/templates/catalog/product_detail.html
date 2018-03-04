@@ -23,7 +23,7 @@
 				{% endif %}
 			</li>
 			<li>
-				 <label>Brand:</label> <a href="{{ product.brand.get_absolute_url }}">{{ product.brand.name }}</a> 
+				 <label>Brand:</label> <a href="{{ product.brand.get_absolute_url }}">{{ product.brand.name }}</a>
 			</li>
 			<li>
 				{% if product.is_free_shipping %}
@@ -115,11 +115,8 @@
 {{ block.super }}
 {% javascript 'product_detail' %}
 <script type="text/javascript">
-	// Expanding to sub category been selected
-	expandCategories('{{ product.category_id }}');
-
 	// Generating tabs
-	$('#product-details').tabs(); 
+	$('#product-details').tabs();
 
 	function add_to_cart(data) {
 		if(data.status == 200) {

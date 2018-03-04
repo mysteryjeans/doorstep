@@ -2,54 +2,47 @@
 {% load thumbnail %}
 
 {% with items=cart.get_items sub_total=cart.get_sub_total items_count=cart.get_items_count %}
-<div class="basket">
-	<div class="basket-cap">
-		<div class="cart-count">
-			{% if items_count %}
-			<span class="basket-items-count">{{ items_count  }}</span>
-			{% endif %}
-			<i class="fa fa-shopping-cart"></i>
-		</div>
-		<span class="price">{{ sub_total|currency:default_currency }}</span>
-	</div>
-	<div class="basket-items" context-menu='#basket-container'>
-		<span class="arrow"></span>
+<a id="basket-dropdown-button" class="dropdown-button" data-activates="basket-dropdown" data-constrainwidth="false" data-alignment="right" data-beloworigin="true">
+	<i class="material-icons right">shopping_cart</i>
+	{% if items_count %}
+	<span class="new badge right" data-badge-caption="">{{ items_count }} ({{ sub_total|currency:default_currency }})</span>
+	{% endif %}
+</a>
+<div id="basket-dropdown" class="dropdown-content">
+	<ul class="collection">
 		{% if items %}
-		<ul>
-			{% for item in items %}
-			{% with product=item.product %}
-			<li class="cart-item">
-				<div class="item-preview">
-					{% thumbnail product.pics.all.0.url "54x54" as im %}
-					<img src="{{ im.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
-					{% endthumbnail %}
-				</div>
-				<form method="post" class="cart-item-remove" data-ajax="true" data-ajax-url="{% url 'sales_remove_from_cart' %}" data-ajax-update="#basket-container" data-ajax-success="basketChanged();">
-					{% csrf_token %}
-					<input name="product_id" type="hidden" value="{{ item.product_id }}"/>
-					<a onclick="javascript:$(this).closest('form').submit();" title="Remove this product."><i class="fa fa-trash-o"></i></a>
-				</form>
-				<a href="{{ product.get_absolute_url }}" title="{{ product.gist }}">{{ product.name }}</a>
-				<p>
-					<span class="price" title="Per unit price">{{ product.price|currency:default_currency }}</span>
-					<br />
-					<span class="quantity">Qty: {{ item.quantity }}</span>
-				</p>
-			</li>
-			{% endwith %}
-			{% endfor %}
-		</ul>
-		<div class="sub-total">
-			<p>
-				<label>Sub-Total:</label> <span class="price">{{ sub_total|currency:default_currency }}</span>
-			</p>
-			<a href="{% url 'sales_checkout_cart' %}" class="button">Checkout</a>
-		</div>
+		{% for item in items %}
+		{% with product=item.product %}
+		<li class="collection-item avatar">
+			{% thumbnail product.pics.all.0.url "54x54" as im %}
+			<img class="circle" src="{{ im.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
+			{% endthumbnail %}
+			<div>
+				<a class="title" href="{{ product.get_absolute_url }}" title="{{ product.gist }}">{{ product.name }}</a>
+				<span class="new badge red left" data-badge-caption="">{{ product.price|currency:default_currency }}</span>
+				<span class="new badge left" data-badge-caption="">Qty: {{ item.quantity }}</span>
+			</div>
+			<form  class="secondary-content" method="post" data-ajax="true" data-ajax-url="{% url 'sales_remove_from_cart' %}" data-ajax-update="#basket-container" data-ajax-success="basketChanged();">
+				{% csrf_token %}
+				<input name="product_id" type="hidden" value="{{ item.product_id }}"/>
+				<a onclick="javascript:$(this).closest('form').submit();" title="Remove this product."><i class="material-icons tiny">delete</i></a>
+			</form>
+		</li>
+		{% endwith %}
+		{% endfor %}
+		<li class="collection-item grey lighten-3">
+			<div >
+				<span class="new badge grey left" data-badge-caption="">Subtotal: {{ sub_total|currency:default_currency }}</span>
+				<a class="btn blue btn-tiny right " href="{% url 'sales_checkout_cart' %}" class="btn"><i class="material-icons left">add_shopping_cart</i>Checkout</a>
+			</div>
+		</li>
 		{% else %}
-		<div class="no-items" >
-			You have no items in your shopping cart.
-		</div>
+		<li class="collection-item">
+			<div class="title">
+				You have no items in your shopping cart.
+			</div>
+		</li>
 		{% endif %}
-	</div>
+	</ul>
 </div>
 {% endwith %}

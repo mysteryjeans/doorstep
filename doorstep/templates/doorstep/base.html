@@ -63,6 +63,9 @@
 						<a class="disabled">Hi {{ user.get_username }}!</a>
 					</li>
 					<li class="divider"></li>
+					<li>
+						<a href="{% url 'catalog_index' %}"><i class="material-icons">home</i>Home</a>
+					</li>
 					{% if user.is_staff %}
 					<li>
 						<a href="/admin/">
@@ -79,6 +82,9 @@
 					</li>
 					{% else %}
 					<li>
+						<a href="{% url 'catalog_index' %}"><i class="material-icons">home</i>Home</a>
+					</li>
+					<li>
 						<a href="{% url 'accounts_login' %}">
 							<i class="material-icons">vpn_key</i>Login</a>
 					</li>
@@ -91,7 +97,7 @@
 				</ul>
 			{% endblock %}
 		</div>
-		
+
 		{% block nav-extended %}
 		{% endblock %}
 	</nav>
