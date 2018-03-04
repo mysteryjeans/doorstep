@@ -229,4 +229,6 @@ def paginate(query_set, page_size, page_num, url_name, url_args=[], qs=None):
         next_page_num = page.next_page_number()
         page.next_url = reverse(url_name, args=(url_args + [next_page_num])) + (qs or '')
 
+    page.page_urls = [(page_num, reverse(url_name, args=(url_args + [page_num])) + (qs or '')) for page_num in range(1, paginator.num_pages + 1)]
+
     return page

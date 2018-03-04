@@ -3,20 +3,16 @@
 {% load cache %}
 
 {% block catalog-content %}
-{% cache cache_timeout featured-products featured_products|length %}
 <div style="clear: both; overflow: hidden;">
 	<h3>Featured</h3>
 	{% with products=featured_products %}
 	{% include "catalog/parts/products_list.html" %}
 	{% endwith %}
 </div>
-{% endcache %}
-{% cache cache_timeout recent-products recent_products|length %}
 <div style="clear: both; overflow: hidden; margin-top: 20px;">
 	<h3>New Arrivals</h3>
 	{% with products=recent_products %}
 	{% include "catalog/parts/products_list.html" %}
 	{% endwith %}
 </div>
-{% endcache %}
 {% endblock %}

@@ -1,56 +1,64 @@
 {% load catalog_filters %}
 {% load thumbnail %}
 
-<div class="products-list">
-	<ul>
+<div>
+	<div class="row">
 		{% for product in products %}
-		<li class="product">
-			{% with pic=product.pics.all.0 %}
-			<a href="{{ product.get_absolute_url }}">
-				<div class="pic-container">
-					{% thumbnail pic.url "128x128" as im %}
-					<img src="{{ im.url }}" alt="{{ product.name }}"/>
+		<div class="col s3">
+			<div class="card medium">
+				<div class="card-image">
+					{% with pic=product.pics.all.0 %}
+					{% thumbnail pic.url "400x400" as im %}
+					<img class="activator" src="{{ im.url }}" alt="{{ product.name }}"/>
 					{% endthumbnail %}
+					{% endwith %}
 				</div>
-				<div class="title">
-					{{ product.name }}
+				{% if product.gist %}
+				<div class="card-content">
+					<span class="activator grey-text text-darken-4"><i class="material-icons right">more_vert</i><small>{{ product.gist }}</small></span>
 				</div>
-			</a>
-			{% endwith %}
-			{% if product.gist %}
-			<div class="description">
-				{{ product.gist }}
-			</div>
-			{% endif %}
-			<div class="price">
-				{{ product.price|currency:default_currency }}
-				{% if product.old_price %}
-				<span class="old-price"> {{ product.old_price|currency:default_currency }}</span>
-				<span class="discount"> {{ product.get_discount }}% OFF</span>
+				<div class="card-reveal">
+					<span class="card-title grey-text text-darken-4 "><i class="material-icons right">close</i><small>{{ product.name }}</small></span>
+					<p><small>{{ product.gist }}</small></p>
+				</div>
 				{% endif %}
+				<a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">add_shopping_cart</i></a>
+				<div class="card-action">
+					<span class="new badge red" data-badge-caption="">{{ product.price|currency:default_currency }}</span>
+					{% if product.old_price %}
+					<span class="new badge grey" data-badge-caption="{{ product.get_discount }}% OFF"> {{ product.old_price|currency:default_currency }}</span>
+					{% endif %}
+					<a class="truncate" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+				</div>
 			</div>
-		</li>
+		</div>
 		{% empty %}
-		<li>
-			<p class="info-message-box">
+		<div class="col s4 m6">
+			<p>
 				{{ no_products_message|default:"There are no products to show you right now." }}
 			</p>
-		</li>
+		</div>
 		{% endfor %}
-	</ul>
+	</div>
 </div>
 {% if products.object_list %}
-<div class="pagination">
-    <span class="step-links">
-        {% if products.has_previous %}
-            <a href="{{ products.previous_url }}" rel="prev"><i class="fa fa-angle-left"></i> previous</a>
-        {% endif %}
-        <span class="current">
-            Page {{ products.number }} of {{ products.paginator.num_pages }}
-        </span>
-        {% if products.has_next %}
-            <a href="{{ products.next_url }}" rel="next">next <i class="fa fa-angle-right"></i></a>
-        {% endif %}
-    </span>
-</div>
+<ul class="pagination">
+	{% if products.has_previous %}
+	<li class="waves-effect" ><a href="{{ products.previous_url }}"><i class="material-icons">chevron_left</i></a></li>
+	{% else %}
+	<li class="disabled" ><a><i class="material-icons">chevron_left</i></a></li>
+	{% endif %}
+	{% for page_url in products.page_urls %}
+	{% if  page_url.0 == products.number %}
+	<li class="active"><a href="{{ page_url.1 }}">{{ page_url.0 }}</a></li>
+	{% else %}
+	<li class="waves-effect"><a href="{{ page_url.1 }}">{{ page_url.0 }}</a></li>
+	{% endif %}
+	{% endfor %}
+	{% if products.has_next %}
+	<li class="waves-effect"><a href="{{ products.next_url }}"><i class="material-icons">chevron_right</i></a></li>
+	{% else %}
+	<li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
+	{% endif %}
+</ul>
 {% endif %}
