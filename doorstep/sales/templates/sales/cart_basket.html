@@ -19,8 +19,10 @@
 			{% endthumbnail %}
 			<div>
 				<a class="title" href="{{ product.get_absolute_url }}" title="{{ product.gist }}">{{ product.name }}</a>
-				<span class="new badge red left" data-badge-caption="">{{ product.price|currency:default_currency }}</span>
-				<span class="new badge left" data-badge-caption="">Qty: {{ item.quantity }}</span>
+				<div class="clearfix">
+					<span class="new badge red left" data-badge-caption="">{{ product.price|currency:default_currency }}</span>
+					<span class="new badge left" data-badge-caption="">Qty: {{ item.quantity }}</span>
+				</div>
 			</div>
 			<form  class="secondary-content" method="post" data-ajax="true" data-ajax-url="{% url 'sales_remove_from_cart' %}" data-ajax-update="#basket-container" data-ajax-success="basketChanged();">
 				{% csrf_token %}

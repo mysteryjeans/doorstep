@@ -7,6 +7,9 @@
 		<div class="col s3">
 			<div class="card medium">
 				<div class="card-image">
+					{% if product.old_price %}
+					<span class="new badge yellow darken-2" data-badge-caption="" style="position: absolute;z-index:100;">{{ product.get_discount }}% OFF</span>
+					{% endif %}
 					{% with pic=product.pics.all.0 %}
 					{% thumbnail pic.url "400x400" as im %}
 					<img class="activator" src="{{ im.url }}" alt="{{ product.name }}"/>
@@ -22,11 +25,16 @@
 					<p><small>{{ product.gist }}</small></p>
 				</div>
 				{% endif %}
-				<a class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">add_shopping_cart</i></a>
+				<form id="add-to-cart-form" method="post" action="{% url 'sales_add_to_cart' %}" data-ajax="true" data-ajax-update="#basket-container" data-ajax-success="basketChanged();Materialize.toast('Added to cart', 2000)" data-ajax-complete="add_to_cart">
+					{% csrf_token %}
+					<input name="product_id" type="hidden" value="{{ product.id }}"/>
+					<input name="quantity" type="hidden" value="1"/>
+					<button class="btn-floating halfway-fab waves-effect waves-light blue"><i class="material-icons">add_shopping_cart</i></button>
+				</form>
 				<div class="card-action">
 					<span class="new badge red" data-badge-caption="">{{ product.price|currency:default_currency }}</span>
 					{% if product.old_price %}
-					<span class="new badge grey" data-badge-caption="{{ product.get_discount }}% OFF"> {{ product.old_price|currency:default_currency }}</span>
+					<span class="new badge grey old-price" data-badge-caption=""> {{ product.old_price|currency:default_currency }}</span>
 					{% endif %}
 					<a class="truncate" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
 				</div>

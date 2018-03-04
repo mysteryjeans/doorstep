@@ -85,6 +85,10 @@ main#content {
   }
 }
 
+.old-price {
+  text-decoration: line-through;
+}
+
 .message-box {
   background: @message-box-color;
   display: inline-block;
@@ -115,20 +119,7 @@ main#content {
     text-decoration: underline;
 }
 
-.price {
-  color: @price-color;
-  font-size: 1em;
 
-  .old-price, .discount {
-    font-size: 0.8em;
-    color: @light-text-color;
-    font-weight: normal;
-  }
-
-  .old-price {
-    text-decoration: line-through;
-  }
-}
 
 #catalog-bar {
   background: @catalog-bar-color;
