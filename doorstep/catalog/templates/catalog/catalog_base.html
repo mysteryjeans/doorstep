@@ -70,7 +70,7 @@
 		<div id="manufacturers-dropdown" class="dropdown-content row">
 			{% for manufacturer in manufacturers %}
 			<div class="col s3">
-				<a href="{{ manufacturer.get_absolute_url }}" class="black-text">{{ manufacturer.name }}</a>
+				<a href="{{ manufacturer.get_absolute_url }}" class="black-text"><small>{{ manufacturer.name }}</small></a>
 			</div>
 			{% endfor %}
 		</div>
