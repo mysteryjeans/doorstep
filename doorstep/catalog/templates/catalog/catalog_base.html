@@ -9,6 +9,26 @@
 <div class="right">
 	<ul>
 		<li><a><i class="material-icons">shopping_cart</i></a></li>
+		<li>
+			<a class="dropdown-button" data-activates="currency-dropdown" data-constrainwidth="false" data-alignment="right" data-beloworigin="true">
+				{{ default_currency.code }}
+				<i class="material-icons right">arrow_drop_down</i>
+			</a>
+			<div id="currency-dropdown" class="dropdown-content">
+				<form method="post" action="{% url 'catalog_change_currency' %}">
+						{% csrf_token %}
+						<input type="hidden" name="next" value="{{ request.get_full_path }}" />
+						<input id="default_currency" type="hidden" name="default_currency"/>
+						<ul>
+							{% for currency in currencies %}
+							<li>
+								<a onclick="javascript:$('#default_currency').val('{{ currency.code }}').closest('form').submit();">{{ currency.code }}</a>
+							</li>
+							{% endfor %}
+						</ul>
+				</form>
+			</div>
+		</li>
 	</ul>
 </div>
 {% include "catalog/parts/search_box.html" %}
@@ -108,15 +128,6 @@
 			<div id="basket-container" onclick="javascript:$('.basket-items', this).fadeIn('fast');">
 				{% cart_basket %}
 			</div>
-			<form method="post" action="{% url 'catalog_change_currency' %}" class="currencies">
-				{% csrf_token %}
-				<input type="hidden" name="next" value="{{ request.get_full_path }}" />
-				<select name="default_currency" class="currencies" onchange="javascript:$(this).closest('form').submit();">
-					{% for currency in currencies %}
-					<option value="{{ currency.code }}" {% if default_currency.code == currency.code %}selected="selected"{% endif %}>{{ currency.code }}</option>
-					{% endfor %}
-				</select>
-			</form>
 			<br/>
 		</div>
 	</div>

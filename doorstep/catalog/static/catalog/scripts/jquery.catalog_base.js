@@ -19,3 +19,5 @@ function basketChanged() {
 	// Initializing new forms in basket-container
 	bootstrapAjax($, '#basket-container');
 }
+
+$('select:not([multiple])').material_select();
