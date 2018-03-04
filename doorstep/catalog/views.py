@@ -52,7 +52,7 @@ class CatalogBaseView(BaseView):
             (currency for currency in self.currencies if currency.code == default_currency), self.primary_currency)
 
         context['breadcrumbs'] = breadcrumbs
-        context['categories'] = (category for category in self.categories if category.parent is None)
+        context['categories'] = [category for category in self.categories if category.parent is None]
         context['manufacturers'] = self.manufacturers
         context['currencies'] = self.currencies
         context['primary_currency'] = self.primary_currency

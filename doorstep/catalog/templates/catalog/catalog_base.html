@@ -14,11 +14,9 @@
 {% include "catalog/parts/search_box.html" %}
 {% endblock %}
 
-{% with categories=categories %}
-
 {% block nav-extended %}
 {{ block.super }}
-<ul class="nav-wrapper hide-on-med-and-down">
+<ul class="nav-wrapper hide-on-med-and-down categories">
 	{% with template_name="catalog/parts/category_nav.html" %}
 	{% for category in categories %}
 	{% if category.sub_categories_list %}
@@ -28,11 +26,11 @@
 			<i class="material-icons right">arrow_drop_down</i>
 		</a>
 		<div id="category-dropdown-{{ category.id }}" class="dropdown-content">
-			<ul>
+			<div class="row">
 				{% for category in category.sub_categories_list %}
 				{% include template_name %}
 				{% endfor %}
-			</ul>
+			</div>
 		</div>
 	</li>
 	{% else %}
@@ -47,17 +45,14 @@
 			Products
 			<i class="material-icons right">arrow_drop_down</i>
 		</a>
-		<div id="manufacturers-dropdown" class="dropdown-content">
-			<ul>
-				{% for manufacturer in manufacturers %}
-				<li>
-					<a href="{{ manufacturer.get_absolute_url }}">{{ manufacturer.name }}</a>
-				</li>
-				{% endfor %}
-			</ul>
+		<div id="manufacturers-dropdown" class="dropdown-content row">
+			{% for manufacturer in manufacturers %}
+			<div class="col s2">
+				<a href="{{ manufacturer.get_absolute_url }}" class="black-text">{{ manufacturer.name }}</a>
+			</div>
+			{% endfor %}
 		</div>
 	</li>
-	
 </ul>
 {% endblock %}
 
@@ -75,15 +70,13 @@
 {% endfor %}
 {% endwith %}
 <li class="divider"></li>
-<li><a class="subheader">Manufacturers</a></li>
+<li><a class="subheader">Products</a></li>
 {% for manufacturer in manufacturers %}
 <li>
 	<a href="{{ manufacturer.get_absolute_url }}">{{ manufacturer.name }}</a>
 </li>
 {% endfor %}
 {% endblock %}
-
-{% endwith %}
 
 {% block content %}
 <div id="catalog-content-container">
