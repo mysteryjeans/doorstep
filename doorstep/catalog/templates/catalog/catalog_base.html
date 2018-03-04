@@ -4,50 +4,88 @@
 {% load pipeline %}
 {% load cache %}
 
-{% block styles %}
+{% block header-menu %}
 {{ block.super }}
-{% stylesheet 'font-awesome' %}
+<div class="right">
+	<ul>
+		<li><a><i class="material-icons">shopping_cart</i></a></li>
+	</ul>
+</div>
+{% include "catalog/parts/search_box.html" %}
 {% endblock %}
 
+{% with categories=categories %}
 
-{% block header-menu-list %}
-<li>
-	{% include "catalog/parts/search_box.html" %}
+{% block nav-extended %}
+{{ block.super }}
+<ul class="nav-wrapper hide-on-med-and-down">
+	{% with template_name="catalog/parts/category_nav.html" %}
+	{% for category in categories %}
+	{% if category.sub_categories_list %}
+	<li>
+		<a class="dropdown-button left" data-activates="category-dropdown-{{ category.id }}" data-constrainwidth="false" data-alignment="left" data-beloworigin="true">
+			{{ category.name }}
+			<i class="material-icons right">arrow_drop_down</i>
+		</a>
+		<div id="category-dropdown-{{ category.id }}" class="dropdown-content">
+			<ul>
+				{% for category in category.sub_categories_list %}
+				{% include template_name %}
+				{% endfor %}
+			</ul>
+		</div>
+	</li>
+	{% else %}
+	<li>
+		<a id="category-id-{{ category.id }}" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+	</li>
+	{% endif %}
+	{% endfor %}
+	{% endwith %}
+	<li>
+		<a class="dropdown-button left" data-activates="manufacturers-dropdown" data-constrainwidth="false" data-alignment="left" data-beloworigin="true">
+			Products
+			<i class="material-icons right">arrow_drop_down</i>
+		</a>
+		<div id="manufacturers-dropdown" class="dropdown-content">
+			<ul>
+				{% for manufacturer in manufacturers %}
+				<li>
+					<a href="{{ manufacturer.get_absolute_url }}">{{ manufacturer.name }}</a>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</li>
+	
+</ul>
+{% endblock %}
+
+{% block side-nav-content %}
+{{ block.super }}
+<li class="divider"></li>
+<li><a class="subheader">Categories</a></li>
+{% with template_name="catalog/parts/category_list.html" %}
+{% for category in categories %}
+{% include template_name %}
+{% empty %}
+<li class="info-message-box no-categories-msg">
+	There are no categories defined.
 </li>
-{{ block.super }}
+{% endfor %}
+{% endwith %}
+<li class="divider"></li>
+<li><a class="subheader">Manufacturers</a></li>
+{% for manufacturer in manufacturers %}
+<li>
+	<a href="{{ manufacturer.get_absolute_url }}">{{ manufacturer.name }}</a>
+</li>
+{% endfor %}
 {% endblock %}
+
+{% endwith %}
 
 {% block content %}
-{% cache cache_timeout sidebar categories|length manufacturers|length %}
-<div id="categories-sidebar">
-	<ul id="categories">
-		<li>
-			<h5>Categories</h5>
-		</li>
-		{% with template_name="catalog/parts/category_list.html" %}
-		{% for category in categories %}
-		{% include template_name %}
-		{% empty %}
-		<li class="info-message-box no-categories-msg">
-			There are no categories defined.
-		</li>
-		{% endfor %}
-		{% endwith %}
-	</ul>
-	{% if manufacturers %}
-	<ul id="manufacturers">
-		<li>
-			<h5>Manufacturers</h5>
-		</li>
-		{% for manufacturer in manufacturers %}
-		<li>
-			<a href="{{ manufacturer.get_absolute_url }}">{{ manufacturer.name }}</a>
-		</li>
-		{% endfor %}
-	</ul>
-	{% endif %}
-</div>
-{% endcache %}
 <div id="catalog-content-container">
 	<div id="catalog-bar">
 		{% if breadcrumbs %}

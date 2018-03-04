@@ -71,19 +71,19 @@ PIPELINE = {
             ),
             'output_filename': 'doorstep/css/base.css'
         },
+        # materialize css
+        'materialize': {
+            'source_filenames': (
+                'doorstep/css/materialize.css',
+            ),
+            'output_filename': 'doorstep/css/materialize.min.css'
+        },
         # doorstep.catalog LESS styles for products catalog
         'catalog': {
             'source_filenames': (
                 'catalog/css/catalog.less',
             ),
             'output_filename': 'catalog/css/catalog.css'
-        },
-        # Font-Awesome icons serve mostly
-        'font-awesome': {
-            'source_filenames': (
-                'catalog/css/font-awesome/css/font-awesome.min.css',
-            ),
-            'output_filename': 'catalog/css/font-awesome/css/font-awesome.min.css'
         },
         # doorstep.sales LESS styles for checkout pages
         'sales': {
@@ -113,6 +113,13 @@ PIPELINE = {
                 'doorstep/scripts/jquery-utils.js',
             ),
             'output_filename': 'doorstep/scripts/base.js',
+        },
+        # materialize: Materialize CSS javascript
+        'materialize': {
+            'source_filenames': (
+                'doorstep/scripts/materialize.js',
+            ),
+            'output_filename': 'doorstep/scripts/materialize.js',
         },
         # doorstep.catalog: Javascript for product catalog pages
         'catalog_base': {

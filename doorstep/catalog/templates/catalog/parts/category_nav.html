@@ -1,0 +1,17 @@
+{% if category.sub_categories_list %}
+<li class="divider"></li>
+<li>
+	<a id="category-id-{{ category.id }}" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+	<ul>
+		{% for category in category.sub_categories_list %}
+		{% include template_name %}
+		{% endfor %}
+	</ul>
+</li>
+{% else %}
+
+<li class="divider"></li>
+<li>
+	<a id="category-id-{{ category.id }}" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+</li>
+{% endif %}

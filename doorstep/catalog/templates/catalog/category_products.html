@@ -5,10 +5,3 @@
 <h3>{{ category.name }}</h3>
 {% include "catalog/parts/products_list.html" %}
 {% endblock %}
-
-{% block scripts %}
-{{ block.super }}
-<script type="text/javascript">
-	expandCategories('{{ category.id }}');
-</script>
-{% endblock %}

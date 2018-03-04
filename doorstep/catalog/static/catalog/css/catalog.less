@@ -10,6 +10,18 @@
 @discount-color: #f1c40f;
 @category-expand-arrow: @second-color;
 
+
+@media only screen and (max-width : 992px) {
+header, main, footer {
+  padding-left: 0;
+}
+}
+
+ul.side-nav.fixed li.logo {
+  margin-top: 10px;
+  margin-bottom: 6px; 
+}
+
 .message-box {
   background: @message-box-color;
   display: inline-block;
@@ -219,37 +231,12 @@
 }
 
 .search-box {
-  float: left;
-  position: relative;
-  margin-top: -4px;
-  margin-bottom: -10px;
+  overflow: hidden;
 
-  .fa {
-    color: @place-holder-color;
-  }
-
-  input[type="text"] {
-    font-size: 1em;
-    padding: 5px 12px;
-    padding-right: 25px;
-    width: 220px;
-    color: @text-color;
-    .border-radius(12px);
-  }
-
-  button {
-    right: 0px;
-    font-size: 1.1em;
-    padding: 5px 5px 5px 5px;
-    overflow: hidden;
-    position: absolute;
-    background: transparent;
-    color: white;
-    border: none;
-  }
-
-  input[type="text"], button {
-    height: 26px;
+  .input-field {
+    input[type="search"] {
+      margin-bottom: 0px;
+    }
   }
 }
 
