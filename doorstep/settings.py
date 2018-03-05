@@ -71,13 +71,6 @@ PIPELINE = {
             ),
             'output_filename': 'doorstep/css/base.css'
         },
-        # materialize css
-        'materialize': {
-            'source_filenames': (
-                'doorstep/css/materialize.css',
-            ),
-            'output_filename': 'doorstep/css/materialize.min.css'
-        },
         # doorstep.catalog LESS styles for products catalog
         'catalog': {
             'source_filenames': (
@@ -107,19 +100,11 @@ PIPELINE = {
     # Simply add your project or apps Javascript here
     'JAVASCRIPT': {
         # doorstep: Base javascript include in every page
-        'base': {
+        'jquery_ajax': {
             'source_filenames': (
                 'doorstep/scripts/jquery-ajax.js',
-                'doorstep/scripts/jquery-utils.js',
             ),
-            'output_filename': 'doorstep/scripts/base.js',
-        },
-        # materialize: Materialize CSS javascript
-        'materialize': {
-            'source_filenames': (
-                'doorstep/scripts/materialize.js',
-            ),
-            'output_filename': 'doorstep/scripts/materialize.js',
+            'output_filename': 'doorstep/scripts/jquery-ajax.js',
         },
         # doorstep.catalog: Javascript for product catalog pages
         'catalog_base': {

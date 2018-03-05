@@ -1,41 +1,40 @@
-{% extends "catalog/catalog_base.html" %}
-
-{% block catalog-content %}
+{% extends "catalog/catalog_base.html" %} {% block catalog-content %}
 <div class="container row">
-	<div class="col s8 offset-s2">
-	<div class="card grey lighten-5">
-		<form method="post" action="{% url 'accounts_login' %}">
-			{% csrf_token %}
-			<div class="card-content">
-				<div class="card-title">Please Sign In.</div>
-				<input type="hidden" name="next" value="{{ next_url }}"/>
-				{% if error %}
-				<div class="row">
-					<div class="col s12 red-text lighten-3">
-						{{ error|safe }}
+	<div class="col s12 m8 offset-m2 l8 offset-l2">
+		<div class="card grey lighten-5">
+			<form method="post" action="{% url 'accounts_login' %}">
+				{% csrf_token %}
+				<div class="card-content">
+					<div class="card-title">Please Sign In.</div>
+					<input type="hidden" name="next" value="{{ next_url }}" />
+					{% if error %}
+					<div class="row">
+						<div class="col s12 red-text lighten-3">
+							{{ error|safe }}
+						</div>
+					</div>
+					{% endif %}
+					<div class="row">
+						<div class="input-field col s12">
+							<input id="id_username" name="username" type="text" value="{{ username }}" required="" class="validate" />
+							<label for="id_username">Username</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input id="id_password" name="password" type="password" class="validate">
+							<label for="id_password">Password</label>
+						</div>
 					</div>
 				</div>
-				{% endif %}
-				<div class="row">
-					<div class="input-field col s12">
-						<input id="id_username" name="username" type="text" value="{{ username }}" required="" class="validate"/>
-						<label for="id_username">Username</label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="input-field col s12">
-						<input id="id_password" name="password" type="password" class="validate">
-						<label for="id_password">Password</label>
-					</div>
-				</div>
-			</div>
-			<div class="card-action right-align">
+				<div class="card-action">
 					<a href="{% url 'accounts_register' %}{% if next_url %}?next={{ next_url|urlencode }}{% endif %}" title="Register to shop faster and better!">Register</a>
-					<a href="{% url 'accounts_forgot_password' %}">Forgot your password?</a>
-					<button class="btn"><i class="material-icons left">account_circle</i>Sign In</button>
+					<div class="hide-on-med-and-up"></div>
+					<a class="" href="{% url 'accounts_forgot_password' %}">Forgot your password?</a>
+					<div class="right-align"><button class="btn"><i class="material-icons left">account_circle</i>Sign In</button></div>
 			</form>
+			</div>
 		</div>
 	</div>
-</div>
 </div>
 {% endblock %}

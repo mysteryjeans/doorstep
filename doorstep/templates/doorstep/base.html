@@ -14,20 +14,20 @@
 <meta property="og:site_name" content="{{ SITE_NAME }}"/>
 <meta property="og:title" content="{{ page_title|default:SITE_TITLE }} | {{ SITE_NAME }}"/>
 <meta property="og:type" content="website"/>
-<meta property="og:image" content="{% static 'img/icon.png' %}"/>
+<meta property="og:image" content="{% static 'doorstep/img/icon.png' %}"/>
 <meta property="og:description" content="{{ page_description|default:SITE_DESCRIPTION }}"/>
 <meta name="author" content="{{ SITE_NAME }}, {{ CONTACT_EMAIL }}"/>
 {% endblock %}
 <title>{{ page_title|default:SITE_TITLE }} | {{ SITE_NAME }}</title>
-<link rel="icon shortcut" href="{% static 'img/icon.png' %}" type="image/png"/>
+<link rel="icon shortcut" href="{% static 'doorstep/img/icon.png' %}" type="image/png"/>
 
 {% block styles %}
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+<link href="{% static 'doorstep/css/materialize.min.css' %}" rel="stylesheet">
 {% comment %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" rel="stylesheet">
 {% endcomment %}
-{% stylesheet 'materialize' %}
 {% stylesheet style_name %}
 {% endblock %}
 {% endblock %}
@@ -112,6 +112,9 @@
 		</li>
 		<li class="divider"></li>
 		{% endif %}
+		<li>
+			<a href="{% url 'catalog_index' %}"><i class="material-icons">home</i>Home</a>
+		</li>
 		{% if user.is_authenticated %}
 		{% if user.is_staff %}
 		<li>
@@ -160,12 +163,11 @@
 </footer>
 {% block scripts %}
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+<script src="{% static 'doorstep/scripts/materialize.min.js' %}"></script>
 {% comment %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 {% endcomment %}
-{% javascript 'materialize' %}
-{% javascript 'base' %}
+{% javascript 'jquery_ajax' %}
 <script>
 	$('.button-collapse').sideNav();
 </script>

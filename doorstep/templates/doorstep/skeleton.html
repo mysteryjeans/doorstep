@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -7,7 +9,7 @@
 		{% block robots_meta %}
 		<meta name="robots" content="noodp,noydir" />
 		{% endblock %}
-		<link rel="icon" href="{{ STATIC_URL }}doorstep/img/doorstep-icon-64x64.png" type="image/png" />
+		<link rel="icon" href="{% static 'doorstep/img/doorstep-icon-64x64.png' %}" type="image/png" />
 		{% endblock %}
 		{% include "doorstep/includes/head.html" %}
 	</head>
