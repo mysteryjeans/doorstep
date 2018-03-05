@@ -1,44 +1,41 @@
 {% extends "catalog/catalog_base.html" %}
 
 {% block catalog-content %}
-<div class="row container">
-	<div class="col s12">
-		<h4>Please Login!</h4>
+<div class="container row">
+	<div class="col s8 offset-s2">
+	<div class="card grey lighten-5">
+		<form method="post" action="{% url 'accounts_login' %}">
+			{% csrf_token %}
+			<div class="card-content">
+				<div class="card-title">Please Sign In.</div>
+				<input type="hidden" name="next" value="{{ next_url }}"/>
+				{% if error %}
+				<div class="row">
+					<div class="col s12 red-text lighten-3">
+						{{ error|safe }}
+					</div>
+				</div>
+				{% endif %}
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="id_username" name="username" type="text" value="{{ username }}" required="" class="validate"/>
+						<label for="id_username">Username</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="id_password" name="password" type="password" class="validate">
+						<label for="id_password">Password</label>
+					</div>
+				</div>
+			</div>
+			<div class="card-action right-align">
+					<a href="{% url 'accounts_register' %}{% if next_url %}?next={{ next_url|urlencode }}{% endif %}" title="Register to shop faster and better!">Register</a>
+					<a href="{% url 'accounts_forgot_password' %}">Forgot your password?</a>
+					<button class="btn"><i class="material-icons left">account_circle</i>Sign In</button>
+			</form>
+		</div>
 	</div>
-	<form class="col s12" method="post" action="{% url 'accounts_login' %}">
-		{% csrf_token %}
-		<input type="hidden" name="next" value="{{ next_url }}"/>
-		{% if error %}
-		<div class="row">
-			<div class="col s12 red-text lighten-3">
-				{{ error|safe }}
-			</div>
-		</div>
-		{% endif %}
-		<div class="row">
-			<div class="input-field col s12">
-				<input id="id_username" name="username" type="text" value="{{ username }}" required="" class="validate"/>
-				<label for="id_username">Username</label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="input-field col s12">
-				<input id="id_password" name="password" type="password" class="validate">
-				<label for="id_password">Password</label>
-			</div>
-		</div>
-		<div class="row">
-			<div class="input-field col s12">
-				<button class="btn btn-large right"><i class="material-icons left">account_circle</i>Login</button>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col s2">
-				<a href="{% url 'accounts_register' %}{% if next_url %}?next={{ next_url|urlencode }}{% endif %}" title="Register to shop faster and better!">Register</a>
-			</div>
-			<div class="col s9"><a href="{% url 'accounts_forgot_password' %}">Forgot your password?</a>
-			</div>
-		</div>
-	</form>
+</div>
 </div>
 {% endblock %}
