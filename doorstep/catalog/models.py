@@ -133,6 +133,7 @@ class Category(models.Model):
         for category in categories:
             category.sub_categories_list = category.get_sub_categories(
                 categories)
+            category.sub_categories_count = len(category.sub_categories_list)
 
         return categories
 

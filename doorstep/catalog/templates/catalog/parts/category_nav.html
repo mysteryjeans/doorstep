@@ -1,17 +1,21 @@
 {% if category.sub_categories_list %}
 <div class="col s3">
-	<a id="category-id-{{ category.id }}" href="{{ category.get_absolute_url }}" class="black-text"><small>{{ category.name }}</small></a>
-	<div class="divider"></div>
-	<ul>
+	<div class="row">
+		<div class="col s12">
+			<a id="category-id-{{ category.id }}" href="{{ category.get_absolute_url }}" class="black-text">{{ category.name }}</a>
+		</div>
+		<div class="col s12">
+			<div class="divider"></div>
+		</div>
 		{% for category in category.sub_categories_list %}
-		<li>
-			<a id="category-id-{{ category.id }}" href="{{ category.get_absolute_url }}" class="black-text"><small>{{ category.name }}</small></a>
-		</li>
+		<div class="col s12">
+			<a id="category-id-{{ category.id }}" href="{{ category.get_absolute_url }}" class="black-text">{{ category.name }}</a>
+		</div>
 		{% endfor %}
-	</ul>
+	</div>
 </div>
 {% else %}
 <div class="col s3">
-	<a id="category-id-{{ category.id }}" href="{{ category.get_absolute_url }}" class="black-text"><small>{{ category.name }}</small></a>
+	<a id="category-id-{{ category.id }}" href="{{ category.get_absolute_url }}" class="black-text">{{ category.name }}</a>
 </div>
 {% endif %}

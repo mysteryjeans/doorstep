@@ -14,7 +14,7 @@
 		<li>
 			<a class="dropdown-button" data-activates="currency-dropdown" data-constrainwidth="false" data-alignment="right" data-beloworigin="true">
 				{{ default_currency.code }}
-				<i class="material-icons right">arrow_drop_down</i>
+				<i class="fas fa-angle-down right"></i>
 			</a>
 			<div id="currency-dropdown" class="dropdown-content">
 				<form method="post" action="{% url 'catalog_change_currency' %}">
@@ -45,11 +45,11 @@
 	<li>
 		<a class="dropdown-button left" data-activates="category-dropdown-{{ category.id }}" data-constrainwidth="false" data-alignment="left" data-beloworigin="true">
 			{{ category.name }}
-			<i class="material-icons right">arrow_drop_down</i>
+			<i class="fas fa-angle-down right"></i>
 		</a>
 		<div id="category-dropdown-{{ category.id }}" class="dropdown-content">
 			<div class="row">
-				{% for category in category.sub_categories_list %}
+				{% for category in category.sub_categories_list|dictsortreversed:"sub_categories_count" %}
 				{% include template_name %}
 				{% endfor %}
 			</div>
@@ -65,14 +65,16 @@
 	<li>
 		<a class="dropdown-button left" data-activates="manufacturers-dropdown" data-constrainwidth="false" data-alignment="left" data-beloworigin="true">
 			Products
-			<i class="material-icons right">arrow_drop_down</i>
+			<i class="fas fa-angle-down right"></i>
 		</a>
-		<div id="manufacturers-dropdown" class="dropdown-content row">
-			{% for manufacturer in manufacturers %}
-			<div class="col s3">
-				<a href="{{ manufacturer.get_absolute_url }}" class="black-text"><small>{{ manufacturer.name }}</small></a>
+		<div id="manufacturers-dropdown" class="dropdown-content">
+			<div class="row">
+				{% for manufacturer in manufacturers %}
+				<div class="col s3">
+					<a href="{{ manufacturer.get_absolute_url }}" class="black-text">{{ manufacturer.name }}</a>
+				</div>
+				{% endfor %}
 			</div>
-			{% endfor %}
 		</div>
 	</li>
 </ul>
