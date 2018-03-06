@@ -101,8 +101,7 @@ class RegisterView(CatalogBaseView):
                 if next_url:
                     return HttpResponseRedirect(next_url)
 
-                success = ('You have register successfully, please continue to browse our'
-                           ' <a href="%s">catalog</a>.') % reverse('catalog_index')
+                success = 'Thank you for registration, you have successfully signed in, <strong>lets explore!</strong>'
             except ValidationError as e:
                 error = e.message
 
