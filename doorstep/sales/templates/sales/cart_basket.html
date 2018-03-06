@@ -3,7 +3,7 @@
 
 {% with items=cart.get_items sub_total=cart.get_sub_total items_count=cart.get_items_count %}
 <a id="basket-dropdown-button" class="dropdown-button" data-activates="basket-dropdown" data-constrainwidth="false" data-alignment="right" data-beloworigin="true">
-	<i class="material-icons right">shopping_cart</i>
+	<i class="fas fa-shopping-cart right"></i>
 	{% if items_count %}
 	<span class="new badge right" data-badge-caption="">{{ items_count }} ({{ sub_total|currency:default_currency }})</span>
 	{% endif %}
@@ -27,7 +27,7 @@
 			<form  class="secondary-content" method="post" data-ajax="true" data-ajax-url="{% url 'sales_remove_from_cart' %}" data-ajax-update="#basket-container" data-ajax-success="basketChanged();">
 				{% csrf_token %}
 				<input name="product_id" type="hidden" value="{{ item.product_id }}"/>
-				<a onclick="javascript:$(this).closest('form').submit();" title="Remove this product."><i class="material-icons tiny">delete</i></a>
+				<a onclick="javascript:$(this).closest('form').submit();" title="Remove this product."><i class="fas fa-trash tiny"></i></a>
 			</form>
 		</li>
 		{% endwith %}
@@ -35,7 +35,7 @@
 		<li class="collection-item grey lighten-3">
 			<div >
 				<span class="new badge grey left" data-badge-caption="">Subtotal: {{ sub_total|currency:default_currency }}</span>
-				<a class="btn blue btn-tiny right " href="{% url 'sales_checkout_cart' %}" class="btn"><i class="material-icons left">add_shopping_cart</i>Checkout</a>
+				<a class="btn blue btn-tiny right " href="{% url 'sales_checkout_cart' %}" class="btn"><i class="fas fa-shopping-cart left"></i>Checkout</a>
 			</div>
 		</li>
 		{% else %}
