@@ -73,10 +73,10 @@ class PasswordResetForm(forms.Form):
     Password reset form
     """
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': 'New password...'}), min_length=8, max_length=50,
+        widget=forms.PasswordInput(attrs={'class': 'validate', 'required': ''}), min_length=8, max_length=50,
         error_messages={'required': 'Please enter your new password.'})
     confirm_password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': 'Confirm your password...'}), max_length=50,
+        widget=forms.PasswordInput(attrs={'class': 'validate', 'required': ''}), max_length=50,
         error_messages={'required': 'Please re-enter your new password for confirmation.'})
 
     def clean_confirm_password(self):
@@ -91,5 +91,5 @@ class ChangePasswordForm(PasswordResetForm):
     Change password form
     """
     current_password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'placeholder': 'Current password...'}), max_length=50,
+        widget=forms.PasswordInput(attrs={'class': 'validate', 'required': ''}), max_length=50,
         error_messages={'required': 'Please enter your current password.'})

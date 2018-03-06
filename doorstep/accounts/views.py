@@ -176,10 +176,10 @@ class PasswordResetView(CatalogBaseView):
             data = form.cleaned_data
             try:
                 User.objects.reset_password(user_id, reset_code, data['password'])
-                success = 'Your password has been reset successfully.'
+                success = 'Your password has been successfully reset!'
             except DoorstepError as e:
                 error = e.message
-
+        
         return super(PasswordResetView, self).get(request, form=form, user_id=user_id, reset_code=reset_code,
                                                   error=error, success=success)
 
@@ -210,7 +210,7 @@ class ChangePasswordView(CatalogBaseView):
             data = form.cleaned_data
             try:
                 User.objects.change_password(request.user, data['current_password'], data['password'])
-                success = 'Your password has been changed successfully.'
+                success = 'Your password has been successfully changed!'
             except DoorstepError as e:
                 error = e.message
 
