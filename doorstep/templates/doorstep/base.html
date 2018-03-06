@@ -22,12 +22,9 @@
 <link rel="icon shortcut" href="{% static 'doorstep/img/icon.png' %}" type="image/png"/>
 
 {% block styles %}
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+<link href="{% static 'doorstep/css/material-icons.css' %}" rel="stylesheet">
+<link href="{% static 'doorstep/css/fontawesome-all.min.css' %}" rel="stylesheet">
 <link href="{% static 'doorstep/css/materialize.min.css' %}" rel="stylesheet">
-{% comment %}
-<link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" rel="stylesheet">
-{% endcomment %}
 {% stylesheet style_name %}
 {% endblock %}
 {% endblock %}
@@ -162,11 +159,8 @@
 	{% endblock %}
 </footer>
 {% block scripts %}
-<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="{% static 'doorstep/scripts/jquery.min.js' %}"></script>
 <script src="{% static 'doorstep/scripts/materialize.min.js' %}"></script>
-{% comment %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-{% endcomment %}
 {% javascript 'jquery_ajax' %}
 <script>
 	$('.button-collapse').sideNav();
