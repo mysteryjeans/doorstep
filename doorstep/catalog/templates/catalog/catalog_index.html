@@ -3,16 +3,14 @@
 {% load cache %}
 
 {% block catalog-content %}
-<div style="clear: both; overflow: hidden;">
-	<h3>Featured</h3>
+<div>
 	{% with products=featured_products %}
-	{% include "catalog/parts/products_list.html" %}
+	{% include "catalog/parts/product_list.html" %}
 	{% endwith %}
 </div>
-<div style="clear: both; overflow: hidden; margin-top: 20px;">
-	<h3>New Arrivals</h3>
+<div class="panel">
 	{% with products=recent_products %}
-	{% include "catalog/parts/products_list.html" %}
+	{% include "catalog/parts/product_list.html" %}
 	{% endwith %}
 </div>
 {% endblock %}

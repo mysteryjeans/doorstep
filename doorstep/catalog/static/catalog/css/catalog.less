@@ -11,6 +11,16 @@
 @category-expand-arrow: @second-color;
 
 
+.card .card-body .card-text {
+  max-height: 100px;
+  overflow: hidden;
+}
+
+.card[data-href]:hover:not(a) {
+  cursor: pointer;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
 #basket-container {
   a.dropdown-button {
     overflow: hidden;

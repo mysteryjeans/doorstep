@@ -1,7 +1,33 @@
 {% load catalog_filters %}
 {% load thumbnail %}
 
-<div>
+<div class="row equal-height mx-2">
+	{% for product in products %}
+	<div class="col-sm-12 col-md-4 col-lg-3 col-xl-2 mb-5">
+		<div class="card" data-href="{{ product.get_absolute_url }}">
+			{% with pic=product.pics.all.0 %}
+			{% thumbnail pic.url "400x400" as im %}
+			<img class="card-img-top img-fluid" src="{{ im.url }}" alt="{{ product.name }}"/>
+			{% endthumbnail %}
+			{% endwith %}
+		  <div class="card-body">
+		    <span class="card-title"><small><strong>{{ product.name }}</strong></small></span>
+				{% if product.gist %}
+		    <p class="card-text text-muted"><small>{{ product.gist }}</small></p>
+				{% endif %}
+		  </div>
+		  <div class="card-body d-flex justify-content-end">
+				{% if product.old_price %}
+				<span class="badge badge-secondary old-price">{{ product.old_price|currency:default_currency }}</span>
+				{% endif %}
+				<span class="badge badge-danger mt-auto  ml-2 align-bottom">{{ product.price|currency:default_currency }}</span>
+		  </div>
+		</div>
+		</div>
+	{% endfor %}
+</div>
+
+<div class="d-none">
 	<div class="row">
 		{% for product in products %}
 		<div class="col s12 m6 l4 xl3">

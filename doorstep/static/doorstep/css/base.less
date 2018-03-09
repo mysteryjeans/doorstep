@@ -6,12 +6,48 @@
   color: lightgrey;
 }
 
+.overflow-hidden {
+  overflow: hidden;
+}
+
 .navbar {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
   .dropdown-menu-right {
     left: auto;
     right: 0;
   }
 }
+
+.dropdown-submenu{
+    position: relative;
+}
+.dropdown-submenu a::after{
+    transform: rotate(-90deg);
+    position: absolute;
+    right: 3px;
+    top: 40%;
+}
+.dropdown-submenu:hover > .dropdown-menu, .dropdown-submenu:focus > .dropdown-menu{
+    display: block;
+    flex-direction: column;
+    position: absolute !important;
+    margin-top: -30px;
+    left: 100%;
+}
+
+.row.equal-height {
+    display: flex;
+    flex-wrap: wrap;
+}
+.row.equal-height > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    flex: 1;
+}
+
 
 /* ---------------------------------------------------
     SIDEBAR STYLE

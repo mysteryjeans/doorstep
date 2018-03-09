@@ -155,7 +155,7 @@
 	{% endblock %}
 </header>
 
-<main id="content">
+<main id="content" style="min-height: 100vh">
 	{% block content %}
 	{% endblock %}
 </main>
@@ -175,6 +175,7 @@
 {% block scripts %}
 <script src="{% static 'doorstep/scripts/jquery.min.js' %}"></script>
 <script src="{% static 'doorstep/scripts/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'doorstep/scripts/base.js' %}"></script>
 {% javascript 'jquery_ajax' %}
 <script type="text/javascript">
 		$(document).ready(function () {

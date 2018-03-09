@@ -11,15 +11,13 @@
 			Categories
 		</button>
 	<div class="dropdown-menu" aria-labelledby="category-dropdown-menu">
-		<a class="dropdown-item" href="/admin/">
-				<i class="fas fa-wrench text-lightgrey mr-3"></i>Admin
-		</a>
-		<a class="dropdown-item" href="{% url 'accounts_change_password' %}">
-			 <i class="fas fa-key text-lightgrey mr-3"></i>Change password
-		 </a>
-		<a class="dropdown-item" href="{% url 'accounts_logout' %}">
-			 <i class="fas fa-sign-out-alt text-lightgrey mr-3"></i>Log Out
-		 </a>
+		<ul class="list-unstyled">
+			{% with template_name="catalog/parts/category_nav.html" %}
+			{% for category in categories %}
+			{% include template_name %}
+			{% endfor %}
+			{% endwith %}
+		</ul>
 	</div>
 </div>
 {% include "catalog/parts/search_box.html" %}
@@ -124,10 +122,10 @@
 {% endblock %}
 
 {% block content %}
-<div id="catalog-content-container">
-	<div id="catalog-bar">
+<div>
+	<div>
 		{% if breadcrumbs %}
-		<ul class="breadcrumbs">
+		<ul class="breadcrumbs d-none">
 			{% for crumb in breadcrumbs %}
 			{% if forloop.last %}
 			<li>
@@ -150,7 +148,7 @@
 		</ul>
 		{% endif %}
 	</div>
-	<div id="catalog-content">
+	<div id="catalog-content" class="mt-5">
 		{% block catalog-content %}
 		{% endblock %}
 	</div>
