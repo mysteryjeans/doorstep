@@ -10,21 +10,36 @@
 @discount-color: #f1c40f;
 @category-expand-arrow: @second-color;
 
+.product-listings {
+  .card {
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
 
-.card {
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-
-  .card-img-top {
-    max-height: 200px;
-  }
-  .card-title {
-    font-size: 0.9em;
-  }
-
-  .add-to-cart-form {
-    button.btn {
-      font-size: 1.2rem;
+    .card-img-top {
+      max-height: 200px;
     }
+    .card-title {
+      font-size: 0.9em;
+    }
+
+    .add-to-cart-form {
+      button.btn {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .carousel {
+    box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
+
+    .carousel-item {
+      img {
+        max-height: 400px;
+      }
+    }
+  }
+
+  .card:hover {
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
   }
 }
 

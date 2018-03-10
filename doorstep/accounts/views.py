@@ -32,8 +32,7 @@ class LoginView(CatalogBaseView):
 
     def get_context_data(self, **kwargs):
         next_url = self.request.GET.get('next', '')
-        breadcrumbs = ({'name': 'Login', 'url': reverse('accounts_login')},)
-        return super(LoginView, self).get_context_data(breadcrumbs=breadcrumbs, next_url=next_url, **kwargs)
+        return super(LoginView, self).get_context_data(next_url=next_url, **kwargs)
 
     def post(self, request):
         username = request.POST['username']
@@ -73,8 +72,7 @@ class RegisterView(CatalogBaseView):
 
     def get_context_data(self, **kwargs):
         next_url = self.request.GET.get('next', '')
-        breadcrumbs = ({'name': 'Register', 'url': reverse('accounts_register')},)
-        return super(RegisterView, self).get_context_data(breadcrumbs=breadcrumbs, next_url=next_url, **kwargs)
+        return super(RegisterView, self).get_context_data(next_url=next_url, **kwargs)
 
     def get(self, request):
         form = RegisterForm()
@@ -116,12 +114,6 @@ class ForgotPasswordView(CatalogBaseView):
     decorators = [anonymous_required]
     page_title = 'Forgot password'
 
-    def get_context_data(self, **kwargs):
-        context = super(ForgotPasswordView, self).get_context_data(**kwargs)
-        context['breadcrumbs'] += ({'name': 'Forgot password', 'url': reverse('accounts_forgot_password')},)
-
-        return context
-
     def post(self, request):
         error = None
         success = None
@@ -155,14 +147,6 @@ class PasswordResetView(CatalogBaseView):
     template_name = 'accounts/password_reset.html'
     decorators = [anonymous_required]
 
-    def get_context_data(self, **kwargs):
-        context = super(PasswordResetView, self).get_context_data(**kwargs)
-        context['breadcrumbs'] += ({
-            'name': 'Password reset',
-            'url': reverse('accounts_password_reset', args=[context['user_id'], context['reset_code']])},)
-
-        return context
-
     def get(self, request, user_id, reset_code):
         form = PasswordResetForm()
         return super(PasswordResetView, self).get(request, form=form, user_id=user_id, reset_code=reset_code)
@@ -179,7 +163,7 @@ class PasswordResetView(CatalogBaseView):
                 success = 'Your password has been successfully reset!'
             except DoorstepError as e:
                 error = e.message
-        
+
         return super(PasswordResetView, self).get(request, form=form, user_id=user_id, reset_code=reset_code,
                                                   error=error, success=success)
 
@@ -191,11 +175,6 @@ class ChangePasswordView(CatalogBaseView):
     page_title = 'Change password'
     template_name = 'accounts/change_password.html'
     decorators = [login_required]
-
-    def get_context_data(self, **kwargs):
-        context = super(ChangePasswordView, self).get_context_data(**kwargs)
-        context['breadcrumbs'] += ({'name': 'Change password', 'url': reverse('accounts_change_password')},)
-        return context
 
     def get(self, request):
         form = ChangePasswordForm()

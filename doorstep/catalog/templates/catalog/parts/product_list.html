@@ -1,10 +1,11 @@
 {% load catalog_filters %}
 {% load thumbnail %}
 
-<div class="row equal-height mx-2">
+
+<div class="row equal-height product-listings">
 	{% for product in products %}
-	<div class="col-sm-12 col-md-4 col-lg-3 col-xl-2 mb-5">
-		<div class="card" data1-href="{{ product.get_absolute_url }}">
+	<div class="col-sm-12 col-md-4 col-lg-3 mb-5">
+		<div class="card border-0" data-href="{{ product.get_absolute_url }}">
 			{% if product.old_price %}
 			<span class="badge badge-warning" style="position: absolute;z-index:100;">{{ product.get_discount }}% OFF</span>
 			{% endif %}
@@ -13,18 +14,18 @@
 			<img class="card-img-top img-fluid" src="{{ im.url }}" alt="{{ product.name }}"/>
 			{% endthumbnail %}
 			{% endwith %}
-		  <div class="card-body px-2 pb-2">
+		  <div class="card-body px-3">
 		    <p class="card-title mb-1 font-weight-bold">{{ product.name }}</p>
 				{% if product.gist %}
 		    <p class="card-text text-muted text-truncate font-weight-light small">{{ product.gist }}</p>
 				{% endif %}
 		  </div>
 		  <div class="card-body d-flex justify-content-end px-2 py-2">
-					<form class="mr-auto mt-auto add-to-cart-form" method="post" action="{% url 'sales_add_to_cart' %}" data-ajax="true" data-ajax-update="#basket-container" data-ajax-success="basketChanged();Materialize.toast('Added to cart', 2000)" data-ajax-complete="add_to_cart">
+					<form class="mr-auto mt-auto add-to-cart-form" method="post" action="{% url 'sales_add_to_cart' %}" data-ajax="true" data-ajax-update="#basket-container" data-ajax-success="basketChanged();" data-ajax-complete="add_to_cart">
 						{% csrf_token %}
 						<input name="product_id" type="hidden" value="{{ product.id }}"/>
 						<input name="quantity" type="hidden" value="1"/>
-						<button class="btn text-primary pl-0 pb-0 ml-0"><i class="fas fa-cart-plus"></i></button>
+						<button class="btn text-primary pl-1 pb-0 ml-0"><i class="fas fa-cart-plus"></i></button>
 					</form>
 					{% if product.old_price %}
 					<span class="text-lightgrey old-price mt-auto small">{{ product.old_price|currency:default_currency }}</span>
@@ -33,75 +34,35 @@
 		  </div>
 		</div>
 		</div>
+		{% empty %}
+		<div class="col-sm-12">
+			<span class="text-info">
+				{{ no_products_message|default:"There are no products to show you right now." }}
+			</span>
+		</div>
 	{% endfor %}
 </div>
 
-<div class="d-none">
-	<div class="row">
-		{% for product in products %}
-		<div class="col s12 m6 l4 xl3">
-			<div class="card medium">
-				<div class="card-image">
-					{% if product.old_price %}
-					<span class="new badge yellow darken-2" data-badge-caption="" style="position: absolute;z-index:100;">{{ product.get_discount }}% OFF</span>
-					{% endif %}
-					{% with pic=product.pics.all.0 %}
-					{% thumbnail pic.url "400x400" as im %}
-					<img class="activator" src="{{ im.url }}" alt="{{ product.name }}"/>
-					{% endthumbnail %}
-					{% endwith %}
-				</div>
-				{% if product.gist %}
-				<div class="card-content">
-					<span class="activator grey-text text-darken-4"><i class="fas fa-ellipsis-v right"></i><small>{{ product.gist }}</small></span>
-				</div>
-				<div class="card-reveal">
-					<span class="card-title grey-text text-darken-4 "><i class="fas fa-times right"></i><small>{{ product.name }}</small></span>
-					<p><small>{{ product.gist }}</small></p>
-				</div>
-				{% endif %}
-				<form id="add-to-cart-form" method="post" action="{% url 'sales_add_to_cart' %}" data-ajax="true" data-ajax-update="#basket-container" data-ajax-success="basketChanged();Materialize.toast('Added to cart', 2000)" data-ajax-complete="add_to_cart">
-					{% csrf_token %}
-					<input name="product_id" type="hidden" value="{{ product.id }}"/>
-					<input name="quantity" type="hidden" value="1"/>
-					<button class="btn-floating halfway-fab waves-effect waves-light blue overflow-hidden"><i class="fas fa-cart-plus"></i></button>
-				</form>
-				<div class="card-action">
-					<span class="new badge red" data-badge-caption="">{{ product.price|currency:default_currency }}</span>
-					{% if product.old_price %}
-					<span class="new badge grey old-price" data-badge-caption=""> {{ product.old_price|currency:default_currency }}</span>
-					{% endif %}
-					<a class="truncate" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-				</div>
-			</div>
-		</div>
-		{% empty %}
-		<div class="col s4 m6">
-			<p>
-				{{ no_products_message|default:"There are no products to show you right now." }}
-			</p>
-		</div>
-		{% endfor %}
-	</div>
-</div>
 {% if products.object_list %}
-<ul class="pagination">
-	{% if products.has_previous %}
-	<li class="waves-effect" ><a href="{{ products.previous_url }}"><i class="fas fa-chevron-left"></i></a></li>
-	{% else %}
-	<li class="disabled" ><a><i class="fas fa-chevron-left"></i></a></li>
-	{% endif %}
-	{% for page_url in products.page_urls %}
-	{% if  page_url.0 == products.number %}
-	<li class="active"><a href="{{ page_url.1 }}">{{ page_url.0 }}</a></li>
-	{% else %}
-	<li class="waves-effect"><a href="{{ page_url.1 }}">{{ page_url.0 }}</a></li>
-	{% endif %}
-	{% endfor %}
-	{% if products.has_next %}
-	<li class="waves-effect"><a href="{{ products.next_url }}"><i class="fas fa-chevron-right"></i></a></li>
-	{% else %}
-	<li class="disabled"><a><i class="fas fa-chevron-right"></i></a></li>
-	{% endif %}
-</ul>
+<nav>
+	<ul class="pagination">
+		{% if products.has_previous %}
+		<li class="page-item"><a class="page-link" href="{{ products.previous_url }}"><i class="fas fa-chevron-left"></i></a></li>
+		{% else %}
+		<li class="page-item disabled"><a class="page-link"><i class="fas fa-chevron-left"></i></a></li>
+		{% endif %}
+		{% for page_url in products.page_urls %}
+		{% if  page_url.0 == products.number %}
+		<li class="page-item active"><a class="page-link" href="{{ page_url.1 }}">{{ page_url.0 }}</a></li>
+		{% else %}
+		<li class="page-item"><a class="page-link" href="{{ page_url.1 }}">{{ page_url.0 }}</a></li>
+		{% endif %}
+		{% endfor %}
+		{% if products.has_next %}
+		<li class="page-item"><a class="page-link" href="{{ products.next_url }}"><i class="fas fa-chevron-right"></i></a></li>
+		{% else %}
+		<li class="page-item disabled"><a class="page-link"><i class="fas fa-chevron-right"></i></a></li>
+		{% endif %}
+	</ul>
+</nav>
 {% endif %}

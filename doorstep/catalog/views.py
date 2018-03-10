@@ -146,9 +146,8 @@ class SearchProductsView(CatalogBaseView):
         query = '?' + request.GET.urlencode()
         products = None
         category = None
+        breadcrumbs = ()
         keyword = request.GET.get('keyword', None)
-        page_title = 'Search: ' + keyword
-        breadcrumbs = ({'name': 'Search', 'url': reverse('catalog_search') + query},)
 
         if form.is_valid():
             data = form.cleaned_data
@@ -161,6 +160,7 @@ class SearchProductsView(CatalogBaseView):
             if category:
                 breadcrumbs = category.get_breadcrumbs()
 
+        page_title = keyword or (category and category.name) or 'All Products'
         return super(SearchProductsView, self).get(request,
                                                    form=form,
                                                    keyword=keyword,

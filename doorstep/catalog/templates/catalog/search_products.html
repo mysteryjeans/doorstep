@@ -3,42 +3,31 @@
 {% load pipeline %}
 
 {% block catalog-content %}
-<h3>Search: {{ form.clean_keyword }}</h3>
-<form method="get" action="{% url 'catalog_search' %}" class="advance-search">
-	<i id="advance-search-filter" class="fa fa-search-plus" title="Advance search options..."></i>
-	<ul>
-		<li>
-			{{ form.keyword }}
-			<label>{{ form.keyword.label }}</label>
-			{{ form.keyword.errors }}
-		</li>
-		<li class="advance-search-option">
-			{{ form.category }}
-			<label>{{ form.category.label }}</label>
-			{{ form.category.errors }}
-		</li>
-		<li class="advance-search-option">
-			{{ form.manufacturer }}
-			<label>{{ form.manufacturer.label }}</label>
-			{{ form.manufacturer.errors }}
-		</li>
-		<li class="advance-search-option">
-			{{ form.price_to }}
-			{{ form.price_from }}
-			<label>Price range</label>
-			{{ form.price_from.errors }}
-			{{ form.price_to.errors }}
-		</li>
-		<li>
-			<input type="submit" value="Search"/>
-		</li>
-	</ul>
-</form>
+<div class="row">
+	<div class="col">
+		<div class="card border-0">
+			<form method="get" action="{% url 'catalog_search' %}">
+				{{ form.keyword.as_hidden }}
+				{{ form.category.as_hidden }}
+			  <div class="card-body">
+			    <h5 class="card-title">Search results for {% firstof form.keyword.value category.name 'All products' %}</h5>
+						<div class="d-flex justify-content-end">
+							<div class="w-100"></div>
+							<input type="number" name="{{ form.price_from.name }}" value="{{ form.price_from.data }}" class="form-control ml-2 w-auto" placeholder="Price from.."/>
+							<input type="number" name="{{ form.price_to.name }}" value="{{ form.price_to.data }}" class="form-control ml-2 w-auto" placeholder="Price to.."/>
+							<button type="submit" class="btn btn-primary ml-2" title="Filter search results."><i class="fas fa-filter"></i></button>
+						</div>
+			  </div>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="mt-5">
 {% with no_products_message="No products found for your search criteria" %}
 {% include "catalog/parts/product_list.html" %}
 {% endwith %}
+</div>
 {% endblock %}
-
 {% block scripts %}
 {{ block.super }}
 {% javascript 'search_products' %}

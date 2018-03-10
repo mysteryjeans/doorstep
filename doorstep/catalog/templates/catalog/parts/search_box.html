@@ -11,6 +11,7 @@
 			  </button>
 				<div class="dropdown-menu" aria-labelledby="search-box-category-dropdown-menu">
 					<ul class="list-unstyled">
+						<li><a class="dropdown-item" href="{% url 'catalog_index' %}">All</a></li>
 						{% with template_name="catalog/parts/category_nav.html" %}
 						{% for category in categories %}
 						{% include template_name %}

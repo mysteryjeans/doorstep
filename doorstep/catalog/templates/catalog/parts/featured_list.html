@@ -1,0 +1,36 @@
+{% load catalog_filters %}
+{% load static %}
+
+
+<div class="product-listings">
+  <div id="featured-products-carousel" class="carousel slide bg-info mb-5" data-ride="carousel">
+    <ol class="carousel-indicators">
+  		{% for product in products %}
+      <li data-target="#featured-products-carousel" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
+  		{% endfor %}
+    </ol>
+    <div class="carousel-inner">
+  		{% for product in products %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        <div class="d-flex justify-content-between">
+          <div class="w-50">
+            <img class="d-block" src="{% get_media_prefix %}{{ product.pics.all.0.url }}" alt="{{ product.name }}" />
+          </div>
+          <div class="carousel-caption my-auto mx-5 pr-5 mr-5 w-100 text-left d-none d-md-block" style="position:static !important">
+          <h4 class="mb-5">{{ product.name }}</h4>
+          <p class="text-light">{{  product.gist }}</p>
+        </div>
+        </div>
+      </div>
+  		{% endfor %}
+    </div>
+    <a class="carousel-control-prev" href="#featured-products-carousel" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#featured-products-carousel" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>

@@ -5,10 +5,10 @@
 {% block catalog-content %}
 <div>
 	{% with products=featured_products %}
-	{% include "catalog/parts/product_list.html" %}
+	{% include "catalog/parts/featured_list.html" %}
 	{% endwith %}
 </div>
-<div class="panel">
+<div>
 	{% with products=recent_products %}
 	{% include "catalog/parts/product_list.html" %}
 	{% endwith %}
