@@ -42,7 +42,7 @@
 				{% endif %}
 			</li>
 			<li class="add-to-cart-summary">
-				<form id="add-to-cart-form" method="post" action="{% url 'sales_add_to_cart' %}" data-ajax="true" data-ajax-update="#basket-container" data-ajax-success="basketChanged();Materialize.toast('Added to cart', 2000)" data-ajax-complete="add_to_cart">
+				<form id="add-to-cart-form" method="post" action="{% url 'sales_add_to_cart' %}" data-ajax="true" data-ajax-update="#basket-container">
 					{% csrf_token %}
 					<label>Qty:</label>
 					<input name="product_id" type="hidden" value="{{ product.id }}"/>
@@ -116,7 +116,6 @@
 {% javascript 'product_detail' %}
 <script type="text/javascript">
 	// Generating tabs
-	$('#product-details').tabs();
 
 	function add_to_cart(data) {
 		if(data.status == 200) {

@@ -1,50 +1,58 @@
 {% load catalog_filters %}
 {% load thumbnail %}
 
+
 {% with items=cart.get_items sub_total=cart.get_sub_total items_count=cart.get_items_count %}
-<a id="basket-dropdown-button" class="dropdown-button" data-activates="basket-dropdown" data-constrainwidth="false" data-alignment="right" data-beloworigin="true">
-	<i class="fas fa-shopping-cart right"></i>
-	{% if items_count %}
-	<span class="new badge right" data-badge-caption="">{{ items_count }} ({{ sub_total|currency:default_currency }})</span>
-	{% endif %}
-</a>
-<div id="basket-dropdown" class="dropdown-content">
-	<ul class="collection">
+<div id="cart-basket" class="dropdown ml-2">
+	<button id="cart-basket-dropdown-button" class="btn btn-outline-warning border-0 basket-counter" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		{% if items %}
-		{% for item in items %}
-		{% with product=item.product %}
-		<li class="collection-item avatar">
-			{% thumbnail product.pics.all.0.url "54x54" as im %}
-			<img class="circle" src="{{ im.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
-			{% endthumbnail %}
-			<div>
-				<a class="title" href="{{ product.get_absolute_url }}" title="{{ product.gist }}">{{ product.name }}</a>
-				<div class="clearfix">
-					<span class="new badge red left" data-badge-caption="">{{ product.price|currency:default_currency }}</span>
-					<span class="new badge left" data-badge-caption="">Qty: {{ item.quantity }}</span>
-				</div>
-			</div>
-			<form  class="secondary-content" method="post" data-ajax="true" data-ajax-url="{% url 'sales_remove_from_cart' %}" data-ajax-update="#basket-container" data-ajax-success="basketChanged();">
-				{% csrf_token %}
-				<input name="product_id" type="hidden" value="{{ item.product_id }}"/>
-				<a onclick="javascript:$(this).closest('form').submit();" title="Remove this product."><i class="fas fa-trash tiny"></i></a>
-			</form>
-		</li>
-		{% endwith %}
-		{% endfor %}
-		<li class="collection-item grey lighten-3">
-			<div >
-				<span class="new badge grey left" data-badge-caption="">Subtotal: {{ sub_total|currency:default_currency }}</span>
-				<a class="btn blue btn-tiny right " href="{% url 'sales_checkout_cart' %}" class="btn"><i class="fas fa-shopping-cart left"></i>Checkout</a>
-			</div>
-		</li>
-		{% else %}
-		<li class="collection-item">
-			<div class="title">
-				You have no items in your shopping cart.
-			</div>
-		</li>
+		<span class="badge badge-primary float-left font-weight-light badge-pill">{{ sub_total|currency:default_currency }}</span>
 		{% endif %}
-	</ul>
+		<i class="fas fa-shopping-cart"></i>
+	</button>
+	<div class="dropdown-menu dropdown-menu-right p-0" aria-labelledby="cart-basket-dropdown-button">
+		<ul class="list-group">
+			{% for item in items %}
+			{% with product=item.product %}
+			<li class="list-group-item d-flex flex-column">
+				<div class="d-flex flex-row">
+					{% thumbnail product.pics.all.0.url "54x54" as im %}
+					<div class="img-container">
+						<img class="mr-4" src="{{ im.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
+					</div>
+					{% endthumbnail %}
+					<div class="w-100 d-flex flex-row" style="min-width:300px;">
+						<div class="d-flex flex-column mr-2">
+							<a class="list-group-item-action" href="{{ product.get_absolute_url }}">
+								<h5>{{ product.name }}</h5>
+							</a>
+							<div class="text-muted pt-2 small">{{ product.gist|truncatewords:10 }}</div>
+						</div>
+						<div class="d-flex flex-column ml-auto">
+							<form class="small text-right" method="post" action="{% url 'sales_remove_from_cart' %}" data-ajax="true" data-ajax-url="{% url 'sales_remove_from_cart' %}" data-ajax-update="#basket-container" data-ajax-complete="basketChanged()">
+								{% csrf_token %}
+								<input name="product_id" type="hidden" value="{{ item.product_id }}" />
+								<a href="#" onclick="javascript:$(this).closest('form').submit(); return false;" class="text-primary" title="Remove this product."><i class="fas fa-trash"></i></a>
+							</form>
+							<span class="badge badge-secondary font-weight-light badge-pill mt-auto mb-1" data-badge-caption="">Qty: {{ item.quantity }}</span>
+							<span class="badge badge-danger badge-pill font-weight-light" data-badge-caption="">{{ product.price|currency:default_currency }}</span>
+						</div>
+					</div>
+				</div>
+			</li>
+			{% if forloop.last %}
+			<li class="list-group-item list-group-item-light d-flex flex-row justify-content-between">
+					<div class="badge badge-light align-self-end"><h6 class="mb-0">Subtotal: {{ sub_total|currency:default_currency }}</h6></div>
+					<a class="btn btn-primary" href="{% url 'sales_checkout_cart' %}"><i class="fas fa-shopping-cart mr-2"></i>Checkout</a>
+			</li>
+			{% endif %}
+			{% endwith %}
+			{% empty %}
+			<li class="list-group-item text-warning text-nowrap">
+				You have no items in your shopping cart.
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
 </div>
 {% endwith %}

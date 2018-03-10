@@ -6,6 +6,29 @@
 
 {% block header-menu %}
 {% include "catalog/parts/search_box.html" %}
+<div class="dropdown">
+	<button id="currency-dropdown-button" class="btn btn-outline-dark border" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Currency">
+		{{ default_currency.code }}
+		<i class="fas fa-angle-down right ml-1"></i>
+	</button>
+	<div class="dropdown-menu" aria-labelledby="currency-dropdown-button">
+		<form method="post" action="{% url 'catalog_change_currency' %}">
+			{% csrf_token %}
+			<input type="hidden" name="next" value="{{ request.get_full_path }}" />
+			<input id="default_currency" type="hidden" name="default_currency"/>
+			<ul class="list-unstyled">
+				{% for currency in currencies %}
+				<li>
+					<a href="#" class="dropdown-item" onclick="javascript:$('#default_currency').val('{{ currency.code }}').closest('form').submit();">{{ currency.code }}</a>
+				</li>
+				{% endfor %}
+			</ul>
+		</form>
+	</div>
+</div>
+<div id="basket-container">
+	{% cart_basket %}
+</div>
 {{ block.super }}
 {% endblock %}
 

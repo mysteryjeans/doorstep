@@ -1,10 +1,4 @@
-
 function basketChanged() {
-	$('#basket-dropdown-button').dropdown();
-	$('#basket-dropdown').appendTo($('main#content'));
-	// Initializing new forms in basket-container
-	bootstrapAjax($, '#basket-dropdown');
+    // Initializing new forms in basket-container
+    bootstrapAjax($, '#basket-container');
 }
-$(document).ready(function() {
-	$('#basket-dropdown').appendTo($('main#content'));
-});

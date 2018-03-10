@@ -49,10 +49,28 @@
 }
 
 #basket-container {
-  a.dropdown-button {
-    overflow: hidden;
-    i.fas.fa-shopping-cart.right {
-      margin-left: 0;
+  .basket-counter {
+      i.fas {
+        font-size: 1.1rem;
+      }
+      span.badge {
+      position:absolute;
+      left:-30px;
+      top:auto;
+      bottom:-9px;
+    }
+  }
+
+  .img-container {
+    width: 54px;
+    height: 54px;
+  }
+
+  .dropdown.show {
+    .basket-counter {
+      span.badge {
+        display: none;
+      }
     }
   }
 }

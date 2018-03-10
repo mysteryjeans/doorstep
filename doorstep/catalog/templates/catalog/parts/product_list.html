@@ -21,11 +21,11 @@
 				{% endif %}
 		  </div>
 		  <div class="card-body d-flex justify-content-end px-2 py-2">
-					<form class="mr-auto mt-auto add-to-cart-form" method="post" action="{% url 'sales_add_to_cart' %}" data-ajax="true" data-ajax-update="#basket-container" data-ajax-success="basketChanged();" data-ajax-complete="add_to_cart">
+					<form class="mr-auto mt-auto add-to-cart-form" method="post" action="{% url 'sales_add_to_cart' %}" data-ajax="true" data-ajax-update="#basket-container" data-ajax-complete="basketChanged();">
 						{% csrf_token %}
 						<input name="product_id" type="hidden" value="{{ product.id }}"/>
 						<input name="quantity" type="hidden" value="1"/>
-						<button class="btn text-primary pl-1 pb-0 ml-0"><i class="fas fa-cart-plus"></i></button>
+						<a href="#" class="text-primary pl-1 pb-0 ml-0" style="font-size:1.2rem" onclick="javascript:$(this).closest('form').submit(); return false;"><i class="fas fa-cart-plus"></i></a>
 					</form>
 					{% if product.old_price %}
 					<span class="text-lightgrey old-price mt-auto small">{{ product.old_price|currency:default_currency }}</span>

@@ -43,7 +43,7 @@
 		<ul class="navbar-nav">
 			{% block header-menu-list %}
 			{% if user.is_authenticated %}
-			<li class="nav-item dropdown ml-2">
+			<li class="nav-item dropdown ml-1">
 				<button id="user-dropdown-menu" class="btn btn-light dropdown-toggle nav-link" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						<i class="fas fa-bars"></i>
 						Hi! {{ user.get_username }}

@@ -19,7 +19,7 @@
             <div class="w-100 d-block d-md-none"></div>
           </div>
           <div class="w-100 d-none carousel-caption my-auto mx-5 pr-5 mr-5 w-100 text-left d-none d-md-block" style="position:static !important">
-          <h4 class="mb-5">{{ product.name }}</h4>
+          <a href="{{ product.get_absolute_url }}"><h4 class="mb-5 text-light">{{ product.name }}</h4></a>
           <p class="text-light">{{  product.gist }}</p>
         </div>
         </div>
