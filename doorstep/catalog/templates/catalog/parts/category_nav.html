@@ -2,7 +2,7 @@
 <li class="dropdown-submenu">
 	<a href="{{ category.get_absolute_url }}" class="dropdown-item d-flex justify-content-between" data-toggle="dropdown">
 		<span>{{ category.name }}</span>
-		<i class="fas fa-angle-right ml-3 mt-1"></i>
+		<i class="fas fa-angle-right ml-4 mt-1 text-lightgrey"></i>
 	</a>
 	<ul class="dropdown-menu">
 		{% for category in category.sub_categories_list %}

@@ -39,7 +39,7 @@ class CatalogBaseView(BaseView):
         context = super(CatalogBaseView, self).get_context_data(**kwargs)
 
         # Setting data context for catalog base template
-        breadcrumbs = ({'name': 'Home', 'url': reverse('catalog_index')},)
+        breadcrumbs = ({'name': 'All', 'url': reverse('catalog_index')},)
         if 'breadcrumbs' in context:
             breadcrumbs += context['breadcrumbs']
 
@@ -145,21 +145,26 @@ class SearchProductsView(CatalogBaseView):
         form = AdvancedSearchForm(request.GET)
         query = '?' + request.GET.urlencode()
         products = None
+        category = None
         keyword = request.GET.get('keyword', None)
         page_title = 'Search: ' + keyword
-        breadcrumbs = ({'name': 'Search: ' + keyword, 'url': reverse('catalog_search') + query},)
+        breadcrumbs = ({'name': 'Search', 'url': reverse('catalog_search') + query},)
 
         if form.is_valid():
             data = form.cleaned_data
-
+            category = data['category']
             products = paginate(Product.search_advance_products(
                 data['keyword'], data['category'], data['manufacturer'],
                 data['price_from'], data['price_to'], self.categories),
                 self.get_page_size(), page_num, 'catalog_search', qs=query)
 
+            if category:
+                breadcrumbs = category.get_breadcrumbs()
+
         return super(SearchProductsView, self).get(request,
                                                    form=form,
                                                    keyword=keyword,
+                                                   category=category,
                                                    products=products,
                                                    page_title=page_title,
                                                    breadcrumbs=breadcrumbs)

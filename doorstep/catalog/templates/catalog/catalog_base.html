@@ -5,21 +5,6 @@
 {% load cache %}
 
 {% block header-menu %}
-<div class="dropdown d-none d-lg-block">
-	<button id="category-dropdown-menu" class="btn btn-outline-info" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			<i class="fas fa-ellipsis-v mr-1"></i>
-			Categories
-		</button>
-	<div class="dropdown-menu" aria-labelledby="category-dropdown-menu">
-		<ul class="list-unstyled">
-			{% with template_name="catalog/parts/category_nav.html" %}
-			{% for category in categories %}
-			{% include template_name %}
-			{% endfor %}
-			{% endwith %}
-		</ul>
-	</div>
-</div>
 {% include "catalog/parts/search_box.html" %}
 {{ block.super }}
 {% endblock %}
@@ -123,31 +108,6 @@
 
 {% block content %}
 <div>
-	<div>
-		{% if breadcrumbs %}
-		<ul class="breadcrumbs d-none">
-			{% for crumb in breadcrumbs %}
-			{% if forloop.last %}
-			<li>
-				{% if crumb.name == 'Home' %}
-				<i class="fa fa-home" style="font-size: 1.2em"></i>
-				{% else %}
-				<span>{{ crumb.name }}</span>
-				{% endif %}
-			</li>
-			{% elif crumb.name == 'Home' %}
-			<li>
-				<a href="{{ crumb.url }}" title="Go to {{ crumb.name }}" ><i class="fa fa-home" style="font-size: 1.2em; text-decoration: none;"></i></a>
-			</li>
-			{% else %}
-			<li>
-				<a href="{{ crumb.url }}" title="Go to {{ crumb.name }}" >{{ crumb.name }}</a>
-			</li>
-			{% endif %}
-			{% endfor %}
-		</ul>
-		{% endif %}
-	</div>
 	<div id="catalog-content" class="mt-5">
 		{% block catalog-content %}
 		{% endblock %}

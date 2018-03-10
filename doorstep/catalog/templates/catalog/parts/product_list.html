@@ -4,23 +4,32 @@
 <div class="row equal-height mx-2">
 	{% for product in products %}
 	<div class="col-sm-12 col-md-4 col-lg-3 col-xl-2 mb-5">
-		<div class="card" data-href="{{ product.get_absolute_url }}">
+		<div class="card" data1-href="{{ product.get_absolute_url }}">
+			{% if product.old_price %}
+			<span class="badge badge-warning" style="position: absolute;z-index:100;">{{ product.get_discount }}% OFF</span>
+			{% endif %}
 			{% with pic=product.pics.all.0 %}
 			{% thumbnail pic.url "400x400" as im %}
 			<img class="card-img-top img-fluid" src="{{ im.url }}" alt="{{ product.name }}"/>
 			{% endthumbnail %}
 			{% endwith %}
-		  <div class="card-body">
-		    <span class="card-title"><small><strong>{{ product.name }}</strong></small></span>
+		  <div class="card-body px-2 pb-2">
+		    <p class="card-title mb-1 font-weight-bold">{{ product.name }}</p>
 				{% if product.gist %}
-		    <p class="card-text text-muted"><small>{{ product.gist }}</small></p>
+		    <p class="card-text text-muted text-truncate font-weight-light small">{{ product.gist }}</p>
 				{% endif %}
 		  </div>
-		  <div class="card-body d-flex justify-content-end">
-				{% if product.old_price %}
-				<span class="badge badge-secondary old-price">{{ product.old_price|currency:default_currency }}</span>
-				{% endif %}
-				<span class="badge badge-danger mt-auto  ml-2 align-bottom">{{ product.price|currency:default_currency }}</span>
+		  <div class="card-body d-flex justify-content-end px-2 py-2">
+					<form class="mr-auto mt-auto add-to-cart-form" method="post" action="{% url 'sales_add_to_cart' %}" data-ajax="true" data-ajax-update="#basket-container" data-ajax-success="basketChanged();Materialize.toast('Added to cart', 2000)" data-ajax-complete="add_to_cart">
+						{% csrf_token %}
+						<input name="product_id" type="hidden" value="{{ product.id }}"/>
+						<input name="quantity" type="hidden" value="1"/>
+						<button class="btn text-primary pl-0 pb-0 ml-0"><i class="fas fa-cart-plus"></i></button>
+					</form>
+					{% if product.old_price %}
+					<span class="text-lightgrey old-price mt-auto small">{{ product.old_price|currency:default_currency }}</span>
+					{% endif %}
+					<span class="text-dark mt-auto ml-2 font-weight-bold">{{ product.price|currency:default_currency }}</span>
 		  </div>
 		</div>
 		</div>

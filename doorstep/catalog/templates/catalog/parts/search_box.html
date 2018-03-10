@@ -1,6 +1,38 @@
 <form action="{% url 'catalog_search' %}" class="container-fluid d-none d-sm-block">
+	<input type="hidden" name="category" value="{{ category.id }}">
 	<div class="input-group">
-		<input type="search" name="keyword" class="form-control border border-right-0" placeholder="Search..." value="{{ keyword|default:'' }}">
+		<div class="input-group-prepend">
+			<div class="btn-group">
+				<button id="search-box-category-dropdown-menu" class="btn btn-outline-secondary border border-right-0 pr-2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Search in..">
+					<i class="fa fa-align-left"></i>
+					{% if breadcrumbs|length <= 1 %}
+					<span class="mx-1">All</span>
+					{% endif %}
+			  </button>
+				<div class="dropdown-menu" aria-labelledby="search-box-category-dropdown-menu">
+					<ul class="list-unstyled">
+						{% with template_name="catalog/parts/category_nav.html" %}
+						{% for category in categories %}
+						{% include template_name %}
+						{% endfor %}
+						{% endwith %}
+					</ul>
+				</div>
+				{% if breadcrumbs|length > 1 %}
+				<div class="btn btn-outline-secondary disabled border border-right-0 border-left-0 pl-1">
+					{% for crumb in breadcrumbs %}
+					{% if forloop.last %}
+					{{ crumb.name }}
+					{% elif not forloop.first %}
+					<a href="{{ crumb.url }}">{{ crumb.name }}</a>
+					<i class="fa fa-angle-right text-lightgrey"></i>
+					{% endif %}
+					{% endfor %}
+				</div>
+				{% endif %}
+			</div>
+		</div>
+		<input type="search" name="keyword" class="form-control border border-right-0 border-left-0" placeholder="Search.." value="{{ keyword|default:'' }}">
 		<span class="input-group-append">
 			<button class="btn btn-outline-secondary border border-left-0" type="button">
 				<i class="fa fa-search"></i>

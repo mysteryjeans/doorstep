@@ -11,14 +11,26 @@
 @category-expand-arrow: @second-color;
 
 
-.card .card-body .card-text {
-  max-height: 100px;
-  overflow: hidden;
+.card {
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+
+  .card-img-top {
+    max-height: 200px;
+  }
+  .card-title {
+    font-size: 0.9em;
+  }
+
+  .add-to-cart-form {
+    button.btn {
+      font-size: 1.2rem;
+    }
+  }
 }
 
 .card[data-href]:hover:not(a) {
   cursor: pointer;
-  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 #basket-container {

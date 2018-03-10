@@ -7,7 +7,7 @@ class AdvancedSearchForm(forms.Form):
     """
     Advanced Catalog Search form
     """
-    keyword = forms.CharField(max_length=15, error_messages={'required': 'Please enter search keyword.'},
+    keyword = forms.CharField(max_length=15, required=False,
                               widget=forms.TextInput(attrs={'placeholder': 'Search store...'}))
     category = forms.ModelChoiceField(required=False, queryset=Category.objects.filter(
         is_active=True), empty_label='all...')
