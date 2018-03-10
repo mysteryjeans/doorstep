@@ -5,6 +5,28 @@
 {% load cache %}
 
 {% block header-menu %}
+<div class="dropdown d-none d-lg-block">
+	<button id="category-dropdown-menu" class="btn btn-outline-info" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			<i class="fas fa-ellipsis-v mr-1"></i>
+			Categories
+		</button>
+	<div class="dropdown-menu" aria-labelledby="category-dropdown-menu">
+		<a class="dropdown-item" href="/admin/">
+				<i class="fas fa-wrench text-lightgrey mr-3"></i>Admin
+		</a>
+		<a class="dropdown-item" href="{% url 'accounts_change_password' %}">
+			 <i class="fas fa-key text-lightgrey mr-3"></i>Change password
+		 </a>
+		<a class="dropdown-item" href="{% url 'accounts_logout' %}">
+			 <i class="fas fa-sign-out-alt text-lightgrey mr-3"></i>Log Out
+		 </a>
+	</div>
+</div>
+{% include "catalog/parts/search_box.html" %}
+{{ block.super }}
+{% endblock %}
+
+{% block header-menu2 %}
 {{ block.super }}
 <div class="right">
 	<ul>
@@ -33,7 +55,6 @@
 		</li>
 	</ul>
 </div>
-{% include "catalog/parts/search_box.html" %}
 {% endblock %}
 
 {% block nav-extended %}

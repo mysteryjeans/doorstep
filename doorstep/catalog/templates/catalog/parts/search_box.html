@@ -1,9 +1,10 @@
-<form action="{% url 'catalog_search' %}" class="search-box">
-	<div class="input-field">
-		<input id="keyword" type="search" required="" name="keyword" type="text" value="{{ keyword|default:'' }}">
-		<label class="label-icon" for="keyword">
-			<i class="material-icons">search</i>
-		</label>
-		<i class="material-icons">close</i>
+<form action="{% url 'catalog_search' %}" class="container-fluid d-none d-sm-block">
+	<div class="input-group">
+		<input type="search" name="keyword" class="form-control border border-right-0" placeholder="Search..." value="{{ keyword|default:'' }}">
+		<span class="input-group-append">
+			<button class="btn btn-outline-secondary border border-left-0" type="button">
+				<i class="fa fa-search"></i>
+			</button>
+		</span>
 	</div>
 </form>
