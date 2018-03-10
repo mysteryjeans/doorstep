@@ -74,4 +74,3 @@ We look forward to seeing your pull requests!
 ## Screenshot
 
 ![Doorstep Demo Screenshot](https://raw.github.com/mysteryjeans/doorstep-demo/bootstrap/media/images/demo-screenshot.png)
-![Doorstep Demo Screenshot](https://raw.github.com/mysteryjeans/doorstep-demo/bootstrap/media/images/demo-screenshot.png)
