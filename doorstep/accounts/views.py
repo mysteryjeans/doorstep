@@ -37,6 +37,14 @@ class LoginView(CatalogBaseView):
     def post(self, request):
         username = request.POST['username']
         password = request.POST['password']
+
+        if '@' in username:
+            try:
+                user = User.objects.get(email__iexact=username)
+                username = user.username
+            except User.DoesNotExist:
+                pass
+
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:

@@ -40,10 +40,18 @@ class RegisterForm(forms.ModelForm):
         if not email:
             raise ValidationError('Please enter you email address.')
 
-        if User.objects.filter(email__iexact=email).count() > 0:
+        if User.objects.filter(email__iexact=email).exists():
             raise ValidationError('User with this email address already exists.')
 
         return email
+
+    def clean_username(self):
+        username = self.cleaned_data['username']
+
+        if '@' in username:
+            raise ValidationError('User name shouldn\'t be email address')
+
+        return username
 
     def clean_first_name(self):
         first_name = self.cleaned_data['first_name']
