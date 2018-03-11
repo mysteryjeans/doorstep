@@ -1,35 +1,33 @@
 {% extends "catalog/catalog_base.html" %}
 
 {% block catalog-content %}
-<div class="container">
-	<div class="row no-gutters">
-		<div class="card bg-ligh col-md-8 offset-md-2 col-lg-6 offset-lg-3">
-			<div class="card-header">Log In</div>
-			<form method="post" action="{% url 'accounts_login' %}">
-				{% csrf_token %}
-				<input type="hidden" name="next" value="{{ next_url }}" />
-				<div class="card-body">
-					{% if error %}
-					<p class="text-danger">
-						{{ error|safe }}
-					</p>
-					{% endif %}
-					<div class="form-group">
-						<input id="id_username" name="username" type="text" value="{{ username }}" required="" class="form-control" placeholder="Username" />
-
-					</div>
-					<div class="form-group">
-						<input id="id_password" name="password" type="password" class="form-control" placeholder="Password">
-					</div>
+<div class="row no-gutters">
+	<div class="card bg-light col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+		<div class="card-header">Log In</div>
+		<form method="post" action="{% url 'accounts_login' %}">
+			{% csrf_token %}
+			<input type="hidden" name="next" value="{{ next_url }}" />
+			<div class="card-body">
+				{% if error %}
+				<p class="text-danger">
+					{{ error|safe }}
+				</p>
+				{% endif %}
+				<div class="form-group">
+					<input id="id_username" name="username" type="text" value="{{ username }}" required="" class="form-control" placeholder="Username" />
 				</div>
-				<div class="card-body">
+				<div class="form-group">
+					<input id="id_password" name="password" type="password" class="form-control" placeholder="Password">
+				</div>
+				<div>
 					<a href="{% url 'accounts_register' %}{% if next_url %}?next={{ next_url|urlencode }}{% endif %}" class="card-link" data-toggle="tooltip" title="Register to shop faster and better!">Register</a>
 					<a href="{% url 'accounts_forgot_password' %}" class="card-link" data-toggle="tooltip" title="Request new password">Forgot your password?</a>
-					<div class="text-right"><button class="btn btn-secondary"><i class="fas fa-lock mr-2"></i>Log In</button>
+					<div class="text-right">
+						<button class="btn btn-secondary"><i class="fas fa-lock mr-2"></i>Log In</button>
 					</div>
 				</div>
-			</form>
-		</div>
+			</div>
+		</form>
 	</div>
 </div>
 {% endblock %}
