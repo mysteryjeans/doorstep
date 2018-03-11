@@ -99,7 +99,7 @@ class RegisterView(CatalogBaseView):
                 if next_url:
                     return HttpResponseRedirect(next_url)
 
-                success = 'Thank you for registration, you have successfully signed in, <strong>lets explore!</strong>'
+                success = 'Thank you for sign up, you have been also successfully logged in, <strong>lets explore!</strong>'
             except ValidationError as e:
                 error = e.message
 

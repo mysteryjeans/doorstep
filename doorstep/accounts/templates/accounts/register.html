@@ -1,111 +1,101 @@
 {% extends "catalog/catalog_base.html" %}
 
 {% block catalog-content %}
-<div class="container row">
-	<div class="col s12 m8 offset-m2 l8 offset-l2">
-		<div class="card grey lighten-5">
-			{% if success %}
-			<div class="card-content">
-				<div class="card-title">Please enter your details for registration.</div>
-				<div class="row">
-					<div class="col s12 green-text lighten-3">
-						{{ success|safe }}
+<div class="row no-gutters">
+	<div class="card bg-light col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+		<div class="card-header">Sign Up</div>
+		{% if success %}
+		<div class="card-body">
+			<p class="text-success">{{ success|safe }}</p>
+		</div>
+		{% else %}
+		<form method="post" action="{% url 'accounts_register' %}">
+			{% csrf_token %}
+			<input type="hidden" name="next" value="{{ next_url }}" />
+			<div class="card-body">
+				{% if as_superuser %}
+				<p class="text-info">
+						Sign Up yourself as site administrator, you will have all permissions on this site.
+				</p>
+				{% endif %}
+				{% if error %}
+				<p class="text-danger">
+					{{ error|safe }}
+				</p>
+				{% endif %}
+				<div class="form-row">
+					<div class="col-sm-12 col-md-6 form-group">
+						<input id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.name }}" type="text" class="form-control {% if form.first_name.errors %}is-invalid{% endif %}" placeholder="First name" required="" value="{{ form.first_name.value|default:'' }}" />
+						{% if form.first_name.errors %}
+						<div class="invalid-feedback">
+							{{ form.first_name.errors|first|safe }}
+						</div>
+						{% endif %}
 					</div>
+					<div class="col-sm-12 col-md-6 form-group">
+						<input id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.name }}" type="text" class="form-control {% if form.last_name.errors %}is-invalid{% endif %}" placeholder="Last name" required=""  value="{{ form.last_name.value|default:'' }}" />
+						{% if form.last_name.errors %}
+						<div class="invalid-feedback">
+							{{ form.last_name.errors|first|safe }}
+						</div>
+						{% endif %}
+					</div>
+			  </div>
+				<div class="form-row">
+					<div class="col-sm-12 col-md-6 form-group">
+						<input id="{{ form.email.id_for_label }}" name="{{ form.email.name }}" type="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}" placeholder="Email" required=""  value="{{ form.email.value|default:'' }}" />
+						{% if form.email.errors %}
+						<div class="invalid-feedback">
+							{{ form.email.errors|first|safe }}
+						</div>
+						{% endif %}
+					</div>
+					<div class="col-sm-12 col-md-6 form-group">
+						<div class="input-group">
+			        <div class="input-group-prepend">
+			          <div class="input-group-text">@</div>
+			        </div>
+			        <input id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" type="text" class="form-control {% if form.username.errors %}is-invalid{% endif %}" placeholder="Username" required=""  value="{{ form.username.value|default:'' }}" />
+							{% if form.username.errors %}
+							<div class="invalid-feedback">
+								{{ form.username.errors|first|safe }}
+							</div>
+							{% endif %}
+			      </div>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="col-sm-12 col-md-6 form-group">
+						<input id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" type="password" class="form-control {% if form.password.errors %}is-invalid{% endif %}" placeholder="New password" required="" />
+						{% if form.password.errors %}
+						<div class="invalid-feedback">
+							{{ form.password.errors|first|safe }}
+						</div>
+						{% endif %}
+					</div>
+					<div class="col-sm-12 col-md-6 form-group">
+						<input id="{{ form.confirm_password.id_for_label }}" name="{{ form.confirm_password.name }}" type="password" class="form-control {% if form.confirm_password.errors %}is-invalid{% endif %}" placeholder="Confirm password" required="" />
+						{% if form.confirm_password.errors %}
+						<div class="invalid-feedback">
+							{{ form.confirm_password.errors|first|safe }}
+						</div>
+						{% endif %}
+					</div>
+			  </div>
+				<div class="pl-1">
+					{% for choice in form.gender.field.choices %}
+					<div class="custom-control custom-radio custom-control-inline">
+						<input type="radio" id="{{ form.gender.id_for_label}}_{{ choice.0 }}" name="{{ form.gender.name }}" class="custom-control-input" required="" value="{{ choice.0 }}" {% if choice.0 == form.gender.data %}checked="checked" {% endif %}>
+						<label class="custom-control-label" for="{{ form.gender.id_for_label}}_{{ choice.0 }}">{{ choice.1 }}</label>
+					</div>
+					{% endfor %}
+				</div>
+				<div class="text-right">
+					<button class="btn btn-primary"><i class="fas fa-user-plus mr-2"></i>Sign Up</button>
 				</div>
 			</div>
-			{% else %}
-			<form method="post" action="{% url 'accounts_register' %}">
-				{% csrf_token %}
-				<input type="hidden" name="next" value="{{ next_url }}" />
-				<div class="card-content">
-					<div class="card-title">Please enter your details for registration.</div>
-					{% if as_superuser %}
-					<div class="row">
-						<div class="col s12 green-text lighten-3">
-							Register yourself as site administrator, you will have all permissions on this site.
-						</div>
-					</div>
-					{% endif %}
-					{% if error %}
-					<div class="row">
-						<div class="col s12 red-text lighten-3">
-							 {{ error|safe }}
-						</div>
-					</div>
-					{% endif %}
-					<div class="row">
-						<div class="input-field col s12 xl6">
-							{{ form.first_name }}
-							<label for="{{ form.first_name.id_for_label }}" data-error="{{ form.first_name.errors|first|default:'Please enter your first name' }}">First name</label>
-						</div>
-						<div class="input-field col s12 xl6">
-							{{ form.last_name }}
-							<label for="{{ form.last_name.id_for_label }}" data-error="{{ form.last_name.errors|first|default:'Please enter your last name' }}">Last name</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							{{ form.email }}
-							<label for="{{ form.email.id_for_label }}" data-error="{{ form.email.errors|first|default:'Please enter your email address' }}">Email</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12">
-							{{ form.username }}
-							<label for="{{ form.username.id_for_label }}" data-error="{{ form.username.errors|first|default:'Please choose a username' }}">Username</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="input-field col s12 xl6">
-							{{ form.password }}
-							<label for="{{ form.password.id_for_label }}" data-error="{{ form.password.errors|first|default:'Please enter your new password' }}">Password</label>
-						</div>
-						<div class="input-field col s12 xl6">
-							{{ form.confirm_password }}
-							<label for="{{ form.confirm_password.id_for_label }}" data-error="{{ form.confirm_password.errors|first|default:'Please re-enter your new password for confirmation' }}">Confirm password</label>
-						</div>
-					</div>
-					<div class="row">
-						{% for choice in form.gender.field.choices %}
-						<div class="col s3">
-							<input name="{{ form.gender.name }}" type="radio" id="{{ form.gender.id_for_label}}_{{ choice.0 }}" required="" value="{{ choice.0 }}" {% if choice.0 == form.gender.data %}checked="checked" {% endif %}/>
-							<label for="{{ form.gender.id_for_label}}_{{ choice.0 }}" data-error="Please specify your gender">{{ choice.1 }}</label>
-						</div>
-						{% endfor %}
-					</div>
-				</div>
-				<div class="card-action right-align">
-					<button class="btn"><i class="fas fa-user-plus left"></i>Register</button>
-				</div>
-			</form>
-			{% endif %}
-		</div>
+		</form>
+		{% endif %}
 	</div>
 </div>
-{% endblock %}
-
-{% block scripts %}
-{{ block.super }}
-<script>
-	$(document).ready(function() {
-		{% if form.first_name.errors %}
-		$('#{{ form.first_name.id_for_label }}').addClass('invalid').prop('aria-invalid', 'true');
-		{% endif %}
-		{% if form.last_name.errors %}
-		$('#{{ form.last_name.id_for_label }}').addClass('invalid').prop('aria-invalid', 'true');
-		{% endif %}
-		{% if form.email.errors %}
-		$('#{{ form.email.id_for_label }}').addClass('invalid').prop('aria-invalid', 'true');
-		{% endif %}
-		{% if form.username.errors %}
-		$('#{{ form.username.id_for_label }}').addClass('invalid').prop('aria-invalid', 'true');
-		{% endif %}
-		{% if form.password.errors %}
-		$('#{{ form.password.id_for_label }}').addClass('invalid').prop('aria-invalid', 'true');
-		{% endif %}
-		{% if form.confirm_password.errors %}
-		$('#{{ form.confirm_password.id_for_label }}').addClass('invalid').prop('aria-invalid', 'true');
-		{% endif %}
-	});
-</script>
 {% endblock %}
