@@ -1,12 +1,10 @@
-<ul class="groups">
-    {% for group in groups %}
-    <li class="group-header">
-        <h4>{{ group.name }}</h4>
-        <ul class="group-links">
-            {% for link in group.links %}
-            <li><a href="{{ link.url }}">{{ link.name }}</a></li>
-            {% endfor %}
-        </ul>
-    </li>
+{% for group in groups %}
+<div class="col-6 col-md">
+  <h5>{{ group.name }}</h5>
+  <ul class="list-unstyled text-small">
+    {% for link in group.links %}
+    <li><a class="text-muted" href="{{ link.url }}">{{ link.name }}</a></li>
     {% endfor %}
-</ul>
+  </ul>
+</div>
+{% endfor %}

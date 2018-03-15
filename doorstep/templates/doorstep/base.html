@@ -155,23 +155,29 @@
 	{% endblock %}
 </header>
 
-<main id="content" style="min-height: 100vh">
+<main id="content" style="min-height: 50vh">
 	{% block content %}
 	{% endblock %}
 </main>
 <div class="overlay"></div>
-<footer>
-	{% block footer %}
+{% block footer %}
+<footer class="pt-4 my-md-5 pt-md-5 border-top container">
+	{% block footer-content %}
 	{% cache cache_timeout page-links %}
-	{% get_pages_links %}
-	<div class="copyright">
-		<p>
-			<span class="statement">{{ COPYRIGHT|safe }}</span> <span class="poweredby">Powered by <a href="https://github.com/mysteryjeans/doorstep">Doorstep</a></span>
-		<p>
-	</div>
+  <div class="row">
+    <div class="col-12 col-md">
+      <img class="mb-2" src="{% static 'doorstep/img/icon.png' %}" alt="" width="24" height="24">
+      <small class="d-block mb-3 text-muted">{{ COPYRIGHT|safe }}</small>
+    </div>
+		{% get_pages_links %}
+		<div class="col-sm-12 text-muted small text-right">
+      Powered by <a href="https://github.com/mysteryjeans/doorstep"><span class="text-dark">Doorstep</span></a>
+    </div>
+  </div>
 	{% endcache %}
 	{% endblock %}
 </footer>
+{% endblock %}
 {% block scripts %}
 <script src="{% static 'doorstep/scripts/jquery.min.js' %}"></script>
 <script src="{% static 'doorstep/scripts/bootstrap.bundle.min.js' %}"></script>
