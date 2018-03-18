@@ -1,12 +1,10 @@
 {% extends base_template_name %}
 
 {% block content %}
-<div class="page-content">
-    <h2>
-        {{ page.title }}
-    </h2>
-    <div>
-        {{ page.content|safe }}
-    </div>
+<div class="container mt-5">
+  <h2 class="display-4 mb-4">{{ page.title }}</h2>
+  <div>
+    {{ page.content|safe }}
+  </div>
 </div>
 {% endblock %}
