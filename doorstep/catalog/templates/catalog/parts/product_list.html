@@ -5,19 +5,21 @@
 <div class="row equal-height product-listings">
 	{% for product in products %}
 	<div class="col-sm-12 col-md-4 col-lg-3 mb-5">
-		<div class="card border-0" data-href="{{ product.get_absolute_url }}">
+		<div class="card border-0">
 			{% if product.old_price %}
 			<span class="badge badge-warning" style="position: absolute;z-index:100;">{{ product.get_discount }}% OFF</span>
 			{% endif %}
 			{% with pic=product.pics.all.0 %}
 			{% thumbnail pic.url "400x400" as im %}
-			<img class="card-img-top img-fluid" src="{{ im.url }}" alt="{{ product.name }}"/>
+			<a href="{{ product.get_absolute_url }}">
+				<img class="card-img-top img-fluid" src="{{ im.url }}" alt="{{ product.name }}"/>
+			</a>
 			{% endthumbnail %}
 			{% endwith %}
 		  <div class="card-body px-3">
-		    <p class="card-title mb-1 font-weight-bold">{{ product.name }}</p>
+		    <a class="card-title mb-1 font-weight-bold text-dark" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
 				{% if product.gist %}
-		    <p class="card-text text-muted text-truncate font-weight-light small">{{ product.gist }}</p>
+		    <p class="card-text text-muted text-truncate small">{{ product.gist }}</p>
 				{% endif %}
 		  </div>
 		  <div class="card-body d-flex justify-content-end px-2 py-2">
@@ -25,10 +27,10 @@
 						{% csrf_token %}
 						<input name="product_id" type="hidden" value="{{ product.id }}"/>
 						<input name="quantity" type="hidden" value="1"/>
-						<a href="#" class="text-primary pl-1 pb-0 ml-0" style="font-size:1.2rem" onclick="javascript:$(this).closest('form').submit(); return false;"><i class="fas fa-cart-plus"></i></a>
+						<a href="#" class="text-warning pl-1 pb-0 ml-0" style="font-size:1.2rem" onclick="javascript:$(this).closest('form').submit(); return false;"><i class="fas fa-cart-plus"></i></a>
 					</form>
 					{% if product.old_price %}
-					<span class="text-lightgrey old-price mt-auto small">{{ product.old_price|currency:default_currency }}</span>
+					<span class="text-lightgrey mt-auto small"><del>{{ product.old_price|currency:default_currency }}</del></span>
 					{% endif %}
 					<span class="text-dark mt-auto ml-2 font-weight-bold">{{ product.price|currency:default_currency }}</span>
 		  </div>

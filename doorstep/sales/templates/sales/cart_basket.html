@@ -17,25 +17,27 @@
 			<li class="list-group-item d-flex flex-column">
 				<div class="d-flex flex-row">
 					{% thumbnail product.pics.all.0.url "54x54" as im %}
-					<div class="img-container">
-						<img class="mr-4" src="{{ im.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
+					<div class="img-container my-auto mr-3 rounded-circle">
+						<img class="mr-4 rounded-circle border" src="{{ im.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
 					</div>
 					{% endthumbnail %}
 					<div class="w-100 d-flex flex-row" style="min-width:300px;">
-						<div class="d-flex flex-column mr-2">
-							<a class="list-group-item-action" href="{{ product.get_absolute_url }}">
-								<h5>{{ product.name }}</h5>
+						<div class="d-flex flex-column mr-3 w-100">
+							<a class="list-group-item-action no-wrap text-truncate" style="max-width:300px;" href="{{ product.get_absolute_url }}">
+								{{ product.name }}
 							</a>
-							<div class="text-muted pt-2 small">{{ product.gist|truncatewords:10 }}</div>
+							<p class="text-muted pt-2 small text-truncate border-bottom pb-2" style="max-width:300px;">{{ product.gist }}</p>
+							<div class="d-flex flex-row justify-content-between mt-2">
+								<span class="text-danger">{{ product.price|currency:default_currency }}</span>
+								<span class="text-muted mt-auto mb-auto small"><small>Quantity: {{ item.quantity }}</small></span>
+							</div>
 						</div>
 						<div class="d-flex flex-column ml-auto">
 							<form class="small text-right" method="post" action="{% url 'sales_remove_from_cart' %}" data-ajax="true" data-ajax-url="{% url 'sales_remove_from_cart' %}" data-ajax-update="#basket-container" data-ajax-complete="basketChanged()">
 								{% csrf_token %}
 								<input name="product_id" type="hidden" value="{{ item.product_id }}" />
-								<a href="#" onclick="javascript:$(this).closest('form').submit(); return false;" class="text-primary" title="Remove this product."><i class="fas fa-trash"></i></a>
+								<a href="#" onclick="javascript:$(this).closest('form').submit(); return false;" class="text-secondary" data-toggle="tooltip" title="Remove this product."><i class="fas fa-trash"></i></a>
 							</form>
-							<span class="badge badge-secondary font-weight-light badge-pill mt-auto mb-1" data-badge-caption="">Qty: {{ item.quantity }}</span>
-							<span class="badge badge-danger badge-pill font-weight-light" data-badge-caption="">{{ product.price|currency:default_currency }}</span>
 						</div>
 					</div>
 				</div>

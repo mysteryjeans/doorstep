@@ -15,7 +15,9 @@
         <div class="d-flex justify-content-between">
           <div class="w-100 d-flex">
             <div class="w-100 d-block d-md-none"></div>
-            <img class="d-block" src="{% get_media_prefix %}{{ product.pics.all.0.url }}" alt="{{ product.name }}" />
+            <a href="{{ product.get_absolute_url }}">
+              <img class="d-block" src="{% get_media_prefix %}{{ product.pics.all.0.url }}" alt="{{ product.name }}" />
+            </a>
             <div class="w-100 d-block d-md-none"></div>
           </div>
           <div class="w-100 d-none carousel-caption my-auto mx-5 pr-5 mr-5 w-100 text-left d-none d-md-block" style="position:static !important">

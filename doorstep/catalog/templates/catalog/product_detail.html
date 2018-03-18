@@ -1,128 +1,126 @@
 {% extends catalog_template_name %}
 
+{% load static %}
 {% load pipeline %}
 {% load catalog_filters %}
 
 {% block catalog-content %}
-<div class="product-summary">
-	<h2>{{ product.name }}
-		{% if product.old_price %}
-		<span class="discount"> {{ product.get_discount }}% OFF</span>
-		{% endif %}
-	</h2>
-	<div class="product-description">
-		{{ product.gist }}
+<div class="row">
+	<div class="col-12 col-md-6">
+		{% with pics=product.pics.all %}
+		<div id="carousel-product-show" class="carousel slide" data-ride="carousel">
+		  <ol class="carousel-indicators">
+				{% for pic in pics %}
+		    <li data-target="#carousel-product-show" data-slide-to="{{ forloop.counter0 }}" class="btn p-0 {% if forloop.first %}active{% endif %}"></li>
+				{% endfor %}
+		  </ol>
+		  <div class="carousel-inner">
+				{% for pic in pics %}
+		    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+					<div class="d-flex flex-row justify-content-center">
+		     		<img class="d-block img-fluid" src="{% get_media_prefix %}{{ pic.url }}" alt="No Preview">
+					</div>
+		    </div>
+				{% endfor %}
+		  </div>
+		  <a class="carousel-control-prev" href="#carousel-product-show" role="button" data-slide="prev">
+				<h4>
+		    	<i class="fas fa-chevron-left p-2 bg-light text-dark"></i>
+				</h4>
+		    <span class="sr-only">Previous</span>
+		  </a>
+		  <a class="carousel-control-next" href="#carousel-product-show" role="button" data-slide="next">
+				<h4>
+		    	<i class="fas fa-chevron-right p-2 bg-light text-dark"></i>
+				</h4>
+		    <span class="sr-only">Next</span>
+		  </a>
+		</div>
+		{% endwith %}
 	</div>
-	<div class="cart-summary">
-		<ul>
-			<li>
-				{% if product.quantity %}
-				<span class="in-stock">In Stock</span>
-				{% else %}
-				<span class="out-of-stock">Out of Stock</span>
-				{% endif %}
-			</li>
-			<li>
-				 <label>Brand:</label> <a href="{{ product.brand.get_absolute_url }}">{{ product.brand.name }}</a>
-			</li>
-			<li>
-				{% if product.is_free_shipping %}
-				<div class="free-shipping">
-					Free Shipping
-				</div>
-				{% else %}
-				<label>Shpping cost:</label> {{ product.shipping_cost|currency:default_currency }}/Unit
-				{% endif %}
-			</li>
-			<li class="price">
-				{{ product.price|currency:default_currency }}
+	<div class="col-12 col-md-6">
+		<div class="jumbotron bg-light py-4">
+			{% if product.old_price %}
+			<div class="text-right">
+				<span class="badge badge-warning badge-pill">{{ product.get_discount }}% OFF</span>
+			</div>
+			{% endif %}
+			<h4>{{ product.name }} <span class="text-muted small">- <a href="{{ product.brand.get_absolute_url }}" class="text-info">{{ product.brand.name }}</a></span></h4>
+			<p class="lead small">{{ product.gist }}</p>
+			<hr class="my-4">
+			<div class="d-flex flex-row justify-content-between">
+			{% if product.quantity %}
+			<span class="text-success"><i class="fas fa-box mr-2"></i>In Stock</span>
+			{% else %}
+			<span class="text-warning"><i class="fas fa-box mr-2"></i>Out of Stock</span>
+			{% endif %}
+			{% if product.is_free_shipping %}
+			<span class="text-warning">
+				<i class="fas fa-truck mr-2"></i>Free Shipping
+			</span>
+			{% else %}
+			<span class="text-dark" data-toggle="tooltip" title="Shipping cost {{ product.shipping_cost|currency:default_currency }} 	per unit">
+				<i class="fas fa-truck mr-2"></i>{{ product.shipping_cost|currency:default_currency }}/Unit
+			</span>
+			{% endif %}
+			</div>
+			<div class="my-2 d-flex flex-row justify-content-end">
 				{% if product.old_price %}
-				<span class="old-price"> {{ product.old_price|currency:default_currency }}</span>
-				<span class="discount"> {{ product.get_discount }}% OFF</span>
+				<span class="text-muted small mt-auto mr-2"><del>{{ product.old_price|currency:default_currency }}</del></span>
 				{% endif %}
-			</li>
-			<li class="add-to-cart-summary">
-				<form id="add-to-cart-form" method="post" action="{% url 'sales_add_to_cart' %}" data-ajax="true" data-ajax-update="#basket-container">
+				<span class="text-danger mt-auto">{{ product.price|currency:default_currency }}</span>
+			</div>
+			<div class="mt-3">
+				<form method="post" action="{% url 'sales_add_to_cart' %}" data-ajax="true" data-ajax-update="#basket-container">
 					{% csrf_token %}
-					<label>Qty:</label>
 					<input name="product_id" type="hidden" value="{{ product.id }}"/>
-					<input name="quantity" type="text" value="1"/>
-					<button class="add-to-cart">
-						<i class="fa fa-shopping-cart"></i>Add to Cart
-					</button>
-					<button class="buy-now" onclick="javascript:$(this).closest('form').unbind('submit'); $(this).closest('form').submit();">
-						<i class="fa fa-money"></i>Buy Now
+					<input name="quantity" type="hidden" value="1"/>
+					<button class="btn btn-warning"><i class="fas fa-shopping-cart mr-2"></i>Add to cart</button>
+					<button class="btn btn-danger"  onclick="javascript:$(this).closest('form').unbind('submit'); $(this).closest('form').submit();">
+						<i class="far fa-money-bill-alt mr-2"></i>Buy now
 					</button>
 				</form>
-			</li>
-		</ul>
-	</div>
-</div>
-<div id="product-show">
-	<div id="preview-container">
-		<img id="preview-zoom" src="{{ MEDIA_URL }}{{ product.pics.all.0.url }}"/>
-	</div>
-	{% with pics=product.pics.all %}
-	{% if pics|length > 1 %}
-	<div id="slides-container">
-		<a class="prev" href="#"><i class="fa fa-chevron-left"></i></a>
-		<a class="next" href="#"><i class="fa fa-chevron-right"></i></a>
-		<div id="pics-slideshow">
-			<ul>
-				{% for pic in pics %}
-				<li>
-					<img src="{{ MEDIA_URL }}{{ pic.url }}">
-				</li>
-				{% endfor %}
-			</ul>
+			</div>
 		</div>
 	</div>
-	{% endif %}
-	{% endwith %}
 </div>
-<div id="product-details">
-	{% with specs=product.specs.all %}
-	<ul id="product-tabs">
-		<li>
-			<a href="#product-overview-tab">Overview</a>
-		</li>
-		{% if specs %}
-		<li>
-			<a href="#product-specs-tab">Specifications</a>
-		</li>
-		{% endif %}
-	</ul>
-	<div id="product-overview-tab">
+
+{% with specs=product.specs.all %}
+<ul class="nav nav-tabs mt-5" role="tablist">
+	<li class="nav-item">
+		<a id="tab-overview" class="nav-link active" data-toggle="tab" href="#tab-content-overview" role="tab"  aria-controls="overview" aria-selected="true">Overview</a>
+	</li>
+	{% if specs %}
+	<li class="nav-item">
+		<a id="tab-specifications" class="nav-link" data-toggle="tab" href="#tab-content-specifications" role="tab" aria-controls="specifications" aria-selected="false">Specifications</a>
+	</li>
+	{% endif %}
+</ul>
+<div class="tab-content">
+  <div class="tab-pane fade show active" id="tab-content-overview" role="tabpanel" aria-labelledby="tab-overview">
+		<p class="lead py-3 px-2 small">
 		{{ product.description }}
+		</p>
 	</div>
 	{% if specs %}
-	<div id="product-specs-tab">
-		<table>
-			{% for spec in specs %}
-			<tr>
-				<td>{{ spec.name }}</td>
-				<td>{{ spec.value }}</td>
-			</tr>
-			{% endfor %}
+  <div class="tab-pane fade" id="tab-content-specifications" role="tabpanel" aria-labelledby="tab-specifications">
+		<table class="table table-sm small">
+			<tbody>
+				{% for spec in specs %}
+				<tr>
+					<td>{{ spec.name }}</td>
+					<td>{{ spec.value }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
 		</table>
-	</div>
+  </div>
 	{% endif %}
-	{% endwith %}
 </div>
+{% endwith %}
 {% endblock %}
 
 {% block scripts %}
 {{ block.super }}
 {% javascript 'product_detail' %}
-<script type="text/javascript">
-	// Generating tabs
-
-	function add_to_cart(data) {
-		if(data.status == 200) {
-			// success message
-		} else {
-			alert(data.responseText);
-		}
-	}
-</script>
 {% endblock %}
