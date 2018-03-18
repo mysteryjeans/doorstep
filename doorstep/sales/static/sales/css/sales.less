@@ -1,56 +1,17 @@
 @import url('catalog/css/catalog.less');
 
-@steps-processed-color: #666;
-
-.checkout-steps {
-    clear: both;
-    overflow: hidden;
-    text-align: center;
-    margin-bottom: 10px;
-
-    ul {
-        display: inline-block;
-
-        a, li {
-            color: @border-dark-color;
-        }
-
-        a:hover {
-            text-decoration: none;
-        }
-
-        li {
-            float: left;
-            padding: 5px 15px;
-            margin: 5px;
-            .border;
-            border-color: white;
-          
-            i {
-                font-size: 28px;
-            }
-
-            span {
-                clear: both;
-                display: block;
-                font-size: 12px;
-            }
-        }
-
-        .processed a {
-            color: @steps-processed-color;
-        }
-
-        .active {
-            .border;
-            .border-radius(2px);
-
-            a {
-                color: @text-color !important;
-            }
-        }
+.nav-checkout-steps {
+  a.nav-link {
+    font-size: 1.8rem;
+    padding-left: 20px;
+    padding-right: 20px;
+    span {
+      font-size: 0.8rem;
+      display: block;
     }
+  }
 }
+
 
 .cart {
     .cart-items {
@@ -127,7 +88,7 @@
 
             .in-stock {
                 font-size: 0.9em;
-            }        
+            }
 
             .item-preview {
                 float: left;
@@ -162,7 +123,7 @@
                     color: @light-text-color;
                 }
             }
-            
+
         }
     }
 
@@ -179,7 +140,7 @@
                 font-size: inherit;
                 line-height: inherit;
 
-                label { 
+                label {
                 font-weight: bold;
                 }
 
@@ -187,7 +148,7 @@
                     margin-left: 10px;
                 }
             }
-            
+
             .price {
                 color: @text-color;
             }
@@ -228,13 +189,13 @@
     overflow: hidden;
     margin-bottom: 10px;
     margin-top: 20px;
-    
+
     .address {
       width: 50%;
       float: left;
       padding-right: 20px;
       box-sizing: border-box;
-      
+
       ul {
         padding: 10px 20px;
         margin-right: 10px;
@@ -269,11 +230,11 @@
 }
 
 .order {
-  
+
   .payment-method {
     margin-top: 20px;
   }
-  
+
   .cart-options {
     form {
       display: inline;
@@ -291,21 +252,21 @@
   .border;
   border-style: dotted;
   padding: 5px;
-  
+
   label {
     font-weight: bold;
   }
-  
+
   ul {
     li {
       padding: 5px 0px;
     }
   }
-  
+
   .price, .name, a, a:hover, h3 {
     color: @text-color !important;
   }
-  
+
   .cart {
 
     table {
@@ -313,7 +274,7 @@
       border-top: 1px dotted @border-color;
       border-left:  1px dotted @border-color;
     }
-    
+
     th, td {
       padding: 10px !important;
       border-bottom: 1px dotted @border-color;
@@ -323,11 +284,11 @@
 }
 
 .checkout-receipt {
-  
+
   .success-message-box {
     margin-bottom: 10px;
   }
-  
+
   .print-link {
     float: right;
   }
@@ -366,7 +327,7 @@
         }
 
         .ui-tabs-active {
-            background-color: @border-color; 
+            background-color: @border-color;
         }
     }
 
