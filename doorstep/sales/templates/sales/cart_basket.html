@@ -16,36 +16,38 @@
 			{% with product=item.product %}
 			<li class="list-group-item d-flex flex-column">
 				<div class="d-flex flex-row">
-					{% thumbnail product.pics.all.0.url "54x54" as im %}
-					<div class="img-container my-auto mr-3 rounded-circle">
-						<img class="mr-4 rounded-circle border" src="{{ im.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
+					<div class="img-container my-auto mr-4 rounded-circle">
+						{% thumbnail product.pics.all.0.url "54x54" as im %}
+						<img src="{{ im.url }}" alt="No Preview" title="{{ product.name }}" />
+						{% endthumbnail %}
+						<div class="img-overlay d-block"></div>
 					</div>
-					{% endthumbnail %}
-					<div class="w-100 d-flex flex-row" style="min-width:300px;">
-						<div class="d-flex flex-column mr-3 w-100">
+					<div class="d-flex flex-column w-100">
+						<div class="d-flex justify-content-between align-items-start">
+							<div class="d-flex flex-column">
 							<a class="list-group-item-action no-wrap text-truncate" style="max-width:300px;" href="{{ product.get_absolute_url }}">
 								{{ product.name }}
 							</a>
-							<p class="text-muted pt-2 small text-truncate border-bottom pb-2" style="max-width:300px;">{{ product.gist }}</p>
-							<div class="d-flex flex-row justify-content-between mt-2">
-								<span class="text-danger">{{ product.price|currency:default_currency }}</span>
-								<span class="text-muted mt-auto mb-auto small"><small>Quantity: {{ item.quantity }}</small></span>
+							<p class="text-muted pt-2 small text-truncate pb-2 mb-1" style="max-width:300px;">{{ product.gist }}</p>
 							</div>
 						</div>
-						<div class="d-flex flex-column ml-auto">
-							<form class="small text-right" method="post" action="{% url 'sales_remove_from_cart' %}" data-ajax="true" data-ajax-url="{% url 'sales_remove_from_cart' %}" data-ajax-update="#basket-container" data-ajax-complete="basketChanged()">
-								{% csrf_token %}
-								<input name="product_id" type="hidden" value="{{ item.product_id }}" />
-								<a href="#" onclick="javascript:$(this).closest('form').submit(); return false;" class="text-secondary" data-toggle="tooltip" title="Remove this product."><i class="fas fa-trash"></i></a>
-							</form>
-						</div>
+						<span class="text-muted">{{ product.price|currency:default_currency }}</span>
+					</div>
+					<div class="d-flex flex-column justify-content-between align-items-center">
+						<small class="badge badge-pill badge-secondary badge-secondary text-light" data-toggle="tooltip" data-delay='{"show":"1000"}' title="You have {{ item.quantity }} of this product{{ item.quantity|pluralize }} in your cart">{{ item.quantity }}</small>
+						<form class="text-right" method="post" action="{% url 'sales_remove_from_cart' %}" data-ajax="true" data-ajax-url="{% url 'sales_remove_from_cart' %}" data-ajax-update="#basket-container" data-ajax-complete="basketChanged()">
+							{% csrf_token %}
+							<input name="product_id" type="hidden" value="{{ item.product_id }}" />
+							<a href="#" onclick="javascript:$(this).closest('form').submit(); return false;" class="text-lightgrey" data-toggle="tooltip" data-delay='{"show":"1000"}' title="Remove this product."><i class="fas fa-trash"></i></a>
+						</form>
 					</div>
 				</div>
 			</li>
 			{% if forloop.last %}
-			<li class="list-group-item list-group-item-light d-flex flex-row justify-content-between">
-					<div class="badge badge-light align-self-end"><h6 class="mb-0">Subtotal: {{ sub_total|currency:default_currency }}</h6></div>
-					<a class="btn btn-primary" href="{% url 'sales_checkout_cart' %}"><i class="fas fa-shopping-cart mr-2"></i>Checkout</a>
+			<li class="list-group-item d-flex align-items-end bg-light">
+				<h5 class="my-0 mr-2">Subtotal</h5>
+				<strong class="text-danger">{{ cart.get_sub_total|currency:default_currency }}</strong>
+				<a class="btn btn-primary ml-auto" href="{% url 'sales_checkout_cart' %}"><i class="fas fa-shopping-cart mr-2"></i>Checkout</a>
 			</li>
 			{% endif %}
 			{% endwith %}

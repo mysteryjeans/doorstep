@@ -4,8 +4,13 @@
 {% load catalog_filters %}
 
 {% block checkout-content %}
-<div class="cart">
-  <h3 class="my-3">Shopping cart</h3>
+<div class="cart mt-3">
+  <h4 class="d-flex justify-content-between align-items-center mb-3">
+    <span class="text-muted">Your shoppping cart</span>
+    {% if cart.get_items_count %}
+    <span class="badge badge-secondary badge-pill" title="Total product items in your cart">{{ cart.get_items_count }}</span>
+    {% endif %}
+  </h4>
   {% if error %}
   <div class="text-danger pt-2 pb-3">
       {{ error }}
@@ -15,78 +20,56 @@
       {{ message }}
   </div>
   {% endif %}
-  {% with items=cart.get_items %}
-  {% if items %}
-  <table class="table h-100 border-bottom cart-items">
-    <thead class="text-right text-muted font-weight-light">
-      <th class="text-left">Product{{ items|pluralize }}</th>
-      <th>Price</th>
-      <th>Quantity</th>
-      <th>Sub-Total</th>
-    </thead>
-    <tbody class="h-100">
-      {% for item in items %}
-      {% with product=item.product %}
-      <tr class="text-right">
-        <td class="text-left">
-          <div class="d-flex flex-row align-items-center">
-            {% thumbnail product.pics.all.0.url "94x94" as im %}
-            <img class="rounded-circle border mr-3" src="{{ im.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
-            {% endthumbnail %}
-            <div>
-              <a class="text-dark" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="d-flex flex-column justify-content-between align-items-end h-100">
-            {% if product.old_price %}
-            <span class="badge badge-warning badge-pill">{{ product.get_discount }}% OFF</span>
-            <span class="text-muted small"><del>{{ product.price|currency:default_currency }}</del></span>
-            {% else %}
-            <span></span>
-            {% endif %}
-            <span class="">{{ product.price|currency:default_currency }}</span>
-          </div>
-        </td>
-        <td>
-          <div class="d-flex flex-column justify-content-end  align-items-end h-100">
-            <form method="post" action="{% url 'sales_checkout_cart' %}">
-                {% csrf_token %}
-                <input type="hidden" name="product_id" value="{{ product.id }}">
-                <input name="quantity" type="text" class="form-control float-right" size="1"  value="{{ item.quantity }}" onchange="javascript:$(this).closest('form').submit();"/>
-            </form>
-          </div>
-        </td>
-        <td>
-          <div class="d-flex flex-column justify-content-between h-100">
-            <form method="post" action="{% url 'sales_remove_from_cart' %}">
-              {% csrf_token %}
-              <input name="product_id" type="hidden" value="{{ item.product_id }}"/>
-              <a class="text-muted" href="#" onclick="javascript:$(this).closest('form').submit();" title="Remove this item from the cart"><i class="fa fa-trash"></i></a>
-            </form>
-            <span class="text-danger">{{ item.get_sub_total|currency:default_currency }}</span>
-          </div>
-        </td>
-      </tr>
-      {% endwith %}
-      {% endfor %}
-    </tbody>
-  </table>
-  <div class="d-flex flex-column w-25 ml-auto my-4">
-    <div class="d-flex flex-row justify-content-between">
-      <h6><strong>Sub-Total </strong></h6><span>{{ cart.get_sub_total|currency:default_currency }}</span>
-    </div>
-    <div class="d-flex flex-row justify-content-between">
-      <h6><strong>Shipping </strong></h6><span>{{ cart.get_shipping_cost|currency:default_currency }}</span>
-    </div>
-    <div class="d-flex flex-row justify-content-between">
-      <h6><strong>Tax </strong></h6><span>{{ cart.get_taxes|currency:default_currency }}</span>
-    </div>
-    <div class="d-flex flex-row justify-content-between">
-      <h6><strong>Total </strong></h6><span class="text-danger"><strong>{{ cart.get_total|currency:default_currency }}</strong></span>
-    </div>
-  </div>
+  {% if cart.get_items_count %}
+  <ul class="list-group mb-3">
+    {% for item in cart.get_items %}
+    {% with product=item.product %}
+    <li class="list-group-item d-flex lh-condensed">
+      <div class="img-container rounded-circle overflow-hidden mr-3">
+        {% thumbnail product.pics.all.0.url "54x54" as im %}
+        <img class="border" src="{{ im.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
+        {% endthumbnail %}
+        <div class="img-overlay d-block"></div>
+      </div>
+      <div>
+        <h6 class="my-0"><a class="text-dark" href="{{ product.get_absolute_url }}">{{ product.name }}</a></h6>
+        <small class="text-muted">{{ product.gist|truncatechars:50 }}</small>
+      </div>
+      <span class="ml-auto d-flex flex-column justify-content-between align-items-end show">
+        <span class="text-muted">{{ product.price|currency:default_currency }}</span>
+        <div class="d-flex align-items-center">
+          <form class="mr-4" method="post" action="{% url 'sales_checkout_cart' %}">
+            {% csrf_token %}
+            <input type="hidden" name="product_id" value="{{ product.id }}">
+            <input name="quantity" type="text" class="form-control w-75" size="1"  value="{{ item.quantity }}" onchange="javascript:$(this).closest('form').submit();"/>
+          </form>
+          <form method="post" action="{% url 'sales_remove_from_cart' %}">
+            {% csrf_token %}
+            <input name="product_id" type="hidden" value="{{ item.product_id }}"/>
+            <a class="text-lightgrey" href="#" onclick="javascript:$(this).closest('form').submit();" title="Remove this item from the cart"><i class="fa fa-trash"></i></a>
+          </form>
+        </div>
+      </span>
+    </li>
+    {% endwith %}
+    {% endfor %}
+    <li class="list-group-item d-flex justify-content-between bg-light">
+      <span>Subtotal</span>
+      <span class="text-success">{{ cart.get_sub_total|currency:default_currency }}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between bg-light">
+      <span>Shipping cost</span>
+      <span>{{ cart.get_shipping_cost|currency:default_currency }}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between bg-light">
+      <span>Tax</span>
+      <span>{{ cart.get_taxes|currency:default_currency }}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between bg-light">
+      <span>Total ({{ default_currency.code }})</span>
+      <strong class="text-danger">{{ cart.get_total|currency:default_currency }}</strong>
+    </li>
+  </ul>
   <div class="d-flex flex-row">
     <form method="post" action="{% url 'sales_remove_all_from_cart' %}" class="remove-all">
       {% csrf_token %}
@@ -97,7 +80,7 @@
       <i class="fas fa-shopping-cart mr-2"></i>Continue Shopping
     </a>
     <a class="btn btn-warning" href="{% url 'sales_checkout_billing' %}" data-toggle="tooltip" title="Proceed to place order">
-        <i class="fa fa-shopping-cart mr-2"></i>Checkout
+      <i class="fa fa-shopping-cart mr-2"></i>Checkout
     </a>
   </div>
   {% else %}
@@ -105,6 +88,5 @@
     You have no items in your shopping cart.
   </div>
   {% endif %}
-  {% endwith %}
 </div>
 {% endblock %}
