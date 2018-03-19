@@ -32,37 +32,6 @@
 {{ block.super }}
 {% endblock %}
 
-{% block header-menu2 %}
-{{ block.super }}
-<div class="right">
-	<ul>
-		<li id="basket-container">
-				{% cart_basket %}
-		</li>
-		<li>
-			<a class="dropdown-button" data-activates="currency-dropdown" data-constrainwidth="false" data-alignment="right" data-beloworigin="true">
-				{{ default_currency.code }}
-				<i class="fas fa-angle-down right"></i>
-			</a>
-			<div id="currency-dropdown" class="dropdown-content">
-				<form method="post" action="{% url 'catalog_change_currency' %}">
-						{% csrf_token %}
-						<input type="hidden" name="next" value="{{ request.get_full_path }}" />
-						<input id="default_currency" type="hidden" name="default_currency"/>
-						<ul>
-							{% for currency in currencies %}
-							<li>
-								<a onclick="javascript:$('#default_currency').val('{{ currency.code }}').closest('form').submit();">{{ currency.code }}</a>
-							</li>
-							{% endfor %}
-						</ul>
-				</form>
-			</div>
-		</li>
-	</ul>
-</div>
-{% endblock %}
-
 {% block nav-extended %}
 {{ block.super }}
 <ul class="nav-wrapper hide-on-med-and-down categories">
