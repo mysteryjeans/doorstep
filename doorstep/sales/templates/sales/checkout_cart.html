@@ -4,111 +4,107 @@
 {% load catalog_filters %}
 
 {% block checkout-content %}
-<h3>Shopping Cart</h3>
-{% if error %}
-<div class="error-message-box">
-    {{ error }}
-</div>
-{% elif message %}
-<div class="success-message-box">
-    {{ message }}
-</div>
-{% endif %}
 <div class="cart">
-    {% with items=cart.get_items %}
-    {% if items %}
-    <table class="cart-items">
-        <thead>
-            <th>Product{{ items|pluralize }}</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Sub-Total</th>
-        </thead>
-        <tbody>
-        {% for item in items %}
-        {% with product=item.product %}
-        <tr class="cart-item">
-            <td>
-                <div class="item-preview">
-                    {% thumbnail product.pics.all.0.url "94x94" as im %}
-                    <img src="{{ im.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
-                    {% endthumbnail %}
-                </div>
-                <a class="item-title" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-            </td>
-            <td>
-                 <span class="price">
-                     {{ product.price|currency:default_currency }}
-                     {% if product.old_price %}
-                     <br/>
-                     <span class="old-price">{{ product.price|currency:default_currency }}</span>
-                     <br/>
-                     <span class="discount">{{ product.get_discount }}% OFF</span>
-                     {% endif %}
-                 </span>
-            </td>
-            <td>
-                <form method="post" action="{% url 'sales_checkout_cart' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="product_id" value="{{ product.id }}">
-                    <input name="quantity" type="text" class="quantity" value="{{ item.quantity }}" onchange="javascript:$(this).closest('form').submit();"/>
-                    {% if product.quantity %}
-                    <br/>
-                    <span class="in-stock">In Stock</span>
-                    {% endif %}
-                </form>
-            </td>
-            <td>
-                  <form method="post" action="{% url 'sales_remove_from_cart' %}" class="cart-item-remove">
-                        {% csrf_token %}
-                        <input name="product_id" type="hidden" value="{{ item.product_id }}"/>
-                        <a onclick="javascript:$(this).closest('form').submit();" title="Remove this item from the cart"><i class="fa fa-trash-o"></i></a>
-                    </form>  
-                <span class="total price">{{ item.get_sub_total|currency:default_currency }}</span>
-            </td>
-        </tr>
-        {% endwith %}
-        {% endfor %}
-        </tbody>
-    </table>
-    <div class="cart-summary">
-        <div class="cart-total">
-            <table>
-                <tr>
-                    <td><label>Sub-Total:</label></td>
-                    <td><span class="price">{{ cart.get_sub_total|currency:default_currency }}</span></td>
-                </tr>
-                <tr>
-                    <td><label>Shipping:</label></td>
-                    <td><span class="price">{{ cart.get_shipping_cost|currency:default_currency }}</span></td>
-                </tr>
-                <tr>
-                    <td><label>Tax:</label></td>
-                    <td><span class="price">{{ cart.get_taxes|currency:default_currency }}</span></td>
-                </tr>
-                <tr>
-                    <td><label>Total:</label></td>
-                    <td><span class="price total">{{ cart.get_total|currency:default_currency }}</span></td>
-                </tr>
-            </table>
-        </div>
+  <h3 class="my-3">Shopping cart</h3>
+  {% if error %}
+  <div class="text-danger pt-2 pb-3">
+      {{ error }}
+  </div>
+  {% elif message %}
+  <div class="text-success pt-2 pb-3">
+      {{ message }}
+  </div>
+  {% endif %}
+  {% with items=cart.get_items %}
+  {% if items %}
+  <table class="table h-100 border-bottom cart-items">
+    <thead class="text-right text-muted font-weight-light">
+      <th class="text-left">Product{{ items|pluralize }}</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Sub-Total</th>
+    </thead>
+    <tbody class="h-100">
+      {% for item in items %}
+      {% with product=item.product %}
+      <tr class="text-right">
+        <td class="text-left">
+          <div class="d-flex flex-row align-items-center">
+            {% thumbnail product.pics.all.0.url "94x94" as im %}
+            <img class="rounded-circle border mr-3" src="{{ im.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
+            {% endthumbnail %}
+            <div>
+              <a class="text-dark" href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+            </div>
+          </div>
+        </td>
+        <td>
+          <div class="d-flex flex-column justify-content-between align-items-end h-100">
+            {% if product.old_price %}
+            <span class="badge badge-warning badge-pill">{{ product.get_discount }}% OFF</span>
+            <span class="text-muted small"><del>{{ product.price|currency:default_currency }}</del></span>
+            {% else %}
+            <span></span>
+            {% endif %}
+            <span class="">{{ product.price|currency:default_currency }}</span>
+          </div>
+        </td>
+        <td>
+          <div class="d-flex flex-column justify-content-end  align-items-end h-100">
+            <form method="post" action="{% url 'sales_checkout_cart' %}">
+                {% csrf_token %}
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                <input name="quantity" type="text" class="form-control float-right" size="1"  value="{{ item.quantity }}" onchange="javascript:$(this).closest('form').submit();"/>
+            </form>
+          </div>
+        </td>
+        <td>
+          <div class="d-flex flex-column justify-content-between h-100">
+            <form method="post" action="{% url 'sales_remove_from_cart' %}">
+              {% csrf_token %}
+              <input name="product_id" type="hidden" value="{{ item.product_id }}"/>
+              <a class="text-muted" href="#" onclick="javascript:$(this).closest('form').submit();" title="Remove this item from the cart"><i class="fa fa-trash"></i></a>
+            </form>
+            <span class="text-danger">{{ item.get_sub_total|currency:default_currency }}</span>
+          </div>
+        </td>
+      </tr>
+      {% endwith %}
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="d-flex flex-column w-25 ml-auto my-4">
+    <div class="d-flex flex-row justify-content-between">
+      <h6><strong>Sub-Total </strong></h6><span>{{ cart.get_sub_total|currency:default_currency }}</span>
     </div>
-    <div class="cart-options">
-        <form method="post" action="{% url 'sales_remove_all_from_cart' %}" class="remove-all">
-            {% csrf_token %}
-            <a href="#" onclick="javascript:$(this).closest('form').submit(); return false;" title="Remove all items from the cart">Remove all
-            </a>
-        </form>
-        <a class="button" href="{% url 'catalog_index' %}" title="Go back to browse catalog">Continue Shopping</a>
-        <a href="{% url 'sales_checkout_billing' %}" title="Proceed place order" class="button checkout">
-            <i class="fa fa-shopping-cart"></i>Checkout
-        </a>
+    <div class="d-flex flex-row justify-content-between">
+      <h6><strong>Shipping </strong></h6><span>{{ cart.get_shipping_cost|currency:default_currency }}</span>
     </div>
-    {% else %}
-    <div class="no-items" >
-        You have no items in your shopping cart.
+    <div class="d-flex flex-row justify-content-between">
+      <h6><strong>Tax </strong></h6><span>{{ cart.get_taxes|currency:default_currency }}</span>
     </div>
-    {% endif %}
-    {% endwith %}
+    <div class="d-flex flex-row justify-content-between">
+      <h6><strong>Total </strong></h6><span class="text-danger"><strong>{{ cart.get_total|currency:default_currency }}</strong></span>
+    </div>
+  </div>
+  <div class="d-flex flex-row">
+    <form method="post" action="{% url 'sales_remove_all_from_cart' %}" class="remove-all">
+      {% csrf_token %}
+      <a href="#" onclick="javascript:$(this).closest('form').submit(); return false;" title="Remove all items from the cart">Remove all
+      </a>
+    </form>
+    <a class="btn btn-primary ml-auto mr-2" href="{% url 'catalog_index' %}" data-toggle="tooltip" title="Go back to browse catalog">
+      <i class="fas fa-shopping-cart mr-2"></i>Continue Shopping
+    </a>
+    <a class="btn btn-warning" href="{% url 'sales_checkout_billing' %}" data-toggle="tooltip" title="Proceed to place order">
+        <i class="fa fa-shopping-cart mr-2"></i>Checkout
+    </a>
+  </div>
+  {% else %}
+  <div class="text-info">
+    You have no items in your shopping cart.
+  </div>
+  {% endif %}
+  {% endwith %}
 </div>
 {% endblock %}
