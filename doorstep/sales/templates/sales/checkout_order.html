@@ -7,10 +7,10 @@
 {% block checkout-content %}
 <div class="row mt-5">
 	<div class="col-md-8">
-		<h3 class="d-flex justify-content-between">
-			Your cart
-			<small class="badge badge-secondary badge-pill bg-lightgrey">{{ cart.get_items_count }}</small>
-		</h3>
+		<div class="d-flex justify-content-between align-items-center">
+			<h3>Your cart</h3>
+			<span class="badge badge-secondary badge-pill bg-lightgrey"><h6 class="my-auto">{{ cart.get_items_count }}</h6></span>
+		</div>
 		{% if error %}
 		<div class="text-danger">
 			{{ error }}
@@ -31,21 +31,13 @@
 		        <h6 class="my-0"><a class="text-dark" href="{{ product.get_absolute_url }}">{{ product.name }}</a></h6>
 		        <small class="text-muted">{{ product.gist|truncatechars:50 }}</small>
 		      </div>
-		      <span class="ml-auto d-flex flex-column justify-content-between align-items-end show">
-		        <span class="text-muted">{{ product.price|currency:default_currency }}</span>
-		        <div class="d-flex align-items-center">
-		          <form class="mr-4" method="post" action="{% url 'sales_checkout_cart' %}">
-		            {% csrf_token %}
-		            <input type="hidden" name="product_id" value="{{ product.id }}">
-		            <input name="quantity" type="text" class="form-control w-75" size="1"  value="{{ item.quantity }}" onchange="javascript:$(this).closest('form').submit();"/>
-		          </form>
-		          <form method="post" action="{% url 'sales_remove_from_cart' %}">
-		            {% csrf_token %}
-		            <input name="product_id" type="hidden" value="{{ item.product_id }}"/>
-		            <a class="text-lightgrey" href="#" onclick="javascript:$(this).closest('form').submit();" title="Remove this item from the cart"><i class="fa fa-trash"></i></a>
-		          </form>
-		        </div>
-		      </span>
+					<span class="ml-auto d-flex flex-column justify-content-between align-items-end">
+						<span class="text-muted small">{{ product.price|currency:default_currency }}</span>
+						<div class="d-flex justify-content-between align-items-center mt-auto">
+							<span class="badge badge-secondary bg-lightgrey badge-pill mr-2">{{ item.quantity }}</span>
+							<span class="text-success">{{ item.get_sub_total|currency:default_currency }}</span>
+						</div>
+					</span>
 		    </li>
 		    {% endwith %}
 		    {% endfor %}
@@ -67,7 +59,6 @@
 		    </li>
 		  </ul>
 		</div>
-		<button class="btn btn-secondary" onclick="showPaymentOptions();">Test dialog</button>
 		<form method="post" {% if payment_method == 'Credit Card' %}data-ajax="true"{% endif %} action="{% url 'sales_checkout_order' %}" data-ajax-update="#payment-options-container" data-ajax-success="showPaymentOptions();">
 			{% csrf_token %}
 			<a title="Placed order" class="btn btn-danger float-right mt-3 text-white" onclick="javascript:$(this).closest('form').submit();">

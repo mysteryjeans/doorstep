@@ -10,13 +10,14 @@
 
 		<title>Order #{{ order.id }} | {{ SITE_NAME }}</title>
 		<link rel="icon shortcut" href="{% static 'img/icon.png' %}" type="image/png"/>
+		<link href="{% static 'doorstep/css/fontawesome-all.min.css' %}" rel="stylesheet">
+		<link href="{% static 'doorstep/css/bootstrap.min.css' %}" rel="stylesheet">
 		{% stylesheet 'sales' %}
 	</head>
-	<body class="print-receipt">
+	<body class="container-fluid">
 		{% include "sales/parts/receipt.html" %}
 		<script type="text/javascript">
 			window.print();
 		</script>
 	</body>
 </html>
-

@@ -1,86 +1,77 @@
 {% load catalog_filters %}
-<div class="receipt">
-	<ul>
-		<li>
-			<label>Order #{{ order.id }}</label>
-		</li>
-		<li>
-			Date: {{ order.created_on|date:"l, M j, Y" }}
-		</li>
-		<li>
-			Status: {{ order.get_order_status }}
-		</li>
-		<li class="addresses">
-			{% with address=order.billing_address address_name="Billing Address" %}
-			{% include "sales/parts/address.html" %}
-			{% endwith %}
-			{% if order.shipping_address %}
-			{% with address=order.shipping_address address_name="Shipping Address" %}
-			{% include "sales/parts/address.html" %}
-			{% endwith %}
-			{% endif %}
-		</li>
-		<li class="payment-method">
-			<h3>Payment Method: <b>{{ order.payment_method.name }}</b></h3>
-		</li>
-		<li>
-			<div class="cart">
-				{% with items=order.items.all %}
-				{% if items %}
-				<table class="cart-items">
-					<thead>
-						<th>Product{{ items|pluralize }}</th>
-						<th>Price</th>
-						<th>Quantity</th>
-						<th>Sub-Total</th>
-					</thead>
-					<tbody>
-						{% for item in items %}
-						{% with product=item.product %}
-						<tr class="cart-item">
-							<td><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></td>
-							<td><span class="price"> {{ product.price|currency:order.currency }}
-								{% if product.old_price %}
-								<br/>
-								<span class="old-price">{{ product.price|currency:order.currency }}</span>
-								<br/>
-								<span class="discount">{{ product.get_discount }}% OFF</span> {% endif %} </span></td>
-							<td><span>{{ item.quantity }}</span></td>
-							<td><span class="total price">{{ item.sub_total|currency:order.currency }}</span></td>
-						</tr>
-						{% endwith %}
-						{% endfor %}
-					</tbody>
-				</table>
-				<div class="cart-summary">
-					<div class="cart-total">
-						<table>
-							<tr>
-								<td><label>Sub-Total:</label></td>
-								<td><span class="price">{{ order.sub_total|currency:order.currency }}</span></td>
-							</tr>
-							<tr>
-								<td><label>Shipping:</label></td>
-								<td><span class="price">{{ order.shipping_cost|currency:order.currency }}</span></td>
-							</tr>
-							<tr>
-								<td><label>Tax:</label></td>
-								<td><span class="price">{{ order.taxes|currency:order.currency }}</span></td>
-							</tr>
-							<tr>
-								<td><label>Total:</label></td>
-								<td><span class="price total">{{ order.total|currency:order.currency }}</span></td>
-							</tr>
-						</table>
+
+<div class="row mt-3">
+	<div class="col-md-8">
+	<div class="jumbotron bg-light py-3 px-3">
+		<p>
+			<b>Order:</b>
+			#{{ order.id }}</p>
+		<p>
+			<b>Date:</b>
+			{{ order.created_on|date:"l, M j, Y" }}
+		</p>
+		<p>
+			<b>Status:</b>
+			{{ order.get_order_status }}
+		</p>
+	</div>
+		{% with items=order.items.all %}
+		{% if items %}
+		<h4 class="text-muted mt-4 mb-2">Order items</h4>
+		<ul class="list-group mb-3">
+			{% for item in items %}
+			{% with product=item.product %}
+			<li class="list-group-item d-flex lh-condensed">
+				<div>
+					<h6 class="my-0"><a class="text-dark" href="{{ product.get_absolute_url }}">{{ product.name }}</a></h6>
+					<small class="text-muted">{{ product.gist|truncatechars:50 }}</small>
+				</div>
+				<span class="ml-auto d-flex flex-column justify-content-between align-items-end">
+					<span class="text-muted small">{{ product.price|currency:order.currency }}</span>
+					<div class="d-flex justify-content-between align-items-center mt-auto">
+						<span class="badge badge-secondary bg-lightgrey badge-pill mr-2">{{ item.quantity }}</span>
+						<span class="text-success">{{ item.sub_total|currency:order.currency }}</span>
 					</div>
-				</div>
-				{% else %}
-				<div class="no-items" >
-					You have no items in your shopping cart.
-				</div>
-				{% endif %}
-				{% endwith %}
+				</span>
+			</li>
+			{% endwith %}
+			{% endfor %}
+			<li class="list-group-item d-flex justify-content-between bg-light">
+				<span>Subtotal</span>
+				<span class="text-success">{{ order.sub_total|currency:order.currency }}</span>
+			</li>
+			<li class="list-group-item d-flex justify-content-between bg-light">
+				<span>Shipping cost</span>
+				<span>{{ order.shipping_cost|currency:order.currency }}</span>
+			</li>
+			<li class="list-group-item d-flex justify-content-between bg-light">
+				<span>Tax</span>
+				<span>{{ order.taxes|currency:order.currency }}</span>
+			</li>
+			<li class="list-group-item d-flex justify-content-between bg-light">
+				<span>Total ({{ order.currency.code }})</span>
+				<strong class="text-danger">{{ order.total|currency:order.currency }}</strong>
+			</li>
+		</ul>
+		{% endif %}
+		{% endwith %}
+	</div>
+	<div class="col-md-4">
+		<div class="card  mb-3">
+			<h6 class="card-header text-muted">
+				<i class="fas fa-credit-card mr-2"></i>
+				Payment method
+			</h6>
+			<div class="card-body">
+				<span>{{ order.payment_method.name }}</span>
+				{% if po_number %}<b>#{{ po_number }}</b>{% endif %}
 			</div>
-		</li>
-	</ul>
+		</div>
+		{% with address=order.billing_address address_name="Billing address" address_icon="fa-home" %}
+		{% include "sales/parts/address.html" %}
+		{% endwith %}
+		{% with address=order.shipping_address address_name="Shipping address" address_icon="fa-truck" %}
+		{% include "sales/parts/address.html" %}
+		{% endwith %}
+	</div>
 </div>

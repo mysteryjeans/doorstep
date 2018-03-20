@@ -1,13 +1,17 @@
 {% extends checkout_template_name %}
 
 {% block checkout-content %}
-<div class="checkout-receipt">
-	<h3>Order Receipt <a class="print-link button" target="_blank" href="{% url 'sales_print_receipt' order.id order.receipt_code %}">Print</a></h3>
-	{% if order_confirmed %}
-	<p class="success-message-box">
-		Your order has been placed successfully, thank you for the order.
-	</p>
-	{% endif %}
-	{% include "sales/parts/receipt.html" %}
+<div class="d-flex justify-content-between align-items-end mt-4">
+	<h3>Order Receipt</h3>
+	<a class="btn btn-primary" target="_blank" href="{% url 'sales_print_receipt' order.id order.receipt_code %}">
+		<i class="fas fa-print mr-2"></i>
+		Print
+	</a>
 </div>
+{% if order_confirmed %}
+<p class="text-success">
+	Your order has been placed successfully, thank you for the order.
+</p>
+{% endif %}
+{% include "sales/parts/receipt.html" %}
 {% endblock %}
