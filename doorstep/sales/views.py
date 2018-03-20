@@ -338,9 +338,10 @@ class CheckoutOrderView(CheckoutBaseView):
                 Address, id=int(request.session[CheckoutBillingView.session_address_key]))
             shipping_address = get_object_or_404(
                 Address, id=int(request.session[CheckoutShippingView.session_address_key]))
+            po_number = request.session.get('po_number', None)
 
             return super(CheckoutOrderView, self).get(
-                request, cart=cart, payment_method=payment_method, billing_address=billing_address,
+                request, cart=cart, payment_method=payment_method, po_number=po_number, billing_address=billing_address,
                 shipping_address=shipping_address, **kwargs)
 
         return HttpResponseRedirect(reverse('sales_checkout_cart'))
@@ -365,11 +366,11 @@ class CheckoutOrderView(CheckoutBaseView):
             order = Order.objects.place(cart_id, billing_address_id, shipping_address_id,
                                         payment_method, po_number, currency_code, user, username)
 
-            del request.session['cart_id']
-            del request.session['payment_method']
-            del request.session['billing_address']
-            del request.session['shipping_address']
-            request.session['order_confirmed'] = True
+            # del request.session['cart_id']
+            # del request.session['payment_method']
+            # del request.session['billing_address']
+            # del request.session['shipping_address']
+            # request.session['order_confirmed'] = True
 
             if payment_method == PaymentMethod.CREDIT_CARD:
                 return HttpResponseRedirect(reverse('payments_process_online', args=[order.id, order.receipt_code]))

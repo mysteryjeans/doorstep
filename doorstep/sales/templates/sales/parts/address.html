@@ -1,25 +1,21 @@
-<div class="address">
-	<h3><i class="fa {{ address_icon }}"></i> {{ address_name }}</h3>
-	<ul>
-		<li class="name">
-			{{ address.first_name }} {{address.last_name }}
-		</li>
-		<li>
-			{{ address.address1 }}
-		</li>
-		{% if address.address2 %}
-		<li>
-			{{ address.address2 }}
-		</li>
-		{% endif %}
-		<li>
-			{{ address.zip_or_postal_code }}, {{ address.city }}, {{ address.country }}
-		</li>
-		<li>
-			<label>{{ address.phone_number }}</label>
-		</li>
-		<li>
-			<label>{{ address.email }}</label>
-		</li>
-	</ul>
+<div class="card text-muted mb-3">
+	<h6 class="card-header">
+		<i class="fas {{ address_icon }} mr-2"></i>
+		{{ address_name }}
+	</h6>
+	<div class="card-body">
+		<h6>
+				{{ address.first_name }} {{address.last_name }}
+		</h6>
+		<div class="lead small">
+				<p>
+					{{ address.address1 }}<br>
+					{{ address.zip_or_postal_code }}, {{ address.city }}, {{ address.country }}
+				</p>
+				<p class="mb-0">
+					<strong><i class="fas fa-phone mr-2"></i>{{ address.phone_number }}</strong><br>
+					<em class="mt-1"><i class="fas fa-envelope mr-2"></i> {{ address.email }}</em>
+				</p>
+		</div>
+	</div>
 </div>

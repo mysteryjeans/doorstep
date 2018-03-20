@@ -1,80 +1,105 @@
 {% load catalog_filters %}
-
-<div id="payment-options">
-    <ul>
+<div id="payment-options" class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Payment processing</h5>
+    </div>
+    <div class="modal-body">
+      <ul class="nav nav-pills justify-content-center">
         {% if form %}
-        <li><a href="#payment-credit-card">Credit Card</a></li>
+        <li class="nav-item">
+          <a id="tab-credit-card" class="nav-link active" href="#tab-content-credit-card" data-toggle="tab" role="tab" aria-controls="tab-content-credit-card" aria-selected="true">Credit Card</a>
+        </li>
         {% endif %}
         {% for gateway in gateways %}
         {% if gateway.accept_account %}
-        <li><a href="#payment-{{ gateway.get_name_display }}">{{ gateway.get_name_display }}</a></li>
+        <li class="nav-item">
+          <a class="nav-link" href="#tab-content-payment-{{ gateway.get_name_display }}" data-toggle="tab" role="tab" aria-controls="tab-content-payment-{{ gateway.get_name_display }}" aria-selected="false">{{ gateway.get_name_display }}</a>
+        </li>
         {% endif %}
         {% endfor %}
-    </ul>
-    {% if form %}
-    <div id="payment-credit-card" class="credit-card action-form">
-        <form method="post" data-ajax="true" action="{% url 'payments_process_credit_card' order.id order.receipt_code %}" data-ajax-update="#payment-options-container" data-ajax-loading="#process-credit-card">
+      </ul>
+      <div class="tab-content py-5" id="tab-payment-contents">
+        <div class="tab-pane fade show active" id="tab-content-credit-card" role="tabpanel" aria-labelledby="tab-credit-card">
+          {% if error %}
+          <div class="text-danger">
+            {{ error }}
+          </div>
+          {% endif %}
+          <form method="post" data-ajax="true" action="{% url 'payments_process_credit_card' order.id order.receipt_code %}" data-ajax-update="#payment-options-container" data-ajax-loading="#process-credit-card">
             {% csrf_token %}
             {{ form.gateway }}
-            <ul>
-                {% if error %}
-                <li class="error-message-box">
-                    {{ error }}
-                </li>
-                {% endif %}
-                <li>
-                    <i class="fa fa-user"></i>
-                    {{ form.card_name }}
-                    {{ form.card_name.errors }}
-                </li>
-                <li>
-                    <i class="fa fa-credit-card"></i>
-                    {{ form.card_number }}
-                    <i class="fa fa-check"></i>
-                    {{ form.card_number.errors }}
-                    {{ form.card_type.errors }}
-                </li>
-                <li class="dual-input">
-                    <span>
-                        <i class="fa fa-calendar-o"></i>
-                        {{ form.expire_date }}
-                    </span>
-                    <span>
-                        <i class="fa fa-lock fa-lg"></i>
-                        {{ form.cvv2 }}
-                    </span>
-                    <br/>
-                    {{ form.expire_date.errors }}
-                    {{ form.cvv2.errors }}
-                </li>
-                <li class="pay-botton-container">
-                    <i id="process-credit-card" class="fa fa-spinner fa-lg fa-spin"></i>
-                    <input type="submit" value="Pay {{ order.total|currency:default_currency }}" class="pay-button" onclick="javascript:$(this).attr('disabled','disabled');" />
-                </li>
-            </ul>
             {{ form.card_type }}
-        </form>
+            <div class="form-group">
+              <label for="{{ form.card_name.id_for_label }}"><i class="fa fa-user mr-2"></i>Card name</label>
+              <input class="form-control {% if form.card_name.errors %}is-invalid{% endif %}" type="text" name="{{ form.card_name.name }}" id="{{ form.card_name.id_for_label }}"  placeholder="Name.." required="" value="{{ form.card_name.value|default:'' }}">
+              {% if form.card_name.errors %}
+              <div class="invalid-feedback">
+              {{ form.card_name.errors|first }}
+              </div>
+              {% endif %}
+            </div>
+            <div class="form-group">
+              <label for="{{ form.card_number.id_for_label }}"><i class="fa fa-credit-card mr-2"></i>Card number<i class="fas fa-check ml-2 text-success" style="display: none"></i></label>
+              <input class="form-control {% if form.card_number.errors %}is-invalid{% endif %}" type="text" name="{{ form.card_number.name }}" id="{{ form.card_number.id_for_label }}"  placeholder="Number.." required="" value="{{ form.card_number.value|default:'' }}">
+              {% if form.card_number.errors or form.card_type.errors %}
+              <div class="invalid-feedback">
+              {{ form.card_number.errors|first }}
+              {{ form.card_type.errors|first }}
+              </div>
+              {% endif %}
+            </div>
+            <div class="form-row">
+              <div class="col-md-6 form-group">
+                <label for="{{ form.expire_date.id_for_label }}"><i class="fa fa-calendar-alt mr-2"></i>Expiry date</label>
+                <input class="form-control {% if form.expire_date.errors %}is-invalid{% endif %}" type="text" name="{{ form.expire_date.name }}" id="{{ form.expire_date.id_for_label }}" required="" value="{{ form.expire_date.value|default:'' }}">
+                {% if form.expire_date.errors %}
+                <div class="invalid-feedback">
+                {{ form.expire_date.errors|first }}
+                </div>
+                {% endif %}
+              </div>
+              <div class="col-md-6 form-group">
+                <label for="{{ form.cvv2.id_for_label }}"><i class="fa fa-lock mr-2"></i>CVV2</label>
+                <input class="form-control {% if form.cvv2.errors %}is-invalid{% endif %}" type="text" name="{{ form.cvv2.name }}" id="{{ form.cvv2.id_for_label }}"  placeholder="CVV2.." required="" value="{{ form.cvv2.value|default:'' }}">
+                {% if form.cvv2.errors %}
+                <div class="invalid-feedback">
+                {{ form.cvv2.errors|first }}
+                </div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="form-group text-center mt-5">
+              <button class="btn btn-primary" onclick="javascript:$(this).attr('disabled','disabled');" type="submit">
+                <i class="fas fa-money-bill-alt mr-2"></i>
+                Pay {{ order.total|currency:default_currency }}
+              </button>
+            </div>
+          </form>
+        </div>
+        {% for gateway in gateways %}
+        {% if gateway.accept_account %}
+        <div class="tab-pane fade" id="tab-content-payment-{{ gateway.get_name_display }}" role="tabpanel">
+            <form method="post" action="{% url 'payments_process_account_request' order.id order.receipt_code %}">
+                {% csrf_token %}
+                <input type="hidden" name="gateway_name" value="{{ gateway.name }}"/>
+                <p class="text-info text-center">
+                  Check out with your existing {{ gateway.get_name_display }} account.
+                </p>
+                <div class="text-center mt-5">
+                  <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-money-bill-alt mr-2"></i>Pay {{ order.total|currency:default_currency }}
+                  </button>
+                </div>
+            </form>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
     </div>
-    {% endif %}
-    {% for gateway in gateways %}
-    {% if gateway.accept_account %}
-    <div id="payment-{{ gateway.get_name_display }}" class="action-form online-account" >
-        <form method="post" action="{% url 'payments_process_account_request' order.id order.receipt_code %}">
-            {% csrf_token %}
-            <input type="hidden" name="gateway_name" value="{{ gateway.name }}"/>
-            <ul>
-                <li class="info-message-box">
-                    Check out with your existing {{ gateway.get_name_display }} account.
-                </li>
-                <li class="pay-botton-container">
-                   <input type="submit" value="Pay {{ order.total|currency:default_currency }}" class="pay-button" />
-                </li>
-            </ul>
-        </form>
-    </div>
-    {% endif %}
-    {% endfor %}
+  </div>
 </div>
+
 <script type="text/javascript">
     // Detect Credit Card Type by Card Number and
     // fills appropiate type automatically in Card Type
@@ -82,25 +107,22 @@
     $cardNumber.change(function(){
         $cardNumber.validateCreditCard(function(result){
             $('#id_card_type').val('');
-            $('#payment-options .action-form .fa-check').hide();
+            $('#payment-options i.fa-check').hide();
 
             // Removed error highlight if user corrected his card number
-            if($cardNumber.hasClass('input-error') && result.length_valid && result.luhn_valid)
-                $cardNumber.removeClass('input-error');
+            if($cardNumber.hasClass('is-invalid') && result.length_valid && result.luhn_valid)
+                $cardNumber.removeClass('is-invalid');
 
             if(result.card_type) {
                 $('#id_card_type').val(result.card_type.name);
-                $('#payment-options .action-form .fa-check').css('display', 'inline-block');
+                $('#payment-options .fa-check').css('display', 'inline-block');
 
                 // Highlight card number if wrong when user done with entering
                 if(!$cardNumber.is(':focus') && (!result.length_valid || !result.luhn_valid))
-                    $cardNumber.addClass('input-error');
+                    $cardNumber.addClass('is-invalid');
             }
         });
     });
-
-    // Payments options in tabs
-    $('#payment-options').tabs();
 
     // Initializing new forms in payment options for ajax requests
     bootstrapAjax($, '#payment-options');

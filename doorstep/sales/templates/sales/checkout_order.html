@@ -5,96 +5,97 @@
 {% load pipeline %}
 
 {% block checkout-content %}
-<div class="order">
-	{% if error %}
-	<div class="error-message-box">
-		{{ error }}
-	</div>
-	{% endif %}
-	<div class="addresses">
-		{% with address=billing_address address_name="Billing Address" address_icon="fa-home" %}
-		{% include "sales/parts/address.html" %}
-		{% endwith %}
-		{% with address=shipping_address address_name="Shipping Address" address_icon="fa-truck" %}
-		{% include "sales/parts/address.html" %}
-		{% endwith %}	
-	</div>
-	<div class="payment-method">
-		<h3>Payment Method</h3>
-		<b>{{ payment_method }}</b>
-	</div>
-	<div class="cart">
-		{% with items=cart.get_items %}
-		{% if items %}
-		<table class="cart-items">
-			<thead>
-				<th>Product{{ items|pluralize }}</th>
-				<th>Price</th>
-				<th>Quantity</th>
-				<th>Sub-Total</th>
-			</thead>
-			<tbody>
-				{% for item in items %}
-				{% with product=item.product %}
-				<tr class="cart-item">
-					<td>
-					<div class="item-preview">
-						{% thumbnail product.pics.all.0.url "94x94" as im %}
-						<img src="{{ im.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
-						{% endthumbnail %}
-					</div><a class="item-title" href="{{ product.get_absolute_url }}">{{ product.name }}</a></td>
-					<td><span class="price"> {{ product.price|currency:default_currency }}
-						{% if product.old_price %}
-						<br/>
-						<span class="old-price">{{ product.price|currency:default_currency }}</span>
-						<br/>
-						<span class="discount">{{ product.get_discount }}% OFF</span> {% endif %} </span></td>
-					<td><span>{{ item.quantity }}</span>
-					<td><span class="total price">{{ item.get_sub_total|currency:default_currency }}</span></td>
-				</tr>
-				{% endwith %}
-				{% endfor %}
-			</tbody>
-		</table>
-		<div class="cart-summary">
-			<div class="cart-total">
-				<table>
-					<tr>
-						<td><label>Sub-Total:</label></td>
-						<td><span class="price">{{ cart.get_sub_total|currency:default_currency }}</span></td>
-					</tr>
-					<tr>
-						<td><label>Shipping:</label></td>
-						<td><span class="price">{{ cart.get_shipping_cost|currency:default_currency }}</span></td>
-					</tr>
-					<tr>
-						<td><label>Tax:</label></td>
-						<td><span class="price">{{ cart.get_taxes|currency:default_currency }}</span></td>
-					</tr>
-					<tr>
-						<td><label>Total:</label></td>
-						<td><span class="price total">{{ cart.get_total|currency:default_currency }}</span></td>
-					</tr>
-				</table>
-			</div>
-		</div>
-		<div class="cart-options">
-			<form method="post" {% if payment_method == 'Credit Card' %}data-ajax="true"{% endif %} action="{% url 'sales_checkout_order' %}" data-ajax-update="#payment-options-container" data-ajax-success="showPaymentOptions();">
-				{% csrf_token %}
-				<a title="Placed order" class="button checkout" onclick="javascript:$(this).closest('form').submit();">
-					<i class="fa fa-legal"></i>Place Order
-				</a>
-			</form>
-		</div>
-		{% else %}
-		<div class="no-items" >
-			You have no items in your shopping cart.
+<div class="row mt-5">
+	<div class="col-md-8">
+		<h3 class="d-flex justify-content-between">
+			Your cart
+			<small class="badge badge-secondary badge-pill bg-lightgrey">{{ cart.get_items_count }}</small>
+		</h3>
+		{% if error %}
+		<div class="text-danger">
+			{{ error }}
 		</div>
 		{% endif %}
+		<div class="cart">
+			<ul class="list-group mb-3">
+		    {% for item in cart.get_items %}
+		    {% with product=item.product %}
+		    <li class="list-group-item d-flex lh-condensed">
+		      <div class="img-container rounded-circle overflow-hidden mr-3">
+		        {% thumbnail product.pics.all.0.url "54x54" as im %}
+		        <img class="border" src="{{ im.url }}" alt="{{ product.name }}" title="{{ product.name }}" />
+		        {% endthumbnail %}
+		        <div class="img-overlay d-block"></div>
+		      </div>
+		      <div>
+		        <h6 class="my-0"><a class="text-dark" href="{{ product.get_absolute_url }}">{{ product.name }}</a></h6>
+		        <small class="text-muted">{{ product.gist|truncatechars:50 }}</small>
+		      </div>
+		      <span class="ml-auto d-flex flex-column justify-content-between align-items-end show">
+		        <span class="text-muted">{{ product.price|currency:default_currency }}</span>
+		        <div class="d-flex align-items-center">
+		          <form class="mr-4" method="post" action="{% url 'sales_checkout_cart' %}">
+		            {% csrf_token %}
+		            <input type="hidden" name="product_id" value="{{ product.id }}">
+		            <input name="quantity" type="text" class="form-control w-75" size="1"  value="{{ item.quantity }}" onchange="javascript:$(this).closest('form').submit();"/>
+		          </form>
+		          <form method="post" action="{% url 'sales_remove_from_cart' %}">
+		            {% csrf_token %}
+		            <input name="product_id" type="hidden" value="{{ item.product_id }}"/>
+		            <a class="text-lightgrey" href="#" onclick="javascript:$(this).closest('form').submit();" title="Remove this item from the cart"><i class="fa fa-trash"></i></a>
+		          </form>
+		        </div>
+		      </span>
+		    </li>
+		    {% endwith %}
+		    {% endfor %}
+		    <li class="list-group-item d-flex justify-content-between bg-light">
+		      <span>Subtotal</span>
+		      <span class="text-success">{{ cart.get_sub_total|currency:default_currency }}</span>
+		    </li>
+		    <li class="list-group-item d-flex justify-content-between bg-light">
+		      <span>Shipping cost</span>
+		      <span>{{ cart.get_shipping_cost|currency:default_currency }}</span>
+		    </li>
+		    <li class="list-group-item d-flex justify-content-between bg-light">
+		      <span>Tax</span>
+		      <span>{{ cart.get_taxes|currency:default_currency }}</span>
+		    </li>
+		    <li class="list-group-item d-flex justify-content-between bg-light">
+		      <span>Total ({{ default_currency.code }})</span>
+		      <strong class="text-danger">{{ cart.get_total|currency:default_currency }}</strong>
+		    </li>
+		  </ul>
+		</div>
+		<button class="btn btn-secondary" onclick="showPaymentOptions();">Test dialog</button>
+		<form method="post" {% if payment_method == 'Credit Card' %}data-ajax="true"{% endif %} action="{% url 'sales_checkout_order' %}" data-ajax-update="#payment-options-container" data-ajax-success="showPaymentOptions();">
+			{% csrf_token %}
+			<a title="Placed order" class="btn btn-danger float-right mt-3 text-white" onclick="javascript:$(this).closest('form').submit();">
+				<i class="fas fa-check-square mr-2"></i>Place Order
+			</a>
+		</form>
+	</div>
+	<div class="col-md-4">
+		<div class="card  mb-3">
+			<h6 class="card-header text-muted">
+				<i class="fas fa-credit-card mr-2"></i>
+				Payment method
+			</h6>
+			<div class="card-body">
+				<span>{{ payment_method }}</span>
+				{% if po_number %}<b>#{{ po_number }}</b>{% endif %}
+			</div>
+		</div>
+		{% with address=billing_address address_name="Billing address" address_icon="fa-home" %}
+		{% include "sales/parts/address.html" %}
+		{% endwith %}
+		{% with address=shipping_address address_name="Shipping address" address_icon="fa-truck" %}
+		{% include "sales/parts/address.html" %}
 		{% endwith %}
 	</div>
 </div>
-<div id="payment-options-container" style="display:none;">
+<div id="payment-options-container" class="modal fade" tabindex="-1" role="dialog">
+
 </div>
 {% endblock %}
 
@@ -103,12 +104,10 @@
 {% javascript 'sales_checkout_order' %}
 <script type="text/javascript">
 	function showPaymentOptions() {
-		$("#payment-options-container").dialog({
-			width: 350,
-			modal: true,
-			closeOnEscape: false,
-			open: function(event, ui) { $('.ui-dialog-titlebar').hide(); }
-		 });
+		$('#payment-options-container').modal({
+			backdrop: 'static',
+			keyboard: false
+		});
 	}
 </script>
 {% endblock %}

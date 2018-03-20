@@ -1,13 +1,20 @@
-<div class="credit-card-processed">
-    <p class="info-message-box">
-        <i class="fa fa-credit-card"></i>
-        Your credit card has been processed successfully. redirecting<span id="dots" class="text"></span>
-    </p>
-    <p>
-        <br/>   
-        <a id="a-order-receipt" href="{% url 'sales_checkout_receipt' order.id order.receipt_code %}" style="display: none;">View your order receipt here...</a>
-    </p>
+<div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Payment processing</h5>
+      </div>
+      <div class="modal-body">
+        <p class="text-success">
+            <i class="fa fa-credit-card mr-2"></i>
+            Your credit card has been processed successfully. redirecting<span id="dots" class="text"></span>
+        </p>
+        <p>
+          <a id="a-order-receipt" class="d-none" href="{% url 'sales_checkout_receipt' order.id order.receipt_code %}">View your order receipt here...</a>
+        </p>
+      </div>
+    </div>
 </div>
+
 <script type="text/javascript">
     setTimeout(function(){
         $('#a-order-receipt').fadeIn(1000);

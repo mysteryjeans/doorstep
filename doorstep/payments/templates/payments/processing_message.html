@@ -2,15 +2,15 @@
 
 {% block catalog-content %}
 <div>
-    <h3>Payment Transaction</h3>
+    <h3>Payment transaction</h3>
     {% if error %}
-    <div class="error-message-box">
-        {{ error }}
+    <div class="text-danger mt-5">
+      {{ error }}
     </div>
     {% else %}
-    <div class="info-message-box">
-        {{ message }}
+    <div class="text-info mt-5">
+      {{ message }}
     </div>
     {% endif %}
-</div>   
+</div>
 {% endblock %}
