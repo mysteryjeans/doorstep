@@ -1,107 +1,152 @@
 {% extends checkout_template_name %}
 
 {% block checkout-content %}
-<div class="action-form">
+<div class="row mt-4">
+  <div class="col-12 col-md-8">
+    <h4 class="mb-3"><span class="text-capitalize">{{ step_active }}</span> address</h4>
     <form method="post" action="{% url current_step %}">
-        {% csrf_token %}
-         <input id="address_id" name="address_id" type="hidden" value=""/>
-        {% if addresses %}
-        <div class="addresses">
-            <h3>Existing address{{ addresses|pluralize:"es" }}</h3>
-            {% for address in addresses %}
-            <div class="address">
-                <ul>
-                    <li class="name">
-                        {{ address.first_name }} {{address.last_name }}
-                    </li>
-                    <li>
-                        {{ address.address1 }}
-                    </li>
-					<li>
-						{{ address.zip_or_postal_code }}, {{ address.city }}, {{ address.country }}
-					</li>
-                    <li>
-                        <label>{{ address.phone_number }}</label>
-                    </li>
-                    <li>
-                        <label>{{ address.email }}</label>
-                    </li>
-                    <li>
-                        <button onclick="javascript:$('#address_id').val('{{ address.id }}');">Next</button>
-                    </li>
-                </ul>
-            </div>
-            {% endfor %}
+      {% csrf_token %}
+      <input id="address_id" name="address_id" type="hidden" value=""/>
+      {{ form.errors }}
+      <div class="form-row">
+        <div class="col-md-6 form-group">
+          <label for="{{ form.first_name.id_for_label }}">First name</label>
+          <input id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.name }}" type="text" class="form-control {% if form.first_name.errors %}is-invalid{% endif %}" placeholder="First name" required="" value="{{ form.first_name.value|default:'' }}" />
+          {% if form.first_name.errors %}
+          <div class="invalid-feedback">
+            {{ form.first_name.errors|first|safe }}
+          </div>
+          {% endif %}
+        </div>
+        <div class="col-md-6 form-group">
+          <label for="{{ form.last_name.id_for_label }}">Last name</label>
+          <input id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.name }}" type="text" class="form-control {% if form.last_name.errors %}is-invalid{% endif %}" placeholder="Last name" required=""  value="{{ form.last_name.value|default:'' }}" />
+          {% if form.last_name.errors %}
+          <div class="invalid-feedback">
+            {{ form.last_name.errors|first|safe }}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="{{ form.email.id_for_label }}">Email</label>
+        <input id="{{ form.email.id_for_label }}" name="{{ form.email.name }}" type="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}" placeholder="Email" required=""  value="{{ form.email.value|default:'' }}" />
+        {% if form.email.errors %}
+        <div class="invalid-feedback">
+          {{ form.email.errors|first|safe }}
         </div>
         {% endif %}
-        <h3>Add new address</h3>
-        <div class="new-address">
-            <div>
-                <ul>
-                    <li>
-                        {{ form.first_name }}
-                        {{ form.first_name.errors }}
-                    </li>
-                    <li>
-                        {{ form.last_name }}
-                        {{ form.last_name.errors }}
-                    </li>
-                    <li>
-                        {{ form.email }}
-                        {{ form.email.errors }}
-                    </li>
-                    <li>
-                        {{ form.phone_number }}
-                        {{ form.phone_number.errors }}
-                    </li>
-                    <li>
-                        {{ form.fax_number }}
-                        {{ form.fax_number.errors }}
-                    </li>
-                    <li>
-                        {{ form.company }}
-                        {{ form.company.errors }}
-                    </li>
-                </ul>
-            </div>
-            <div style="float: left;">
-                <ul>
-                    <li>
-                        {{ form.address1 }}
-                        {{ form.address1.errors }}
-                    </li>
-                    <li>
-                        {{ form.address2 }}
-                        {{ form.address2.errors }}
-                    </li>
-                    <li>
-                        {{ form.zip_or_postal_code }}
-                        {{ form.zip_or_postal_code.errors }}
-                    </li>
-                    <li>
-                        {{ form.city }}
-                        {{ form.city.errors }}
-                    </li>
-                    <li>
-                        {{ form.country }}
-                        {{ form.country.errors }}
-                    </li>
-                    <li>
-                        <select id="id_state" name="state">
-                            {% for state in form.get_states %}
-                            <option country="{{ state.country_id }}" value="{{ state.id }}" {% if state_id == state.id %}selected="selected"{% endif %}>{{ state.name }}</option>
-                            {% endfor %}
-                            <option value="">Other</option>
-                        </select>
-                        {{ form.state.errors }}
-                    </li>
-                    <li>
-                        <button>Next</button>
-                    </li>
-                </ul>
+      </div>
+      <div class="form-row">
+        <div class="col-md-8 form-group">
+          <label for="{{ form.address1.id_for_label }}">Address 1</label>
+          <input id="{{ form.address1.id_for_label }}" name="{{ form.address1.name }}" type="text" class="form-control {% if form.address1.errors %}is-invalid{% endif %}" placeholder="Apartment or suite" required=""  value="{{ form.address1.value|default:'' }}" />
+          {% if form.address1.errors %}
+          <div class="invalid-feedback">
+            {{ form.address1.errors|first|safe }}
+          </div>
+          {% endif %}
+        </div>
+        <div class="col-md-4 form-group">
+          <label for="{{ form.city.id_for_label }}">City</label>
+          <input id="{{ form.city.id_for_label }}" name="{{ form.city.name }}" type="text" class="form-control {% if form.city.errors %}is-invalid{% endif %}" placeholder="" required=""  value="{{ form.city.value|default:'' }}" />
+          {% if form.city.errors %}
+          <div class="invalid-feedback">
+            {{ form.city.errors|first|safe }}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-8 form-group">
+          <label for="{{ form.address2.id_for_label }}">Address 2</label>
+          <input id="{{ form.address2.id_for_label }}" name="{{ form.address2.name }}" type="text" class="form-control {% if form.address2.errors %}is-invalid{% endif %}" placeholder="12345 Main St"  value="{{ form.address2.value|default:'' }}" />
+          {% if form.address2.errors %}
+          <div class="invalid-feedback">
+            {{ form.address2.errors|first|safe }}
+          </div>
+          {% endif %}
+        </div>
+        <div class="col-md-4  form-group">
+          <label for="{{ form.phone_number.id_for_label }}">Phone number</label>
+          <input id="{{ form.phone_number.id_for_label }}" name="{{ form.phone_number.name }}" type="text" class="form-control {% if form.phone_number.errors %}is-invalid{% endif %}" placeholder=""  value="{{ form.phone_number.value|default:'' }}" required=""/>
+          {% if form.phone_number.errors %}
+          <div class="invalid-feedback">
+            {{ form.phone_number.errors|first|safe }}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col-md-5 mb-3">
+          <label for="{{ form.country.id_for_label }}">Country</label>
+          <select id="{{ form.country.id_for_label }}" name="{{ form.country.name }}" class="custom-select d-block w-100" required>
+            {% for country in form.get_countries %}
+            <option value="{{ country.id }}" {% if form.country.value == country.id|stringformat:"s" %}selected="selected"{% endif %}>{{ country.name }}</option>
+            {% endfor %}
+          </select>
+          {% if form.country.errors %}
+          <div class="invalid-feedback">
+            {{ form.country.errors|first|safe }}
+          </div>
+          {% endif %}
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="{{ form.state.id_for_label }}">State</label>
+          <select id="{{ form.state.id_for_label }}" name="{{ form.state.name }}" class="custom-select d-block w-100">
+              {% for state in form.get_states %}
+              <option country="{{ state.country_id }}" value="{{ state.id }}" {% if form.state.value == state.id|stringformat:'s' %}selected="selected"{% endif %}>{{ state.name }}</option>
+              {% endfor %}
+              <option value="">Other</option>
+          </select>
+          {% if form.state.errors %}
+          <div class="invalid-feedback">
+              {{ form.state.errors|first|safe }}
+          </div>
+          {% endif %}
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="{{ form.zip_or_postal_code.id_for_label }}">Zip</label>
+          <input id="{{ form.zip_or_postal_code.id_for_label }}" name="{{ form.zip_or_postal_code.name }}" type="text" class="form-control {% if form.zip_or_postal_code.errors %}is-invalid{% endif %}" required=""  value="{{ form.zip_or_postal_code.value|default:'' }}" />
+          {% if form.zip_or_postal_code.errors %}
+          <div class="invalid-feedback">
+              {{ form.zip_or_postal_code.errors|first|safe }}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      <div>
+        <button class="btn btn-secondary float-right">Next</button>
+      </div>
+    </form>
+  </div>
+  {% if addresses %}
+  <div class="col-4">
+    <h4 class="d-flex justify-content-between text-muted">
+      Your address{{ addresses|pluralize:"es" }}
+      <span class="badge badge-secondary badge-pill">{{ addresses|length }}</span>
+    </h4>
+    {% for address in addresses %}
+    <form method="post" action="{% url current_step %}">
+      {% csrf_token %}
+      <input id="address_id" name="address_id" type="hidden" value="{{ address.id }}"/>
+        <div class="jumbotron py-2">
+            <h6>
+                {{ address.first_name }} {{address.last_name }}
+            </h6>
+            <p class="lead small">
+                {{ address.address1 }}<br>
+                {{ address.zip_or_postal_code }}, {{ address.city }}, {{ address.country }} <br>
+                <strong>{{ address.phone_number }}</strong> <br><br>
+                <em>{{ address.email }}</em>
+            </p>
+            <div class="d-flex justify-content-end">
+              <button class="btn btn-secondary">Use this address</button>
             </div>
         </div>
-    </form>    
+      {% endfor %}
+  </div>
+  {% endif %}
 </div>
 {% endblock %}
 
@@ -109,22 +154,21 @@
 {{ block.super }}
 <script type="text/javascript">
     function countryChanged() {
-        var country_id = $('select#id_country').val();
+        var country_id = $('select#{{ form.country.id_for_label }}').val();
 
-        $('select#id_state option').hide();
-        $('select#id_state option[country="' + country_id + '"]').show();
+        $('select#{{ form.state.id_for_label }} option').hide();
+        $('select#{{ form.state.id_for_label }} option[country="' + country_id + '"]').show();
 
-        if (!$('select#id_state option').is(':visible'))
-            $('select#id_state option[value=""]').show();
+        if (!$('select#{{ form.state.id_for_label }} option').is(':visible'))
+            $('select#{{ form.state.id_for_label }} option[value=""]').show();
 
-        if(!$('select#id_state option:selected').is(':visible'))
-            $('select#id_state').val($('select#id_state option:visible:first').val());
+        if(!$('select#{{ form.state.id_for_label }} option:selected').is(':visible'))
+            $('select#{{ form.state.id_for_label }}').val($('select#{{ form.state.id_for_label }} option:visible:first').val());
     }
 
     $(function () {
-        $('select#id_country').on('change', countryChanged);
+        $('select#{{ form.country.id_for_label }}').on('change', countryChanged);
         countryChanged();
-        $('select#id_state').val('{{ form.state.value|default_if_none:"" }}');
     });
 </script>
 {% endblock %}

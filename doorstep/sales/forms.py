@@ -12,17 +12,17 @@ class AddressForm(forms.ModelForm):
         fields = ('first_name', 'last_name', 'email', 'address1', 'address2',
                   'phone_number', 'fax_number', 'zip_or_postal_code', 'city', 'country', 'state', 'company')
         widgets = {
-            'first_name': forms.TextInput(attrs=({'placeholder': 'First name...', 'class': 'mandatory'})),
-            'last_name': forms.TextInput(attrs=({'placeholder': 'Last name...', 'class': 'mandatory'})),
-            'email': forms.TextInput(attrs=({'placeholder': 'Email address...', 'class': 'mandatory'})),
-            'phone_number': forms.TextInput(attrs=({'placeholder': 'Phone number...', 'class': 'mandatory'})),
-            'fax_number': forms.TextInput(attrs=({'placeholder': 'Fax number... (Optional)', 'class': 'optional'})),
-            'address1': forms.TextInput(attrs=({'placeholder': 'Address line 1...', 'class': 'mandatory'})),
-            'address2': forms.TextInput(attrs=({'placeholder': 'Address line 2... (Optional)', 'class': 'optional'})),
-            'zip_or_postal_code': forms.TextInput(attrs=({'placeholder': 'Zip/Postal Code...', 'class': 'mandatory'})),
-            'city': forms.TextInput(attrs=({'placeholder': 'City...', 'class': 'mandatory'})),
-            'country': forms.Select(attrs=({'placeholder': 'Country...', 'class': 'mandatory'})),
-            'company': forms.TextInput(attrs=({'placeholder': 'Company... (Optional)', 'class': 'optional'})),
+            'first_name': forms.TextInput(attrs=({'placeholder': 'First name...'})),
+            'last_name': forms.TextInput(attrs=({'placeholder': 'Last name...'})),
+            'email': forms.TextInput(attrs=({'placeholder': 'Email address...'})),
+            'phone_number': forms.TextInput(attrs=({'placeholder': 'Phone number...'})),
+            'fax_number': forms.TextInput(attrs=({'placeholder': 'Fax number... (Optional)'})),
+            'address1': forms.TextInput(attrs=({'placeholder': 'Address line 1...'})),
+            'address2': forms.TextInput(attrs=({'placeholder': 'Address line 2... (Optional)'})),
+            'zip_or_postal_code': forms.TextInput(attrs=({'placeholder': 'Zip/Postal Code...'})),
+            'city': forms.TextInput(attrs=({'placeholder': 'City...'})),
+            'country': forms.Select(attrs=({'placeholder': 'Country...'})),
+            'company': forms.TextInput(attrs=({'placeholder': 'Company... (Optional)'})),
 
         }
         error_messages = {
@@ -42,5 +42,9 @@ class AddressForm(forms.ModelForm):
         self.fields['country'].queryset = Country.objects.filter(is_active=True)
 
     @classmethod
+    def get_countries(cls):
+        return list(Country.objects.filter(is_active=True))
+
+    @classmethod
     def get_states(cls):
-        return list(State.objects.filter(is_active=True).all())
+        return list(State.objects.filter(is_active=True))
