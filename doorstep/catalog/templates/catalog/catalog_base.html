@@ -6,94 +6,58 @@
 
 {% block header-menu %}
 {% include "catalog/parts/search_box.html" %}
-<div class="dropdown">
-	<button id="currency-dropdown-button" class="btn btn-outline-dark border" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Currency">
-		{{ default_currency.code }}
-		<i class="fas fa-angle-down right ml-1"></i>
-	</button>
-	<div class="dropdown-menu" aria-labelledby="currency-dropdown-button">
-		<form method="post" action="{% url 'catalog_change_currency' %}">
-			{% csrf_token %}
-			<input type="hidden" name="next" value="{{ request.get_full_path }}" />
-			<input id="default_currency" type="hidden" name="default_currency"/>
-			<ul class="list-unstyled">
-				{% for currency in currencies %}
-				<li>
-					<a href="#" class="dropdown-item" onclick="javascript:$('#default_currency').val('{{ currency.code }}').closest('form').submit();">{{ currency.code }}</a>
-				</li>
-				{% endfor %}
-			</ul>
-		</form>
+<div class="ml-auto d-flex">
+	<div class="dropdown">
+		<button id="currency-dropdown-button" class="btn btn-outline-dark border" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Currency">
+			{{ default_currency.code }}
+			<i class="fas fa-angle-down right ml-1"></i>
+		</button>
+		<div class="dropdown-menu" aria-labelledby="currency-dropdown-button">
+			<form method="post" action="{% url 'catalog_change_currency' %}">
+				{% csrf_token %}
+				<input type="hidden" name="next" value="{{ request.get_full_path }}" />
+				<input id="default_currency" type="hidden" name="default_currency"/>
+				<ul class="list-unstyled">
+					{% for currency in currencies %}
+					<li>
+						<a href="#" class="dropdown-item" onclick="javascript:$('#default_currency').val('{{ currency.code }}').closest('form').submit();">{{ currency.code }}</a>
+					</li>
+					{% endfor %}
+				</ul>
+			</form>
+		</div>
+	</div>
+	<div id="basket-container">
+		{% cart_basket %}
 	</div>
 </div>
-<div id="basket-container">
-	{% cart_basket %}
-</div>
 {{ block.super }}
-{% endblock %}
-
-{% block nav-extended %}
-{{ block.super }}
-<ul class="nav-wrapper hide-on-med-and-down categories">
-	{% with template_name="catalog/parts/category_nav.html" %}
-	{% for category in categories %}
-	{% if category.sub_categories_list %}
-	<li>
-		<a class="dropdown-button left" data-activates="category-dropdown-{{ category.id }}" data-constrainwidth="false" data-alignment="left" data-beloworigin="true">
-			{{ category.name }}
-			<i class="fas fa-angle-down right"></i>
-		</a>
-		<div id="category-dropdown-{{ category.id }}" class="dropdown-content">
-			<div class="row">
-				{% for category in category.sub_categories_list|dictsortreversed:"sub_categories_count" %}
-				{% include template_name %}
-				{% endfor %}
-			</div>
-		</div>
-	</li>
-	{% else %}
-	<li>
-		<a id="category-id-{{ category.id }}" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
-	</li>
-	{% endif %}
-	{% endfor %}
-	{% endwith %}
-	<li>
-		<a class="dropdown-button left" data-activates="manufacturers-dropdown" data-constrainwidth="false" data-alignment="left" data-beloworigin="true">
-			Products
-			<i class="fas fa-angle-down right"></i>
-		</a>
-		<div id="manufacturers-dropdown" class="dropdown-content">
-			<div class="row">
-				{% for manufacturer in manufacturers %}
-				<div class="col s3">
-					<a href="{{ manufacturer.get_absolute_url }}" class="black-text">{{ manufacturer.name }}</a>
-				</div>
-				{% endfor %}
-			</div>
-		</div>
-	</li>
-</ul>
 {% endblock %}
 
 {% block side-nav-content %}
 {{ block.super }}
-<li class="divider"></li>
-<li><a class="subheader">Categories</a></li>
+<li class="bg-light text-info mt-4">
+	<a class="text-uppercase"><small>Categories</small></a>
+</li>
 {% with template_name="catalog/parts/category_list.html" %}
 {% for category in categories %}
 {% include template_name %}
 {% empty %}
-<li class="info-message-box no-categories-msg">
+<li class="text-white">
 	There are no categories defined.
 </li>
 {% endfor %}
 {% endwith %}
-<li class="divider"></li>
-<li><a class="subheader">Products</a></li>
+<li class="bg-light text-info mt-4">
+	<a class="text-uppercase"><small>Products</small></a>
+</li>
 {% for manufacturer in manufacturers %}
 <li>
 	<a href="{{ manufacturer.get_absolute_url }}">{{ manufacturer.name }}</a>
+</li>
+{% empty %}
+<li class="text-white">
+	There are no brands defined.
 </li>
 {% endfor %}
 {% endblock %}

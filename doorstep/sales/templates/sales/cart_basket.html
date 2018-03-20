@@ -3,8 +3,14 @@
 
 
 {% with items=cart.get_items sub_total=cart.get_sub_total items_count=cart.get_items_count %}
-<div id="cart-basket" class="dropdown ml-2">
-	<button id="cart-basket-dropdown-button" class="btn btn-outline-warning border-0 basket-counter" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<div id="cart-basket" class="dropdown ml-2 d-flex">
+	<a class="btn btn-outline-warning border-0 basket-counter d-sm-none" href="{% url 'sales_checkout_cart' %}">
+		{% if items %}
+		<span class="badge badge-primary float-left font-weight-light badge-pill">{{ sub_total|currency:default_currency }}</span>
+		{% endif %}
+		<i class="fas fa-shopping-cart"></i>
+	</a>
+	<button id="cart-basket-dropdown-button" class="btn btn-outline-warning border-0 basket-counter d-none d-sm-block" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 		{% if items %}
 		<span class="badge badge-primary float-left font-weight-light badge-pill">{{ sub_total|currency:default_currency }}</span>
 		{% endif %}

@@ -40,7 +40,7 @@
 				<span>Menu</span>
 		</button>
 		{% block header-menu %}
-		<ul class="navbar-nav ml-auto">
+		<ul class="navbar-nav  d-none d-lg-block ml-auto">
 			{% block header-menu-list %}
 			{% if user.is_authenticated %}
 			<li class="nav-item dropdown ml-1">
@@ -81,77 +81,46 @@
 			</div>
 
 			<div class="sidebar-header">
-					<h3>Bootstrap Sidebar</h3>
+				<a href=""{% url 'catalog_index' %}""><h3>{{ SITE_NAME }}</h3></a>
 			</div>
-
 			<ul class="list-unstyled">
-					<p>Dummy Heading</p>
-					<li class="active">
-							<a href="#homeSubmenu" class="dropdown-toggle" data-toggle="collapse" aria-expanded="false">Home</a>
-							<ul class="collapse list-unstyled" id="homeSubmenu">
-									<li><a href="#">Home 1</a></li>
-									<li><a href="#">Home 2</a></li>
-									<li><a href="#">Home 3</a></li>
-							</ul>
-					</li>
-					<li>
-							<a href="#">About</a>
-							<a href="#pageSubmenu" class="dropdown-toggle" data-toggle="collapse" aria-expanded="false">Pages</a>
-							<ul class="collapse list-unstyled" id="pageSubmenu">
-									<li><a href="#">Page 1</a></li>
-									<li><a href="#">Page 2</a></li>
-									<li><a href="#">Page 3</a></li>
-							</ul>
-					</li>
-					<li>
-							<a href="#">Portfolio</a>
-					</li>
-					<li>
-							<a href="#">Contact</a>
-					</li>
+				{% block side-nav-content %}
+				{% if user.is_authenticated %}
+				<li>
+					<a href="{% url 'catalog_index' %}">Hi! {{ user.get_username }}</a>
+				</li>
+				{% if user.is_staff %}
+				<li>
+					<a href="/admin/">
+						<i class="fas fa-wrench mr-3"></i>Admin
+					</a>
+				</li>
+				{% endif %}
+				<li>
+					<a href="{% url 'accounts_logout' %}">
+						 <i class="fas fa-sign-out-alt mr-3"></i>Log Out
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'accounts_change_password' %}">
+						<i class="fas fa-key mr-3"></i>Change password
+					</a>
+				</li>
+				{% else %}
+				<li>
+					<a href="{% url 'accounts_login' %}">
+						<i class="fas fa-lock mr-3"></i>Log In
+					</a>
+				</li>
+				<li>
+					<a href="{% url 'accounts_register' %}">
+						<i class="fas fa-user-plus mr-2"></i>Sign Up
+					</a>
+				</li>
+				{% endif %}
+				{% endblock %}
 			</ul>
 	</nav>
-
-	<ul id="slide-out" class="side-nav d-none">
-		{% block side-nav-content %}
-		{% if user.is_authenticated %}
-		<li>
-			<a href="#!name">
-				<span class="name">{{ user.get_username }}</span>
-			</a>
-		</li>
-		<li class="divider"></li>
-		{% endif %}
-		<li>
-			<a href="{% url 'catalog_index' %}"><i class="fas fa-home"></i>Home</a>
-		</li>
-		{% if user.is_authenticated %}
-		{% if user.is_staff %}
-		<li>
-			<a href="/admin/">
-			<i class="fas fa-wrench">account_box</i>Admin</a>
-		</li>
-		{% endif %}
-		<li>
-			<a href="{% url 'accounts_change_password' %}">
-			<i class="fas fa-key"></i>Change password</a>
-		</li>
-		<li>
-			<a href="{% url 'accounts_logout' %}">
-			<i class="fas fa-sign-out-alt">eject</i>Sign Out</a>
-		</li>
-		{% else %}
-		<li>
-			<a href="{% url 'accounts_login' %}">
-			<i class="fas fa-sign-in-alt"></i>Sign In</a>
-		</li>
-		<li>
-			<a href="{% url 'accounts_register' %}" title="Register to shop faster and better!">
-			<i class="fas fa-user-plus"></i>Register</a>
-		</li>
-		{% endif %}
-		{% endblock %}
-	</ul>
 	{% endblock %}
 </header>
 
@@ -161,7 +130,7 @@
 </main>
 <div class="sidebar-overlay"></div>
 {% block footer %}
-<footer class="pt-4 my-md-5 pt-md-5 border-top container">
+<footer class="mt-5 pt-4 my-md-5 pt-md-5 border-top container">
 	{% block footer-content %}
 	{% cache cache_timeout page-links %}
   <div class="row">
