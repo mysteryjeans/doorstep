@@ -1,28 +1,9 @@
-@first-color: #e74c3c;
-@second-color: #1a86c6;
-@text-color: #000;
-@bg-color: #fff;
-@light-text-color: #888;
-@a-color: #0260bf;
-@a-color-hover: @first-color;
-@font-family: verdana,arial,helvetica,sans-serif;
-@font-size: 12px;
-@border-color: #eee;
-@border-dark-color: #ddd;
-@h-color: @second-color;
-@h-font-size: 12px;
-@button-color: @second-color;
-@button-text-color: white;
-@place-holder-color: #666;
-@info-message-color: @text-color;
-@error-message-color: maroon;
-@success-message-color: green;
-@monospace-font-family: Consolas, Monaco, "Lucida Console", Monaco, monospace;
-@footer-color: #282b2d;
-@footer-light-color: #444;
-@footer-text-color: white;
-@footer-dark-text-color: #b3b3b3;
 
+* {
+  padding: 0px;
+  margin: 0px;
+  outline: none;
+}
 
 .text-lightgrey {
   color: lightgrey;
@@ -36,71 +17,18 @@
   width: auto;
 }
 
-.text {
-  color: @text-color;
+.bg-lightgrey {
+  background-color: lightgrey !important;
 }
 
-.light-text {
-  color: @light-text-color;
+.text-lightgrey {
+  color: lightgrey !important;
 }
 
-.border-radius (@radius) {
-  -webkit-border-radius: @radius;
-  -moz-border-radius: @radius;
-  -ms-border-radius: @radius;
-  -o-border-radius: @radius;
-  border-radius: @radius;
+.overflow-hidden {
+  overflow: hidden;
 }
 
-.border-box {
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-}
-
-.border {
-  border: 1px solid @border-color;
-}
-
-.transition(@transition) {
-  transition: @transition;
-  -webkit-transition: @transition;
-}
-
-.opacity(@opacity) {
-  @opacity-percentage: @opacity * 100;
-  opacity: @opacity;
-  filter: ~"alpha(opacity = (@{@opacity-percentage}))";
-}
-
-* {
-  padding: 0px;
-  margin: 0px;
-  outline: none;
-}
-
-.button {
-  border: 0px;
-  display: inline-block;
-  padding: 5px 10px;
-  cursor: pointer;
-  color: @button-text-color;
-  background: @button-color;
-  border: 0px;
-  .border-radius(2px);
-}
-
-.button:hover {
-  text-decoration: none;
-}
-
-.info-message {
-  color: @info-message-color;
-}
-
-.success-message {
-  color: @success-message-color;
-}
-.error-message {
-  color: @error-message-color;
+.w-auto {
+  width: auto;
 }
