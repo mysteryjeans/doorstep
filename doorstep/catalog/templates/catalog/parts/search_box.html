@@ -10,6 +10,7 @@
 					{% endif %}
 			  </button>
 				<div class="dropdown-menu" aria-labelledby="search-box-category-dropdown-menu">
+					{% if categories %}
 					<ul class="list-unstyled">
 						<li><a class="dropdown-item" href="{% url 'catalog_index' %}">All</a></li>
 						{% with template_name="catalog/parts/category_nav.html" %}
@@ -18,6 +19,9 @@
 						{% endfor %}
 						{% endwith %}
 					</ul>
+					{% else %}
+					<p class="text-info p-3 mb-0 text-nowrap">You haven't defined any categories in system.<br>Please Sign Up or login as administrator to define categories.</p>
+					{% endif %}
 				</div>
 				{% if breadcrumbs|length > 1 %}
 				<div class="btn btn-outline-secondary disabled border border-right-0 border-left-0 pl-1">

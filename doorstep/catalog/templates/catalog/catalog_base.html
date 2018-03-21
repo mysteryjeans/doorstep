@@ -43,8 +43,8 @@
 {% for category in categories %}
 {% include template_name %}
 {% empty %}
-<li class="text-white">
-	There are no categories defined.
+<li>
+	<p class="text-white">There are no categories defined.</p>
 </li>
 {% endfor %}
 {% endwith %}
@@ -56,8 +56,8 @@
 	<a href="{{ manufacturer.get_absolute_url }}">{{ manufacturer.name }}</a>
 </li>
 {% empty %}
-<li class="text-white">
-	There are no brands defined.
+<li>
+	<p class="text-white">There are no brands defined.</p>
 </li>
 {% endfor %}
 {% endblock %}
