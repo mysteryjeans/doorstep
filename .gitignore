@@ -57,3 +57,7 @@ docs/_build/
 
 # Desktop.ini
 desktop.ini
+
+# As project
+/static
+db.sqlite3
