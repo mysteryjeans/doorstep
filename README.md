@@ -34,11 +34,6 @@ Create database schema by running migrate command, by default Django project use
 $ python manage.py migrate
 ```
 
-Node.js is required for LESS & javascript preprocessing, assuming [node.js](http://nodejs.org/) is already installed and dependencies packages, let's verify that your site works, run development server and visit [http://127.0.0.1:8000](http://127.0.0.1:8000), you will see products catalog index page with no products and categories
-
-```
-$ python manage.py runserver
-```
 
 ## Setting up Doorstep e-commerce as Django App and separate project site
 
@@ -84,12 +79,6 @@ Create database schema by running migrate command, by default django project use
 $ python manage.py migrate
 ```
 
-Node.js is required for LESS & javascript preprocessing, assuming [node.js](http://nodejs.org/) is already installed, let's verify that your site works, run development server and visit [http://127.0.0.1:8000](http://127.0.0.1:8000), you will see products catalog index page with no products and categories
-
-```
-$ python manage.py runserver
-```
-
 ## Node.js packages dependency and installation
 
 Django-Pipeline settings is configured to use [LESS](http://lesscss.org/#using-less-installation) & [Yuglify](https://github.com/yui/yuglify) node.js packages for static files preprocessing & compression. When you deploy your site with collectstatic command these packages will be called. You can install both packages with [npm](https://www.npmjs.org/) (node.js package manager).
@@ -98,7 +87,13 @@ Django-Pipeline settings is configured to use [LESS](http://lesscss.org/#using-l
 $ npm install -g less yuglify
 ```
 
-Demo repository is following master branch on Doorstep, so you should pull changes frequently to keep things synchronized and running smoothly, see [demo project](https://github.com/mysteryjeans/doorstep-demo) readme for more details.
+## Running development server for your e-commerce project
+
+Assuming you have installed [node.js](http://nodejs.org/) & packages, let's verify that your site works, run development server and visit [http://127.0.0.1:8000](http://127.0.0.1:8000), you will see products catalog index pages with no products and categories
+
+```
+$ python manage.py runserver
+```
 
 
 ## Development
