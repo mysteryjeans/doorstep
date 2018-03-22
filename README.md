@@ -4,11 +4,28 @@ Doorstep
 
 Doorstep is open source e-commerce solution, simplicity in designed is to thrive sales and reduce development effort. Please read the documentation http://doorstep.readthedocs.io
 
+
+## Features
+
+- Fully responsive design
+- Multiple Payments methods supported
+- Paypal & Strip payment gateways intergration
+- Multiple currency support & automatic conversion for defined rates
+- Tax calculation & shipping cost on checkout
+- Custom pages & footer links supported
+- Categories, breadcrums and search as unified field
+- Built on [Django](https://www.djangoproject.com/), [Bootstrap](https://getbootstrap.com/) & [LESS](http://lesscss.org/)
+- Built as Django apps in the first place
+- Built on Django-Pipeline for preprocessing of LESS CSS
+- Compression & minification of static content CSS & JS
+- Cache refresh/invalidation for static contents CSS & JS
+
+
 ## Setting up Doorstep e-commerce as Django project
 
-[Doorstep demo](https://github.com/mysteryjeans/doorstep-demo) repository is for quickly getting up and running e-commerce site on your local workstation, its readme contains all steps to setting up a site.
+[Doorstep demo](https://github.com/mysteryjeans/doorstep-demo) repository is the clone of this project for quickly getting up and running e-commerce site on your local workstation
 
-When you have enough testing on prepopulated data in demo projects, starting your own site from scratch is similar to creating project in Django.
+When you have enough testing on prepopulated data in demo projects, starting your own site from scratch with basic data prepopulated.
 
 Create a new virtualenv for your own e-commerce project
 
@@ -98,9 +115,9 @@ $ python manage.py runserver
 
 ## Development
 
-Doorstep is yet to be production ready, there are few features left in completeness are:
+Doorstep is yet to develop some core features:
 
-- Administration\Backoffice
+- Dashboard
 - Unit tests
 
 ## Built With
@@ -115,7 +132,7 @@ Doorstep is yet to be production ready, there are few features left in completen
 
 Doorstep is free and open-source, I support and encourage an active healthy community that accepts contributions from the public – **including you!**
 
-We look forward to seeing your pull requests!
+Pull requests are appreciated!
 
 
 ## Screenshot
