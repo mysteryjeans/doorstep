@@ -1,7 +1,7 @@
-<form action="{% url 'catalog_search' %}" class="container-fluid d-none d-sm-block">
+<form action="{% url 'catalog_search' %}" class="w-100">
 	<input type="hidden" name="category" value="{{ category.id }}">
 	<div class="input-group">
-		<div class="input-group-prepend">
+		<div class="input-group-prepend d-none d-sm-block">
 			<div class="btn-group">
 				<button id="search-box-category-dropdown-menu" class="btn btn-outline-secondary border border-right-0 pr-2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Search in..">
 					<i class="fa fa-align-left"></i>

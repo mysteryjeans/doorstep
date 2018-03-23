@@ -124,7 +124,7 @@
   <div class="col-4">
     <h4 class="d-flex justify-content-between text-muted">
       Your address{{ addresses|pluralize:"es" }}
-      <span class="badge badge-secondary badge-pill">{{ addresses|length }}</span>
+      <span class="badge badge-secondary badge-pill font-weight-normal">{{ addresses|length }}</span>
     </h4>
     {% for address in addresses %}
     <form method="post" action="{% url current_step %}">

@@ -5,7 +5,9 @@
 {% load cache %}
 
 {% block header-menu %}
-{% include "catalog/parts/search_box.html" %}
+<div class="container-fluid d-none d-sm-block">
+	{% include "catalog/parts/search_box.html" %}
+</div>
 <div class="ml-auto d-flex">
 	<div class="dropdown">
 		<button id="currency-dropdown-button" class="btn btn-outline-dark border" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Currency">
@@ -32,6 +34,9 @@
 	</div>
 </div>
 {{ block.super }}
+<div class="container-fluid d-sm-none mt-2">
+	{% include "catalog/parts/search_box.html" %}
+</div>
 {% endblock %}
 
 {% block side-nav-content %}
