@@ -7,16 +7,15 @@ Doorstep is open source e-commerce solution, simplicity in designed is to thrive
 
 ## Features
 
-- Fully responsive design
-- Multiple Payments methods supported
-- Paypal & Strip payment gateways intergration
-- Multiple currency support & automatic conversion for defined rates
+- Responsive design
+- Multiple payment methods
+- Paypal & Strip payment gateways integration
+- Multiple currency support & rate conversion
 - Tax calculation & shipping cost on checkout
-- Custom pages & footer links supported
-- Categories, breadcrums and search as unified field
+- Pages & footer links
+- Categories, breadcrumbs and search as unified field
 - Built on [Django](https://www.djangoproject.com/), [Bootstrap](https://getbootstrap.com/) & [LESS](http://lesscss.org/)
 - Built as Django apps in the first place
-- Built on Django-Pipeline for preprocessing of LESS CSS
 - Compression & minification of static content CSS & JS
 - Cache refresh/invalidation for static contents CSS & JS
 
@@ -140,4 +139,3 @@ Pull requests are appreciated!
 ![Doorstep Demo Screenshot](https://raw.github.com/mysteryjeans/doorstep-demo/master/media/images/demo-screenshot.jpg)
 
 ![Doorstep Demo Screenshot](https://raw.github.com/mysteryjeans/doorstep-demo/master/media/images/mobile-screenshot.png)
-
